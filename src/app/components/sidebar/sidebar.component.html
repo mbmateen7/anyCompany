@@ -1,0 +1,131 @@
+
+    <a class="serch-btn-mt" href="log-in-page.html">
+        <i class="mr-10" data-feather="log-out"></i><span>Sign Out</span>
+    </a>
+    <div class="sidebar-header">
+
+        <div class="img-logo mx-auto ">
+            <a href="index.html">
+                <img class="img-fluid" src="assets/img/logo.png" alt="logo">
+            </a>
+        </div>
+        <div class="person-box">
+            <h1 class="nav-heading">Hello!</h1>
+            <p class="name-profile">Addy Brown</p>
+            <p class="detail-person">addybrown@humpheryandstretton.com</p>
+        </div>
+
+    </div>
+
+    <ul class="list-unstyled components">
+        <li>
+            <a class="dashboard-link" [routerLink]="['/dashboard']" routerLinkActive="active" >
+                <img class="img-hover-none" src="assets/img/dashboard.svg" alt="img">
+                <img class="img-hover" src="assets/img/dashboard-2.svg" alt="img">
+                <span class="text-link-nav">Dashbord</span>
+            </a>
+        </li>
+        <li>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+                <i class="user-sidebar-icon" data-feather="user"></i><span class="text-link-nav">Administration</span>
+            </a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a class="inner-list" href="administrator-users.html">User</a>
+                </li>
+                <li>
+                    <a class="inner-list" href="administrator-roles.html">Roles</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <li class="">
+            <a href="#delivery-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+                <i class="user-sidebar-icon list-rotate" data-feather="list"></i><span class="text-link-nav">Delivery List</span>
+            </a>
+            <ul class="collapse list-unstyled" id="delivery-menu">
+                <li>
+                    <a class="inner-list" href="delivery-list-table-view.html">Delivery List</a>
+                </li>
+                <li>
+                    <a class="inner-list" href="delivery-walking-list.html">Walking List</a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="">
+            <a href="#FSC" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+                <img class="img-hover-none" src="assets/img/icon-simple-gov-dot-uk.svg" alt="img">
+                <img class="img-hover" src="assets/img/icon-simple-gov-dot-uk-1.svg" alt="img">
+                <span class="text-link-nav">FSC</span>
+            </a>
+            <ul class="collapse list-unstyled" id="FSC">
+                <li>
+                    <a class="inner-list" href="FSC Customer Order.html">Customer Orders</a>
+                </li>
+                <li>
+                    <a class="inner-list" href="FSC.html">FSC Purchase Orders</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a class="dashboard-link" href="ROD.html">
+                <i class="user-sidebar-icon" data-feather="lock"></i>
+                <span class="text-link-nav">ROD</span>
+            </a>
+        </li>
+        <li>
+            <a class="dashboard-link" href="History.html">
+                <i class="user-sidebar-icon" data-feather="book-open"></i>
+                <span class="text-link-nav">History</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="#Phone-books" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+                <img class="img-hover-none" src="assets/img/phone-book.svg" alt="img">
+                <img class="img-hover" src="assets/img/phone-book-hover.svg" alt="img">
+                <span class="text-link-nav">PhoneBook</span>
+            </a>
+            <ul class="collapse list-unstyled" id="Phone-books">
+                <li>
+                    <a class="inner-list" href="phone-book-customer.html">Customers</a>
+                </li>
+                <li>
+                    <a class="inner-list" href="Phone-book.html">Suppliars</a>
+                </li>
+                <li>
+                    <a class="inner-list" href="phone-book-internal.html">Internal List</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <li class="">
+            <a href="#accounts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+                <img class="account-sicon img-hover-none" src="assets/img/icon-open-british-pound.svg" alt="img">
+                <img class="account-sicon img-hover" src="assets/img/icon-open-british-pound-1.svg" alt="img"><span class="text-link-nav">Accounts</span>
+            </a>
+            <ul class="collapse list-unstyled" id="accounts">
+                <li>
+                    <a class="inner-list" href="Accounts.html">Accounts</a>
+                </li>
+                <li>
+                    <a class="inner-list" href="Account-fixed-cost.html">Fixed Cost</a>
+                </li>
+                <li>
+                    <a class="inner-list" href="account-credit-check.html">Credit Check</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+
+
+
+    </ul>
