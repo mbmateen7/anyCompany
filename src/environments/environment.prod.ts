@@ -1,3 +1,6 @@
+import { urls } from "src/app/shared/constants/urls";
+
 export const environment = {
-  production: true
+    production: true,
+    apiUrl: urls.stagingUrl
 };

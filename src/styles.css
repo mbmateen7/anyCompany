@@ -36724,3 +36724,7 @@ input:checked+.slider:before {
 .pad-b {
     padding-bottom: 9.4rem;
 }
+
+#toast-container .toast-message {
+    font-size: 14px;
+}

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { GlobalHelper } from '../services/globalHelper';
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +10,7 @@ export class LoginGuard implements CanActivate {
 
     constructor(
         public router: Router,
+        private helper: GlobalHelper
     ) {
     }
 
@@ -17,15 +19,13 @@ export class LoginGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         ///// WE HAVE TO IMPLEMENT OUR LOGIC HERE:: START
         const token = localStorage.getItem('token');
+        console.log('LoginGuard', token);
         if (token) {
-            if (state.url.includes('refresh')) {
-                this.router.navigate(['/login']);
-            } else this.router.navigate(['/home']);
-            return false;
+            this.router.navigate(['/dashboard']);
+        } else {
+            this.helper.clearLocalStorage();
         }
-        else {
-            return true;
-        }
+        return true;
 
         /////////////////// END
     }

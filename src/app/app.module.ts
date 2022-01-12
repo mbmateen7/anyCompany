@@ -1,22 +1,46 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
+import { LoginGuard } from './shared/guards/login.guard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
-        BrowserModule,
-        AppRoutingModule
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ToastrModule.forRoot(
+            {
+                timeOut: 5000,
+                positionClass: 'toast-top-right',
+                preventDuplicates: false,
+                progressBar: true,
+                progressAnimation: 'decreasing'
+            },
+        ),
     ],
-    providers: [],
+    providers: [
+        LoginGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HeaderInterceptor,
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

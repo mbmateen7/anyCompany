@@ -15,18 +15,12 @@ export class AuthService {
         this.userObjSubject = new Subject();
     }
 
-    storeUserData(token: string | null, userObj: any, permissions = null): void {
-        if (token == null) {
-            localStorage.setItem('userObj', JSON.stringify(userObj));
-            if (permissions) localStorage.setItem('permissions', JSON.stringify(permissions));
-            this.userObjSubject.next(true);
-            return;
-        } else {
-            localStorage.setItem('token', token);
-            localStorage.setItem('userObj', JSON.stringify(userObj));
-            if (permissions) localStorage.setItem('permissions', JSON.stringify(permissions));
-            this.userObjSubject.next(true);
-        }
+    storeUserData(token: string | null, userObj: any): void {
+        console.log(token, userObj);
+        localStorage.setItem('token', token);
+        localStorage.setItem('userObj', JSON.stringify(userObj));
+        this.userObjSubject.next(true);
+        return;
     }
 
 
