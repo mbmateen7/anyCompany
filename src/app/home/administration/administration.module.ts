@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +15,8 @@ import { RolesComponent } from './roles/roles.component';
     ],
     imports: [
         CommonModule,
+        FormsModule,
+        NgbModule,
         AdministrationRoutingModule
     ]
 })

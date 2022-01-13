@@ -91,8 +91,6 @@ $(document).on('click', ".ctm-hamer", function () {
 
 $(document).on('click', "tr", function () {
     $(this).toggleClass("active");
-    console.log("hello")
-
 });
 
 $(document).on('click', ".filter-anchor", function () {
@@ -101,21 +99,7 @@ $(document).on('click', ".filter-anchor", function () {
     $(".filter").toggleClass("red-change");
 });
 $(document).ready(function () {
-    $(".custom-select").each(function () {
-        var classes = $(this).attr("class"),
-            id = $(this).attr("id"),
-            name = $(this).attr("name");
-        var template = '<div class="' + classes + '">';
-        template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
-        template += '<div class="custom-options">';
-        $(this).find("option").each(function () {
-            template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
-        });
-        template += '</div></div>';
-
-        $(this).wrap('<div class="custom-select-wrapper"></div>');
-        $(this).hide();
-        $(this).after(template);
-    });
+    
     feather.replace();
+    console.log('Feather');
 })

@@ -31,7 +31,7 @@
                             "node_modules/ngx-toastr/toastr.css"
                         ],
                         "scripts": [
-                            "src/assets/js/jquery-3.5.1.slim.min.js",
+                            "src/assets/js/jquery.min.js",
                             "src/assets/js/popover.js",
                             "node_modules/feather-icons/dist/feather.min.js",
                             "src/assets/js/bootstrap.min.js",

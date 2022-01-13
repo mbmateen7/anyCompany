@@ -6,7 +6,7 @@
                 <li class=" breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Users List</a></li>
                 <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
             </ul>
-            <a class="secondary-sup" data-toggle="modal" data-target="#myModal" href="#myModal">
+            <a class="secondary-sup" href="javascript:void(0)" (click)="addUser()">
                 <i class="plus" data-feather="plus"></i> New User</a>
 
         </div>
@@ -26,29 +26,33 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody class="t-body-ctm">
-                        <tr>
-                            <td class="padds-top">01</td>
-                            <td class="padds-top">John Demcy</td>
-                            <td class="padds-top">johndemcy00@yahoo.com</td>
-                            <td class="padds-top">
-                                <div class="center ctm-ha ctm-users-select">
-                                    <select name="sources" id="sources" class="custom-select sources" placeholder="Select">
-                                        <option value="profile">Basic</option>
-                                        <option value="word">Director</option>
-                                        <option value="hashtag">Sales</option>
-                                        <option value="Complete">Accounts</option>
-                                        <option value="Off Hold">Payroll Officer</option>
-                                    </select>
+                    <tbody class="t-body-ctm" *ngIf="!isLoading">
+                        <tr *ngFor="let user of users;let i=index">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <div class="select-box">
+                                    <div class="input-style form-group">
+                                        <div class="arrow-design">
+                                            <select class="form-control" (change)="updateRole(user,$event,i)">
+                                                <option [value]="role.id" *ngFor="let role of roles" [selected]="user.role_id == role.id">{{ role.title }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
-                            <td class="padds-top">
-                                <div class="center ctm-ha">
-                                    <select name="sources" id="sources" class="custom-select sources" placeholder="Change Action">
-                                        <option value="profile">Edit</option>
-                                        <option value="word">Delete</option>
-
-                                    </select>
+                            <td>
+                                <div class="select-box">
+                                    <div class="input-style form-group">
+                                        <div class="arrow-design">
+                                            <select class="form-control" placeholder="Change Action" (change)="userAction(user,$event,i)">
+                                                <option value="select">Select</option>
+                                                <option value="edit">Edit</option>
+                                                <option value="delete">Delete</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

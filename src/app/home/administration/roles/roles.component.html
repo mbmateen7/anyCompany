@@ -1,1 +1,52 @@
-<p>roles works!</p>
+<div class="dashboard-main">
+    <div class="dashboard-content ">
+        <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Adminstraion</a></li>
+                <li class=" breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Roles</a></li>
+                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
+            </ul>
+            <a class="secondary-sup" (click)="addRole()" href="javascript:void(0)">
+                <i class="plus" data-feather="plus"></i> New Role</a>
+
+        </div>
+        <div class="roles-main">
+            <div class="form-group sear-bar-roles position-relative mb-0">
+                <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
+                <i class="search-ctm" data-feather="search"></i>
+            </div>
+            <div class="tables-roles-main">
+                <table class="table">
+                    <thead class="thead-ctm">
+                        <tr>
+                            <th>#</th>
+                            <th>Role name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t-body-ctm">
+                        <tr *ngFor="let role of roles;let i = index">
+                            <td>{{ role.id }}</td>
+                            <td>{{ role.title }}</td>
+                            <td>
+                                 <div class="select-box">
+                                    <div class="input-style form-group">
+                                        <div class="arrow-design">
+                                            <select class="form-control" placeholder="Change Action" (change)="roleAction(role,$event,i)">
+                                                <option value="select">Select</option>
+                                                <option value="edit">Edit</option>
+                                                <option value="delete">Delete</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
