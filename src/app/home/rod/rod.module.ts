@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { RodRoutingModule } from './rod-routing.module';
 import { allIcons } from 'angular-feather/icons';
 import { FeatherModule } from 'angular-feather';
+import { FormsModule } from '@angular/forms';
+import { RodComponent } from './rod.component';
 
 
 @NgModule({
-    declarations: [DashboardComponent],
+    declarations: [
+        RodComponent
+    ],
     imports: [
         CommonModule,
-        DashboardRoutingModule,
+        RodRoutingModule,
+        FormsModule,
         FeatherModule.pick(allIcons)
     ]
 })
-export class DashboardModule { }
+export class RodModule { }

@@ -33,7 +33,6 @@
                         "scripts": [
                             "src/assets/js/jquery.min.js",
                             "src/assets/js/popover.js",
-                            "node_modules/feather-icons/dist/feather.min.js",
                             "src/assets/js/bootstrap.min.js",
                             "src/assets/js/custom.js"
                         ]

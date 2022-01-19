@@ -98,8 +98,3 @@ $(document).on('click', ".filter-anchor", function () {
     $(this).toggleClass("red-change");
     $(".filter").toggleClass("red-change");
 });
-$(document).ready(function () {
-    
-    feather.replace();
-    console.log('Feather');
-})

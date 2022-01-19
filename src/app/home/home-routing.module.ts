@@ -16,6 +16,11 @@ const homeRoutes: Routes = [
         path: 'administration',
         component: HomeComponent,
         loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule)
+    },
+    {
+        path: 'rod',
+        component: HomeComponent,
+        loadChildren: () => import('./rod/rod.module').then(m => m.RodModule)
     }
 ];
 

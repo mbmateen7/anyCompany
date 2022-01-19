@@ -1,6 +1,6 @@
 
     <a class="serch-btn-mt" href="log-in-page.html">
-        <i class="mr-10" data-feather="log-out"></i><span>Sign Out</span>
+        <i-feather class="mr-10" name="log-out"></i-feather><span>Sign Out</span>
     </a>
     <div class="sidebar-header">
 
@@ -27,9 +27,9 @@
         </li>
         <li>
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
-                <i class="user-sidebar-icon" data-feather="user"></i><span class="text-link-nav">Administration</span>
+               <i-feather name="user" class="user-sidebar-icon"></i-feather><span class="text-link-nav">Administration</span>
             </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
+            <ul class="collapse list-unstyled" routerLinkActive="show" id="homeSubmenu">
                 <li>
                     <a class="inner-list" [routerLink]="['/administration/users']" routerLinkActive="active">User</a>
                 </li>
@@ -43,7 +43,7 @@
 
         <li class="">
             <a href="#delivery-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
-                <i class="user-sidebar-icon list-rotate" data-feather="list"></i><span class="text-link-nav">Delivery List</span>
+                <i-feather name="list" class="user-sidebar-icon list-rotate"></i-feather><span class="text-link-nav">Delivery List</span>
             </a>
             <ul class="collapse list-unstyled" id="delivery-menu">
                 <li>
@@ -73,15 +73,13 @@
         </li>
 
         <li>
-            <a class="dashboard-link" href="ROD.html">
-                <i class="user-sidebar-icon" data-feather="lock"></i>
-                <span class="text-link-nav">ROD</span>
+            <a class="dashboard-link" [routerLink]="['/rod']" routerLinkActive="active">
+                <i-feather name="lock" class="user-sidebar-icon"></i-feather><span class="text-link-nav">ROD</span>
             </a>
         </li>
         <li>
             <a class="dashboard-link" href="History.html">
-                <i class="user-sidebar-icon" data-feather="book-open"></i>
-                <span class="text-link-nav">History</span>
+                <i-feather name="book-open" class="user-sidebar-icon"></i-feather><span class="text-link-nav">History</span>
             </a>
         </li>
         <li class="">
@@ -123,9 +121,4 @@
 
             </ul>
         </li>
-
-
-
-
-
     </ul>

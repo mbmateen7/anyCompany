@@ -7,13 +7,13 @@
                 <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
             </ul>
             <a class="secondary-sup" href="javascript:void(0)" (click)="addUser()">
-                <i class="plus" data-feather="plus"></i> New User</a>
+                <i-feather class="plus" name="plus"></i-feather> New User</a>
 
         </div>
         <div class="roles-main">
             <div class="form-group sear-bar-roles position-relative mb-0">
-                <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
-                <i class="search-ctm" data-feather="search"></i>
+                <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" (input)="searchUser()" [(ngModel)]="search">
+                <i-feather class="search-ctm" name="search"></i-feather>
             </div>
             <div class="tables-roles-main tables-users-main">
                 <table class="table">

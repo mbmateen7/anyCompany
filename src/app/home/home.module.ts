@@ -6,9 +6,12 @@ import { HomeComponent } from './home.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { AddEditUserComponent } from '../components/modals/add-edit-user/add-edit-user.component';
+import { AddEditUserComponent } from '../components/modals/administration/add-edit-user/add-edit-user.component';
 import { FormsModule } from '@angular/forms';
-import { AddEditRolesComponent } from '../components/modals/add-edit-roles/add-edit-roles.component';
+import { AddEditRolesComponent } from '../components/modals/administration/add-edit-roles/add-edit-roles.component';
+import { FeatherModule } from 'angular-feather';
+import { allIcons } from 'angular-feather/icons';
+import { AddDeliveryNoteComponent } from '../components/modals/rod/add-delivery-note/add-delivery-note.component';
 
 @NgModule({
     declarations: [
@@ -17,12 +20,14 @@ import { AddEditRolesComponent } from '../components/modals/add-edit-roles/add-e
         HeaderComponent,
         FooterComponent,
         AddEditUserComponent,
-        AddEditRolesComponent
+        AddEditRolesComponent,
+        AddDeliveryNoteComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
-        HomeRoutingModule
+        HomeRoutingModule,
+        FeatherModule.pick(allIcons)
     ]
 })
 export class HomeModule { }

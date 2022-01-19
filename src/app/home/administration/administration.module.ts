@@ -6,6 +6,8 @@ import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { FeatherModule } from 'angular-feather';
+import { allIcons } from 'angular-feather/icons';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { FormsModule } from '@angular/forms';
         CommonModule,
         FormsModule,
         NgbModule,
-        AdministrationRoutingModule
+        AdministrationRoutingModule,
+        FeatherModule.pick(allIcons)
     ]
 })
 export class AdministrationModule { }

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { AdministrationService } from 'src/app/shared/services/administration.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddEditUserComponent } from 'src/app/components/modals/add-edit-user/add-edit-user.component';
+import { AddEditUserComponent } from 'src/app/components/modals/administration/add-edit-user/add-edit-user.component';
 
 @Component({
     selector: 'app-users',
@@ -79,6 +79,12 @@ export class UsersComponent implements OnInit {
             modal.close();
             this.getAllUsers();
         });
+    }
+
+    searchUser() {
+        if (this.search.length >= 3) {
+            this.getAllUsers();
+        }
     }
 
 }
