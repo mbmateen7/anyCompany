@@ -3,6 +3,7 @@ import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { AdministrationService } from 'src/app/shared/services/administration.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditUserComponent } from 'src/app/components/modals/administration/add-edit-user/add-edit-user.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
     selector: 'app-users',
@@ -22,7 +23,11 @@ export class UsersComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
-    constructor(private _administration: AdministrationService, private helper: GlobalHelper, private _modal: NgbModal) { }
+
+    currentUser = null;
+    constructor(private _administration: AdministrationService, private helper: GlobalHelper, private _modal: NgbModal, private _auth: AuthService) {
+        this.currentUser = this._auth.currentUserValue;
+    }
 
     ngOnInit(): void {
         this.getAllUsers();
@@ -58,15 +63,21 @@ export class UsersComponent implements OnInit {
     userAction(user: any, event: any, index: number) {
         const modal = this._modal.open(AddEditUserComponent, this.modalConfig);
         modal.componentInstance.user = { ...user };
-        modal.componentInstance.type = event.target.value;
+        modal.componentInstance.type = event;
         modal.componentInstance.roles = this.roles;
         modal.componentInstance.response.subscribe((res: any) => {
             console.log(res);
             modal.close();
-            event.target.value = 'select';
             if (res.delete) {
                 this.users.splice(index, 1);
             } else this.users[index] = res.data;
+        });
+    }
+
+    updateUserStatus(user) {
+        user.status = !user.status;
+        this._administration.updateUser(user).subscribe(res => {
+            user.status = res.data.status;
         });
     }
 
@@ -82,7 +93,7 @@ export class UsersComponent implements OnInit {
     }
 
     searchUser() {
-        if (this.search.length >= 3) {
+        if (this.search.length >= 3 || this.search.length == 0) {
             this.getAllUsers();
         }
     }

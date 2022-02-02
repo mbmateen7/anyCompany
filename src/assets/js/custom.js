@@ -89,10 +89,6 @@ $(document).on('click', ".ctm-hamer", function () {
     $("#img-show").toggleClass("show-icon-img");
 });
 
-$(document).on('click', "tr", function () {
-    $(this).toggleClass("active");
-});
-
 $(document).on('click', ".filter-anchor", function () {
     $(".card-view-table").toggle(2000);
     $(this).toggleClass("red-change");

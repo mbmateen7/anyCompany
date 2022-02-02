@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddDeliveryNoteComponent } from './add-delivery-note.component';
+import { PaginationComponent } from './pagination.component';
 
-describe('AddDeliveryNoteComponent', () => {
-  let component: AddDeliveryNoteComponent;
-  let fixture: ComponentFixture<AddDeliveryNoteComponent>;
+describe('PaginationComponent', () => {
+  let component: PaginationComponent;
+  let fixture: ComponentFixture<PaginationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddDeliveryNoteComponent ]
+      declarations: [ PaginationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddDeliveryNoteComponent);
+    fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

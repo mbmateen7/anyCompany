@@ -10,26 +10,30 @@
 <div class="modal-body" *ngIf="type!='delete'">
     <div class="input-style mb-2">
         <label class="d-block">Name<span class="text-danger">*</span></label>
-        <input type="text" class="ctm-input" placeholder="Muhammad" [(ngModel)]="user.name" name="name" >
+        <input type="text" class="ctm-input" placeholder="Muhammad" [(ngModel)]="user.name" name="name">
     </div>
     <div class="input-style mb-2">
         <label class="d-block">Email<span class="text-danger">*</span></label>
-        <input type="email" class="ctm-input" placeholder="abc@mail.com" [(ngModel)]="user.email" name="email" >
+        <input type="email" class="ctm-input" placeholder="abc@mail.com" [(ngModel)]="user.email" name="email">
     </div>
     <div class="input-style mb-2" *ngIf="type == 'add'">
         <label class="d-block">Password<span class="text-danger">*</span></label>
         <div class="type-pass">
-            <input type="password" class=" ctm-input" placeholder="Password" [(ngModel)]="user.password" name="password" >
-            <div class="icon-eye d-flex align-items-center justify-content-center">
-                <div class="tooltip-set">
-                    <i-feather class="copy-ctm" name="copy"></i-feather>
-                    <div class="text-toolyip">Copied</div>
-                </div>
-            </div>
-
+            <h5>A system generated password will be sent to this user which user can change later.</h5>
         </div>
     </div>
-    <div class="input-style mb-3">
+    <div class="select-box">
+        <div class="input-style form-group">
+            <label class="d-block">Role<span class="text-danger">*</span></label>
+            <div class="arrow-design">
+                <select class="form-control" placeholder="Change Action" [(ngModel)]="user.role_id">
+                    <option value="0" selected>Select Role</option>
+                    <option [value]="role.id" *ngFor="let role of roles" [selected]="user.role_id == role.id">{{ role.title }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="input-style mb-3">
         <div class="select-box">
             <div class="form-group">
                 <label class="d-block">Role<span class="text-danger">*</span></label>
@@ -39,7 +43,7 @@
                 </select>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- <div class="remember-me">
         <label class="custom-check custom-check-r">Set random password.

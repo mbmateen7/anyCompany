@@ -4,22 +4,19 @@
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">ROD</a></li>
 
-                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
             </ul>
 
-            <div class="d-flex btn-feature">
-                <a class="Invoice" data-toggle="modal" data-target="#fsc-order" href="#fsc-order" href="javascript:void(0)">
+            <div class="d-flex btn-feature" *ngIf="checked">
+                <a class="Invoice" (click)="multipleUpdate('invoice_no')" href="javascript:void(0)">
                     <i-feather class="plus" name="plus"></i-feather> Invoice
                 </a>
-                <a class="Delivery-Note" data-toggle="modal" data-target="#status-change-3" href="#status-change-3" href="javascript:void(0)">
-                    <i-feather class="plus" name="plus"></i-feather> Delivery Note
-                </a>
-                <a class="Schedule" data-toggle="modal" data-target="#status-change-2" href="javascript:void(0)">
+                <a class="Schedule" (click)="multipleUpdate('schedule_ref')" href="javascript:void(0)">
                     <i-feather class="plus" name="plus"></i-feather> Schedule Ref
                 </a>
             </div>
             <div class="d-flex for-respo-devices-rod-btn">
-                <a class="btn-apply" data-toggle="modal" data-target="#add-sales-order" href="#add-sales-order" href="javascript:void(0)">
+                <a class="btn-apply" (click)="addSalesOrder()" href="javascript:void(0)">
                     <i-feather class="plus" name="plus"></i-feather> Add Sales Order
                 </a>
                 <a class="credit-check" data-toggle="modal" data-target="#Download-1" href="#Download-1">
@@ -39,14 +36,21 @@
 
                 </div>
                 <div class="mr-70 d-flex">
-                    <div class="center ctm-ha mr-2">
-                        <select name="sources" id="sources" class="custom-select sources" placeholder="Bulk Status">
-                            <option value="profile">On Hold</option>
-                            <option value="word">To Factory</option>
-                            <option value="hashtag">Withdraw</option>
-                            <option value="Complete">Complete</option>
-                            <option value="Off Hold">Off Hold</option>
-                        </select>
+                    <div class="select-box" *ngIf="checked">
+                        <div class="form-group">
+                            <div class="arrow-design">
+                                <select class="form-control bulk-select-status">
+                                    <option value="select" selected>Bulk Status</option>
+                                    <option value="Booked">Booked</option>
+                                    <option value="Factory">To Factory</option>
+                                    <option value="In Factory">In Factory</option>
+                                    <option value="Delivered">Delivered</option>
+                                    <option value="Withdrawn">Withdrawn</option>
+                                    <option value="On Hold">On Hold</option>
+                                    <option value="Off Hold">Off Hold</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <a class="Delivery-Note" href="javascript:void(0)">
                         <i-feather class="plus" name="check"></i-feather> Delivered
@@ -61,7 +65,7 @@
                                 <th>
                                     <div class="remember-me">
                                         <label class="custom-check custom-check-r">
-                                            <input type="checkbox" checked="checked">
+                                            <input type="checkbox" [checked]="checkAll" [(ngModel)]="checkAll" (change)="selectAll()">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -74,7 +78,6 @@
                                 <th>
                                     <p class="inner-cell">Customer<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
-
                                 <th>
                                     <p class="inner-cell">Contract<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
@@ -90,13 +93,8 @@
                                 <th>
                                     <p class="inner-cell">Progress<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
-
-
                                 <th>
                                     <p class="inner-cell">FSC<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
-                                </th>
-                                <th>
-                                    <p class="inner-cell">Date<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
                                 <th>
                                     <p class="inner-cell">Invoice<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
@@ -104,489 +102,155 @@
                                 <th>
                                     <p class="inner-cell">Delivery Note</p>
                                 </th>
-                                <th>Sch Ref</th>
-
+                                <th>
+                                    <p class="inner-cell">Sch Ref</p>
+                                </th>
                                 <th>
                                     <p class="inner-cell">Job Notes</p>
                                 </th>
-                                <th>Actions</th>
+                                <!-- <th>
+                                    <p class="inner-cell">Hold</p>
+                                </th> -->
+                                <th>
+                                    <p class="inner-cell">Actions</p>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="t-body-ctm">
-                            <tr>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-                                <td class="space-padds-seets"><br></td>
-
-                            </tr>
-                            <tr class="active-row">
+                            <tr class="active-row" [ngClass]="{'order-withdrawn': rod.status=='Withdrawn', 'order-to-factory':rod.status=='To Factory'}" *ngFor="let rod of rods; let i = index">
                                 <td>
                                     <div class="remember-me">
                                         <label class="custom-check custom-check-r">
-                                            <input type="checkbox" checked="checked">
+                                            <input type="checkbox" [checked]="rod.checked" [(ngModel)]="rod.checked" (change)="selectOptions()">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">Prince Build</p>
+                                    <p class="inner-cell">{{ rod.work_number }}</p>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">184</p>
+                                    <p class="inner-cell">{{ rod.customer.name }}</p>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">Charing Cross Hospital</p>
+                                    <p class="inner-cell">{{ rod.contract }}</p>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">A01</p>
+                                    <p class="inner-cell">{{ rod.order_number }}</p>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">Frame</p>
+                                    <p class="inner-cell">{{ rod.product.name }}</p>
                                 </td>
                                 <td>
-                                    <div class="center ctm-ha ctm-users-select">
-                                        <select name="sources" id="sources" class="custom-select sources" placeholder="Status">
-                                            <option value="Booked">Booked</option>
-                                            <option value="Factory">To Factory</option>
-                                            <option value="Delivered">Delivered</option>
-                                            <option value="Withdrawn">Withdrawn</option>
-                                            <option value="On Hold">On Hold</option>
-                                            <option value="Off Hold">Off Hold</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">57.14</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">-</p>
-                                </td>
-
-                                <td>
-                                    <p class="inner-cell">2021-10-29 13:44</p>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">41109</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
+                                    <div class="select-box inner-cell">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="!rod.edit_status" [ngClass]="{'text-danger': rod.status == 'Withdrawn', 'text-success' : rod.status == 'To Factory'}">
+                                            {{ rod.status }} <i-feather class="icon-width" name="edit-2" (click)="editStatus(i)"></i-feather>
                                         </a>
-                                    </div>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">52404</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">Gd12-19</p>
-                                        <a class="icon-anchor-list" href="Dispatch-order.html">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class="view-anchor-tooltip">
-                                        <a class="view-anchor " href="javascript:void(0)">
-                                            View
-                                        </a>
-                                        <div class="tooltiptext-view">
-                                            <div class="d-flex align-items-center justify-content-end">
-                                                <a class="tooltip-anchor-modal" data-toggle="modal" data-target="#job-notes-madal" href="javascript:void(0)">
-                                                    View More</a>
-
-                                            </div>
-                                            <div class="toop-hight">
-                                                <p>This morning we welcomed Bill Liatsis and CreditIQ to our team! Watch Bill and Joe breakdown how CIQ’s advanced fintech technology</p>
-                                            </div>
-                                            <div class="date-tooptip-iner">
-                                                9:30am |23 October, 2021
+                                        <div class="form-group" [hidden]="!rod.edit_status">
+                                            <div class="arrow-design">
+                                                <select class="form-control" (change)="updateStatus(rod,$event,i)" [disabled]="rod.on_hold">
+                                                    <option [selected]="rod.status == 'Booked'" value="Booked">Booked</option>
+                                                    <option [selected]="rod.status == 'To Factory'" value="To Factory">To Factory</option>
+                                                    <option [selected]="rod.status == 'In Factory'" value="In Factory">In Factory</option>
+                                                    <option [selected]="rod.status == 'Withdrawn'" value="Withdrawn">Withdrawn</option>
+                                                    <option [selected]="rod.status == 'Delivered'" value="Delivered">Delivered</option>
+                                                    <option [selected]="rod.status == 'Completed'" value="Completed">Completed</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </td>
                                 <td>
-                                    <div class="list-icons-talbe">
-                                        <a class="icon-anchor-list" href="Dispatch-order.html">
+                                    <p class="inner-cell">{{ rod.product.progress }}</p>
+                                </td>
+                                <td>
+                                    <p class="inner-cell" *ngIf="rod.fsc">
+                                        <i-feather name="check"></i-feather>
+                                    </p>
+                                    <p class="inner-cell" *ngIf="!rod.fsc">-</p>
+                                </td>
+                                <td>
+                                    <div class="inner-cell list-icons-talbe-sec">
+                                        <input type="text" [value]="rod.invoice_no" *ngIf="rod.edit_invoice" class="edit-inline-input" autofocus (focusout)="updateInvoiceNo($event,i)" (keyup)="updateInvoiceNo($event,i)">
+                                        <p class="icon-anchor-list" *ngIf="!rod.invoice_no && !rod.edit_invoice">- <i-feather class="icon-width" name="edit-2" (click)="editInvoiceNo(i)"></i-feather>
+                                        </p>
+                                        <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="rod.invoice_no && !rod.edit_invoice">
+                                            {{ rod.invoice_no }} <i-feather class="icon-width" name="edit-2" (click)="editInvoiceNo(i)"></i-feather>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inner-cell list-icons-talbe-sec">
+                                        <a class="icon-anchor-list red" *ngIf="rod.delivery_notes_count > 1" [routerLink]="['delivery-notes', rod.id]">Multiple</a>
+                                        <a class="icon-anchor-list" *ngIf="rod.delivery_notes_count == 0">
+                                            - <i-feather class="icon-width" name="edit-2" [routerLink]="['delivery-notes', rod.id]"></i-feather>
+                                        </a>
+                                        <a class="icon-anchor-list" href="javascript:void(0)" [routerLink]="['delivery-notes', rod.id]" *ngIf="rod.delivery_notes_count == 1">
+                                            {{ rod.delivery_notes[0]?.ticket_no }} <i-feather class="icon-width" name="edit-2"></i-feather>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inner-cell list-icons-talbe-sec">
+                                        <input type="text" [value]="rod.schedule_ref" *ngIf="rod.edit_schedule_ref" class="edit-inline-input" autofocus (focusout)="updateScheduleRef($event,i)" (keyup)="updateScheduleRef($event,i)">
+                                        <p class="inner-cell icon-anchor-list" *ngIf="!rod.schedule_ref && !rod.edit_schedule_ref">- <i-feather class="icon-width" name="edit-2" (click)="editScheduleRef(i)"></i-feather>
+                                        </p>
+                                        <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="rod.schedule_ref && !rod.edit_schedule_ref">
+                                            {{ rod.schedule_ref }} <i-feather class="icon-width" name="edit-2" (click)="editScheduleRef(i)"></i-feather>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="inner-cell view-anchor-tooltip">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="!rod.job_notes_count" (click)="addJobNote(rod.id,i)">
+                                            <i-feather class="icon-width" name="plus"></i-feather>
+                                        </a>
+                                        <a class="view-anchor red" href="javascript:void(0)" *ngIf="rod.job_notes_count" (click)="addJobNote(rod.id,i)">
+                                            View
+                                        </a>
+                                        <div class="tooltiptext-view" *ngIf="rod.job_notes_count && rod.job_notes[0]?.description">
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <a class="tooltip-anchor-modal" href="javascript:void(0)" (click)="addJobNote(rod.id,i)">
+                                                    Add Note <i-feather class="icon-width w15" name="plus"></i-feather></a>
+
+                                            </div>
+                                            <div class="toop-hight">
+                                                <p>{{ rod.job_notes[0]?.description }}</p>
+                                            </div>
+                                            <div class="date-tooptip-iner">
+                                                {{ rod.job_notes[0]?.created_at | date: 'h:mm A | dd LLLL, yyyy'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- <td>
+                                    <div class="inner-cell custom-box">
+                                        <label class="switch">
+                                            <input type="checkbox" [checked]="rod.on_hold" (change)="updateHoldStatus(rod)">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </td> -->
+                                <td>
+                                    <div class="inner-cell list-icons-talbe">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" [routerLink]="['delivery-notes', rod.id]">
                                             <i-feather class="icon-width" name="book"></i-feather>
                                         </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#timeline" href="javascript:void(0)">
-                                            <img src="img/line-img-gray.svg" alt="img">
+                                        <a class="icon-anchor-list" href="javascript:void(0)">
+                                            <img src="assets/img/line-img-gray.svg" alt="img" (click)="viewTimeline(rod,i)">
                                         </a>
                                         <a class="icon-anchor-list" data-toggle="modal" data-target="#status-change" href="javascript:void(0)">
                                             <i-feather class="icon-width" name="check"></i-feather>
                                         </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#edit-sales" href="javascript:void(0)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(rod,i)">
                                             <i-feather class="icon-width" name="edit-3"></i-feather>
                                         </a>
-
-
-
-
-                                    </div>
-                                </td>
-
-
-                            </tr>
-                            <tr class="active-row">
-                                <td>
-                                    <div class="remember-me">
-                                        <label class="custom-check custom-check-r">
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Prince Build</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">184</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Charing Cross Hospital</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">A01</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Frame</p>
-                                </td>
-                                <td>
-                                    <div class="center ctm-ha ctm-users-select">
-                                        <select name="sources" id="sources" class="custom-select sources" placeholder="Status">
-                                            <option value="Booked">Booked</option>
-                                            <option value="Factory">To Factory</option>
-                                            <option value="Delivered">Delivered</option>
-                                            <option value="Withdrawn">Withdrawn</option>
-                                            <option value="On Hold">On Hold</option>
-                                            <option value="Off Hold">Off Hold</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">57.14</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">-</p>
-                                </td>
-
-                                <td>
-                                    <p class="inner-cell">2021-10-29 13:44</p>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">41109</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell red-label-text">Multiple</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="deleteOrder(rod,i)">
+                                            <i-feather class="icon-width" name="trash"></i-feather>
                                         </a>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">Gd12-19</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class="view-anchor-tooltip">
-                                        <a class="view-anchor " href="javascript:void(0)">
-                                            View
-                                        </a>
-                                        <div class="tooltiptext-view">
-                                            <div class="d-flex align-items-center justify-content-end">
-                                                <a class="tooltip-anchor-modal" data-toggle="modal" data-target="#job-notes-madal" href="javascript:void(0)">
-                                                    View More</a>
-
-                                            </div>
-                                            <div class="toop-hight">
-                                                <p>This morning we welcomed Bill Liatsis and CreditIQ to our team! Watch Bill and Joe breakdown how CIQ’s advanced fintech technology</p>
-                                            </div>
-                                            <div class="date-tooptip-iner">
-                                                9:30am |23 October, 2021
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe">
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#timeline" href="javascript:void(0)">
-                                            <img src="img/line-img-gray.svg" alt="img">
-                                        </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#status-change" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="check"></i-feather>
-                                        </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#edit-sales" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-3"></i-feather>
-                                        </a>
-
-
-
-
-                                    </div>
-                                </td>
-
-
-                            </tr>
-                            <tr class="active-row">
-                                <td>
-                                    <div class="remember-me">
-                                        <label class="custom-check custom-check-r">
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Prince Build</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">184</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Charing Cross Hospital</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">A01</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Frame</p>
-                                </td>
-                                <td>
-
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell red-label-green">To Factory</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">57.14</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">-</p>
-                                </td>
-
-                                <td>
-                                    <p class="inner-cell">2021-10-29 13:44</p>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">41109</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell red-label-text">Multiple</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">Gd12-19</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class="view-anchor-tooltip">
-                                        <a class="view-anchor " href="javascript:void(0)">
-                                            View
-                                        </a>
-                                        <div class="tooltiptext-view">
-                                            <div class="d-flex align-items-center justify-content-end">
-                                                <a class="tooltip-anchor-modal" data-toggle="modal" data-target="#job-notes-madal" href="javascript:void(0)">
-                                                    View More</a>
-
-                                            </div>
-                                            <div class="toop-hight">
-                                                <p>This morning we welcomed Bill Liatsis and CreditIQ to our team! Watch Bill and Joe breakdown how CIQ’s advanced fintech technology</p>
-                                            </div>
-                                            <div class="date-tooptip-iner">
-                                                9:30am |23 October, 2021
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe">
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#timeline" href="javascript:void(0)">
-                                            <img src="img/line-img-gray.svg" alt="img">
-                                        </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#status-change" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="check"></i-feather>
-                                        </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#edit-sales" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-3"></i-feather>
-                                        </a>
-
-
-
-
-                                    </div>
-                                </td>
-
-
-                            </tr>
-                            <tr class="active-row">
-                                <td>
-                                    <div class="remember-me">
-                                        <label class="custom-check custom-check-r">
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Prince Build</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">184</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Charing Cross Hospital</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">A01</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">Frame</p>
-                                </td>
-                                <td>
-
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell red-label-text">Withdrawn</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">57.14</p>
-                                </td>
-                                <td>
-                                    <p class="inner-cell">-</p>
-                                </td>
-
-                                <td>
-                                    <p class="inner-cell">2021-10-29 13:44</p>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">41109</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell red-label-text">Multiple</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe-sec">
-                                        <p class="text-cell">Gd12-19</p>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-2"></i-feather>
-                                        </a>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class="view-anchor-tooltip">
-                                        <a class="view-anchor " href="javascript:void(0)">
-                                            View
-                                        </a>
-                                        <div class="tooltiptext-view">
-                                            <div class="d-flex align-items-center justify-content-end">
-                                                <a class="tooltip-anchor-modal" data-toggle="modal" data-target="#job-notes-madal" href="javascript:void(0)">
-                                                    View More</a>
-
-                                            </div>
-                                            <div class="toop-hight">
-                                                <p>This morning we welcomed Bill Liatsis and CreditIQ to our team! Watch Bill and Joe breakdown how CIQ’s advanced fintech technology</p>
-                                            </div>
-                                            <div class="date-tooptip-iner">
-                                                9:30am |23 October, 2021
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe">
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#timeline" href="javascript:void(0)">
-                                            <img src="img/line-img-gray.svg" alt="img">
-                                        </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#status-change" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="check"></i-feather>
-                                        </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#edit-sales" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-3"></i-feather>
-                                        </a>
-
-
-
-
-                                    </div>
-                                </td>
-
-
                             </tr>
                         </tbody>
                     </table>

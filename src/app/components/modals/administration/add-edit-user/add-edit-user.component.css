@@ -3,3 +3,8 @@ select.form-control {
     padding: 2px 5.5rem 2px 2rem;
     height: 5.5rem;
 }
+
+.select-box .arrow-design {
+    width: 100%;
+    height: auto !important;
+}

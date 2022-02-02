@@ -1,0 +1,89 @@
+<!-- Modal Header -->
+<div class="modal-header">
+    <h4 class="modal-title">ARE YOU SURE?</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<!-- Modal body -->
+<div class="modal-body ">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal-table table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Work#</th>
+                            <th>Customer</th>
+                            <th>Order#</th>
+                            <th>Product</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ data.model.work_number }}</td>
+                            <td>{{ data.model.customer.name }}</td>
+                            <td>{{ data.model.order_number }}</td>
+                            <td>{{ data.model.product.name }}</td>
+                            <td>{{ data.model.product.progress }}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="booked-arrow d-flex align-items-center justify-content-between">
+                <h2 class="booked-text">{{ data.from }}</h2>
+                <div class="booked-images">
+                    <img class="img-fluid" src="assets/img/arrow-left.svg" alt="img">
+                </div>
+                <h2 class="booked-text">{{ data.to }}</h2>
+            </div>
+            <div class="fsc-para-box ">
+                <p class="para ">
+                    Are you sure about this. You’re changing status <span class="second-text">“{{ data.from }}”</span> to <span class="second-text">“{{ data.to }}”</span>
+                </p>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-12 ">
+            <p class="permission">Notify To</p>
+        </div>
+        <div class="col-md-6" *ngFor="let noti of notify">
+
+            <div class="notify-checkbox-sec">
+
+                <div class="check-box-rod-modal">
+
+                    <div class="remember-me">
+                        <label class="custom-check custom-check-r">{{ noti.name }}
+                            <input type="checkbox" [checked]="noti.status" [(ngModel)]="noti.status">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="text-area-modal">
+
+                <div class="input-style">
+
+                    <textarea class="ctm-textarea" placeholder="Add reason here" [(ngModel)]="reason"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal footer -->
+<div class="modal-footer ">
+    <div class="d-flex align-items-center justify-content-center w-100 ">
+        <a href="javascript:void(0) " class="discard-btn " (click)="cancel()">Cancel</a>
+        <a href="javascript:void(0) " class="add-btn " (click)="updateStatus()">Confirm</a>
+    </div>
+</div>

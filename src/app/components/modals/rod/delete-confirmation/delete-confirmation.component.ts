@@ -1,0 +1,37 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GlobalHelper } from 'src/app/shared/services/globalHelper';
+import { RodService } from 'src/app/shared/services/rod.service';
+
+@Component({
+    selector: 'app-delete-confirmation',
+    templateUrl: './delete-confirmation.component.html',
+    styleUrls: ['./delete-confirmation.component.css']
+})
+export class DeleteConfirmationComponent implements OnInit {
+    @Input() data;
+    @Output() response: EventEmitter<any> = new EventEmitter();
+    reason: string = '';
+    constructor(private _rod: RodService, private helper: GlobalHelper) { }
+
+    ngOnInit(): void {
+    }
+
+    cancel() {
+        this.response.emit({ success: false });
+    }
+
+
+    deleteOrder() {
+        let obj = {
+            id: this.data.id,
+            reason: this.reason,
+            on_hold: this.data.on_hold,
+            status: 'Cancelled'
+        }
+        this._rod.updateOrderStatus(obj).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true });
+        })
+    }
+
+}

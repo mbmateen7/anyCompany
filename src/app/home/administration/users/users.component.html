@@ -3,11 +3,11 @@
         <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Adminstraion</a></li>
-                <li class=" breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Users List</a></li>
-                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
+                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Users List</a></li>
             </ul>
             <a class="secondary-sup" href="javascript:void(0)" (click)="addUser()">
-                <i-feather class="plus" name="plus"></i-feather> New User</a>
+                <i-feather class="plus" name="plus"></i-feather> New User
+            </a>
 
         </div>
         <div class="roles-main">
@@ -19,11 +19,24 @@
                 <table class="table">
                     <thead class="thead-ctm">
                         <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th>
+                                <p class="inner-cell">#</p>
+                            </th>
+                            <th>
+                                <p class="inner-cell">Name</p>
+                            </th>
+                            <th>
+                                <p class="inner-cell">Email</p>
+                            </th>
+                            <th>
+                                <p class="inner-cell">Role</p>
+                            </th>
+                            <th>
+                                <p class="inner-cell">Status</p>
+                            </th>
+                            <th>
+                                <p class="inner-cell">Action</p>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="t-body-ctm" *ngIf="!isLoading">
@@ -43,15 +56,18 @@
                                 </div>
                             </td>
                             <td>
+                                <div class="inner-cell custom-box">
+                                    <label class="switch" *ngIf="user.id != currentUser.id">
+                                        <input type="checkbox" [checked]="user.status" (change)="updateUserStatus(user)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
                                 <div class="select-box">
                                     <div class="input-style form-group">
-                                        <div class="arrow-design">
-                                            <select class="form-control" placeholder="Change Action" (change)="userAction(user,$event,i)">
-                                                <option value="select">Select</option>
-                                                <option value="edit">Edit</option>
-                                                <option value="delete">Delete</option>
-                                            </select>
-                                        </div>
+                                        <i-feather name="edit-3" (click)="userAction(user,'edit',i)" class="mr-2"></i-feather>
+                                        <i-feather name="trash" (click)="userAction(user,'delete',i)"></i-feather>
                                     </div>
                                 </div>
                             </td>

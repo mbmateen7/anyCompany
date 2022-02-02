@@ -1,0 +1,114 @@
+<!-- Modal Header -->
+<div class="modal-header ">
+    <h4 class="modal-title">TIMELINE</h4>
+    <button type="button " class="close " data-dismiss="modal ">&times;</button>
+</div>
+
+<!-- Modal body -->
+<div class="modal-body ">
+    <div class="timeline-table">
+        <div class="modal-table table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Work#</th>
+                        <th>Customer</th>
+                        <th>Order#</th>
+                        <th>Product</th>
+                        <th>Progress</th>
+                        <th>Deliver Note</th>
+                        <th>Production Schedule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ rod.work_number }}</td>
+                        <td>{{ rod.customer.name }}</td>
+                        <td>{{ rod.order_number }}</td>
+                        <td>{{ rod.product.name }}</td>
+                        <td>{{ rod.product.progress }}</td>
+                        <td>
+                            <a class="view-anchor view-anchor-red" *ngIf="rod.delivery_notes_count > 1" (click)="viewDeliveryNotes()">Multiple</a>
+                            <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="viewDeliveryNotes()" *ngIf="rod.delivery_notes_count == 1">{{ rod.delivery_notes[0]?.ticket_no }}</a>
+                        </td>
+                        <td>
+                            <a class="view-anchor view-anchor-red" href="javascript:void(0)">
+                                View
+                            </a>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="timeline-section d-flex justify-content-between">
+        <div class="timeline-card-main" [ngClass]="{'show-job-note': jobDetail != null}">
+            <ul class="cars-time-list">
+                <div *ngFor="let note of jobNotes; let i = index">
+                    <li class="card-timeline" *ngIf="i % 2 == 0">
+                        <ul class="card-ul-timeline">
+                            <li class="timeline-name-heading">Employees Name</li>
+                            <li class="timeline-name">{{ note.user.name }}</li>
+                        </ul>
+                        <ul class="card-ul-timeline">
+                            <li class="timeline-name-heading">Status</li>
+                            <li class="timeline-name">{{ note.title }}</li>
+                        </ul>
+                        <ul class="card-ul-timeline" [ngClass]="{'invisible': !note.description}">
+                            <li class="timeline-name-heading">Job Note</li>
+                            <li class="timeline-name">
+                                <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="jobDetail =note">
+                                    View
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="date-center">{{ note.created_at | date: 'h:m a | dd MMMM, yyyy' }}</p>
+                    </li>
+                </div>
+            </ul>
+            <div class="bottom-card-list">
+                <ul class="cars-time-list">
+                    <div *ngFor="let note of jobNotes; let i = index">
+                        <li class="card-timeline" *ngIf="i % 2 != 0">
+                            <ul class="card-ul-timeline">
+                                <li class="timeline-name-heading">Employees Name</li>
+                                <li class="timeline-name">{{ note.user.name }}</li>
+                            </ul>
+                            <ul class="card-ul-timeline">
+                                <li class="timeline-name-heading">Status</li>
+                                <li class="timeline-name">{{ note.title }}</li>
+                            </ul>
+                            <ul class="card-ul-timeline" [ngClass]="{'invisible': !note.description}">
+                                <li class="timeline-name-heading">Job Note</li>
+                                <li class="timeline-name">
+                                    <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="jobDetail = note">
+                                        View
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="date-center">{{ note.created_at | date: 'h:m a | dd MMMM, yyyy' }}</p>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="job-details-section" *ngIf="jobDetail">
+            <span class="close-job-details" (click)="jobDetail = null">X</span>
+            <h4 class="title">Job Note <i class="bi bi-arrow-right"></i></h4>
+            <div class="job-note-description">
+                <div [innerHtml]="jobDetail.description"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal footer -->
+<div class="modal-footer ">
+    <div class="d-flex align-items-center justify-content-center w-100 ">
+        <a href="javascript:void(0) " class="add-btn" (click)="close()">Close</a>
+    </div>
+</div>

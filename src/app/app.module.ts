@@ -11,7 +11,7 @@ import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         BrowserAnimationsModule,

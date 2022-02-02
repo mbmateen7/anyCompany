@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -8,10 +8,16 @@ import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { AddEditUserComponent } from '../components/modals/administration/add-edit-user/add-edit-user.component';
 import { FormsModule } from '@angular/forms';
-import { AddEditRolesComponent } from '../components/modals/administration/add-edit-roles/add-edit-roles.component';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-import { AddDeliveryNoteComponent } from '../components/modals/rod/add-delivery-note/add-delivery-note.component';
+import { AddEditRolesComponent } from '../components/modals/administration/add-edit-roles/add-edit-roles.component';
+import { AddEditSalesOrderComponent } from '../components/modals/rod/add-edit-sales-order/add-edit-sales-order.component';
+import { AddEditCustomerComponent } from '../components/modals/rod/add-edit-customer/add-edit-customer.component';
+import { AddJobNotesComponent } from '../components/modals/rod/add-job-notes/add-job-notes.component';
+import { UpdateInvoiceScheduleRefComponent } from '../components/modals/rod/update-invoice-schedule-ref/update-invoice-schedule-ref.component';
+import { UpdateStatusComponent } from '../components/modals/rod/update-status/update-status.component';
+import { DeleteConfirmationComponent } from '../components/modals/rod/delete-confirmation/delete-confirmation.component';
+import { TimelineComponent } from '../components/modals/rod/timeline/timeline.component';
 
 @NgModule({
     declarations: [
@@ -21,13 +27,20 @@ import { AddDeliveryNoteComponent } from '../components/modals/rod/add-delivery-
         FooterComponent,
         AddEditUserComponent,
         AddEditRolesComponent,
-        AddDeliveryNoteComponent
+        AddEditSalesOrderComponent,
+        AddEditCustomerComponent,
+        AddJobNotesComponent,
+        UpdateInvoiceScheduleRefComponent,
+        UpdateStatusComponent,
+        DeleteConfirmationComponent,
+        TimelineComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         HomeRoutingModule,
         FeatherModule.pick(allIcons)
-    ]
+    ],
+    providers: [DatePipe]
 })
 export class HomeModule { }

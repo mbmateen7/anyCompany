@@ -16,6 +16,7 @@ export class AddEditUserComponent implements OnInit {
 
     ngOnInit(): void {
         console.log(this.user, this.type, this.roles);
+        this.user.role_id = 0
     }
 
     cancel() {
@@ -65,16 +66,16 @@ export class AddEditUserComponent implements OnInit {
             this.helper.toastError('Please enter a valid email address');
             return false;
         }
-        if (this.type == 'add') {
-            if (!this.user.password?.length) {
-                this.helper.toastError('Password is required');
-                return false;
-            }
-            if (this.user.password.length < 6) {
-                this.helper.toastError('Password must be of atleast 6 characters');
-                return false;
-            }
-        }
+        // if (this.type == 'add') {
+        //     if (!this.user.password?.length) {
+        //         this.helper.toastError('Password is required');
+        //         return false;
+        //     }
+        //     if (this.user.password.length < 6) {
+        //         this.helper.toastError('Password must be of atleast 6 characters');
+        //         return false;
+        //     }
+        // }
         if (this.user.role_id == 0) {
             this.helper.toastError('Role is required');
             return false;

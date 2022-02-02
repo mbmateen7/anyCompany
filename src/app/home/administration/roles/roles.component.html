@@ -4,15 +4,15 @@
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Adminstraion</a></li>
                 <li class=" breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Roles</a></li>
-                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
             </ul>
             <a class="secondary-sup" (click)="addRole()" href="javascript:void(0)">
-                <i-feather class="plus" name="plus"></i-feather> New Role</a>
+                <i-feather class="plus" name="plus"></i-feather> New Role
+            </a>
 
         </div>
         <div class="roles-main">
             <div class="form-group sear-bar-roles position-relative mb-0">
-                <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
+                <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" (input)="searchRole()" [(ngModel)]="search">
                 <i-feather class="search-ctm" name="search"></i-feather>
             </div>
             <div class="tables-roles-main">
@@ -29,15 +29,10 @@
                             <td>{{ role.id }}</td>
                             <td>{{ role.title }}</td>
                             <td>
-                                 <div class="select-box">
+                                <div class="select-box">
                                     <div class="input-style form-group">
-                                        <div class="arrow-design">
-                                            <select class="form-control" placeholder="Change Action" (change)="roleAction(role,$event,i)">
-                                                <option value="select">Select</option>
-                                                <option value="edit">Edit</option>
-                                                <option value="delete">Delete</option>
-                                            </select>
-                                        </div>
+                                        <i-feather name="edit-3" (click)="roleAction(role,'edit',i)" class="mr-2"></i-feather>
+                                        <i-feather name="trash" (click)="roleAction(role,'delete',i)"></i-feather>
                                     </div>
                                 </div>
                             </td>

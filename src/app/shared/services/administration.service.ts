@@ -33,7 +33,7 @@ export class AdministrationService {
 
     // Roles
     rolesListing(params = {}): Observable<any> {
-        return this.http.get<any>(`${environment.apiUrl + urls.getRolesList}`);
+        return this.http.post<any>(`${environment.apiUrl + urls.getRolesList}`, params);
     }
 
     addRole(params = {}): Observable<any> {

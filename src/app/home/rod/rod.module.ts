@@ -6,16 +6,20 @@ import { allIcons } from 'angular-feather/icons';
 import { FeatherModule } from 'angular-feather';
 import { FormsModule } from '@angular/forms';
 import { RodComponent } from './rod.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { DeliveryNoteComponent } from './delivery-note/delivery-note.component';
 
 
 @NgModule({
     declarations: [
-        RodComponent
+        RodComponent,
+        DeliveryNoteComponent
     ],
     imports: [
         CommonModule,
         RodRoutingModule,
         FormsModule,
+        NgbModalModule,
         FeatherModule.pick(allIcons)
     ]
 })

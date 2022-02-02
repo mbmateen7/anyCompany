@@ -1,0 +1,289 @@
+<div class="dashboard-main">
+    <div class="dashboard-content ">
+        <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">DISPATCH ORDER</a></li>
+
+                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="disable-btn-dispatch" href="javascript:void(0)" [routerLink]="['/rod']">
+                    Discard</a>
+                <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote" (click)="addDeliveryNote()">
+                    Save</a>
+                <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="currentDeliveryNote" (click)="updateDeliveryNote()">
+                    Update</a>
+                <a class="secondary-sup" href="javascript:void(0)" (click)="resetFormValue()">
+                    New Dispatch Order</a>
+            </div>
+        </div>
+        <div class="Dispatch-mainbox">
+            <div class="d-flex dispatch-wrap-for-respo">
+                <div class="left-order-detail">
+                    <h1 class="recent-heading">Recent Despatch Order List:</h1>
+                    <ul class="ticket-no">
+                        <li class="ticket-date">Ticket Number</li>
+                        <li class="ticket-date">Date</li>
+                    </ul>
+                    <div class="dispatch-list" *ngFor="let note of deliveryNotes">
+                        <ul class="ticket-no-detail">
+                            <li class="ticket-date-detail" [ngClass]="{active: note.id == currentDeliveryNote?.id }">{{ note.ticket_no }}</li>
+                            <li class="ticket-d-detail">{{ note.dispatch_date | date:'dd/mm/yy' }}</li>
+                            <li class="ticket-d-detail" [ngClass]="{active: note.id == currentDeliveryNote?.id}">
+                                <a class="view-dis" href="javascript:void(0)" (click)="currentDeliveryNote = deliveryOrder = note">View</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="daspatch-table">
+                    <table class="table-dis">
+                        <tr>
+                            <th class="table-head" colspan="6">
+                                <div class="input-setts">
+                                    <label class="invoice-label">Invoice to:</label>
+                                </div>
+
+                            </th>
+                            <th class="table-head" colspan="4"><label class="invoice-label">Ticket No.</label></th>
+                        </tr>
+                        <tr>
+                            <td class="table-data" colspan="6"><label class="invoice-label">CAPITAL</label></td>
+                            <td class="table-data" colspan="4">
+                                <input class="text-input" type="text" placeholder="52527" [(ngModel)]="deliveryOrder.ticket_no">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-data" colspan="6">
+                                <textarea class="ctm-textarea" rows="7" placeholder="CAPITAL FIRE DOORS LTD
+                                                 ASTON COURT 
+                                                 15 BROOMHILL ROAD 
+                                                 WOODFORD GREEN 
+                                                 IG8 9EY" [(ngModel)]="deliveryOrder.invoice_to"></textarea>
+                            </td>
+                            <td class="table-data table-sec-data" colspan="4">
+                                <table class="table-inner">
+                                    <tr>
+                                        <td class="table-data-inner">
+                                            <label class="invoice-label">Despatch Date:</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-data-inner">
+                                            <input class="text-input" type="date" placeholder="26/11/21" [(ngModel)]="deliveryOrder.dispatch_date" [min]="currentDate">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="table-data-inner">
+                                            <label class="invoice-label">Customer Order No.</label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="table-data-inner">
+                                            <input class="text-input" disabled type="text" placeholder="388" [(ngModel)]="deliveryOrder.order_number">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="table-data-inner">
+                                            <label class="invoice-label">W/O:</label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="table-data-inner position-relative work-order-cell">
+                                            <select class="custom-select-work-orders" (change)="selectWorkOrder($event)">
+                                                <option value="select">Select work order</option>
+                                                <option [value]="i" *ngFor="let order of customerOrders;let i = index" [hidden]="checkSelectedOrder(order.id)">{{ order.work_number }}</option>
+                                            </select>
+                                            <div class="d-flex flex-wrap">
+                                                <span class="fiels-ctm" *ngFor="let order of deliveryOrder.work_orders;let i = index">
+                                                    {{ order.work_number }}
+                                                    <span *ngIf="order.id != workOrder.id">
+                                                        <i-feather class="icon-width w15" name="X" (click)="removeOrder(i)"></i-feather>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="10" class="table-data">
+                                <p class="dispatch-text">Only products identified as such on this Delivery note are FSC certified</p>
+                                <div class="d-flex align-items-center justify-content-between dispatch-check">
+                                    <p class="pro-dispath">Products FSC ®</p>
+                                    <div class="remember-me">
+                                        <label class="custom-check custom-check-r">
+                                            <input type="checkbox" [checked]="deliveryOrder.fsc" [(ngModel)]="deliveryOrder.fsc" name="fsc">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Flush <br> Doors</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Frames</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Linings</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Stops</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Architraves</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Timber <br> Sections</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Hinges</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Glass Pcs</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Glazing <br> Beads</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">FD60 <br> Hinge <br> Packers</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.flush_door" name="flush_door">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.frames" name="frames">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.linings" name="linings">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.stops" name="stops">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.architraves" name="architraves">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.timber_sections" name="timber_sections">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.hinges" name="hinges">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.glass_pcs" name="glass_pcs">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.glazing_beads" name="glazing_beads">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.hinge_packers" name="hinge_packers">
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="dispatch-account">
+                        Fire and Acoustic Seals in 2.1m Lengths
+                    </p>
+                    <table class="table-dis">
+                        <tr>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">10 x 4<br>Intu Strip</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">10 x 4<br>Intu<br>Smoke</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">15 x 4<br>Intu Strip</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">15 x 4<br>Intu<br>Smoke </label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">20 x 4<br>Intu Strip</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">20 x 4<br>Intu<br> Smoke</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Drop<br>Down<br>Seals</label>
+                            </td>
+                            <td colspan="1" class="table-data">
+                                <label class="invoice-label">Weather<br>Seals</label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.intu_strip_10_4" name="intu_strip_10_4">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.intu_smoke_10_4" name="intu_smoke_10_4">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.intu_strip_15_4" name="intu_strip_15_4">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.intu_smoke_15_4" name="intu_smoke_15_4">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.intu_strip_20_4" name="intu_strip_20_4">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.intu_smoke_20_4" name="intu_smoke_20_4">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.drop_down_seals" name="drop_down_seals">
+                            </td>
+                            <td colspan="1" class="table-data table-height-data">
+                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.weather_seals" name="weather_seals">
+                            </td>
+
+                        </tr>
+                    </table>
+                    <div class="padds-py"></div>
+                    <table class="table-dis">
+                        <tr>
+                            <th class="table-head" colspan="5"><label class="invoice-label">Site Contact:</label></th>
+                            <th class="table-head" colspan="5"><label class="invoice-label">Site Number:</label></th>
+                        </tr>
+                        <tr>
+                            <td class="table-data" colspan="5">
+                                <input class="text-input" type="text" placeholder="ALEX" [(ngModel)]="deliveryOrder.site_contact" name="site_contact">
+                            </td>
+                            <td class="table-data" colspan="5">
+                                <input class="text-input" type="text" placeholder="07739 501843" [(ngModel)]="deliveryOrder.site_number" name="site_number">
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div class="padds-py"></div>
+                    <table class="table-dis">
+                        <tr>
+                            <th class="table-head" colspan="10"><label class="invoice-label">Other / Notes</label></th>
+
+                        </tr>
+                        <tr>
+                            <td class="table-data" colspan="10">
+
+                                <textarea class="ctm-textarea-sec-2" rows="3" placeholder="Other / Notes" [(ngModel)]="deliveryOrder.other_notes" name="other_notes"></textarea>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

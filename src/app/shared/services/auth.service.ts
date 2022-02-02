@@ -2,17 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    userObjSubject: Subject<any>;
+    userObjSubject: BehaviorSubject<any>;
+    currentUser: Observable<any>;
 
-    constructor(private http: HttpClient, private router: Router, private toastrService: ToastrService) {
-        this.userObjSubject = new Subject();
+    constructor() {
+        this.userObjSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('userObj')));
+        this.currentUser = this.userObjSubject.asObservable();
+    }
+
+    public get currentUserValue(): any {
+        return this.userObjSubject.value;
     }
 
     storeUserData(token: string | null, userObj: any): void {
