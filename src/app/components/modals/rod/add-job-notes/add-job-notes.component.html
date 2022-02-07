@@ -22,10 +22,7 @@
                         </div>
                         <div class="job-heading-main">
                             <p class="job-heading">{{ note.title }}</p>
-                            <div class="job-para-height">
-                                <p class="para-job">
-                                    {{ note.description }}
-                                </p>
+                            <div class="para-job" [innerHtml]="note.description">
                             </div>
                         </div>
                         <div class="trash-box d-flex align-items-center ">

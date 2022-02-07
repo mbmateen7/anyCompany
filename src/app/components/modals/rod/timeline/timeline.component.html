@@ -100,7 +100,8 @@
             <span class="close-job-details" (click)="jobDetail = null">X</span>
             <h4 class="title">Job Note <i class="bi bi-arrow-right"></i></h4>
             <div class="job-note-description">
-                <div [innerHtml]="jobDetail.description"></div>
+                <div [innerHtml]="safeHtml(jobDetail.description)">
+                </div>
             </div>
         </div>
     </div>

@@ -40,10 +40,8 @@ export class RodComponent implements OnInit {
             this.rods = res.data.data.map(rod => {
                 rod.edit_invoice = false;
                 rod.edit_schedule_ref = false;
-                rod.edit_status = false;
                 return rod;
             });
-            console.log(this.rods);
         });
     }
 
@@ -105,18 +103,24 @@ export class RodComponent implements OnInit {
 
     editInvoiceNo(index) {
         this.rods[index].edit_invoice = true;
+        setTimeout(function () {
+            document.getElementById('edit-invoice-no-' + index).focus();
+        }, 20);
     }
 
 
     editScheduleRef(index) {
         this.rods[index].edit_schedule_ref = true;
+        setTimeout(function () {
+            document.getElementById('edit-schedule-ref-' + index).focus();
+        }, 20);
     }
 
     updateInvoiceNo(event, index) {
         if (event.type == 'keyup' && event.keyCode != 13) {
             return;
         }
-        if (!event.target.value) {
+        if (!event.target.value || event.target.value == this.rods[index].invoice_no) {
             this.rods[index].edit_invoice = false
             return;
         }
@@ -136,7 +140,7 @@ export class RodComponent implements OnInit {
         if (event.type == 'keyup' && event.keyCode != 13) {
             return;
         }
-        if (!event.target.value) {
+        if (!event.target.value || event.target.value == this.rods[index].schedule_ref) {
             this.rods[index].edit_schedule_ref = false
             return;
         }
@@ -198,7 +202,6 @@ export class RodComponent implements OnInit {
         statusModal.componentInstance.response.subscribe(res => {
             event.target.value = res.data.status;
             this.rods[index] = res.data
-            this.rods[index].edit_status = false;
             statusModal.dismiss();
             this.modalConfig.windowClass = "modal-roles"
         });
@@ -230,13 +233,6 @@ export class RodComponent implements OnInit {
             }
             statusModal.dismiss();
         });
-    }
-
-    editStatus(index) {
-        this.rods.map(res => {
-            res.edit_status = false;
-        })
-        this.rods[index].edit_status = true;
     }
 
     viewTimeline(rod, index) {

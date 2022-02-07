@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RodService } from 'src/app/shared/services/rod.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class TimelineComponent implements OnInit {
     @Output() response: EventEmitter<any> = new EventEmitter();
     jobNotes = [];
     jobDetail = null;
-    constructor(private _rod: RodService) { }
+    constructor(private _rod: RodService, private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
         this._rod.getJobNotes({ work_order_id: this.rod.id }).subscribe(res => {
@@ -25,5 +26,9 @@ export class TimelineComponent implements OnInit {
 
     viewDeliveryNotes() {
         this.response.emit({ success: true });
+    }
+
+    safeHtml(html) {
+        return this.sanitizer.bypassSecurityTrustHtml(html)
     }
 }   
