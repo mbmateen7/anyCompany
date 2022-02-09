@@ -7,7 +7,7 @@
                 <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
             </ul>
             <div class="d-flex">
-                <a class="disable-btn-dispatch" href="javascript:void(0)" [routerLink]="['/rod']">
+                <a class="disable-btn-dispatch" href="javascript:void(0)" (click)="redirectBack()">
                     Discard</a>
                 <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote" (click)="addDeliveryNote()">
                     Save</a>

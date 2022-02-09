@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -49,7 +49,7 @@ export class DeliveryNoteComponent implements OnInit {
         other_notes: ''
     }
     currentDate;
-    constructor(private _rod: RodService, private helper: GlobalHelper, private route: ActivatedRoute, private datePipe: DatePipe) {
+    constructor(private _rod: RodService, private helper: GlobalHelper, private route: ActivatedRoute, private datePipe: DatePipe, private _location: Location) {
         this.route.params.subscribe(res => {
             this.getWorkOrder(res.id);
             this.getDeliveryNotes(res.id);
@@ -154,6 +154,10 @@ export class DeliveryNoteComponent implements OnInit {
         this._rod.updateDeliveryNote(this.deliveryOrder).subscribe(res => {
             this.helper.toastSuccess(res.message);
         });
+    }
+
+    redirectBack(): void {
+        this._location.back();
     }
 
 }

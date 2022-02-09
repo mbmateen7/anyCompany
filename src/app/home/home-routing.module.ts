@@ -21,6 +21,11 @@ const homeRoutes: Routes = [
         path: 'rod',
         component: HomeComponent,
         loadChildren: () => import('./rod/rod.module').then(m => m.RodModule)
+    },
+    {
+        path: 'delivery-list',
+        component: HomeComponent,
+        loadChildren: () => import('./delivery-list/delivery-list.module').then(m => m.DeliveryListModule)
     }
 ];
 

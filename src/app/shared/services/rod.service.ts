@@ -72,4 +72,8 @@ export class RodService {
     updateOrderStatus(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.updateOrderStatus}`, params);
     }
+
+    bulkStatusUpdate(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.bulkStatusUpdate}`, params);
+    }
 }

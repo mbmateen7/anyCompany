@@ -33652,7 +33652,7 @@ input:checked+.slider:before {
     font-weight: 700;
     color: #150000;
     padding: 1rem .75rem;
-    text-align: left;
+    text-align: center;
     width: 33%;
 }
 
@@ -33669,7 +33669,7 @@ input:checked+.slider:before {
     border-top: none;
     width: 33%;
     border-bottom: 1px solid #eee;
-    text-align: left;
+    text-align: center;
     padding: .75rem;
     font-size: 1.2rem;
     font-weight: 400;
@@ -35131,6 +35131,7 @@ input:checked+.slider:before {
 
 .tab-table .tables-roles-main.tables-users-main {
     padding-bottom: 1rem;
+    min-height: 300px;
 }
 
 @media (max-width: 1600px) {

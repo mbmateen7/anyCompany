@@ -248,4 +248,18 @@ export class RodComponent implements OnInit {
         });
 
     }
+
+    bulkStatusUpdate(event) {
+        let data = {
+            orders: this.rods.map(res => {
+                if (res.checked)
+                    return res.id;
+            }),
+            status: event.target.value
+        }
+        this._rod.bulkStatusUpdate(data).subscribe(res => {
+            this.rodListing();
+            event.target.value = 'select'
+        })
+    }
 }

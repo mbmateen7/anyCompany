@@ -1,4 +1,4 @@
-<a class="serch-btn-mt" href="log-in-page.html">
+<a class="serch-btn-mt" href="javascript:void(0)" [routerLink]="['/logout']">
     <i-feather class="mr-10" name="log-out"></i-feather><span>Sign Out</span>
 </a>
 <div class="sidebar-header">
@@ -10,8 +10,8 @@
     </div>
     <div class="person-box">
         <h1 class="nav-heading">Hello!</h1>
-        <p class="name-profile">Addy Brown</p>
-        <p class="detail-person">addybrown@humpheryandstretton.com</p>
+        <p class="name-profile">{{ user.name }}</p>
+        <p class="detail-person">{{ user.email }}</p>
     </div>
 
 </div>
@@ -46,10 +46,10 @@
         </a>
         <ul class="collapse list-unstyled" id="delivery-menu">
             <li>
-                <a class="inner-list" href="delivery-list-table-view.html">Delivery List</a>
+                <a class="inner-list" [routerLink]="['/delivery-list/delivery']" routerLinkActive="active">Delivery List</a>
             </li>
             <li>
-                <a class="inner-list" href="delivery-walking-list.html">Walking List</a>
+                <a class="inner-list" [routerLink]="['/delivery-list/walking']" routerLinkActive="active">Walking List</a>
             </li>
 
         </ul>

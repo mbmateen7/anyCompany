@@ -8,13 +8,47 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginGuard } from './shared/guards/login.guard';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
+import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
+const NgxUiLoadderConfig: NgxUiLoaderConfig =
+{
+    "bgsColor": "red",
+    "bgsOpacity": 0.5,
+    "bgsPosition": "bottom-right",
+    "bgsSize": 60,
+    "bgsType": "ball-spin-clockwise",
+    "blur": 5,
+    "delay": 0,
+    "fastFadeOut": true,
+    "fgsColor": "#dc0100",
+    "fgsPosition": "center-center",
+    "fgsSize": 60,
+    "fgsType": "ball-spin",
+    "gap": 24,
+    "logoPosition": "center-center",
+    "logoSize": 120,
+    "logoUrl": "",
+    "masterLoaderId": "master",
+    "overlayBorderRadius": "0",
+    "overlayColor": "rgba(40, 40, 40, 0.8)",
+    "pbColor": "#dc0100",
+    "pbDirection": "ltr",
+    "pbThickness": 3,
+    "hasProgressBar": true,
+    "text": "",
+    "textColor": "#FFFFFF",
+    "textPosition": "center-center",
+    "maxTime": -1,
+    "minTime": 300
+}
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
         BrowserAnimationsModule,
+        NgxUiLoaderModule.forRoot(NgxUiLoadderConfig),
+        NgxUiLoaderHttpModule.forRoot({ 'showForeground': true }),
         AppRoutingModule,
         HttpClientModule,
         ToastrModule.forRoot(

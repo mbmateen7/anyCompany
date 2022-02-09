@@ -90,16 +90,20 @@
                     <button class="custom-btn dropdown-toggle dropdown-toggle-add gothic-normel p-list-place feedbackName" type="button" id="subject" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <div class="img-log-out">
                             <img class="img-fluid" src="assets/img/drop-img.png" alt="img">
-                        </div> Addy Brown
+                        </div> {{ user.name }}
                     </button>
                     <div class="dropdown-menu contc p-0  " aria-labelledby="dropdownMenuButton">
                         <ul class="droplist">
                             <li>
-                                <a class="droplist-item" href="Profile.html"> <i-feather class="settings-log-out" name="settings"></i-feather>Setting</a>
+                                <a class="droplist-item" href="Profile.html">
+                                    <i-feather class="settings-log-out" name="settings"></i-feather>Setting
+                                </a>
 
                             </li>
                             <li>
-                                <a class="droplist-item" href="javascript:void(0);" (click)="logout()"><i-feather class="settings-log-out" name="log-in"></i-feather>Log Out</a>
+                                <a class="droplist-item" href="javascript:void(0);" (click)="logout()">
+                                    <i-feather class="settings-log-out" name="log-in"></i-feather>Log Out
+                                </a>
                             </li>
                         </ul>
                     </div>

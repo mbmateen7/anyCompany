@@ -18,6 +18,7 @@ import { UpdateInvoiceScheduleRefComponent } from '../components/modals/rod/upda
 import { UpdateStatusComponent } from '../components/modals/rod/update-status/update-status.component';
 import { DeleteConfirmationComponent } from '../components/modals/rod/delete-confirmation/delete-confirmation.component';
 import { TimelineComponent } from '../components/modals/rod/timeline/timeline.component';
+import { UpdateDeliveryOrderComponent } from '../components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { TimelineComponent } from '../components/modals/rod/timeline/timeline.co
         UpdateInvoiceScheduleRefComponent,
         UpdateStatusComponent,
         DeleteConfirmationComponent,
-        TimelineComponent
+        TimelineComponent,
+        UpdateDeliveryOrderComponent
     ],
     imports: [
         CommonModule,

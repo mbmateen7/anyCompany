@@ -2,7 +2,7 @@ export const urls = {
 
     // Host 
     devUrl: 'http://humphree.test/api/',
-    stagingUrl: 'http://humphree.test/api/',
+    stagingUrl: 'http://api-humphery.io-devs.cf/api/',
 
     // AUTH
     login: 'auth/login',
@@ -35,6 +35,7 @@ export const urls = {
     getWorkOrder: 'rod/work-orders/details',
     multiOrderUpdate: 'rod/work-orders/update-multiple',
     updateOrderStatus: 'rod/work-orders/update-status',
+    bulkStatusUpdate: 'rod/work-orders/bulk-update-status',
     getCustomerOrders: 'rod/work-orders/get-customer-orders/listing',
     getJobNotes: 'rod/job-notes/listing',
     addJobNote: 'rod/job-notes/store',
@@ -50,4 +51,9 @@ export const urls = {
     // Customers
     customerListing: 'phonebook/customers/listing',
     customerAdd: 'phonebook/customers/store',
+
+    // Delivery List
+    deliveryListing: 'delivery-list/delivery/listing',
+    updateDeliveryListStatus: 'delivery-list/delivery/update-status',
+    updateDeliveryList: 'delivery-list/delivery/update'
 };

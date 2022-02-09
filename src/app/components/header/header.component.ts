@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 
@@ -11,7 +12,12 @@ import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 })
 export class HeaderComponent implements OnInit {
 
-    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, private router: Router) { }
+    user: any;
+    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, private router: Router, private _auth: AuthService) {
+        this._auth.currentUser.subscribe(res => {
+            this.user = res;
+        })
+    }
 
     ngOnInit(): void {
     }

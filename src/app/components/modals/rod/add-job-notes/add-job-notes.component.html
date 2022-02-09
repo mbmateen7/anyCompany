@@ -12,7 +12,7 @@
             <div class="job-note-upper" *ngIf="jobNotes.length">
                 <div class="main-note-box">
 
-                    <div class="note-1 d-flex align-items-center justify-content-between" *ngFor="let note of jobNotes;let i = index">
+                    <div class="note-1 d-flex align-items-start justify-content-between" *ngFor="let note of jobNotes;let i = index">
                         <div class="img-card-sec">
                             <div class="img-note">
                                 <img class="img-fluid" [src]="note.user.profile_picture" alt="img">
@@ -27,7 +27,7 @@
                         </div>
                         <div class="trash-box d-flex align-items-center ">
                             <a class="edit-btn" href="javascript:void(0)">
-                                <i-feather class="delete-icon-modal" name="trash-2" (click)="deleteJobNote(note.id,i)"></i-feather>
+                                <!-- <i-feather class="delete-icon-modal" name="trash-2" (click)="deleteJobNote(note.id,i)"></i-feather> -->
                             </a>
                         </div>
                     </div>
