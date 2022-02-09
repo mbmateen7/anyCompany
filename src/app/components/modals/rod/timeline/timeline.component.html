@@ -26,7 +26,7 @@
                         <td>{{ rod.customer.name }}</td>
                         <td>{{ rod.order_number }}</td>
                         <td>{{ rod.product.name }}</td>
-                        <td>{{ rod.product.progress }}</td>
+                        <td>{{ rod.progress }}</td>
                         <td>
                             <a class="view-anchor view-anchor-red" *ngIf="rod.delivery_notes_count > 1" (click)="viewDeliveryNotes()">Multiple</a>
                             <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="viewDeliveryNotes()" *ngIf="rod.delivery_notes_count == 1">{{ rod.delivery_notes[0]?.ticket_no }}</a>

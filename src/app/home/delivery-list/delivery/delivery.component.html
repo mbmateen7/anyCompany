@@ -20,7 +20,7 @@
                 <div class="d-flex for-media-setts">
                     <div class="form-group sear-bar-roles position-relative mb-0">
                         <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
-                        <i class="search-ctm" data-feather="search"></i>
+                        <i-feather class="search-ctm" name="search"></i-feather>
                     </div>
                     <div class="search-inputs d-flex">
                         <div class="input-style mr-10">
@@ -28,7 +28,7 @@
                             <div class="type-pass">
                                 <input type="text" class="ctm-input" placeholder="From">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
-                                    <i class="calender" data-feather="calendar"></i>
+                                    <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
                             </div>
                         </div>
@@ -37,13 +37,14 @@
                             <div class="type-pass">
                                 <input type="text" class="ctm-input" placeholder="To">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
-                                    <i class="calender" data-feather="calendar"></i>
+                                    <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
                             </div>
                         </div>
 
                         <a class="filter-anchor" href="javascript:void(0)">
-                            <i class="filter" data-feather="filter"></i>Filters
+                            <i-feather class="filter" name="filter">
+                            </i-feather>Filter
                         </a>
                     </div>
                 </div>
@@ -115,12 +116,12 @@
                                         <div class="ready-tooltips">
                                             <div class="view-anchor-tooltip">
                                                 <a class="view-anchor " href="javascript:void(0)">
-                                                    Ready...
+                                                    {{ delivery.delivery ? (delivery.delivery.length > 10 ? delivery.delivery?.substr(1, 10) : delivery.delivery) : '' }}
                                                 </a>
-                                                <div class="tooltiptext-view">
+                                                <div class="tooltiptext-view" *ngIf="delivery.delivery?.length > 10">
 
                                                     <div class="toop-hight">
-                                                        <p>This morning we welcomed Bill Liatsis and CreditIQ to our team! Watch Bill and Joe breakdown how CIQ’s advanced fintech technology</p>
+                                                        <p>{{ delivery.delivery }}</p>
                                                     </div>
 
                                                 </div>
@@ -131,9 +132,9 @@
                                     <td>{{ delivery.work_number }}</td>
                                     <td>{{ delivery.customer.name }}</td>
                                     <td>{{ delivery.product.name }}</td>
-                                    <td>{{ delivery.lcoation }}</td>
+                                    <td>{{ delivery.finish_type }}</td>
                                     <td>{{ delivery.location }}</td>
-                                    <td>RM1234 3HH</td>
+                                    <td>{{ delivery.postcode }}</td>
                                     <td>{{ delivery.on_hold ? 'On Hold' : delivery.status }}</td>
                                     <td>{{ delivery.progress }}%</td>
                                     <td>
@@ -286,32 +287,32 @@
 
         </div>
         <div *ngIf="deliveryListView == 2">
-            <div class="card-view-main-box" [ngClass]="{'green-card-view': true,'red-card-view': true}">
+            <div class="card-view-main-box" [ngClass]="{'green-card-view': delivery.status == 'To Factory','red-card-view': delivery.on_hold}" *ngFor="let delivery of deliveries; let i = index">
                 <div class="card-view-content-box">
                     <ul class="wc">
                         <li class="item-card-1">W/C</li>
-                        <li class="item-card">51</li>
+                        <li class="item-card">{{ delivery.week_number }}</li>
                     </ul>
                 </div>
                 <div class="card-view-content-box">
                     <div class="inner-doube-ul d-flex align-items-center justify-content-between">
                         <ul class="wc">
                             <li class="item-card-1">Customer</li>
-                            <li class="item-card">Checkmate Sw</li>
+                            <li class="item-card">{{ delivery.customer.name }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Job Note</li>
-                            <li class="item-card"> <a class="inner-anchor" href="javascript:void(0)">View</a> </li>
+                            <li class="item-card"> <a class="inner-anchor" href="javascript:void(0)" (click)="addJobNote(delivery.id,i)">View</a> </li>
                         </ul>
                     </div>
                     <div class="inner-doube-ul d-flex align-items-start justify-content-between">
                         <ul class="wc">
                             <li class="item-card-1">Location</li>
-                            <li class="item-card">East Sussex</li>
+                            <li class="item-card">{{ delivery.location }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Postcode</li>
-                            <li class="item-card">Bn21 3Xy</li>
+                            <li class="item-card">{{ delivery.postcode }}</li>
                         </ul>
                     </div>
 
@@ -320,29 +321,29 @@
                     <div class="inner-doube-ul d-flex align-items-center justify-content-between">
                         <ul class="wc">
                             <li class="item-card-1">Deliver</li>
-                            <li class="item-card">Ready</li>
+                            <li class="item-card">{{ delivery.delivery }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Product</li>
-                            <li class="item-card">Doors</li>
+                            <li class="item-card">{{ delivery.product.name }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Status</li>
-                            <li class="item-card">In Factory</li>
+                            <li class="item-card">{{ delivery.on_hold ? 'On Hold' : delivery.status }}</li>
                         </ul>
                     </div>
                     <div class="inner-doube-ul d-flex align-items-start justify-content-between">
                         <ul class="wc">
                             <li class="item-card-1">Work#</li>
-                            <li class="item-card">126</li>
+                            <li class="item-card">{{ delivery.work_number }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Finish</li>
-                            <li class="item-card">M.D.O</li>
+                            <li class="item-card">{{ delivery.finish_type }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Progress</li>
-                            <li class="item-card">100%</li>
+                            <li class="item-card">{{ delivery.progress }}%</li>
                         </ul>
                     </div>
 
@@ -355,115 +356,117 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch">
-                                    <input type="checkbox" checked="">
+                                    <input type="checkbox" [checked]="delivery.status == 'In Factory'" (change)="updateStatus(delivery,i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
-                        <div class="switch-container-box">
-                            <p class="switch-label">
-                                Press
-                            </p>
-                            <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" checked="">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="switch-container-box">
-                            <p class="switch-label">
-                                Mill
-                            </p>
-                            <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" checked="">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="switch-container-box">
-                            <p class="switch-label">
-                                CNC
-                            </p>
-                            <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" checked="">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="switch-container-box">
-                            <p class="switch-label">
-                                Bench
-                            </p>
-                            <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" checked="">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="switch-inline-main">
-                        <div class="switch-container-box">
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'Sawed')">
                             <p class="switch-label">
                                 Sawed
                             </p>
                             <div class="custom-box">
                                 <label class="switch">
-                                    <input type="checkbox" checked="">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
-                        <div class="switch-container-box">
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'Lip')">
                             <p class="switch-label">
                                 Lip
                             </p>
                             <div class="custom-box">
                                 <label class="switch">
-                                    <input type="checkbox" checked="">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
-                        <div class="switch-container-box">
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'Press')">
+                            <p class="switch-label">
+                                Press
+                            </p>
+                            <div class="custom-box">
+                                <label class="switch">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'Mill')">
+                            <p class="switch-label">
+                                Mill
+                            </p>
+                            <div class="custom-box">
+                                <label class="switch">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'Mach')">
                             <p class="switch-label">
                                 Mach
                             </p>
                             <div class="custom-box">
                                 <label class="switch">
-                                    <input type="checkbox" checked="">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
-                        <div class="switch-container-box">
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'CNC')">
                             <p class="switch-label">
-                                Sprey
+                                CNC
                             </p>
                             <div class="custom-box">
                                 <label class="switch">
-                                    <input type="checkbox" checked="">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
-
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'Spray')">
+                            <p class="switch-label">
+                                Spray
+                            </p>
+                            <div class="custom-box">
+                                <label class="switch">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="switch-container-box" *ngIf="checkProductAttribute(delivery,'Bench')">
+                            <p class="switch-label">
+                                Bench
+                            </p>
+                            <div class="custom-box">
+                                <label class="switch">
+                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Bench')" (change)="updateDeliveryList(delivery,'Bench',i)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-card-icons">
+                        <div class="list-icons-talbe">
+                            <a class="icon-anchor-list" href="javascript:void(0)" [routerLink]="['/rod/delivery-notes', delivery.id]">
+                                <i-feather class="icon-width" name="book-open"></i-feather>
+                            </a>
+                            <a class="icon-anchor-list" href="javascript:void(0)" (click)="editWorkOrder(delivery, i)">
+                                <i-feather class="icon-width" name="edit-3"></i-feather>
+                            </a>
+                            <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(delivery, i)">
+                                <img src="assets/img/line-img-gray.svg" alt="img">
+                            </a>
+                            <a class="icon-anchor-list" href="javascript:void(0)">
+                                <i-feather class="icon-width" name="check"></i-feather>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="list-card-icons">
-                    <div class="list-icons-talbe">
-                        <a class="icon-anchor-list" href="javascript:void(0)"><i class="icon-width" data-feather="book-open"></i></a>
-                        <a class="icon-anchor-list" data-toggle="modal" data-target="#edit-work-order" href="javascript:void(0)"><i class="icon-width" data-feather="edit-3"></i></a>
-                        <a class="icon-anchor-list" href="javascript:void(0)">
-                            <img src="img/line-img-gray.svg" alt="img">
-                        </a>
-                        <a class="icon-anchor-list" href="javascript:void(0)"><i class="icon-width" data-feather="check"></i></a>
-                    </div>
-                </div>
-
             </div>
             <div class="d-flex align-items-center justify-content-end mb-3 mr-3 mt-2">
                 <div class="d-flex rows-per">

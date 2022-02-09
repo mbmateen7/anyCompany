@@ -27,6 +27,7 @@ export class UpdateDeliveryOrderComponent implements OnInit {
     }
 
     updateOrder() {
+        console.log(this.order);
         this._rod.updateWorkOrder(this.order).subscribe(res => {
             this.response.emit({ success: true, data: res.data })
         });
