@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { AddEditSalesOrderComponent } from 'src/app/components/modals/rod/add-edit-sales-order/add-edit-sales-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delete-confirmation/delete-confirmation.component';
@@ -28,6 +29,7 @@ export class RodComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
+    searchSubscription: Subscription;
     multiUpdateType: string = 'invoice_no';
     constructor(private _rod: RodService, private helper: GlobalHelper, private _modal: NgbModal, private router: Router) { }
 
@@ -36,7 +38,8 @@ export class RodComponent implements OnInit {
     }
 
     rodListing() {
-        this._rod.rodListing(this.search).subscribe(res => {
+        if (this.searchSubscription) this.searchSubscription.unsubscribe();
+        this.searchSubscription = this._rod.rodListing(this.search).subscribe(res => {
             this.rods = res.data.data.map(rod => {
                 rod.edit_invoice = false;
                 rod.edit_schedule_ref = false;

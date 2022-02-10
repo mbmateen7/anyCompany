@@ -26,6 +26,11 @@ const homeRoutes: Routes = [
         path: 'delivery-list',
         component: HomeComponent,
         loadChildren: () => import('./delivery-list/delivery-list.module').then(m => m.DeliveryListModule)
+    },
+    {
+        path: 'fsc',
+        component: HomeComponent,
+        loadChildren: () => import('./fsc/fsc.module').then(m => m.FscModule)
     }
 ];
 

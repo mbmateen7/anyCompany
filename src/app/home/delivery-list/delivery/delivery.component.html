@@ -19,14 +19,14 @@
             <div class="d-flex align-items-center justify-content-between delivery-list-main">
                 <div class="d-flex for-media-setts">
                     <div class="form-group sear-bar-roles position-relative mb-0">
-                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
+                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" (input)="searchOrder()" [(ngModel)]="searchParams.search">
                         <i-feather class="search-ctm" name="search"></i-feather>
                     </div>
                     <div class="search-inputs d-flex">
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="text" class="ctm-input" placeholder="From">
+                                <input type="date" class="ctm-input" placeholder="From" [(ngModel)]="searchParams.startDate">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
@@ -35,7 +35,7 @@
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="text" class="ctm-input" placeholder="To">
+                                <input type="date" class="ctm-input" placeholder="To" [(ngModel)]="searchParams.endDate">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
@@ -116,7 +116,7 @@
                                         <div class="ready-tooltips">
                                             <div class="view-anchor-tooltip">
                                                 <a class="view-anchor " href="javascript:void(0)">
-                                                    {{ delivery.delivery ? (delivery.delivery.length > 10 ? delivery.delivery?.substr(1, 10) : delivery.delivery) : '' }}
+                                                    {{ delivery.delivery ? (delivery.delivery.length > 10 ? delivery.delivery?.substr(0, 10)+'...' : delivery.delivery) : '' }}
                                                 </a>
                                                 <div class="tooltiptext-view" *ngIf="delivery.delivery?.length > 10">
 
@@ -217,15 +217,15 @@
                                             <a class="view-anchor red" href="javascript:void(0)" *ngIf="delivery.job_notes_count" (click)="addJobNote(delivery.id,i)">
                                                 View
                                             </a>
-                                            <div class="tooltiptext-view" *ngIf="delivery.job_notes_count && delivery.job_notes[0]?.description">
+                                            <div class="tooltiptext-view" *ngIf="delivery.job_notes_count && delivery.latest_job_note.description">
                                                 <div class="d-flex align-items-center justify-content-end">
                                                     <a class="tooltip-anchor-modal" href="javascript:void(0)" (click)="addJobNote(delivery.id,i)">
                                                         Add Note <i-feather class="icon-width w15" name="plus"></i-feather></a>
 
                                                 </div>
-                                                <div class="toop-hight" [innerHtml]="delivery.job_notes[0]?.description"></div>
+                                                <div class="toop-hight" [innerHtml]="delivery.latest_job_note.description"></div>
                                                 <div class="date-tooptip-iner">
-                                                    {{ delivery.job_notes[0]?.created_at | date: 'h:mm A | dd LLLL, yyyy'}}
+                                                    {{ delivery.latest_job_note.created_at | date: 'h:mm A | dd LLLL, yyyy'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -241,7 +241,7 @@
                                             <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(delivery, i)">
                                                 <img src="assets/img/line-img-gray.svg" alt="img">
                                             </a>
-                                            <a class="icon-anchor-list" href="javascript:void(0)">
+                                            <a class="icon-anchor-list" href="javascript:void(0)" (click)="completeOrder(delivery,i)">
                                                 <i-feather class="icon-width" name="check"></i-feather>
                                             </a>
                                         </div>
@@ -302,7 +302,27 @@
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Job Note</li>
-                            <li class="item-card"> <a class="inner-anchor" href="javascript:void(0)" (click)="addJobNote(delivery.id,i)">View</a> </li>
+                            <li class="item-card">
+                                <div class="inner-cell view-anchor-tooltip">
+                                    <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="!delivery.job_notes_count" (click)="addJobNote(delivery.id,i)">
+                                        <i-feather class="icon-width" name="plus"></i-feather>
+                                    </a>
+                                    <a class="view-anchor red" href="javascript:void(0)" *ngIf="delivery.job_notes_count" (click)="addJobNote(delivery.id,i)">
+                                        View
+                                    </a>
+                                    <div class="tooltiptext-view" *ngIf="delivery.job_notes_count && delivery.latest_job_note.description">
+                                        <div class="d-flex align-items-center justify-content-end">
+                                            <a class="tooltip-anchor-modal" href="javascript:void(0)" (click)="addJobNote(delivery.id,i)">
+                                                Add Note <i-feather class="icon-width w15" name="plus"></i-feather></a>
+
+                                        </div>
+                                        <div class="toop-hight" [innerHtml]="delivery.latest_job_note.description"></div>
+                                        <div class="date-tooptip-iner">
+                                            {{ delivery.latest_job_note.created_at | date: 'h:mm A | dd LLLL, yyyy'}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="inner-doube-ul d-flex align-items-start justify-content-between">
@@ -321,7 +341,22 @@
                     <div class="inner-doube-ul d-flex align-items-center justify-content-between">
                         <ul class="wc">
                             <li class="item-card-1">Deliver</li>
-                            <li class="item-card">{{ delivery.delivery }}</li>
+                            <li class="item-card">
+                                <div class="ready-tooltips">
+                                    <div class="view-anchor-tooltip">
+                                        <a class="view-anchor " href="javascript:void(0)">
+                                            {{ delivery.delivery ? (delivery.delivery.length > 10 ? delivery.delivery?.substr(0, 10)+'...' : delivery.delivery) : '' }}
+                                        </a>
+                                        <div class="tooltiptext-view" *ngIf="delivery.delivery?.length > 10">
+
+                                            <div class="toop-hight">
+                                                <p>{{ delivery.delivery }}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Product</li>
@@ -461,7 +496,7 @@
                             <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(delivery, i)">
                                 <img src="assets/img/line-img-gray.svg" alt="img">
                             </a>
-                            <a class="icon-anchor-list" href="javascript:void(0)">
+                            <a class="icon-anchor-list" href="javascript:void(0)" (click)="completeOrder(delivery,i)">
                                 <i-feather class="icon-width" name="check"></i-feather>
                             </a>
                         </div>

@@ -32324,9 +32324,6 @@ input:checked+.slider:before {
     overflow: hidden;
 }
 
-.sidenavbar-ctm #content .dashboard-main {
-    margin-right: 20px;
-}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -35519,7 +35516,7 @@ input:checked+.slider:before {
 }
 
 .view-anchor-tooltip .tooltiptext-view .toop-hight {
-    height: 9.1rem;
+    height: auto;
     overflow: auto;
     text-align: left;
     width: 100%;
@@ -36336,7 +36333,7 @@ input:checked+.slider:before {
     justify-content: flex-start;
     height: 16.8rem;
     min-height: 16.8rem;
-    overflow-x: auto;
+    overflow-x: unset;
 }
 
 .card-view-main-box.green-card-view {
@@ -37164,4 +37161,8 @@ i-feather {
 
 .view-anchor {
     cursor: pointer;
+}
+
+.view-anchor-tooltip .tooltiptext-view .toop-hight h4 {
+    color: #150000;
 }

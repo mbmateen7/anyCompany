@@ -14,3 +14,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.search-inputs .input-style .ctm-input {
+    width: 17rem;
+}

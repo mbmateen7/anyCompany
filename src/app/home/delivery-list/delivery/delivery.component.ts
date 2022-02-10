@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { UpdateDeliveryOrderComponent } from 'src/app/components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
@@ -15,7 +16,11 @@ export class DeliveryComponent implements OnInit {
 
     deliveryListView: number = 1;
     deliveries = [];
-
+    searchParams = {
+        search: '',
+        startDate: '',
+        endDate: '',
+    }
     modalConfig = {
         animated: true,
         keyboard: false,
@@ -23,6 +28,7 @@ export class DeliveryComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
+    searchSubscription: Subscription;
     constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router) { }
 
     ngOnInit(): void {
@@ -30,7 +36,8 @@ export class DeliveryComponent implements OnInit {
     }
 
     getDeliveryListing() {
-        this._delivery.listing().subscribe(res => {
+        if (this.searchSubscription) this.searchSubscription.unsubscribe();
+        this.searchSubscription = this._delivery.listing(this.searchParams).subscribe(res => {
             this.deliveries = res.data.data;
 
         });
@@ -43,6 +50,16 @@ export class DeliveryComponent implements OnInit {
         }
         this._delivery.updateDeliveryListStatus(data).subscribe(res => {
             this.deliveries[index] = res.data;
+        })
+    }
+
+    completeOrder(delivery, index) {
+        let data = {
+            id: delivery.id,
+            status: 'Delivered'
+        }
+        this._delivery.updateDeliveryListStatus(data).subscribe(res => {
+            this.deliveries.splice(index, 1);
         })
     }
 
@@ -103,6 +120,12 @@ export class DeliveryComponent implements OnInit {
             modal.close();
         })
 
+    }
+
+    searchOrder() {
+        if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+            this.getDeliveryListing();
+        }
     }
 
 }
