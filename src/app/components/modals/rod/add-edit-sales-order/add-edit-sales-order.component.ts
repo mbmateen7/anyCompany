@@ -174,10 +174,6 @@ export class AddEditSalesOrderComponent implements OnInit {
             this.helper.toastError('Please enter customer order number');
             return false;
         }
-        if (!this.updateOrder.due_date) {
-            this.helper.toastError('Please select due date for order');
-            return false;
-        }
         if (!this.updateOrder.location.length) {
             this.helper.toastError('Please enter location');
             return false;

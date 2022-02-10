@@ -7,21 +7,13 @@ import { urls } from '../constants/urls';
 @Injectable({
     providedIn: 'root'
 })
-export class DeliveryListService {
+export class FscService {
 
 
     constructor(private http: HttpClient) {
     }
 
     listing(params = {}): Observable<any> {
-        return this.http.post<any>(`${environment.apiUrl + urls.deliveryListing}`, params);
-    }
-
-    updateDeliveryListStatus(params = {}): Observable<any> {
-        return this.http.post<any>(`${environment.apiUrl + urls.updateDeliveryListStatus}`, params);
-    }
-
-    updateDeliveryList(params = {}): Observable<any> {
-        return this.http.post<any>(`${environment.apiUrl + urls.updateDeliveryList}`, params);
+        return this.http.post<any>(`${environment.apiUrl + urls.fscListing}`, params);
     }
 }

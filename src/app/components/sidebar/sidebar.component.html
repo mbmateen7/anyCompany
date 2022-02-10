@@ -55,17 +55,17 @@
         </ul>
     </li>
     <li class="">
-        <a href="#FSC" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+        <a href="#fsc" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
             <img class="img-hover-none" src="assets/img/icon-simple-gov-dot-uk.svg" alt="img">
             <img class="img-hover" src="assets/img/icon-simple-gov-dot-uk-1.svg" alt="img">
             <span class="text-link-nav">FSC</span>
         </a>
-        <ul class="collapse list-unstyled" id="FSC">
+        <ul class="collapse list-unstyled" id="fsc">
             <li>
-                <a class="inner-list" href="FSC Customer Order.html">Customer Orders</a>
+                <a class="inner-list" [routerLink]="['/fsc/customer-orders']" routerLinkActive="active">Customer Orders</a>
             </li>
             <li>
-                <a class="inner-list" href="FSC.html">FSC Purchase Orders</a>
+                <a class="inner-list" [routerLink]="['/fsc/purchase-orders']" routerLinkActive="active">FSC Purchase Orders</a>
             </li>
 
         </ul>

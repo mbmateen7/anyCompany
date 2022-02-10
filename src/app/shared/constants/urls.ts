@@ -2,7 +2,7 @@ export const urls = {
 
     // Host 
     devUrl: 'http://humphree.test/api/',
-    stagingUrl: 'http://api-humphery.io-devs.cf/api/',
+    stagingUrl: 'https://api-humphery.io-devs.cf/api/',
 
     // AUTH
     login: 'auth/login',
@@ -55,5 +55,8 @@ export const urls = {
     // Delivery List
     deliveryListing: 'delivery-list/delivery/listing',
     updateDeliveryListStatus: 'delivery-list/delivery/update-status',
-    updateDeliveryList: 'delivery-list/delivery/update'
+    updateDeliveryList: 'delivery-list/delivery/update',
+
+    // FSC
+    fscListing: 'fsc/customer-orders/listing',
 };

@@ -76,6 +76,8 @@ export class WalkingComponent implements OnInit {
         console.log(delivery);
         this._delivery.updateDeliveryList(delivery).subscribe(res => {
             this.deliveries[index] = res.data;
+        }, err => {
+            delivery.attributes[delivery.attributes.indexOf(delivery.attributes.find(x => x.name == attribute))].checked = delivery.attributes[delivery.attributes.indexOf(delivery.attributes.find(x => x.name == attribute))].checked ? false : true;
         });
     }
 
