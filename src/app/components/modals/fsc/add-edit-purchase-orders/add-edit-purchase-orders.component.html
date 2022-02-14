@@ -1,0 +1,279 @@
+<!-- Modal Header -->
+<div class="modal-header">
+    <h4 class="modal-title" *ngIf="type == 'add'">ADD FSC ORDER</h4>
+    <h4 class="modal-title" *ngIf="type == 'edit'">EDIT FSC ORDER</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<!-- Modal body -->
+<div class="modal-body">
+    <!-- Order Add Type selection -->
+    <div class="remember-me remember-me-radio" *ngIf="type == 'add'">
+        <label class="custom-radio custom-radio-center-ha magin-right-ctm">Stock
+            <input type="radio" [checked]="newOrder.type == 'Stock'" name="radio" value="Stock" [(ngModel)]="newOrder.type">
+            <span class="checkmark"></span>
+        </label>
+        <label class="custom-radio custom-radio-center-ha">Order
+            <input type="radio" [checked]="newOrder.type == 'Order'" name="radio" value="Order" [(ngModel)]="newOrder.type">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <!-- Order Edit Type selection -->
+    <div class="remember-me remember-me-radio" *ngIf="type == 'edit'">
+        <label class="custom-radio custom-radio-center-ha magin-right-ctm">Stock
+            <input type="radio" [checked]="order.type == 'Stock'" name="radio" value="Stock" [(ngModel)]="order.type">
+            <span class="checkmark"></span>
+        </label>
+        <label class="custom-radio custom-radio-center-ha">Order
+            <input type="radio" [checked]="order.type == 'Order'" name="radio" value="Order" [(ngModel)]="order.type">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <!-- Add Form -->
+    <div *ngIf="type == 'add'">
+        <!-- Order Add Form -->
+        <div class="row" *ngIf="newOrder.type == 'Order'">
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Date</label>
+                        <div class="type-pass">
+                            <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="newOrder.date" [max]="currentDate">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <i-feather class="calender" name="calendar"></i-feather>
+                            </div>
+                            <div class="today-date cursor-poiter">
+                                <p class="date-m" (click)="setCurrentDate()">Today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Work Number</label>
+                            <ng-select [items]="workOrders" bindLabel="work_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newOrder.work_number" (search)="getWorkOrders($event)" (change)="selectOrderNumber()">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p><strong>{{ item.work_number }}</strong> | <strong>Order #</strong>: {{ item.order_number }}</p>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Order Number</label>
+                            <ng-select [items]="workOrders" bindLabel="order_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newOrder.order_number" (search)="getWorkOrders($event)" (change)="selectWorkNumber()">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p><strong>{{ item.order_number }}</strong> | <strong>Work #</strong>: {{ item.work_number }}</p>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Product Type</label>
+                            <select class="ctm-input bg-white" placeholder="Product Type" [(ngModel)]="newOrder.product_type">
+                                <option value="" disabled selected>Product Type</option>
+                                <option value="profile">Basic</option>
+                                <option value="word">Director</option>
+                                <option value="hashtag">Sales</option>
+                                <option value="Complete">Accounts</option>
+                                <option value="Off Hold">Payroll Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">FSC Claim</label>
+                            <select class="ctm-input bg-white" placeholder="FSC Claim" [(ngModel)]="newOrder.fsc_claim">
+                                <option value="" disabled selected>FSC Claim</option>
+                                <option value="profile">Basic</option>
+                                <option value="word">Director</option>
+                                <option value="hashtag">Sales</option>
+                                <option value="Complete">Accounts</option>
+                                <option value="Off Hold">Payroll Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Quantity</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Quantity" [(ngModel)]="newOrder.quantity">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Invoice Value</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Invoice Value" [(ngModel)]="newOrder.invoice_value">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Material</label>
+                            <select class="ctm-input bg-white" placeholder="Material" [(ngModel)]="newOrder.material">
+                                <option value="" disabled selected>Material</option>
+                                <option value="profile">Basic</option>
+                                <option value="word">Director</option>
+                                <option value="hashtag">Sales</option>
+                                <option value="Complete">Accounts</option>
+                                <option value="Off Hold">Payroll Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock Add Form -->
+        <div class="row" *ngIf="newOrder.type == 'Stock'">
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Date</label>
+                        <div class="type-pass">
+                            <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="newOrder.date" [max]="currentDate">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <i-feather class="calender" name="calendar"></i-feather>
+                            </div>
+                            <div class="today-date cursor-poiter">
+                                <p class="date-m" (click)="setCurrentDate()">Today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="search-inputs mb-2">
+                        <div class="input-style ">
+                            <label for="">Order Number</label>
+                            <div class="type-pass">
+                                <input type="text" class="ctm-input" placeholder="Order Number" [(ngModel)]="newOrder.order_number">
+                                <div class="icon-eye d-flex align-items-center justify-content-center">
+                                    <i-feather class="calender" name="hash"></i-feather>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Supplier</label>
+                            <select class="ctm-input bg-white" placeholder="Supplier" [(ngModel)]="newOrder.supplier_id">
+                                <option value="" disabled selected>Supplier</option>
+                                <option value="profile">Basic</option>
+                                <option value="word">Director</option>
+                                <option value="hashtag">Sales</option>
+                                <option value="Complete">Accounts</option>
+                                <option value="Off Hold">Payroll Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Product Type</label>
+                            <select class="ctm-input bg-white" placeholder="Product Type" [(ngModel)]="newOrder.product_type">
+                                <option value="" disabled selected>Product Type</option>
+                                <option value="profile">Basic</option>
+                                <option value="word">Director</option>
+                                <option value="hashtag">Sales</option>
+                                <option value="Complete">Accounts</option>
+                                <option value="Off Hold">Payroll Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Invoice Value</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Invoice Value" [(ngModel)]="newOrder.invoice_value">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Quantity</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Quantity" [(ngModel)]="newOrder.quantity">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">FSC Claim</label>
+                            <select class="ctm-input bg-white" placeholder="FSC Claim" [(ngModel)]="newOrder.fsc_claim">
+                                <option value="" disabled selected>FSC Claim</option>
+                                <option value="profile">Basic</option>
+                                <option value="word">Director</option>
+                                <option value="hashtag">Sales</option>
+                                <option value="Complete">Accounts</option>
+                                <option value="Off Hold">Payroll Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Material</label>
+                            <select class="ctm-input bg-white" placeholder="Material" [(ngModel)]="newOrder.material">
+                                <option value="" disabled selected>Material</option>
+                                <option value="profile">Basic</option>
+                                <option value="word">Director</option>
+                                <option value="hashtag">Sales</option>
+                                <option value="Complete">Accounts</option>
+                                <option value="Off Hold">Payroll Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal footer -->
+<div class="modal-footer">
+    <div class="d-flex align-items-center justify-content-center w-100">
+        <a href="javascript:void(0)" class="discard-btn" (click)="close()">Discard</a>
+        <a href="javascript:void(0)" class="add-btn" (click)="addPurchaseOrder()" *ngIf="type == 'add'">Create</a>
+        <a href="javascript:void(0)" class="add-btn" (click)="updatePuchaseOrder()" *ngIf="type == 'edit'">Update</a>
+    </div>
+</div>

@@ -1,1 +1,145 @@
-<p>purchase-order works!</p>
+<div class="dashboard-main">
+    <div class="dashboard-content">
+        <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">FSC</a></li>
+
+                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)" [routerLink]="['/delivery-list/walking']">WALKING LIST</a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="secondary-sup" href="javascript:void(0)" (click)="addPurchaseOrder()">
+                    <i class="plus" data-feather="plus"></i> New FSC ORDER</a>
+                <a class="credit-check" data-toggle="modal" data-target="#Download" href="#Download" href="javascript:void(0)">
+                    <i class="download" data-feather="download"></i> Download Data</a>
+            </div>
+        </div>
+        <div class="roles-main delivery-list-table">
+            <div class="d-flex align-items-center justify-content-between delivery-list-main">
+                <div class="d-flex for-media-setts">
+                    <div class="form-group sear-bar-roles position-relative mb-0">
+                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
+                        <i-feather class="search-ctm" name="search"></i-feather>
+                    </div>
+                    <div class="search-inputs d-flex">
+                        <div class="input-style mr-10">
+
+                            <div class="type-pass">
+                                <input type="text" class="ctm-input" placeholder="From">
+                                <div class="icon-eye d-flex align-items-center justify-content-center">
+                                    <i-feather class="calender" name="calendar"></i-feather>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-style mr-10">
+                            <div class="type-pass">
+                                <input type="text" class="ctm-input" placeholder="To">
+                                <div class="icon-eye d-flex align-items-center justify-content-center">
+                                    <i-feather class="calender" name="calendar"></i-feather>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-style ">
+                            <input type="text" class="ctm-input type-input" placeholder="Type">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-table">
+                <div class="tables-roles-main tables-users-main table-responsive">
+                    <table class="table">
+                        <thead class="thead-ctm">
+                            <tr>
+                                <th>
+                                    <p class="inner-cell">Date<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>
+                                    <p class="inner-cell">Order Number<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>
+                                    <p class="inner-cell">Work Order<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>
+                                    <p class="inner-cell">Product Type<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>
+                                    <p class="inner-cell">Material<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>
+                                    <p class="inner-cell">FSC Claim<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+
+                                <th>
+                                    <p class="inner-cell">Quantity<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+
+                                <th>
+                                    <p class="inner-cell">Invoice Value<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="t-body-ctm">
+                            <tr class="active-row" *ngFor="let p of purchaseOrders;let i = index">
+                                <td>{{ p.date }}</td>
+                                <td>{{ p.order_number }}</td>
+                                <td>{{ p.work_number }}</td>
+                                <td>{{ p.product_type }}</td>
+                                <td>{{ p.material }}</td>
+                                <td>{{ p.fsc_claim }}</td>
+                                <td>{{ p.quantity }}</td>
+                                <td>{{ p.invoice_value }}</td>
+
+
+                                <td>
+                                    <div class="list-icons-talbe">
+
+                                        <a class="icon-anchor-list" href="javascript:void(0)"><i class="icon-width" data-feather="edit-3" (click)="editPurchaseOrder(p,i)"></i></a>
+
+                                        <a class="icon-anchor-list" href="javascript:void(0)"><i class="icon-width fa fa-trash-o" aria-hidden="true"></i></a>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="d-flex align-items-center justify-content-end mr-3 mt-2">
+                    <div class="d-flex rows-per">
+                        <h4 class="row-heading">Rows per page:</h4>
+                        <div class="center ctm-ha">
+                            <select name="sources" id="sources" class="custom-select sources" placeholder="10">
+                                <option value="profile">5</option>
+                                <option value="word">10</option>
+                                <option value="hashtag">20</option>
+                                <option value="Complete">30</option>
+                                <option value="Off Hold">50</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pagination-ctm d-inline-block">
+                        <li class="item">
+                            <a href="javascript:void(0)" class="page-arow-l"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                        </li>
+                        <ul class="my-pagination d-inline-block">
+
+                            <li class="item">
+                                <a href="javascript:void(0)" class="link">1</a>
+                            </li>
+
+                        </ul>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="page-arow-l"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </li>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

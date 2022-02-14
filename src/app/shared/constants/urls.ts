@@ -59,4 +59,7 @@ export const urls = {
 
     // FSC
     fscListing: 'fsc/customer-orders/listing',
+    addPurchaseOrder: 'fsc/purchase-orders/store',
+    purchaseOrderListing: 'fsc/purchase-orders/listing',
+    updateOrder: 'fsc/purchase-orders/update',
 };

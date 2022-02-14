@@ -6,6 +6,7 @@ import { CustomerOrderComponent } from './customer-order/customer-order.componen
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { allIcons } from 'angular-feather/icons';
     imports: [
         CommonModule,
         FscRoutingModule,
+        NgbModalModule,
         FeatherModule.pick(allIcons)
     ]
 })

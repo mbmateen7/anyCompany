@@ -65,7 +65,6 @@
                                 <th>
                                     <p class="inner-cell">Delivery Note<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="t-body-ctm">
@@ -83,16 +82,6 @@
                                     <a class="icon-anchor-list" href="javascript:void(0)" [routerLink]="['/rod/delivery-notes', fsc.id]" *ngIf="fsc.delivery_notes_count == 1">
                                         {{ fsc.delivery_notes[0]?.ticket_no }} <i-feather class="icon-width" name="edit-2"></i-feather>
                                     </a>
-                                </td>
-                                <td>
-                                    <div class="list-icons-talbe">
-
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-3"></i-feather>
-                                        </a>
-
-                                        <a class="icon-anchor-list" href="javascript:void(0)"><i class="icon-width far fa-trash-alt" aria-hidden="true"></i></a>
-                                    </div>
                                 </td>
 
 

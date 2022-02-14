@@ -16,4 +16,17 @@ export class FscService {
     listing(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.fscListing}`, params);
     }
+
+
+    purchaseOrderListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.purchaseOrderListing}`, params);
+    }
+
+    addPurchaseOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.addPurchaseOrder}`, params);
+    }
+
+    updateOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateOrder}`, params);
+    }
 }

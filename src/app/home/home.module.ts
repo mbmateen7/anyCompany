@@ -19,6 +19,9 @@ import { UpdateStatusComponent } from '../components/modals/rod/update-status/up
 import { DeleteConfirmationComponent } from '../components/modals/rod/delete-confirmation/delete-confirmation.component';
 import { TimelineComponent } from '../components/modals/rod/timeline/timeline.component';
 import { UpdateDeliveryOrderComponent } from '../components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
+import { AddEditPurchaseOrdersComponent } from '../components/modals/fsc/add-edit-purchase-orders/add-edit-purchase-orders.component';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
     declarations: [
@@ -35,13 +38,15 @@ import { UpdateDeliveryOrderComponent } from '../components/modals/delivery-list
         UpdateStatusComponent,
         DeleteConfirmationComponent,
         TimelineComponent,
-        UpdateDeliveryOrderComponent
+        UpdateDeliveryOrderComponent,
+        AddEditPurchaseOrdersComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         HomeRoutingModule,
-        FeatherModule.pick(allIcons)
+        FeatherModule.pick(allIcons),
+        NgSelectModule
     ],
     providers: [DatePipe]
 })

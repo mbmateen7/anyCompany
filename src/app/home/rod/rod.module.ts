@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { RodRoutingModule } from './rod-routing.module';
 import { allIcons } from 'angular-feather/icons';
@@ -21,6 +21,7 @@ import { DeliveryNoteComponent } from './delivery-note/delivery-note.component';
         FormsModule,
         NgbModalModule,
         FeatherModule.pick(allIcons)
-    ]
+    ],
+    // providers: [DatePipe]
 })
 export class RodModule { }
