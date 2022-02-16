@@ -29,4 +29,8 @@ export class FscService {
     updateOrder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.updateOrder}`, params);
     }
+
+    deleteOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.deleteOrder}`, params);
+    }
 }

@@ -17,14 +17,14 @@
             <div class="d-flex align-items-center justify-content-between delivery-list-main">
                 <div class="d-flex for-media-setts">
                     <div class="form-group sear-bar-roles position-relative mb-0">
-                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
+                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" [(ngModel)]="searchParams.search" (input)="searchPurchaseOrders()">
                         <i-feather class="search-ctm" name="search"></i-feather>
                     </div>
                     <div class="search-inputs d-flex">
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="text" class="ctm-input" placeholder="From">
+                                <input type="date" class="ctm-input" placeholder="From" [(ngModel)]="searchParams.start_date">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
@@ -32,14 +32,11 @@
                         </div>
                         <div class="input-style mr-10">
                             <div class="type-pass">
-                                <input type="text" class="ctm-input" placeholder="To">
+                                <input type="date" class="ctm-input" placeholder="To" [disabled]="!searchParams.start_date" [min]="searchParams.start_date" [(ngModel)]="searchParams.end_date" (change)="getPurchaseListing()">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
                             </div>
-                        </div>
-                        <div class="input-style ">
-                            <input type="text" class="ctm-input type-input" placeholder="Type">
                         </div>
                     </div>
                 </div>
@@ -83,7 +80,7 @@
                             <tr class="active-row" *ngFor="let p of purchaseOrders;let i = index">
                                 <td>{{ p.date }}</td>
                                 <td>{{ p.order_number }}</td>
-                                <td>{{ p.work_number }}</td>
+                                <td [ngClass]="{'text-red': p.type == 'Stock'}">{{ p.type == 'Order' ? p.work_number : 'Stock' }}</td>
                                 <td>{{ p.product_type }}</td>
                                 <td>{{ p.material }}</td>
                                 <td>{{ p.fsc_claim }}</td>
@@ -92,11 +89,15 @@
 
 
                                 <td>
-                                    <div class="list-icons-talbe">
+                                    <div class="list-icons-talbe justify-content-center">
 
-                                        <a class="icon-anchor-list" href="javascript:void(0)"><i class="icon-width" data-feather="edit-3" (click)="editPurchaseOrder(p,i)"></i></a>
+                                        <a class=" icon-anchor-list" href="javascript:void(0)">
+                                            <i-feather class="icon-width" name="edit-3" (click)="editPurchaseOrder(p,i)"></i-feather>
+                                        </a>
 
-                                        <a class="icon-anchor-list" href="javascript:void(0)"><i class="icon-width fa fa-trash-o" aria-hidden="true"></i></a>
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="deletePurchaseOrder(p,i)">
+                                            <i-feather class="icon-width" name="trash"></i-feather>
+                                        </a>
                                     </div>
                                 </td>
 

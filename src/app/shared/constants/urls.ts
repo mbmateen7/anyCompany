@@ -52,6 +52,9 @@ export const urls = {
     customerListing: 'phonebook/customers/listing',
     customerAdd: 'phonebook/customers/store',
 
+
+    supplierListing: 'phonebook/suppliers/listing',
+
     // Delivery List
     deliveryListing: 'delivery-list/delivery/listing',
     updateDeliveryListStatus: 'delivery-list/delivery/update-status',
@@ -62,4 +65,5 @@ export const urls = {
     addPurchaseOrder: 'fsc/purchase-orders/store',
     purchaseOrderListing: 'fsc/purchase-orders/listing',
     updateOrder: 'fsc/purchase-orders/update',
+    deleteOrder: 'fsc/purchase-orders/delete',
 };

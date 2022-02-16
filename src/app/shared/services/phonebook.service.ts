@@ -20,4 +20,9 @@ export class PhonebookService {
     addCustomer(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.customerAdd}`, params);
     }
+
+    // Suppliers
+    supplierListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.supplierListing}`, params);
+    }
 }

@@ -31368,7 +31368,7 @@ button:focus {
 }
 
 .search-inputs .input-style .ctm-input {
-    width: 14rem;
+    width: 17rem;
     height: 5.1rem;
     padding: 0 1rem 0 4rem;
     font-size: 1.4rem;
@@ -37202,4 +37202,8 @@ i-feather {
 .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
     display: flex;
     align-items: center;
+}
+
+.text-red {
+    color: #DC0100 !important;
 }

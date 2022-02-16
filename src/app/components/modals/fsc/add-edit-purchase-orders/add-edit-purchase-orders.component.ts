@@ -5,6 +5,7 @@ import { Observable, of, OperatorFunction } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { FscService } from 'src/app/shared/services/fsc.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
+import { PhonebookService } from 'src/app/shared/services/phonebook.service';
 import { RodService } from 'src/app/shared/services/rod.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         type: 'Order',
         date: '',
         order_number: null,
-        work_number: null,
+        work_order_id: null,
         product_type: '',
         fsc_claim: '',
         quantity: '',
@@ -31,7 +32,8 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         material: ''
     }
     workOrders = [];
-    constructor(private datePipe: DatePipe, private _helper: GlobalHelper, private _fsc: FscService, private _rod: RodService, private selectConfig: NgSelectConfig) {
+    suppliers = [];
+    constructor(private datePipe: DatePipe, private _helper: GlobalHelper, private _fsc: FscService, private _rod: RodService, private selectConfig: NgSelectConfig, private _phonebook: PhonebookService) {
         selectConfig.notFoundText = 'Start typing...';
     }
 
@@ -39,24 +41,23 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
     ngOnInit(): void {
         this.setCurrentDate();
         this.getWorkOrders();
+        this.getSuppliers();
     }
 
     getWorkOrders(event = null) {
         let search = event ? event.term : '';
-        if (event && event.term.length) {
-            this._rod.rodListing({ search: search }).subscribe(res => {
-                this.workOrders = res.data.data;
-            });
-        } else return;
+        this._rod.rodListing({ search: search }).subscribe(res => {
+            this.workOrders = res.data.data;
+        });
     }
 
-    selectOrderNumber() {
-        this.newOrder.order_number = this.newOrder.work_number;
+    getSuppliers(event = null) {
+        let search = event ? event.term : '';
+        this._phonebook.supplierListing({ search: search }).subscribe(res => {
+            this.suppliers = res.data.data;
+        });
     }
 
-    selectWorkNumber() {
-        this.newOrder.work_number = this.newOrder.order_number;
-    }
 
     logOrder() {
         console.log(this.newOrder);
@@ -83,12 +84,12 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
     }
 
     updatePuchaseOrder() {
-        if (!this.validateOrder()) {
+        if (!this.validateUpdateOrder()) {
             return;
         }
-        this._fsc.updateOrder(this.newOrder).subscribe(res => {
+        this._fsc.updateOrder(this.order).subscribe(res => {
             this._helper.toastSuccess(res.message);
-            this.response.emit({ success: true });
+            this.response.emit({ success: true, data: res.data });
         })
     }
 
@@ -100,19 +101,20 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         }
 
         if (this.newOrder.type == 'Order') {
-            if (!this.newOrder.work_number) {
+            if (!this.newOrder.work_order_id) {
                 this._helper.toastError('Please enter order number');
                 return false;
             }
 
         }
-        if (!this.newOrder.order_number) {
-            this._helper.toastError('Please enter order_number');
-            return false;
-        }
         if (this.newOrder.type == 'Stock') {
             if (!this.newOrder.supplier_id) {
                 this._helper.toastError('Please select supplier');
+                return false;
+            }
+
+            if (!this.newOrder.order_number) {
+                this._helper.toastError('Please enter order_number');
                 return false;
             }
         }
@@ -137,5 +139,59 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
             return false;
         }
         return true;
+    }
+
+    validateUpdateOrder() {
+        if (!this.order.date) {
+            this._helper.toastError('Please select date');
+            return false;
+        }
+
+        if (this.order.type == 'Order') {
+            if (!this.order.work_order_id) {
+                this._helper.toastError('Please enter order number');
+                return false;
+            }
+
+        }
+        if (this.order.type == 'Stock') {
+            if (!this.order.supplier_id) {
+                this._helper.toastError('Please select supplier');
+                return false;
+            }
+
+            if (!this.order.order_number) {
+                this._helper.toastError('Please enter order_number');
+                return false;
+            }
+        }
+        if (!this.order.product_type) {
+            this._helper.toastError('Please select product type');
+            return false;
+        }
+        if (!this.order.quantity) {
+            this._helper.toastError('Please enter quantity');
+            return false;
+        }
+        if (!this.order.fsc_claim) {
+            this._helper.toastError('please select FSC Claim');
+            return false;
+        }
+        if (!this.order.invoice_value) {
+            this._helper.toastError('Please enter invoice value');
+            return false;
+        }
+        if (!this.order.material) {
+            this._helper.toastError('Please select material');
+            return false;
+        }
+        return true;
+    }
+
+    deletePurchaseOrder() {
+        this._fsc.deleteOrder({ id: this.order.id }).subscribe(res => {
+            this._helper.toastSuccess(res.message);
+            this.response.emit({ success: true, data: res.data });
+        })
     }
 }

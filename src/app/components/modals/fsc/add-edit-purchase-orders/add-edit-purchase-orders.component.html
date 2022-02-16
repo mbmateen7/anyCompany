@@ -2,8 +2,10 @@
 <div class="modal-header">
     <h4 class="modal-title" *ngIf="type == 'add'">ADD FSC ORDER</h4>
     <h4 class="modal-title" *ngIf="type == 'edit'">EDIT FSC ORDER</h4>
+    <h4 class="modal-title" *ngIf="type == 'delete'">Are You Sure?</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
+
 
 <!-- Modal body -->
 <div class="modal-body">
@@ -56,7 +58,7 @@
                     <div class="select-box">
                         <div class="form-group">
                             <label for="">Work Number</label>
-                            <ng-select [items]="workOrders" bindLabel="work_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newOrder.work_number" (search)="getWorkOrders($event)" (change)="selectOrderNumber()">
+                            <ng-select [items]="workOrders" bindLabel="work_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newOrder.work_order_id" (search)="getWorkOrders($event)">
                                 <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
                                     <p><strong>{{ item.work_number }}</strong> | <strong>Order #</strong>: {{ item.order_number }}</p>
                                 </ng-template>
@@ -70,7 +72,7 @@
                     <div class="select-box">
                         <div class="form-group">
                             <label for="">Order Number</label>
-                            <ng-select [items]="workOrders" bindLabel="order_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newOrder.order_number" (search)="getWorkOrders($event)" (change)="selectWorkNumber()">
+                            <ng-select [items]="workOrders" bindLabel="order_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newOrder.work_order_id" (search)="getWorkOrders($event)">
                                 <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
                                     <p><strong>{{ item.order_number }}</strong> | <strong>Work #</strong>: {{ item.work_number }}</p>
                                 </ng-template>
@@ -86,11 +88,13 @@
                             <label for="">Product Type</label>
                             <select class="ctm-input bg-white" placeholder="Product Type" [(ngModel)]="newOrder.product_type">
                                 <option value="" disabled selected>Product Type</option>
-                                <option value="profile">Basic</option>
-                                <option value="word">Director</option>
-                                <option value="hashtag">Sales</option>
-                                <option value="Complete">Accounts</option>
-                                <option value="Off Hold">Payroll Officer</option>
+                                <option value="W7 Veneer (m2)">W7 Veneer (m2)</option>
+                                <option value="W5.2 solid wood boards (m Run)">W5.2 solid wood boards (m Run)</option>
+                                <option value="w5.2 solid wood (m3)">w5.2 solid wood (m3)</option>
+                                <option value="P3.4 FSC Laminate (sheets)">P3.4 FSC Laminate (sheets)</option>
+                                <option value="Controlled Wood Laminate (sheets)">Controlled Wood Laminate (sheets)</option>
+                                <option value="W8.2 Particle Board (sheets)">W8.2 Particle Board (sheets)</option>
+                                <option value="Controlled Wood (boards)">Controlled Wood (boards)</option>
                             </select>
                         </div>
                     </div>
@@ -103,11 +107,41 @@
                             <label for="">FSC Claim</label>
                             <select class="ctm-input bg-white" placeholder="FSC Claim" [(ngModel)]="newOrder.fsc_claim">
                                 <option value="" disabled selected>FSC Claim</option>
-                                <option value="profile">Basic</option>
-                                <option value="word">Director</option>
-                                <option value="hashtag">Sales</option>
-                                <option value="Complete">Accounts</option>
-                                <option value="Off Hold">Payroll Officer</option>
+                                <option value="70%">70%</option>
+                                <option value="75%">75%</option>
+                                <option value="100%">100%</option>
+                                <option value="70">70</option>
+                                <option value="-">-</option>
+                                <option value="100% PEFC">100% PEFC</option>
+                                <option value="60% PEFC">60% PEFC</option>
+                                <option value="70 MIX%">70 MIX%</option>
+                                <option value="70 Mix">70 Mix</option>
+                                <option value="70 Mix Credit">70 Mix Credit</option>
+                                <option value="70% PEFC">70% PEFC</option>
+                                <option value="75% FSC MP">75% FSC MP</option>
+                                <option value="75% Mix">75% Mix</option>
+                                <option value="75% Mix Cred">75% Mix Cred</option>
+                                <option value="80% + Mix Credit">80% + Mix Credit</option>
+                                <option value="80% Mix">80% Mix</option>
+                                <option value="80% Mix Credit">80% Mix Credit</option>
+                                <option value="80% Mixed">80% Mixed</option>
+                                <option value="85% Mix">85% Mix</option>
+                                <option value="85% Mix Credit">85% Mix Credit</option>
+                                <option value="Controlled Wood">Controlled Wood</option>
+                                <option value="FSC">FSC</option>
+                                <option value="FSC 70%">FSC 70%</option>
+                                <option value="FSC 75%">FSC 75%</option>
+                                <option value="FSC Controlled Wood">FSC Controlled Wood</option>
+                                <option value="FSC CW">FSC CW</option>
+                                <option value="FSC Mix">FSC Mix</option>
+                                <option value="FSC Mix 70%">FSC Mix 70%</option>
+                                <option value="FSC Mix Credit">FSC Mix Credit</option>
+                                <option value="FSC MP 75%">FSC MP 75%</option>
+                                <option value="FSC Not Supplied">FSC Not Supplied</option>
+                                <option value="FSC + Controlled Wood">FSC + Controlled Wood</option>
+                                <option value="FSW CW">FSW CW</option>
+                                <option value="Q Mark">Q Mark</option>
+                                <option value="Totals">Totals</option>
                             </select>
                         </div>
                     </div>
@@ -136,11 +170,12 @@
                             <label for="">Material</label>
                             <select class="ctm-input bg-white" placeholder="Material" [(ngModel)]="newOrder.material">
                                 <option value="" disabled selected>Material</option>
-                                <option value="profile">Basic</option>
-                                <option value="word">Director</option>
-                                <option value="hashtag">Sales</option>
-                                <option value="Complete">Accounts</option>
-                                <option value="Off Hold">Payroll Officer</option>
+                                <option value="Veneer">Veneer</option>
+                                <option value="Timber">Timber</option>
+                                <option value="Lippings">Lippings</option>
+                                <option value="Laminate">Laminate</option>
+                                <option value="Blanks">Blanks</option>
+                                <option value="MDO">MDO</option>
                             </select>
                         </div>
                     </div>
@@ -186,14 +221,11 @@
                     <div class="select-box">
                         <div class="form-group">
                             <label for="">Supplier</label>
-                            <select class="ctm-input bg-white" placeholder="Supplier" [(ngModel)]="newOrder.supplier_id">
-                                <option value="" disabled selected>Supplier</option>
-                                <option value="profile">Basic</option>
-                                <option value="word">Director</option>
-                                <option value="hashtag">Sales</option>
-                                <option value="Complete">Accounts</option>
-                                <option value="Off Hold">Payroll Officer</option>
-                            </select>
+                            <ng-select [items]="suppliers" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newOrder.supplier_id" (search)="getSuppliers($event)">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p>{{ item.name }}</p>
+                                </ng-template>
+                            </ng-select>
                         </div>
                     </div>
                 </div>
@@ -205,11 +237,13 @@
                             <label for="">Product Type</label>
                             <select class="ctm-input bg-white" placeholder="Product Type" [(ngModel)]="newOrder.product_type">
                                 <option value="" disabled selected>Product Type</option>
-                                <option value="profile">Basic</option>
-                                <option value="word">Director</option>
-                                <option value="hashtag">Sales</option>
-                                <option value="Complete">Accounts</option>
-                                <option value="Off Hold">Payroll Officer</option>
+                                <option value="W7 Veneer (m2)">W7 Veneer (m2)</option>
+                                <option value="W5.2 solid wood boards (m Run)">W5.2 solid wood boards (m Run)</option>
+                                <option value="w5.2 solid wood (m3)">w5.2 solid wood (m3)</option>
+                                <option value="P3.4 FSC Laminate (sheets)">P3.4 FSC Laminate (sheets)</option>
+                                <option value="Controlled Wood Laminate (sheets)">Controlled Wood Laminate (sheets)</option>
+                                <option value="W8.2 Particle Board (sheets)">W8.2 Particle Board (sheets)</option>
+                                <option value="Controlled Wood (boards)">Controlled Wood (boards)</option>
                             </select>
                         </div>
                     </div>
@@ -238,11 +272,41 @@
                             <label for="">FSC Claim</label>
                             <select class="ctm-input bg-white" placeholder="FSC Claim" [(ngModel)]="newOrder.fsc_claim">
                                 <option value="" disabled selected>FSC Claim</option>
-                                <option value="profile">Basic</option>
-                                <option value="word">Director</option>
-                                <option value="hashtag">Sales</option>
-                                <option value="Complete">Accounts</option>
-                                <option value="Off Hold">Payroll Officer</option>
+                                <option value="70%">70%</option>
+                                <option value="75%">75%</option>
+                                <option value="100%">100%</option>
+                                <option value="70">70</option>
+                                <option value="-">-</option>
+                                <option value="100% PEFC">100% PEFC</option>
+                                <option value="60% PEFC">60% PEFC</option>
+                                <option value="70 MIX%">70 MIX%</option>
+                                <option value="70 Mix">70 Mix</option>
+                                <option value="70 Mix Credit">70 Mix Credit</option>
+                                <option value="70% PEFC">70% PEFC</option>
+                                <option value="75% FSC MP">75% FSC MP</option>
+                                <option value="75% Mix">75% Mix</option>
+                                <option value="75% Mix Cred">75% Mix Cred</option>
+                                <option value="80% + Mix Credit">80% + Mix Credit</option>
+                                <option value="80% Mix">80% Mix</option>
+                                <option value="80% Mix Credit">80% Mix Credit</option>
+                                <option value="80% Mixed">80% Mixed</option>
+                                <option value="85% Mix">85% Mix</option>
+                                <option value="85% Mix Credit">85% Mix Credit</option>
+                                <option value="Controlled Wood">Controlled Wood</option>
+                                <option value="FSC">FSC</option>
+                                <option value="FSC 70%">FSC 70%</option>
+                                <option value="FSC 75%">FSC 75%</option>
+                                <option value="FSC Controlled Wood">FSC Controlled Wood</option>
+                                <option value="FSC CW">FSC CW</option>
+                                <option value="FSC Mix">FSC Mix</option>
+                                <option value="FSC Mix 70%">FSC Mix 70%</option>
+                                <option value="FSC Mix Credit">FSC Mix Credit</option>
+                                <option value="FSC MP 75%">FSC MP 75%</option>
+                                <option value="FSC Not Supplied">FSC Not Supplied</option>
+                                <option value="FSC + Controlled Wood">FSC + Controlled Wood</option>
+                                <option value="FSW CW">FSW CW</option>
+                                <option value="Q Mark">Q Mark</option>
+                                <option value="Totals">Totals</option>
                             </select>
                         </div>
                     </div>
@@ -255,15 +319,322 @@
                             <label for="">Material</label>
                             <select class="ctm-input bg-white" placeholder="Material" [(ngModel)]="newOrder.material">
                                 <option value="" disabled selected>Material</option>
-                                <option value="profile">Basic</option>
-                                <option value="word">Director</option>
-                                <option value="hashtag">Sales</option>
-                                <option value="Complete">Accounts</option>
-                                <option value="Off Hold">Payroll Officer</option>
+                                <option value="Veneer">Veneer</option>
+                                <option value="Timber">Timber</option>
+                                <option value="Lippings">Lippings</option>
+                                <option value="Laminate">Laminate</option>
+                                <option value="Blanks">Blanks</option>
+                                <option value="MDO">MDO</option>
                             </select>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="type == 'edit'">
+        <!-- Order Add Form -->
+        <div class="row" *ngIf="order.type == 'Order'">
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Date</label>
+                        <div class="type-pass">
+                            <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="order.date" [max]="currentDate">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <i-feather class="calender" name="calendar"></i-feather>
+                            </div>
+                            <div class="today-date cursor-poiter">
+                                <p class="date-m" (click)="setCurrentDate()">Today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Work Number</label>
+                            <ng-select [items]="workOrders" bindLabel="work_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="order.work_order_id" (search)="getWorkOrders($event)">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p><strong>{{ item.work_number }}</strong> | <strong>Order #</strong>: {{ item.order_number }}</p>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Order Number</label>
+                            <ng-select [items]="workOrders" bindLabel="order_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="order.work_order_id" (search)="getWorkOrders($event)">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p><strong>{{ item.order_number }}</strong> | <strong>Work #</strong>: {{ item.work_number }}</p>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Product Type</label>
+                            <select class="ctm-input bg-white" placeholder="Product Type" [(ngModel)]="order.product_type">
+                                <option value="" disabled selected>Product Type</option>
+                                <option value="W7 Veneer (m2)">W7 Veneer (m2)</option>
+                                <option value="W5.2 solid wood boards (m Run)">W5.2 solid wood boards (m Run)</option>
+                                <option value="w5.2 solid wood (m3)">w5.2 solid wood (m3)</option>
+                                <option value="P3.4 FSC Laminate (sheets)">P3.4 FSC Laminate (sheets)</option>
+                                <option value="Controlled Wood Laminate (sheets)">Controlled Wood Laminate (sheets)</option>
+                                <option value="W8.2 Particle Board (sheets)">W8.2 Particle Board (sheets)</option>
+                                <option value="Controlled Wood (boards)">Controlled Wood (boards)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">FSC Claim</label>
+                            <select class="ctm-input bg-white" placeholder="FSC Claim" [(ngModel)]="order.fsc_claim">
+                                <option value="" disabled selected>FSC Claim</option>
+                                <option value="70%">70%</option>
+                                <option value="75%">75%</option>
+                                <option value="100%">100%</option>
+                                <option value="70">70</option>
+                                <option value="-">-</option>
+                                <option value="100% PEFC">100% PEFC</option>
+                                <option value="60% PEFC">60% PEFC</option>
+                                <option value="70 MIX%">70 MIX%</option>
+                                <option value="70 Mix">70 Mix</option>
+                                <option value="70 Mix Credit">70 Mix Credit</option>
+                                <option value="70% PEFC">70% PEFC</option>
+                                <option value="75% FSC MP">75% FSC MP</option>
+                                <option value="75% Mix">75% Mix</option>
+                                <option value="75% Mix Cred">75% Mix Cred</option>
+                                <option value="80% + Mix Credit">80% + Mix Credit</option>
+                                <option value="80% Mix">80% Mix</option>
+                                <option value="80% Mix Credit">80% Mix Credit</option>
+                                <option value="80% Mixed">80% Mixed</option>
+                                <option value="85% Mix">85% Mix</option>
+                                <option value="85% Mix Credit">85% Mix Credit</option>
+                                <option value="Controlled Wood">Controlled Wood</option>
+                                <option value="FSC">FSC</option>
+                                <option value="FSC 70%">FSC 70%</option>
+                                <option value="FSC 75%">FSC 75%</option>
+                                <option value="FSC Controlled Wood">FSC Controlled Wood</option>
+                                <option value="FSC CW">FSC CW</option>
+                                <option value="FSC Mix">FSC Mix</option>
+                                <option value="FSC Mix 70%">FSC Mix 70%</option>
+                                <option value="FSC Mix Credit">FSC Mix Credit</option>
+                                <option value="FSC MP 75%">FSC MP 75%</option>
+                                <option value="FSC Not Supplied">FSC Not Supplied</option>
+                                <option value="FSC + Controlled Wood">FSC + Controlled Wood</option>
+                                <option value="FSW CW">FSW CW</option>
+                                <option value="Q Mark">Q Mark</option>
+                                <option value="Totals">Totals</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Quantity</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Quantity" [(ngModel)]="order.quantity">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Invoice Value</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Invoice Value" [(ngModel)]="order.invoice_value">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Material</label>
+                            <select class="ctm-input bg-white" placeholder="Material" [(ngModel)]="order.material">
+                                <option value="" disabled selected>Material</option>
+                                <option value="Veneer">Veneer</option>
+                                <option value="Timber">Timber</option>
+                                <option value="Lippings">Lippings</option>
+                                <option value="Laminate">Laminate</option>
+                                <option value="Blanks">Blanks</option>
+                                <option value="MDO">MDO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock Add Form -->
+        <div class="row" *ngIf="order?.type == 'Stock'">
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Date</label>
+                        <div class="type-pass">
+                            <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="order.date" [max]="currentDate">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <i-feather class="calender" name="calendar"></i-feather>
+                            </div>
+                            <div class="today-date cursor-poiter">
+                                <p class="date-m" (click)="setCurrentDate()">Today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="search-inputs mb-2">
+                        <div class="input-style ">
+                            <label for="">Order Number</label>
+                            <div class="type-pass">
+                                <input type="text" class="ctm-input" placeholder="Order Number" [(ngModel)]="order.order_number">
+                                <div class="icon-eye d-flex align-items-center justify-content-center">
+                                    <i-feather class="calender" name="hash"></i-feather>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Supplier</label>
+                            <ng-select [items]="suppliers" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="order.supplier_id" (search)="getSuppliers($event)">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p>{{ item.name }}</p>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Product Type</label>
+                            <select class="ctm-input bg-white" placeholder="Product Type" [(ngModel)]="order.product_type">
+                                <option value="" disabled selected>Product Type</option>
+                                <option value="W7 Veneer (m2)">W7 Veneer (m2)</option>
+                                <option value="W5.2 solid wood boards (m Run)">W5.2 solid wood boards (m Run)</option>
+                                <option value="w5.2 solid wood (m3)">w5.2 solid wood (m3)</option>
+                                <option value="P3.4 FSC Laminate (sheets)">P3.4 FSC Laminate (sheets)</option>
+                                <option value="Controlled Wood Laminate (sheets)">Controlled Wood Laminate (sheets)</option>
+                                <option value="W8.2 Particle Board (sheets)">W8.2 Particle Board (sheets)</option>
+                                <option value="Controlled Wood (boards)">Controlled Wood (boards)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Invoice Value</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Invoice Value" [(ngModel)]="order.invoice_value">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Quantity</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Quantity" [(ngModel)]="order.quantity">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">FSC Claim</label>
+                            <select class="ctm-input bg-white" placeholder="FSC Claim" [(ngModel)]="order.fsc_claim">
+                                <option value="" disabled selected>FSC Claim</option>
+                                <option value="70%">70%</option>
+                                <option value="75%">75%</option>
+                                <option value="100%">100%</option>
+                                <option value="70">70</option>
+                                <option value="-">-</option>
+                                <option value="100% PEFC">100% PEFC</option>
+                                <option value="60% PEFC">60% PEFC</option>
+                                <option value="70 MIX%">70 MIX%</option>
+                                <option value="70 Mix">70 Mix</option>
+                                <option value="70 Mix Credit">70 Mix Credit</option>
+                                <option value="70% PEFC">70% PEFC</option>
+                                <option value="75% FSC MP">75% FSC MP</option>
+                                <option value="75% Mix">75% Mix</option>
+                                <option value="75% Mix Cred">75% Mix Cred</option>
+                                <option value="80% + Mix Credit">80% + Mix Credit</option>
+                                <option value="80% Mix">80% Mix</option>
+                                <option value="80% Mix Credit">80% Mix Credit</option>
+                                <option value="80% Mixed">80% Mixed</option>
+                                <option value="85% Mix">85% Mix</option>
+                                <option value="85% Mix Credit">85% Mix Credit</option>
+                                <option value="Controlled Wood">Controlled Wood</option>
+                                <option value="FSC">FSC</option>
+                                <option value="FSC 70%">FSC 70%</option>
+                                <option value="FSC 75%">FSC 75%</option>
+                                <option value="FSC Controlled Wood">FSC Controlled Wood</option>
+                                <option value="FSC CW">FSC CW</option>
+                                <option value="FSC Mix">FSC Mix</option>
+                                <option value="FSC Mix 70%">FSC Mix 70%</option>
+                                <option value="FSC Mix Credit">FSC Mix Credit</option>
+                                <option value="FSC MP 75%">FSC MP 75%</option>
+                                <option value="FSC Not Supplied">FSC Not Supplied</option>
+                                <option value="FSC + Controlled Wood">FSC + Controlled Wood</option>
+                                <option value="FSW CW">FSW CW</option>
+                                <option value="Q Mark">Q Mark</option>
+                                <option value="Totals">Totals</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Material</label>
+                            <select class="ctm-input bg-white" placeholder="Material" [(ngModel)]="order.material">
+                                <option value="" disabled selected>Material</option>
+                                <option value="Veneer">Veneer</option>
+                                <option value="Timber">Timber</option>
+                                <option value="Lippings">Lippings</option>
+                                <option value="Laminate">Laminate</option>
+                                <option value="Blanks">Blanks</option>
+                                <option value="MDO">MDO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="type == 'delete'">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>You are about to permanently delete a purchase order, this is not recoverable. If you are unsure speak to your managers.</h5>
             </div>
         </div>
     </div>
@@ -275,5 +646,6 @@
         <a href="javascript:void(0)" class="discard-btn" (click)="close()">Discard</a>
         <a href="javascript:void(0)" class="add-btn" (click)="addPurchaseOrder()" *ngIf="type == 'add'">Create</a>
         <a href="javascript:void(0)" class="add-btn" (click)="updatePuchaseOrder()" *ngIf="type == 'edit'">Update</a>
+        <a href="javascript:void(0)" class="add-btn" (click)="deletePurchaseOrder()" *ngIf="type == 'delete'">Delete</a>
     </div>
 </div>
