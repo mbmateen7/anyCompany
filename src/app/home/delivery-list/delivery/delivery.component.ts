@@ -18,9 +18,12 @@ export class DeliveryComponent implements OnInit {
     deliveries = [];
     searchParams = {
         search: '',
-        startDate: '',
-        endDate: '',
+        start_date: '',
+        end_date: '',
+        page_size: 10,
+        page: 1
     }
+    totalPages = 1;
     modalConfig = {
         animated: true,
         keyboard: false,
@@ -29,6 +32,7 @@ export class DeliveryComponent implements OnInit {
         windowClass: "modal-roles"
     };
     searchSubscription: Subscription;
+    dateToday = new Date();
     constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router) { }
 
     ngOnInit(): void {
@@ -39,6 +43,9 @@ export class DeliveryComponent implements OnInit {
         if (this.searchSubscription) this.searchSubscription.unsubscribe();
         this.searchSubscription = this._delivery.listing(this.searchParams).subscribe(res => {
             this.deliveries = res.data.data;
+            this.searchParams.page_size = res.data.per_page
+            this.searchParams.page = res.data.current_page
+            this.totalPages = res.data.last_page;
 
         });
     }
@@ -123,10 +130,23 @@ export class DeliveryComponent implements OnInit {
 
     }
 
-    searchOrder() {
-        if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+    searchOrder(type) {
+        if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
+            this.getDeliveryListing();
+        }
+        if (type == 'date' && this.searchParams.start_date && this.searchParams.end_date) {
             this.getDeliveryListing();
         }
     }
 
+    changePage(event) {
+        this.searchParams.page = event;
+        this.getDeliveryListing();
+    }
+
+    ChangePageSize(event) {
+        this.searchParams.page = 1;
+        this.searchParams.page_size = event;
+        this.getDeliveryListing();
+    }
 }

@@ -77,7 +77,7 @@
         </a>
     </li>
     <li>
-        <a class="dashboard-link" href="History.html">
+        <a class="dashboard-link" href="javascript:void(0)">
             <i-feather name="book-open" class="user-sidebar-icon"></i-feather><span class="text-link-nav">History</span>
         </a>
     </li>
@@ -89,13 +89,13 @@
         </a>
         <ul class="collapse list-unstyled" id="Phone-books">
             <li>
-                <a class="inner-list" href="phone-book-customer.html">Customers</a>
+                <a class="inner-list" [routerLink]="['/phonebook/customers']" routerLinkActive="active">Customers</a>
             </li>
             <li>
-                <a class="inner-list" href="Phone-book.html">Suppliars</a>
+                <a class="inner-list" href="javascript:void(0)">Suppliars</a>
             </li>
             <li>
-                <a class="inner-list" href="phone-book-internal.html">Internal List</a>
+                <a class="inner-list" href="javascript:void(0)">Internal List</a>
             </li>
 
         </ul>

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { RodComponent } from './rod.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeliveryNoteComponent } from './delivery-note/delivery-note.component';
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DeliveryNoteComponent } from './delivery-note/delivery-note.component';
         RodRoutingModule,
         FormsModule,
         NgbModalModule,
-        FeatherModule.pick(allIcons)
+        FeatherModule.pick(allIcons),
+        SharedModule
     ],
     // providers: [DatePipe]
 })

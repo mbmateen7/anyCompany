@@ -1,1 +1,33 @@
-<p>pagination works!</p>
+ <div class="d-flex align-items-center justify-content-end mr-3 mt-2 pagination">
+     <div class="d-flex rows-per">
+         <h4 class="row-heading">Rows per page:</h4>
+         <div class="select-box">
+             <div class="arrow-design">
+                 <select class="form-control bulk-select-status" [(ngModel)]="pageSize" (change)="pageSizeUpdate($event)">
+                     <option value="5">5</option>
+                     <option value="10">10</option>
+                     <option value="20">20</option>
+                     <option value="30">30</option>
+                     <option value="50">50</option>
+                 </select>
+             </div>
+         </div>
+     </div>
+     <div class="pagination-ctm d-inline-block">
+         <li class="item">
+             <a href="javascript:void(0)" class="page-arow-l" (click)="prevPage()" [ngClass]="{'disabled': currentPage == 1}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+         </li>
+         <ul class="my-pagination d-inline-block">
+
+             <li class="item">
+                 <a href="javascript:void(0)" class="link">{{ currentPage }}</a>
+             </li>
+
+         </ul>
+         <li class="item">
+             <a href="javascript:void(0)" class="page-arow-l" (click)="nextPage()" [ngClass]="{'disabled': currentPage == totalPages}" role="button"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+         </li>
+     </div>
+
+ </div>
+ <!-- <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="items.length"></ngb-pagination> -->

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
+import { PhonebookService } from 'src/app/shared/services/phonebook.service';
 import { RodService } from 'src/app/shared/services/rod.service';
 
 @Component({
@@ -9,9 +10,10 @@ import { RodService } from 'src/app/shared/services/rod.service';
 })
 export class DeleteConfirmationComponent implements OnInit {
     @Input() data;
+    @Input() type = 'order';
     @Output() response: EventEmitter<any> = new EventEmitter();
     reason: string = '';
-    constructor(private _rod: RodService, private helper: GlobalHelper) { }
+    constructor(private _rod: RodService, private _phonebook: PhonebookService, private helper: GlobalHelper) { }
 
     ngOnInit(): void {
     }
@@ -29,6 +31,13 @@ export class DeleteConfirmationComponent implements OnInit {
             status: 'Cancelled'
         }
         this._rod.updateOrderStatus(obj).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true });
+        })
+    }
+
+    deleteCustomer() {
+        this._phonebook.deleteCustomer({ id: this.data.id }).subscribe(res => {
             this.helper.toastSuccess(res.message);
             this.response.emit({ success: true });
         })

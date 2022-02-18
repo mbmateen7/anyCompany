@@ -7,6 +7,8 @@ import { WalkingComponent } from './walking/walking.component';
 import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
+import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { allIcons } from 'angular-feather/icons';
         CommonModule,
         DeliveryListRoutingModule,
         FormsModule,
-        FeatherModule.pick(allIcons)
+        FeatherModule.pick(allIcons),
+        SharedModule
     ]
 })
 export class DeliveryListModule { }

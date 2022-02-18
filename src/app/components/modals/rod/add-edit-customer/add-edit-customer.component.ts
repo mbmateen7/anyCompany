@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { PhonebookService } from 'src/app/shared/services/phonebook.service';
 
 @Component({
@@ -7,13 +8,15 @@ import { PhonebookService } from 'src/app/shared/services/phonebook.service';
     styleUrls: ['./add-edit-customer.component.css']
 })
 export class AddEditCustomerComponent implements OnInit {
+    @Input() cus;
+    @Input() type = 'add';
     @Output() response: EventEmitter<any> = new EventEmitter();
     customer = {
         name: '',
         email: '',
         phone_no: ''
     }
-    constructor(private _phonebook: PhonebookService) { }
+    constructor(private _phonebook: PhonebookService, private helper: GlobalHelper) { }
 
     ngOnInit(): void {
     }
@@ -23,11 +26,19 @@ export class AddEditCustomerComponent implements OnInit {
     }
 
     new() {
-        console.log(this.customer)
         this._phonebook.addCustomer(this.customer).subscribe(res => {
-            console.log(res);
+            this.helper.toastSuccess(res.message)
             this.response.emit({ success: true, data: res.data, new: true })
         })
     }
+
+    edit() {
+        this._phonebook.updateCustomer(this.cus).subscribe(res => {
+            this.helper.toastSuccess(res.message)
+            this.response.emit({ success: true, data: res.data })
+        })
+    }
+
+
 
 }

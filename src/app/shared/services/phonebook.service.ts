@@ -21,6 +21,14 @@ export class PhonebookService {
         return this.http.post<any>(`${environment.apiUrl + urls.customerAdd}`, params);
     }
 
+    updateCustomer(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.customerUpdate}`, params);
+    }
+
+    deleteCustomer(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.customerDelete}`, params);
+    }
+
     // Suppliers
     supplierListing(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.supplierListing}`, params);

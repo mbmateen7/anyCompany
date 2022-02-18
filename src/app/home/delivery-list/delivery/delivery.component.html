@@ -3,8 +3,7 @@
         <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">DELIVERY LIST</a></li>
-
-                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
                 <a class="secondary-sup" [routerLink]="['/delivery-list/walking']">
@@ -19,14 +18,14 @@
             <div class="d-flex align-items-center justify-content-between delivery-list-main">
                 <div class="d-flex for-media-setts">
                     <div class="form-group sear-bar-roles position-relative mb-0">
-                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" (input)="searchOrder()" [(ngModel)]="searchParams.search">
+                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" (input)="searchOrder('search')" [(ngModel)]="searchParams.search">
                         <i-feather class="search-ctm" name="search"></i-feather>
                     </div>
                     <div class="search-inputs d-flex">
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="date" class="ctm-input" placeholder="From" [(ngModel)]="searchParams.startDate">
+                                <input type="date" class="ctm-input" placeholder="From" [(ngModel)]="searchParams.start_date" (change)="searchOrder('date')">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
@@ -35,17 +34,12 @@
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="date" class="ctm-input" placeholder="To" [(ngModel)]="searchParams.endDate">
+                                <input type="date" class="ctm-input" placeholder="To" [(ngModel)]="searchParams.end_date" [disabled]="!searchParams.start_date" [min]="searchParams.start_date" [(ngModel)]="searchParams.end_date" (change)="searchOrder('date')">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <i-feather class="calender" name="calendar"></i-feather>
                                 </div>
                             </div>
                         </div>
-
-                        <a class="filter-anchor" href="javascript:void(0)">
-                            <i-feather class="filter" name="filter">
-                            </i-feather>Filter
-                        </a>
                     </div>
                 </div>
                 <div class="tab-main mr-5">
@@ -251,36 +245,7 @@
                         </table>
 
                     </div>
-                    <div class="d-flex align-items-center justify-content-end mb-2 mr-3 mt-2">
-                        <div class="d-flex rows-per">
-                            <h4 class="row-heading">Rows per page:</h4>
-                            <div class="center ctm-ha">
-                                <select name="sources" id="sources" class="custom-select sources" placeholder="10">
-                                    <option value="profile">5</option>
-                                    <option value="word">10</option>
-                                    <option value="hashtag">20</option>
-                                    <option value="Complete">30</option>
-                                    <option value="Off Hold">50</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="pagination-ctm d-inline-block">
-                            <li class="item">
-                                <a href="javascript:void(0)" class="page-arow-l"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                            </li>
-                            <ul class="my-pagination d-inline-block">
-
-                                <li class="item">
-                                    <a href="javascript:void(0)" class="link">1</a>
-                                </li>
-
-                            </ul>
-                            <li class="item">
-                                <a href="javascript:void(0)" class="page-arow-l"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                            </li>
-                        </div>
-
-                    </div>
+                    <app-pagination [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
                 </div>
 
             </div>
@@ -503,36 +468,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center justify-content-end mb-3 mr-3 mt-2">
-                <div class="d-flex rows-per">
-                    <h4 class="row-heading">Rows per page:</h4>
-                    <div class="center ctm-ha">
-                        <select name="sources" id="sources" class="custom-select sources" placeholder="10">
-                            <option value="profile">5</option>
-                            <option value="word">10</option>
-                            <option value="hashtag">20</option>
-                            <option value="Complete">30</option>
-                            <option value="Off Hold">50</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="pagination-ctm d-inline-block">
-                    <li class="item">
-                        <a href="javascript:void(0)" class="page-arow-l"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                    </li>
-                    <ul class="my-pagination d-inline-block">
-
-                        <li class="item">
-                            <a href="javascript:void(0)" class="link">1</a>
-                        </li>
-
-                    </ul>
-                    <li class="item">
-                        <a href="javascript:void(0)" class="page-arow-l"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                    </li>
-                </div>
-
-            </div>
+            <app-pagination [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
         </div>
     </div>
 

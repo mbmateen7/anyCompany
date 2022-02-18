@@ -15,8 +15,11 @@ export class PurchaseOrderComponent implements OnInit {
     searchParams = {
         search: '',
         start_date: '',
-        end_date: ''
+        end_date: '',
+        page_size: 10,
+        page: 1
     }
+    totalPages: 1;
     modalConfig = {
         animated: true,
         keyboard: false,
@@ -25,6 +28,7 @@ export class PurchaseOrderComponent implements OnInit {
         windowClass: "modal-roles"
     };
     searchSubscription: Subscription;
+    dateToday = new Date();
     constructor(private _fsc: FscService, private _modal: NgbModal) { }
 
     ngOnInit(): void {
@@ -37,11 +41,17 @@ export class PurchaseOrderComponent implements OnInit {
         }
         this.searchSubscription = this._fsc.purchaseOrderListing(this.searchParams).subscribe(res => {
             this.purchaseOrders = res.data.data;
+            this.searchParams.page_size = res.data.per_page
+            this.searchParams.page = res.data.current_page
+            this.totalPages = res.data.last_page;
         });
     }
 
-    searchPurchaseOrders() {
-        if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+    searchOrder(type) {
+        if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
+            this.getPurchaseListing();
+        }
+        if (type == 'date' && this.searchParams.start_date && this.searchParams.end_date) {
             this.getPurchaseListing();
         }
     }
@@ -87,4 +97,15 @@ export class PurchaseOrderComponent implements OnInit {
         })
     }
 
+
+    changePage(event) {
+        this.searchParams.page = event;
+        this.getPurchaseListing();
+    }
+
+    ChangePageSize(event) {
+        this.searchParams.page = 1;
+        this.searchParams.page_size = event;
+        this.getPurchaseListing();
+    }
 }

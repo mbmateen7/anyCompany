@@ -22,6 +22,7 @@ import { UpdateDeliveryOrderComponent } from '../components/modals/delivery-list
 import { AddEditPurchaseOrdersComponent } from '../components/modals/fsc/add-edit-purchase-orders/add-edit-purchase-orders.component';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PaginationComponent } from '../components/pagination/pagination.component';
 
 @NgModule({
     declarations: [

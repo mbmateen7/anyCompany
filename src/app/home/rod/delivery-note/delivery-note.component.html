@@ -3,8 +3,7 @@
         <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">DISPATCH ORDER</a></li>
-
-                <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
                 <a class="disable-btn-dispatch" href="javascript:void(0)" (click)="redirectBack()">

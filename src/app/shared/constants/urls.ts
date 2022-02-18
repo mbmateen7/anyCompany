@@ -51,6 +51,8 @@ export const urls = {
     // Customers
     customerListing: 'phonebook/customers/listing',
     customerAdd: 'phonebook/customers/store',
+    customerUpdate: 'phonebook/customers/update',
+    customerDelete: 'phonebook/customers/delete',
 
 
     supplierListing: 'phonebook/suppliers/listing',

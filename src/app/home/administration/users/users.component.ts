@@ -14,7 +14,12 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class UsersComponent implements OnInit {
     users: any = [];
     roles: any = [];
-    search: string = '';
+    searchParams = {
+        search: '',
+        page_size: 10,
+        page: 1
+    }
+    totalPages: 1;
     isLoading: boolean = true;
     modalConfig = {
         animated: true,
@@ -31,12 +36,15 @@ export class UsersComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAllUsers();
+        this.getRoles();
     }
 
     getAllUsers() {
-        this._administration.usersListing({ search: this.search }).subscribe(res => {
+        this._administration.usersListing(this.searchParams).subscribe(res => {
             this.users = res.data.data;
-            this.getRoles();
+            this.searchParams.page_size = res.data.per_page
+            this.searchParams.page = res.data.current_page
+            this.totalPages = res.data.last_page;
         });
     }
 
@@ -93,9 +101,22 @@ export class UsersComponent implements OnInit {
     }
 
     searchUser() {
-        if (this.search.length >= 3 || this.search.length == 0) {
+        if (this.searchParams.search.length >= 3 || this.searchParams.search.length == 0) {
             this.getAllUsers();
         }
     }
+
+
+    changePage(event) {
+        this.searchParams.page = event;
+        this.getAllUsers();
+    }
+
+    ChangePageSize(event) {
+        this.searchParams.page = 1;
+        this.searchParams.page_size = event;
+        this.getAllUsers();
+    }
+
 
 }

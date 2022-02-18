@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { allIcons } from 'angular-feather/icons';
         FormsModule,
         NgbModule,
         AdministrationRoutingModule,
+        SharedModule,
         FeatherModule.pick(allIcons)
     ]
 })

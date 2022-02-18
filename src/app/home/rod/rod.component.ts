@@ -19,7 +19,12 @@ import { RodService } from 'src/app/shared/services/rod.service';
 export class RodComponent implements OnInit {
 
     rods: any = [];
-    search: string = '';
+    searchParams = {
+        search: '',
+        page_size: 10,
+        page: 1
+    }
+    totalPages = 1;
     checked: boolean = false;
     checkAll: boolean = false;
     modalConfig = {
@@ -31,6 +36,7 @@ export class RodComponent implements OnInit {
     };
     searchSubscription: Subscription;
     multiUpdateType: string = 'invoice_no';
+    dateToday = new Date();
     constructor(private _rod: RodService, private helper: GlobalHelper, private _modal: NgbModal, private router: Router) { }
 
     ngOnInit(): void {
@@ -39,7 +45,11 @@ export class RodComponent implements OnInit {
 
     rodListing() {
         if (this.searchSubscription) this.searchSubscription.unsubscribe();
-        this.searchSubscription = this._rod.rodListing(this.search).subscribe(res => {
+        this.checked = false;
+        this.searchSubscription = this._rod.rodListing(this.searchParams).subscribe(res => {
+            this.searchParams.page_size = res.data.per_page
+            this.searchParams.page = res.data.current_page
+            this.totalPages = res.data.last_page;
             this.rods = res.data.data.map(rod => {
                 rod.edit_invoice = false;
                 rod.edit_schedule_ref = false;
@@ -264,5 +274,23 @@ export class RodComponent implements OnInit {
             this.rodListing();
             event.target.value = 'select'
         })
+    }
+    searchRod() {
+        if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+            this.rodListing();
+        }
+    }
+
+    changePage(event) {
+        console.log(event);
+        this.searchParams.page = event;
+        this.rodListing();
+    }
+
+    ChangePageSize(event) {
+        console.log(event);
+        this.searchParams.page = 1;
+        this.searchParams.page_size = event;
+        this.rodListing();
     }
 }

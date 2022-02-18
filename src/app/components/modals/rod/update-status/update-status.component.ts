@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AdministrationService } from 'src/app/shared/services/administration.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
@@ -13,38 +14,68 @@ export class UpdateStatusComponent implements OnInit {
     @Input() type: string;
     @Output() response: EventEmitter<any> = new EventEmitter();
     notify = [];
-    reason: string;
-    constructor(private _rod: RodService, private helper: GlobalHelper, private _admin: AdministrationService) { }
+    reason: string = '';
+    notifyStatus = [];
+    attachmentStatus = [
+        'To Factory'
+    ];
+    reasonStatus = [];
+    dueDateStatus = [
+        'To Factory'
+    ];
+    dueDate;
+    formData = new FormData();
+    attachmentName = '';
+    constructor(private _rod: RodService, private helper: GlobalHelper, private _admin: AdministrationService, private datePipe: DatePipe) { }
 
     ngOnInit(): void {
-        this._admin.rolesListing().subscribe(res => {
-            res.data.forEach(role => {
-                this.notify.push({
-                    id: role.id,
-                    name: role.title,
-                    status: false
-                });
-            });
-        })
+        this.dueDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+        this.getRoles();
     }
 
+    getRoles() {
+        if (this.notifyStatus.includes(this.data.status)) {
+            this._admin.rolesListing().subscribe(res => {
+                res.data.forEach(role => {
+                    this.notify.push({
+                        id: role.id,
+                        name: role.title,
+                        status: false
+                    });
+                });
+            });
+        }
+    }
     cancel() {
         console.log(this.data.model)
         this.response.emit({ success: false, data: this.data.model });
     }
 
     updateStatus() {
-        let obj = {
-            id: this.data.model.id,
-            notify: this.notify,
-            reason: this.reason,
-            on_hold: this.data.hold,
-            status: this.data.status
-        }
-        this._rod.updateOrderStatus(obj).subscribe(res => {
+        this.formData.set('id', this.data.model.id);
+        this.notify.forEach(element => {
+            this.formData.set('notify[]', element);
+        })
+        this.formData.set('reason', this.reason);
+        this.formData.set('on_hold', (this.data.hold ? '1' : '0'));
+        this.formData.set('status', this.data.status);
+        this.formData.set('due_date', this.dueDate);
+        this._rod.updateOrderStatus(this.formData).subscribe(res => {
             this.helper.toastSuccess(res.message);
             this.response.emit({ success: true, data: res.data });
-        })
+        });
+    }
+
+    addAttachment(event) {
+        console.log(event.target.files)
+        let file = event.target.files[0];
+        this.formData.set('attachment', file, file.name);
+        this.attachmentName = file.name;
+    }
+
+    removeAttachment() {
+        this.attachmentName = '';
+        this.formData.delete('attachment');
     }
 
 }

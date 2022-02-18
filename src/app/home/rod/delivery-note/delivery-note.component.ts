@@ -49,6 +49,7 @@ export class DeliveryNoteComponent implements OnInit {
         other_notes: ''
     }
     currentDate;
+    dateToday = new Date();
     constructor(private _rod: RodService, private helper: GlobalHelper, private route: ActivatedRoute, private datePipe: DatePipe, private _location: Location) {
         this.route.params.subscribe(res => {
             this.getWorkOrder(res.id);

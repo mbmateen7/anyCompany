@@ -31,6 +31,11 @@ const homeRoutes: Routes = [
         path: 'fsc',
         component: HomeComponent,
         loadChildren: () => import('./fsc/fsc.module').then(m => m.FscModule)
+    },
+    {
+        path: 'phonebook',
+        component: HomeComponent,
+        loadChildren: () => import('./phonebook/phonebook.module').then(m => m.PhonebookModule)
     }
 ];
 
