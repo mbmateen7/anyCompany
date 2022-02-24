@@ -36,6 +36,11 @@ const homeRoutes: Routes = [
         path: 'phonebook',
         component: HomeComponent,
         loadChildren: () => import('./phonebook/phonebook.module').then(m => m.PhonebookModule)
+    },
+    {
+        path: 'accounts',
+        component: HomeComponent,
+        loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsModule)
     }
 ];
 

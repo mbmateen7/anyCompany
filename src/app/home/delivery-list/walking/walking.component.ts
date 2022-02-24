@@ -137,7 +137,8 @@ export class WalkingComponent implements OnInit {
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getDeliveryListing();
         }
-        if (type == 'date' && this.searchParams.start_date && this.searchParams.end_date) {
+
+        if (type == 'date' && ((this.searchParams.start_date && this.searchParams.end_date) || (!this.searchParams.start_date && !this.searchParams.end_date))) {
             this.getDeliveryListing();
         }
     }

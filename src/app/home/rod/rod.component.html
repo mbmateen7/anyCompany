@@ -117,7 +117,7 @@
                             </tr>
                         </thead>
                         <tbody class="t-body-ctm">
-                            <tr class="active-row" [ngClass]="{'order-withdrawn': rod.status=='Withdrawn', 'order-to-factory':rod.status=='To Factory'}" *ngFor="let rod of rods; let i = index">
+                            <tr class="active-row" [ngClass]="{'order-withdrawn': rod.status=='Withdrawn' ||  rod.on_hold, 'order-to-factory':rod.status=='To Factory' && !rod.on_hold}" *ngFor="let rod of rods; let i = index">
                                 <td>
                                     <div class="remember-me">
                                         <label class="custom-check custom-check-r">
@@ -142,10 +142,10 @@
                                     <p class="inner-cell">{{ rod.product.name }}</p>
                                 </td>
                                 <td>
-                                    <div class="select-box inner-cell">
+                                    <div class="select-box inner-cell" *ngIf="!rod.on_hold">
                                         <div class="form-group">
                                             <div class="arrow-design">
-                                                <select class="form-control" (change)="updateStatus(rod,$event,i)" [disabled]="rod.on_hold">
+                                                <select class="form-control" (change)="updateStatus(rod,$event,i)">
                                                     <option [selected]="rod.status == 'Booked'" value="Booked">Booked</option>
                                                     <option [selected]="rod.status == 'To Factory'" value="To Factory">To Factory</option>
                                                     <option [selected]="rod.status == 'In Factory'" value="In Factory">In Factory</option>
@@ -156,6 +156,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="inner-cell text-danger" *ngIf="rod.on_hold">On Hold</p>
                                 </td>
                                 <td>
                                     <p class="inner-cell">{{ rod.progress }}</p>

@@ -7,8 +7,8 @@ import { WalkingComponent } from './walking/walking.component';
 import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
+import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -21,7 +21,9 @@ import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
         DeliveryListRoutingModule,
         FormsModule,
         FeatherModule.pick(allIcons),
-        SharedModule
+        SharedModule,
+        NgbModule,
+        NgbDatepickerModule
     ]
 })
 export class DeliveryListModule { }

@@ -43,4 +43,18 @@ export class DeleteConfirmationComponent implements OnInit {
         })
     }
 
+    deleteSupplier() {
+        this._phonebook.deleteSupplier({ id: this.data.id }).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true });
+        })
+    }
+
+    deleteEmployee() {
+        this._phonebook.deleteEmployee({ id: this.data.id }).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true });
+        })
+    }
+
 }

@@ -13,7 +13,8 @@ import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 export class SidebarComponent implements OnInit {
 
     user: any;
-    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, private router: Router, private _auth: AuthService) {
+    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, public router: Router, private _auth: AuthService) {
+
         this._auth.currentUser.subscribe(res => {
             this.user = res;
         })

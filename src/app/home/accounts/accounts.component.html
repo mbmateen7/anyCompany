@@ -1,0 +1,378 @@
+<div class="dashboard-main mr-30">
+    <div class="dashboard-content ">
+        <div class="d-flex align-items-center mb-16 justify-content-between">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">ACCOUNTS</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
+            </ul>
+            <div class="search-inputs d-flex">
+                <div class="input-style mr-10">
+
+                    <div class="type-pass">
+                        <input type="text" class="ctm-input" placeholder="From">
+                        <div class="icon-eye d-flex align-items-center justify-content-center">
+                            <i-feather class="calender" name="calendar"></i-feather>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-style">
+
+                    <div class="type-pass">
+                        <input type="text" class="ctm-input" placeholder="To">
+                        <div class="icon-eye d-flex align-items-center justify-content-center">
+                            <i-feather class="calender" name="calendar"></i-feather>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 cols-for-respo">
+            <a class="account-hover" href="javascript:void(0)">
+                <div class="card-accounts">
+                    <div class="sale-label-account">
+                        sales
+                    </div>
+                    <div class="account-width d-flex align-items-center justify-content-between">
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Doors</h3>
+                            <p class="doors-price-account">£{{ account ? account.sales.door : '0.00' }}</p>
+                        </div>
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Frames</h3>
+                            <p class="doors-price-account">£{{ account ? account.sales.frame : '0.00' }}</p>
+                        </div>
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Others</h3>
+                            <p class="doors-price-account">£{{ account ? account.sales.other : '0.00' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 cols-for-respo">
+            <a class="account-hover" href="javascript:void(0)">
+                <div class="card-accounts card-account-orange">
+                    <div class="sale-label-account">
+                        Workload
+                    </div>
+                    <div class="account-width d-flex align-items-center justify-content-between">
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Predicted Workload</h3>
+                            <p class="doors-price-account">£{{ account ? account.workload.predicted_workload : '0.00' }}</p>
+                        </div>
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Projected Sales</h3>
+                            <p class="doors-price-account">£{{ account ? account.workload.projected_sales : '0.00' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 cols-for-respo">
+            <a class="account-hover" href="javascript:void(0)">
+                <div class="card-accounts card-account-light-green">
+                    <div class="sale-label-account">
+                        In progress
+                    </div>
+                    <div class="account-width d-flex align-items-center justify-content-between">
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Work in progress</h3>
+                            <p class="doors-price-account">£{{ account ? account.in_progress.work_in_progress : '0.00'}}</p>
+                        </div>
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Bought</h3>
+                            <p class="doors-price-account">£{{ account ? account.in_progress.bought : '0.00' }}</p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-6 cols-for-respo">
+            <a class="account-hover" href="javascript:void(0)">
+                <div class="card-accounts card-account-green">
+                    <div class="sale-label-account">
+                        Profit
+                    </div>
+                    <div class=" d-flex align-items-center justify-content-between">
+                        <div class="inner-card-box">
+                            <h3 class="text-account">Projected Profit</h3>
+                            <p class="doors-price-account">£{{ account ? account.profit.projected_profit : '0.00' }}</p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="roles-main account-main-box">
+            <div class="d-flex align-items-center justify-content-between acount-line-btn">
+                <div class="d-flex flex-direction-mobile">
+                    <a class="Invoice" href="javascript:void(0)" (click)="addSalesOrder()">
+                        <i-feather class="plus" name="plus"></i-feather> Add Sales Order
+                    </a>
+                    <a class="Delivery-Note" href="javascript:void(0)" (click)="addPurchaseOrder()">
+                        <i-feather class="plus" name="plus"></i-feather> Add Purchase Order
+                    </a>
+
+                    <a class="Schedule" [routerLink]="['/accounts/credit-check']">
+                        Credit Check
+                    </a>
+                </div>
+                <div class="search-last">
+                    <div class="form-group sear-bar-roles position-relative mb-0">
+                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" (input)="searchOrder()">
+                        <i-feather class="search-ctm" name="search"></i-feather>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tabs-table-account ">
+                <div class="d-flex tabs-account-setts align-items-center justify-content-between">
+                    <ul class="nav nav-tabs" role="tablist">
+
+                        <li class="nav-item ">
+                            <a class="nav-link active" data-toggle="tab" href="#menu1" (click)="changeTab('salesOrder')">Sales Order</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#menu2" (click)="changeTab('monthlyCost')">Monthly Cost</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Customer" (click)="changeTab('customerTotal')">Customer Totals</a>
+                        </li>
+                    </ul>
+                    <a class="credit-check" href="javascript:void(0)">
+                        <i-feather class="download" name="download"></i-feather> Download Data
+                    </a>
+                    <a class="credit-check gray-btn" href="javascript:void(0)">
+                        To Month</a>
+                </div>
+                <div class="tab-content">
+
+                    <div id="menu1" class=" tab-pane active ">
+                        <div class="tab-table tab-table-account-ctm">
+                            <div class="tables-roles-main tables-users-main table-responsive">
+                                <table class="table">
+                                    <thead class="thead-ctm">
+                                        <tr>
+                                            <th>
+                                                <p class="inner-cell">Work<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Customer<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Product<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Door<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Frame<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Other<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Prograss<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Delivery Note#<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Total Delivered<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Notes<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Status<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Invoiced in full<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Actions</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="t-body-ctm">
+                                        <tr class="active-row" *ngFor="let sale of salesOrder;let i = index">
+                                            <td>
+                                                <p class="inner-cell">{{ sale.order.work_number }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.order.customer.name }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.order.product.name }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.order.product.name == 'Door' ? sale.value : '0.00' }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.order.product.name == 'Frame' ? sale.value : '0.00' }}</p>
+                                            </td>
+
+                                            <td>
+                                                <p class="inner-cell">{{ sale.order.product.name != 'Door' && sale.order.product.name != 'Frame' ? sale.value : '0.00' }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.order.progress }}%</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.delivery_note }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.total_delivered }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">
+                                                    <a class="view-anchor view-anchor-red weight-sett" href="javascript:void(0)">
+                                                        View Note
+                                                    </a> </p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">On Hold</p>
+                                            </td>
+                                            <td>
+                                                <div class="remember-me d-flex justify-content-center">
+                                                    <label class="custom-check custom-check-r">
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="list-icons-talbe">
+
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="false">
+                                                        <i-feather class="icon-width" name="edit-3"></i-feather>
+                                                    </a>
+
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="false">
+                                                        <i-feather class="icon-width" name="trash"></i-feather>
+                                                    </a>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu2" class=" tab-pane fade">
+                        <div class="tab-table tab-table-account-ctm">
+                            <div class="tables-roles-main tables-users-main table-responsive">
+                                <table class="table">
+                                    <thead class="thead-ctm">
+                                        <tr>
+                                            <th>
+                                                <p class="inner-cell">Supplier<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Value<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Work#<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Checked<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Comments<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="t-body-ctm">
+                                        <tr class="active-row">
+                                            <td>
+                                                <p class="inner-cell">Hillmoore Fire Protection</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">372.36</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">J44</p>
+                                            </td>
+                                            <td>
+                                                <div class="custom-box">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked="">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">
+                                                    <a class="view-anchor view-anchor-red weight-sett" href="javascript:void(0)">
+                                                        View Note
+                                                    </a> </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Customer" class=" tab-pane fade">
+                        <div class="tab-table tab-table-account-ctm">
+                            <div class="tables-roles-main tables-users-main table-responsive">
+                                <table class="table">
+                                    <thead class="thead-ctm">
+                                        <tr>
+                                            <th>
+                                                <p class="inner-cell">Customer<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Total Doors<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Total Frames<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Total Other<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="t-body-ctm">
+                                        <tr class="active-row" *ngFor="let c of customerTotals">
+                                            <td>
+                                                <p class="inner-cell">{{ c.name }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ c.sales.door }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ c.sales.frame }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ c.sales.other }}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <app-pagination [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

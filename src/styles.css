@@ -32277,6 +32277,7 @@ input:checked+.slider:before {
     -ms-flex-align: center;
     align-items: center;
     background: #DC0100;
+
 }
 
 @media (max-width: 1370px) {
@@ -32309,6 +32310,12 @@ input:checked+.slider:before {
 
 .sidenavbar-ctm #sidebar ul ul li a.inner-list.active {
     background: #fff;
+}
+
+.sidenavbar-ctm #sidebar ul ul li a.inner-list {
+    background: #fff;
+    padding-left: 8rem !important;
+    justify-content: flex-start;
 }
 
 .sidenavbar-ctm #sidebar ul li a i {
@@ -33765,13 +33772,13 @@ input:checked+.slider:before {
     color: #1c1c1c;
 }
 
-.tables-roles-main.tables-users-main .table .thead-ctm tr th {
+/* .tables-roles-main.tables-users-main .table .thead-ctm tr th {
     width: 20%;
 }
 
 .tables-roles-main.tables-users-main .table .t-body-ctm tr td {
     width: 20%;
-}
+} */
 
 .tables-roles-main .table .t-body-ctm tr td .ctm-ha.ctm-users-select .custom-select-trigger {
     width: 12.9rem;
@@ -37330,4 +37337,27 @@ i-feather {
 
 .text-red {
     color: #DC0100 !important;
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+input[type="date"] {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

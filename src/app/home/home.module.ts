@@ -20,9 +20,11 @@ import { DeleteConfirmationComponent } from '../components/modals/rod/delete-con
 import { TimelineComponent } from '../components/modals/rod/timeline/timeline.component';
 import { UpdateDeliveryOrderComponent } from '../components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 import { AddEditPurchaseOrdersComponent } from '../components/modals/fsc/add-edit-purchase-orders/add-edit-purchase-orders.component';
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { PaginationComponent } from '../components/pagination/pagination.component';
+import { AddEditSupplierComponent } from '../components/modals/phonebook/add-edit-supplier/add-edit-supplier.component';
+import { AddEditEmployeeComponent } from '../components/modals/phonebook/add-edit-employee/add-edit-employee.component';
+import { AddEditAccountSalesOrderComponent } from '../components/modals/accounts/add-edit-account-sales-order/add-edit-account-sales-order.component';
+import { AddEditAccountPurchaseOrderComponent } from '../components/modals/accounts/add-edit-account-purchase-order/add-edit-account-purchase-order.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +42,11 @@ import { PaginationComponent } from '../components/pagination/pagination.compone
         DeleteConfirmationComponent,
         TimelineComponent,
         UpdateDeliveryOrderComponent,
-        AddEditPurchaseOrdersComponent
+        AddEditPurchaseOrdersComponent,
+        AddEditSupplierComponent,
+        AddEditEmployeeComponent,
+        AddEditAccountSalesOrderComponent,
+        AddEditAccountPurchaseOrderComponent
     ],
     imports: [
         CommonModule,

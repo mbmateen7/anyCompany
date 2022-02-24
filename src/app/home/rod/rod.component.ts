@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { AddEditSalesOrderComponent } from 'src/app/components/modals/rod/add-edit-sales-order/add-edit-sales-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delete-confirmation/delete-confirmation.component';
@@ -18,7 +19,7 @@ import { RodService } from 'src/app/shared/services/rod.service';
 })
 export class RodComponent implements OnInit {
 
-    rods: any = [];
+    rods = [];
     searchParams = {
         search: '',
         page_size: 10,
@@ -50,6 +51,7 @@ export class RodComponent implements OnInit {
             this.searchParams.page_size = res.data.per_page
             this.searchParams.page = res.data.current_page
             this.totalPages = res.data.last_page;
+            this.checkAll = false;
             this.rods = res.data.data.map(rod => {
                 rod.edit_invoice = false;
                 rod.edit_schedule_ref = false;
@@ -206,9 +208,10 @@ export class RodComponent implements OnInit {
             hold: rod.on_hold,
             from: rod.status,
             to: event.target.value,
-            model: rod,
+            model: [rod],
             status: event.target.value
         }
+        console.log(modalData);
         this.modalConfig.windowClass = "modal-roles change-status-modal";
         const statusModal = this._modal.open(UpdateStatusComponent, this.modalConfig);
         statusModal.componentInstance.data = modalData;
@@ -225,7 +228,7 @@ export class RodComponent implements OnInit {
             hold: rod.on_hold ? false : true,
             from: rod.on_hold ? 'On Hold' : rod.status,
             to: rod.on_hold ? 'Off Hold' : 'On Hold',
-            model: rod,
+            model: [rod],
             status: rod.status
         }
         const statusModal = this._modal.open(UpdateStatusComponent, this.modalConfig);
@@ -263,18 +266,89 @@ export class RodComponent implements OnInit {
     }
 
     bulkStatusUpdate(event) {
-        let data = {
-            orders: this.rods.map(res => {
-                if (res.checked)
-                    return res.id;
-            }),
-            status: event.target.value
-        }
-        this._rod.bulkStatusUpdate(data).subscribe(res => {
-            this.rodListing();
+        if (!this.checkBulkStatus()) {
+            this.helper.toastError('Only orders with same status can be updated in bulk.');
             event.target.value = 'select'
+            return;
+        }
+        if (!this.checkBulkHoldStatus()) {
+            this.helper.toastError('Only orders with same status can be updated in bulk.');
+            event.target.value = 'select'
+            return;
+        }
+        let rod = this.rods.find(x => x.checked);
+        if (rod.status == event.target.value) {
+            event.target.value = 'select'
+            return
+        }
+        let bulkRods = this.rods.filter(element => {
+            if (element.checked) {
+                return element;
+            }
         })
+        let hold = rod.on_hold;
+        let to = event.target.value;
+        let status = rod.status;
+        if (event.target.value == 'On Hold') {
+            hold = true;
+            to = event.target.value;
+            status = rod.status;
+        } else if (event.target.value == 'Off Hold') {
+            hold = false;
+            to = status;
+        } else {
+            hold = false;
+            status = rod.status
+        }
+        let modalData = {
+            hold: hold,
+            from: rod.on_hold ? 'On Hold' : rod.status,
+            to: rod.on_hold ? 'Off Hold' : to,
+            model: bulkRods,
+            status: status
+        }
+        this.modalConfig.windowClass = "modal-roles change-status-modal";
+        const statusModal = this._modal.open(UpdateStatusComponent, this.modalConfig);
+        statusModal.componentInstance.data = modalData;
+        statusModal.componentInstance.type = 'bulk';
+        statusModal.componentInstance.response.subscribe(res => {
+            if (res.success) {
+                this.rodListing();
+            }
+            event.target.value = 'select'
+            statusModal.dismiss();
+            this.modalConfig.windowClass = "modal-roles";
+        });
     }
+
+    checkBulkStatus() {
+        let status = '';
+        let check = true;
+        this.rods.forEach(element => {
+            if (element.checked && status == '') {
+                status = element.status;
+            }
+            if (element.status != status && element.checked && status != '') {
+                check = false;
+            }
+        });
+        return check;
+    }
+
+    checkBulkHoldStatus() {
+        let check = true;
+        let hold;
+        this.rods.forEach(element => {
+            if (element.checked && hold == undefined) {
+                hold = element.on_hold;
+            }
+            if (element.on_hold != hold && element.checked && hold != undefined) {
+                check = false;
+            }
+        });
+        return check;
+    }
+
     searchRod() {
         if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
             this.rodListing();

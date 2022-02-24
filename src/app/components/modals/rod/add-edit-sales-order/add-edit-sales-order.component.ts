@@ -25,6 +25,7 @@ export class AddEditSalesOrderComponent implements OnInit {
         contract: '',
         fsc: false,
         order_number: '',
+        schedule_ref: ''
     }
     modalConfig = {
         animated: true,

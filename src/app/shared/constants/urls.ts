@@ -56,7 +56,15 @@ export const urls = {
 
 
     supplierListing: 'phonebook/suppliers/listing',
+    supplierAdd: 'phonebook/suppliers/store',
+    supplierUpdate: 'phonebook/suppliers/update',
+    supplierDelete: 'phonebook/suppliers/delete',
 
+
+    employeeListing: 'phonebook/employees/listing',
+    employeeAdd: 'phonebook/employees/store',
+    employeeUpdate: 'phonebook/employees/update',
+    employeeDelete: 'phonebook/employees/delete',
     // Delivery List
     deliveryListing: 'delivery-list/delivery/listing',
     updateDeliveryListStatus: 'delivery-list/delivery/update-status',
@@ -68,4 +76,10 @@ export const urls = {
     purchaseOrderListing: 'fsc/purchase-orders/listing',
     updateOrder: 'fsc/purchase-orders/update',
     deleteOrder: 'fsc/purchase-orders/delete',
+
+    // Accounts
+    accountStats: 'accounts/stats',
+    customerTotals: 'accounts/customer-total-listing',
+
+    salesOrdersListing: 'accounts/sale-order/listing'
 };

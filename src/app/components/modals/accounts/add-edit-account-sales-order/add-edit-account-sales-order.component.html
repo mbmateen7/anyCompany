@@ -1,0 +1,142 @@
+<!-- Modal Header -->
+<div class="modal-header">
+    <h4 class="modal-title">ADD SALES ORDER</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<!-- Modal body -->
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex modal-items-flex mb-2">
+
+                <div class="input-style ">
+                    <label class="d-block">Work Order No#<span class="text-danger">*</span></label>
+                    <input type="text" class="ctm-input type-input" placeholder="H103">
+                    <div class="d-flex flex-wrap">
+                        <span class="fiels-ctm">
+                            H103 <span><i class="plus-rotate" data-feather="plus"></i></span>
+                        </span>
+                        <span class="fiels-ctm">
+                            H103 <span><i class="plus-rotate" data-feather="plus"></i></span>
+                        </span>
+
+                    </div>
+                </div>
+                <a class="btn-address mr-0" href="javascript:void(0)">
+                    <i class="plus" data-feather="plus"></i>
+                </a>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="table-sales-modal table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Customer Order#</th>
+                            <th>Contract</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hassan</td>
+                            <td>Frames</td>
+                            <td>WAN-200-AB</td>
+                            <td>St. Marry Hospital</td>
+                        </tr>
+                        <tr>
+                            <td>Hassan</td>
+                            <td>Frames</td>
+                            <td>WAN-200-AB</td>
+                            <td>St. Marry Hospital</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="sales-order-main-box">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label class="d-block">Value <span class="red-label">H101</span><span class="text-danger"></span></label>
+                        <div class="type-pass">
+                            <input type="text" class="ctm-input" placeholder="">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <img src="img/ipnut-pound.png" alt="pound">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label class="d-block">Value <span class="red-label">H102</span><span class="text-danger"></span></label>
+                        <div class="type-pass">
+                            <input type="text" class="ctm-input" placeholder="">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <img src="img/ipnut-pound.png" alt="pound">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label class="d-block">Value <span class="red-label">H103</span><span class="text-danger"></span></label>
+                        <div class="type-pass">
+                            <input type="text" class="ctm-input" placeholder="">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <img src="img/ipnut-pound.png" alt="pound">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label class="d-block">Value <span class="red-label">H104</span><span class="text-danger"></span></label>
+                        <div class="type-pass">
+                            <input type="text" class="ctm-input" placeholder="">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <img src="img/ipnut-pound.png" alt="pound">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-style input-style-red mb-2">
+                    <label class="d-block"><span class="red-label">Delivery Notes</span><span class="text-danger">*</span></label>
+                    <input type="text" class="ctm-input type-input" placeholder="Add Delivery Notes">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-style input-style-red mb-2">
+                    <label class="d-block"><span class="red-label">Total Delivered</span></label>
+                    <input type="text" class="ctm-input type-input" placeholder="Total Delivered">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<!-- Modal footer -->
+<div class="modal-footer">
+    <div class="d-flex align-items-center justify-content-center w-100">
+        <a href="javascript:void(0)" class="discard-btn" (click)="cancel()">Discard</a>
+        <a href="javascript:void(0)" class="add-btn" (click)="addOrder()" *ngIf="type == 'add'">Add</a>
+        <a href="javascript:void(0)" class="add-btn" (click)="updateOrder()" *ngIf="type == 'edit'">Update</a>
+    </div>
+</div>

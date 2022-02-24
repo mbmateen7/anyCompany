@@ -28,7 +28,7 @@
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
             <i-feather name="user" class="user-sidebar-icon"></i-feather><span class="text-link-nav">Administration</span>
         </a>
-        <ul class="collapse list-unstyled" routerLinkActive="show" id="homeSubmenu">
+        <ul class="collapse list-unstyled" id="homeSubmenu" [ngClass]="{'show': router.url.includes('administration')}">
             <li>
                 <a class="inner-list" [routerLink]="['/administration/users']" routerLinkActive="active">Users</a>
             </li>
@@ -44,7 +44,7 @@
         <a href="#delivery-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
             <i-feather name="list" class="user-sidebar-icon list-rotate"></i-feather><span class="text-link-nav">Delivery List</span>
         </a>
-        <ul class="collapse list-unstyled" id="delivery-menu">
+        <ul class="collapse list-unstyled" id="delivery-menu" [ngClass]="{'show': router.url.includes('delivery-list')}">
             <li>
                 <a class="inner-list" [routerLink]="['/delivery-list/delivery']" routerLinkActive="active">Delivery List</a>
             </li>
@@ -60,7 +60,7 @@
             <img class="img-hover" src="assets/img/icon-simple-gov-dot-uk-1.svg" alt="img">
             <span class="text-link-nav">FSC</span>
         </a>
-        <ul class="collapse list-unstyled" id="fsc">
+        <ul class="collapse list-unstyled" id="fsc" [ngClass]="{'show': router.url.includes('fsc')}">
             <li>
                 <a class="inner-list" [routerLink]="['/fsc/customer-orders']" routerLinkActive="active">Customer Orders</a>
             </li>
@@ -87,15 +87,15 @@
             <img class="img-hover" src="assets/img/phone-book-hover.svg" alt="img">
             <span class="text-link-nav">PhoneBook</span>
         </a>
-        <ul class="collapse list-unstyled" id="Phone-books">
+        <ul class="collapse list-unstyled" id="Phone-books" [ngClass]="{'show': router.url.includes('phonebook')}">
             <li>
                 <a class="inner-list" [routerLink]="['/phonebook/customers']" routerLinkActive="active">Customers</a>
             </li>
             <li>
-                <a class="inner-list" href="javascript:void(0)">Suppliars</a>
+                <a class="inner-list" [routerLink]="['/phonebook/suppliers']" routerLinkActive="active">Suppliers</a>
             </li>
             <li>
-                <a class="inner-list" href="javascript:void(0)">Internal List</a>
+                <a class="inner-list" [routerLink]="['/phonebook/internal-list']" routerLinkActive="active">Internal List</a>
             </li>
 
         </ul>
@@ -109,13 +109,10 @@
         </a>
         <ul class="collapse list-unstyled" id="accounts">
             <li>
-                <a class="inner-list" href="Accounts.html">Accounts</a>
+                <a class="inner-list">Fixed Cost</a>
             </li>
             <li>
-                <a class="inner-list" href="Account-fixed-cost.html">Fixed Cost</a>
-            </li>
-            <li>
-                <a class="inner-list" href="account-credit-check.html">Credit Check</a>
+                <a class="inner-list">Credit Check</a>
             </li>
 
         </ul>

@@ -11,15 +11,20 @@ import { RodService } from 'src/app/shared/services/rod.service';
 })
 export class UpdateStatusComponent implements OnInit {
     @Input() data;
-    @Input() type: string;
+    @Input() rods = [];
+    @Input() bulkStatus;
+    @Input() type: string = 'single';
     @Output() response: EventEmitter<any> = new EventEmitter();
     notify = [];
     reason: string = '';
-    notifyStatus = [];
+    notifyStatus = [
+        'On Hold'
+    ];
     attachmentStatus = [
         'To Factory'
     ];
-    reasonStatus = [];
+    reasonStatus = [
+        'On Hold'];
     dueDateStatus = [
         'To Factory'
     ];
@@ -34,7 +39,7 @@ export class UpdateStatusComponent implements OnInit {
     }
 
     getRoles() {
-        if (this.notifyStatus.includes(this.data.status)) {
+        if (this.notifyStatus.includes(this.data.to)) {
             this._admin.rolesListing().subscribe(res => {
                 res.data.forEach(role => {
                     this.notify.push({
@@ -47,12 +52,11 @@ export class UpdateStatusComponent implements OnInit {
         }
     }
     cancel() {
-        console.log(this.data.model)
-        this.response.emit({ success: false, data: this.data.model });
+        this.response.emit({ success: false, data: this.data.model[0] });
     }
 
     updateStatus() {
-        this.formData.set('id', this.data.model.id);
+        this.formData.set('id', this.data.model[0].id);
         this.notify.forEach(element => {
             this.formData.set('notify[]', element);
         })
@@ -76,6 +80,24 @@ export class UpdateStatusComponent implements OnInit {
     removeAttachment() {
         this.attachmentName = '';
         this.formData.delete('attachment');
+    }
+
+    updateBulk() {
+        this.formData.delete('id[]');
+        this.data.model.forEach(element => {
+            this.formData.append('id[]', element.id);
+        })
+        this.notify.forEach(element => {
+            this.formData.set('notify[]', element);
+        })
+        this.formData.set('reason', this.reason);
+        this.formData.set('on_hold', (this.data.hold ? '1' : '0'));
+        this.formData.set('status', this.data.status);
+        this.formData.set('due_date', this.dueDate);
+        this._rod.bulkStatusUpdate(this.formData).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true });
+        });
     }
 
 }

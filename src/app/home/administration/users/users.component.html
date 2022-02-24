@@ -45,7 +45,7 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                             <td>
-                                <div class="select-box">
+                                <div class="select-box d-flex justify-content-center">
                                     <div class="input-style form-group">
                                         <div class="arrow-design">
                                             <select class="form-control" (change)="updateRole(user,$event,i)">
@@ -56,7 +56,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="inner-cell custom-box">
+                                <div class="inner-cell custom-box d-flex justify-content-center">
                                     <label class="switch" *ngIf="user.id != currentUser.id">
                                         <input type="checkbox" [checked]="user.status" (change)="updateUserStatus(user)">
                                         <span class="slider round"></span>
@@ -64,7 +64,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="select-box">
+                                <div class="select-box d-flex justify-content-center">
                                     <div class="input-style form-group">
                                         <i-feather name="edit-3" (click)="userAction(user,'edit',i)" class="mr-2"></i-feather>
                                         <i-feather name="trash" (click)="userAction(user,'delete',i)"></i-feather>

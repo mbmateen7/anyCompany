@@ -9,9 +9,6 @@ import { LoginGuard } from './shared/guards/login.guard';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
 import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
-import { FeatherModule } from 'angular-feather';
-import { allIcons } from 'angular-feather/icons';
-import { DatePipe } from '@angular/common';
 
 const NgxUiLoadderConfig: NgxUiLoaderConfig =
 {
@@ -42,7 +39,7 @@ const NgxUiLoadderConfig: NgxUiLoaderConfig =
     "textColor": "#FFFFFF",
     "textPosition": "center-center",
     "maxTime": -1,
-    "minTime": 300
+    "minTime": 100
 }
 @NgModule({
     declarations: [

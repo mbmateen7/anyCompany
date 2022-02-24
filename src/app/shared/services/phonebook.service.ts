@@ -33,4 +33,32 @@ export class PhonebookService {
     supplierListing(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.supplierListing}`, params);
     }
+
+    addSupplier(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.supplierAdd}`, params);
+    }
+
+    updateSupplier(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.supplierUpdate}`, params);
+    }
+
+    deleteSupplier(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.supplierDelete}`, params);
+    }
+
+    employeesListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.employeeListing}`, params);
+    }
+
+    addEmployee(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.employeeAdd}`, params);
+    }
+
+    updateEmployee(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.employeeUpdate}`, params);
+    }
+
+    deleteEmployee(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.employeeDelete}`, params);
+    }
 }

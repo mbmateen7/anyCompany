@@ -25,18 +25,22 @@
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="date" class="ctm-input" placeholder="From" [(ngModel)]="searchParams.start_date" (change)="searchOrder('date')">
+                                <input type="date" id="start_date" class="ctm-input" placeholder="From" [(ngModel)]="searchParams.start_date" (change)="searchOrder('date')">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
-                                    <i-feather class="calender" name="calendar"></i-feather>
+                                    <label for="start_date">
+                                        <i-feather class="calender" name="calendar"></i-feather>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="date" class="ctm-input" placeholder="To" [(ngModel)]="searchParams.end_date" [disabled]="!searchParams.start_date" [min]="searchParams.start_date" [(ngModel)]="searchParams.end_date" (change)="searchOrder('date')">
+                                <input type="date" id="end_date" class="ctm-input" placeholder="To" [(ngModel)]="searchParams.end_date" [min]="searchParams.start_date" [(ngModel)]="searchParams.end_date" (change)="searchOrder('date')">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
-                                    <i-feather class="calender" name="calendar"></i-feather>
+                                    <label for="end_date">
+                                        <i-feather class="calender" name="calendar"></i-feather>
+                                    </label>
                                 </div>
                             </div>
                         </div>

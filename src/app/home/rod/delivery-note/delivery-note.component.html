@@ -6,12 +6,6 @@
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
-                <a class="disable-btn-dispatch" href="javascript:void(0)" (click)="redirectBack()">
-                    Discard</a>
-                <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote" (click)="addDeliveryNote()">
-                    Save</a>
-                <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="currentDeliveryNote" (click)="updateDeliveryNote()">
-                    Update</a>
                 <a class="secondary-sup" href="javascript:void(0)" (click)="resetFormValue()">
                     New Dispatch Order</a>
             </div>
@@ -280,6 +274,16 @@
                         </tr>
 
                     </table>
+                </div>
+                <div class="dispatch-table-buttons">
+                    <div class="d-flex">
+                        <a class="disable-btn-dispatch" href="javascript:void(0)" (click)="redirectBack()">
+                            Discard</a>
+                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote" (click)="addDeliveryNote()">
+                            Save</a>
+                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="currentDeliveryNote" (click)="updateDeliveryNote()">
+                            Update</a>
+                    </div>
                 </div>
             </div>
         </div>
