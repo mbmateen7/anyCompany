@@ -22,7 +22,6 @@ export class AuthService {
     }
 
     storeUserData(token: string | null, userObj: any): void {
-        console.log(token, userObj);
         localStorage.setItem('token', token);
         localStorage.setItem('userObj', JSON.stringify(userObj));
         this.userObjSubject.next(true);

@@ -181,6 +181,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Schedule Ref</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Schedule Ref" [(ngModel)]="newOrder.schedule_ref">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Stock Add Form -->
@@ -327,6 +335,14 @@
                                 <option value="MDO">MDO</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Schedule Ref</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Schedule Ref" [(ngModel)]="newOrder.schedule_ref">
                     </div>
                 </div>
             </div>
@@ -479,6 +495,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Schedule Ref</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Schedule Ref" [(ngModel)]="order.schedule_ref">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Stock Add Form -->
@@ -519,7 +543,7 @@
                     <div class="select-box">
                         <div class="form-group">
                             <label for="">Supplier</label>
-                            <ng-select [items]="suppliers" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="order.supplier_id" (search)="getSuppliers($event)">
+                            <ng-select [items]="suppliers" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" (search)="getSuppliers($event)" [(ngModel)]="order.supplier_id">
                                 <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
                                     <p>{{ item.name }}</p>
                                 </ng-template>
@@ -625,6 +649,14 @@
                                 <option value="MDO">MDO</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Schedule Ref</label>
+                        <input type="text" class="ctm-input type-input" placeholder="Schedule Ref" [(ngModel)]="order.schedule_ref">
                     </div>
                 </div>
             </div>

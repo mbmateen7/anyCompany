@@ -28,8 +28,9 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         fsc_claim: '',
         quantity: '',
         invoice_value: '',
-        supplier_id: null,
-        material: ''
+        supplier_id: undefined,
+        material: '',
+        schedule_ref: ''
     }
     workOrders = [];
     suppliers = [];
@@ -48,6 +49,7 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         let search = event ? event.term : '';
         this._rod.rodListing({ search: search }).subscribe(res => {
             this.workOrders = res.data.data;
+            this.newOrder.work_order_id = res.data.data[0]?.id;
         });
     }
 
@@ -55,6 +57,7 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         let search = event ? event.term : '';
         this._phonebook.supplierListing({ search: search }).subscribe(res => {
             this.suppliers = res.data.data;
+            this.newOrder.supplier_id = this.suppliers[0]?.id
         });
     }
 

@@ -10,6 +10,8 @@ export const urls = {
     forgotPasswordMail: 'auth/forgot-password',
     verifyPasswordToken: 'auth/verify-forgot-password-code',
     resetPassword: 'auth/reset-password',
+    setupAccount: 'auth/setup-account',
+    skipPasswordUpdate: 'auth/skip-update-password',
 
 
 

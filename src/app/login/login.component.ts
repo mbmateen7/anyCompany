@@ -33,10 +33,17 @@ export class LoginComponent implements OnInit {
     validateEmail() {
         this.emailValidate.length = this.loginObj.email.length > 0 ? true : false;
         this.emailValidate.valid = this.helper.validateEmailAddress(this.loginObj.email);
+        // if (this.emailValidate.length && this.emailValidate.valid && this.passwordValidate.length && event.keyCode == 13 && this.loginObj.email.length) {
+        //     this.submitLogin()
+        // }
     }
 
     validatePassword() {
         this.passwordValidate.length = this.loginObj.password.length > 0 ? true : false;
+        // if (this.emailValidate.length && this.emailValidate.valid && this.passwordValidate.length && event.keyCode == 13 && this.loginObj.password.length) {
+        //     console.log('check')
+        //     // this.submitLogin()
+        // }
     }
 
     showHidePassword() {
@@ -45,7 +52,6 @@ export class LoginComponent implements OnInit {
 
     submitLogin() {
         this._authentication.login(this.loginObj).subscribe(res => {
-            console.log(res.data.access_token, res.data.user)
             this._auth.storeUserData(res.data.access_token, res.data.user);
             this.router.navigateByUrl('/dashboard');
         });

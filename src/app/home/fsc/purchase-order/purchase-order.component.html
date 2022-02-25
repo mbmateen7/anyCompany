@@ -74,6 +74,9 @@
                                 <th>
                                     <p class="inner-cell">Invoice Value<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
+                                <th>
+                                    <p class="inner-cell">Schedule Ref<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -87,6 +90,7 @@
                                 <td>{{ p.fsc_claim }}</td>
                                 <td>{{ p.quantity }}</td>
                                 <td>{{ p.invoice_value }}</td>
+                                <td>{{ p.schedule_ref ? p.schedule_ref : '-' }}</td>
 
 
                                 <td>

@@ -41,7 +41,7 @@
                                 </div>
                                 <a class="fotgot-password" [routerLink]="['/forgot-password']">Forgot Password?</a>
                                 <div class="d-flex align-items-center justify-content-end">
-                                    <a (click)="submitLogin()" href="javascript:void(0)" class="login-p disabled" [ngClass]="{'disabled': !emailValidate.length || !emailValidate.valid || !passwordValidate.length}">Login</a>
+                                    <button (click)="submitLogin()" href="javascript:void(0)" *ngIf="loginObj.email.length" class="login-p disabled" [disabled]="!emailValidate.length || !emailValidate.valid || !passwordValidate.length" [ngClass]="{'disabled': !emailValidate.length || !emailValidate.valid || !passwordValidate.length}">Login</button>
                                 </div>
                             </div>
                         </form>

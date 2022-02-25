@@ -32,4 +32,12 @@ export class AuthenticationService {
     resetPassword(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.resetPassword}`, params);
     }
+
+    setupAccount(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.setupAccount}`, params);
+    }
+
+    skipPasswordUpdate(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.skipPasswordUpdate}`, params);
+    }
 }

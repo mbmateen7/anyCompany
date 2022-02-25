@@ -7,10 +7,7 @@
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
-                <a class="secondary-sup" [routerLink]="['/delivery-list/walking']">
-                    Walking List</a>
-                <a class="credit-check" href="javascript:void(0)">
-                    Credit Check</a>
+                <a class="secondary-sup" [routerLink]="['/delivery-list/delivery']">Delivery List</a>
             </div>
         </div>
         <div class="roles-main delivery-list-table pb-1">
@@ -132,64 +129,64 @@
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Sawed')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Lip')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Press')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Mill')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Mach')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'CNC')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Spray')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Bench')">
-                                            <label class="switch">
-                                                <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Bench')" (change)="updateDeliveryList(delivery,'Bench',i)">
+                                            <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                                <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Bench')" (change)="updateDeliveryList(delivery,'Bench',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -210,7 +207,7 @@
                                                 </div>
                                                 <div class="toop-hight" [innerHtml]="delivery.latest_job_note.description"></div>
                                                 <div class="date-tooptip-iner">
-                                                    {{ delivery.latest_job_note.created_at | date: 'h:mm A | dd LLLL, yyyy'}}
+                                                    {{ delivery.latest_job_note.created_at | date: 'h:mm a | dd LLLL, yyyy'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -277,7 +274,7 @@
                                         </div>
                                         <div class="toop-hight" [innerHtml]="delivery.latest_job_note.description"></div>
                                         <div class="date-tooptip-iner">
-                                            {{ delivery.latest_job_note.created_at | date: 'h:mm A | dd LLLL, yyyy'}}
+                                            {{ delivery.latest_job_note.created_at | date: 'h:mm a | dd LLLL, yyyy'}}
                                         </div>
                                     </div>
                                 </div>
@@ -347,8 +344,8 @@
                                 Sawed
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -358,8 +355,8 @@
                                 Lip
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -369,8 +366,8 @@
                                 Press
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -380,8 +377,8 @@
                                 Mill
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -391,8 +388,8 @@
                                 Mach
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -402,8 +399,8 @@
                                 CNC
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -413,8 +410,8 @@
                                 Spray
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -424,8 +421,8 @@
                                 Bench
                             </p>
                             <div class="custom-box">
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="checkProductAttributeStatus(delivery,'Bench')" (change)="updateDeliveryList(delivery,'Bench',i)">
+                                <label class="switch" [ngClass]="{'disabled': delivery.status != 'In Factory'}">
+                                    <input type="checkbox" [disabled]="delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Bench')" (change)="updateDeliveryList(delivery,'Bench',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>

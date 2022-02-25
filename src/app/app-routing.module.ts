@@ -20,7 +20,7 @@ const routes: Routes = [
     },
     {
         path: 'setup-account',
-        loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+        loadChildren: () => import('./setup-account/setup-account.module').then(m => m.SetupAccountModule)
     }
     // {
     //     path: '**',

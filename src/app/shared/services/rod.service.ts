@@ -45,6 +45,10 @@ export class RodService {
         return this.http.post<any>(`${environment.apiUrl + urls.getJobNotes}`, params);
     }
 
+    getTimeline(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.getJobNotes}`, params);
+    }
+
     addJobNote(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.addJobNote}`, params);
     }

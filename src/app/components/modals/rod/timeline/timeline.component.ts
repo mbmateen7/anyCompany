@@ -15,8 +15,8 @@ export class TimelineComponent implements OnInit {
     constructor(private _rod: RodService, private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
-        this._rod.getJobNotes({ work_order_id: this.rod.id }).subscribe(res => {
-            this.jobNotes = res.data.data;
+        this._rod.getTimeline({ work_order_id: this.rod.id, timeline: true }).subscribe(res => {
+            this.jobNotes = res.data;
         });
     }
 

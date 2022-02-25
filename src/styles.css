@@ -32174,6 +32174,7 @@ input:checked+.slider:before {
         height: 2.9rem;
         width: 22.2rem;
     }
+
 }
 
 .sidenavbar-ctm #sidebar.active {
@@ -32345,6 +32346,11 @@ input:checked+.slider:before {
 @media (max-width: 1370px) {
     .sidenavbar-ctm .dropdown-toggle::after {
         right: 5.5rem;
+    }
+    .sidenavbar-ctm #sidebar ul ul li a.inner-list {
+        background: #fff;
+        padding-left: 5rem !important;
+        justify-content: flex-start;
     }
 }
 

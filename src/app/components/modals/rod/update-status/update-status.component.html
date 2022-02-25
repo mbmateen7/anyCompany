@@ -98,6 +98,13 @@
             <p *ngIf="attachmentName"><i class="fa fa-times mr-1" role="button" (click)="removeAttachment()"></i> {{ attachmentName }}</p>
             <input type="file" class="d-none" id="upload-file" placeholder="Due Date" (change)="addAttachment($event)">
         </div>
+        <div class="col-md-12" *ngIf="scheduleRefStatus.includes(data.to)">
+
+            <div class="input-style mb-2">
+                <label class="d-block">Schedule Ref</label>
+                <input type="text" class="ctm-input type-input" placeholder="Schedule Ref" [(ngModel)]="scheduleRef">
+            </div>
+        </div>
     </div>
 
 </div>

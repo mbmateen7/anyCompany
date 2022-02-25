@@ -28,7 +28,11 @@ export class UpdateStatusComponent implements OnInit {
     dueDateStatus = [
         'To Factory'
     ];
+    scheduleRefStatus = [
+        'To Factory'
+    ];
     dueDate;
+    scheduleRef = '';
     formData = new FormData();
     attachmentName = '';
     constructor(private _rod: RodService, private helper: GlobalHelper, private _admin: AdministrationService, private datePipe: DatePipe) { }
@@ -57,13 +61,15 @@ export class UpdateStatusComponent implements OnInit {
 
     updateStatus() {
         this.formData.set('id', this.data.model[0].id);
+        this.formData.delete('notify[]');
         this.notify.forEach(element => {
-            this.formData.set('notify[]', element);
+            this.formData.append('notify[]', element);
         })
         this.formData.set('reason', this.reason);
         this.formData.set('on_hold', (this.data.hold ? '1' : '0'));
         this.formData.set('status', this.data.status);
         this.formData.set('due_date', this.dueDate);
+        this.formData.set('schedule_ref', this.scheduleRef);
         this._rod.updateOrderStatus(this.formData).subscribe(res => {
             this.helper.toastSuccess(res.message);
             this.response.emit({ success: true, data: res.data });
@@ -94,6 +100,7 @@ export class UpdateStatusComponent implements OnInit {
         this.formData.set('on_hold', (this.data.hold ? '1' : '0'));
         this.formData.set('status', this.data.status);
         this.formData.set('due_date', this.dueDate);
+        this.formData.set('schedule_ref', this.scheduleRef);
         this._rod.bulkStatusUpdate(this.formData).subscribe(res => {
             this.helper.toastSuccess(res.message);
             this.response.emit({ success: true });

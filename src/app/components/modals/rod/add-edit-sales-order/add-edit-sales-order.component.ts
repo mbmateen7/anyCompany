@@ -108,6 +108,14 @@ export class AddEditSalesOrderComponent implements OnInit {
                 name: p.name,
                 quantity: 0
             });
+            // let prods = [];
+            // for (let index = 0; index < this.selectedProducts.length; index++) {
+            //     const element = this.selectedProducts[index];
+            //     if (element.name == 'Frame' && !prods.includes(element)) {
+            //         prods.push(element)
+            //     }else if()
+
+            // }
         }
     }
     removeProduct(index: number) {

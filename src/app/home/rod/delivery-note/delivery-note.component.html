@@ -6,7 +6,7 @@
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
-                <a class="secondary-sup" href="javascript:void(0)" (click)="resetFormValue()">
+                <a class="secondary-sup" href="javascript:void(0)" (click)="resetFormValue()" *ngIf="currentDeliveryNote">
                     New Dispatch Order</a>
             </div>
         </div>

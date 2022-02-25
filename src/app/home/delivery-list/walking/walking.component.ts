@@ -109,7 +109,7 @@ export class WalkingComponent implements OnInit {
     viewTimeline(rod, index) {
         this.modalConfig.windowClass = 'modal-roles timeline';
         const timelineModal = this._modal.open(TimelineComponent, this.modalConfig);
-        timelineModal.componentInstance.rod = rod;
+        timelineModal.componentInstance.rod = { ...rod };
         timelineModal.componentInstance.response.subscribe(res => {
             if (res.success) {
                 this.router.navigate(['rod/delivery-notes', rod.id]);
@@ -123,7 +123,7 @@ export class WalkingComponent implements OnInit {
     editWorkOrder(delivery, index) {
         this.modalConfig.windowClass = 'modal-roles edit-work-order'
         const modal = this._modal.open(UpdateDeliveryOrderComponent, this.modalConfig);
-        modal.componentInstance.order = delivery;
+        modal.componentInstance.order = { ...delivery };
         modal.componentInstance.response.subscribe(res => {
             if (res.success) {
                 this.deliveries[index] = res.data

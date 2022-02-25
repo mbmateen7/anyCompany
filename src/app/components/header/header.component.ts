@@ -14,8 +14,11 @@ export class HeaderComponent implements OnInit {
 
     user: any;
     constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, private router: Router, private _auth: AuthService) {
+        this.user = JSON.parse(localStorage.getItem('userObj'));
         this._auth.currentUser.subscribe(res => {
-            this.user = res;
+            if (res !== true) {
+                this.user = res;
+            }
         })
     }
 

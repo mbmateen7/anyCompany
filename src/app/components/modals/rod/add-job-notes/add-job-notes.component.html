@@ -21,7 +21,7 @@
                             <p class="dir">({{ note.user.role.title }})</p>
                         </div>
                         <div class="job-heading-main">
-                            <p class="job-heading">{{ note.title }}</p>
+                            <p class="job-heading">{{ note.title }} <span class="text text-muted small ml-1">({{ note.created_at | date:'dd LLLL, yyyy @ h:mm a' }})</span></p>
                             <div class="para-job" [innerHtml]="note.description">
                             </div>
                         </div>
