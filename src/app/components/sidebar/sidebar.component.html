@@ -25,7 +25,7 @@
         </a>
     </li>
     <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('administration')}">
             <i-feather name="user" class="user-sidebar-icon"></i-feather><span class="text-link-nav">Administration</span>
         </a>
         <ul class="collapse list-unstyled" id="homeSubmenu" [ngClass]="{'show': router.url.includes('administration')}">
@@ -41,7 +41,7 @@
 
 
     <li class="">
-        <a href="#delivery-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+        <a href="#delivery-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('delivery-list')}">
             <i-feather name="list" class="user-sidebar-icon list-rotate"></i-feather><span class="text-link-nav">Delivery List</span>
         </a>
         <ul class="collapse list-unstyled" id="delivery-menu" [ngClass]="{'show': router.url.includes('delivery-list')}">
@@ -55,7 +55,7 @@
         </ul>
     </li>
     <li class="">
-        <a href="#fsc" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+        <a href="#fsc" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('fsc')}">
             <img class="img-hover-none" src="assets/img/icon-simple-gov-dot-uk.svg" alt="img">
             <img class="img-hover" src="assets/img/icon-simple-gov-dot-uk-1.svg" alt="img">
             <span class="text-link-nav">FSC</span>
@@ -82,7 +82,7 @@
         </a>
     </li>
     <li class="">
-        <a href="#Phone-books" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+        <a href="#Phone-books" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('phonebook')}">
             <img class="img-hover-none" src="assets/img/phone-book.svg" alt="img">
             <img class="img-hover" src="assets/img/phone-book-hover.svg" alt="img">
             <span class="text-link-nav">PhoneBook</span>
@@ -103,16 +103,16 @@
 
 
     <li class="">
-        <a href="#accounts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link">
+        <a href="#accounts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [routerLink]="['/accounts']" [ngClass]="{'active': router.url.includes('accounts')}">
             <img class="account-sicon img-hover-none" src="assets/img/icon-open-british-pound.svg" alt="img">
             <img class="account-sicon img-hover" src="assets/img/icon-open-british-pound-1.svg" alt="img"><span class="text-link-nav">Accounts</span>
         </a>
-        <ul class="collapse list-unstyled" id="accounts">
+        <ul class="collapse list-unstyled" id="accounts" [ngClass]="{'show': router.url.includes('accounts')}">
             <li>
-                <a class="inner-list">Fixed Cost</a>
+                <a class="inner-list" [routerLink]="['/accounts/fixed-cost']" routerLinkActive="active">Fixed Cost</a>
             </li>
             <li>
-                <a class="inner-list">Credit Check</a>
+                <a class="inner-list" [routerLink]="['/accounts/credit-check']" routerLinkActive="active">Credit Check</a>
             </li>
 
         </ul>

@@ -6,15 +6,21 @@ import { AccountsComponent } from './accounts.component';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
+import { FixedCostComponent } from './fixed-cost/fixed-cost.component';
+import { CreditCheckComponent } from './credit-check/credit-check.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
     declarations: [
-        AccountsComponent
+        AccountsComponent,
+        FixedCostComponent,
+        CreditCheckComponent
     ],
     imports: [
         CommonModule,
         AccountsRoutingModule,
+        FormsModule,
         FeatherModule.pick(allIcons),
         SharedModule
     ]

@@ -26,6 +26,8 @@ export class RodComponent implements OnInit {
         page: 1
     }
     totalPages = 1;
+    pageFrom = 1;
+    pageTo = 10;
     checked: boolean = false;
     checkAll: boolean = false;
     modalConfig = {
@@ -50,7 +52,9 @@ export class RodComponent implements OnInit {
         this.searchSubscription = this._rod.rodListing(this.searchParams).subscribe(res => {
             this.searchParams.page_size = res.data.per_page
             this.searchParams.page = res.data.current_page
-            this.totalPages = res.data.last_page;
+            this.totalPages = res.data.last_page
+            this.pageFrom = res.data.from;
+            this.pageTo = res.data.to;;
             this.checkAll = false;
             this.rods = res.data.data.map(rod => {
                 rod.edit_invoice = false;

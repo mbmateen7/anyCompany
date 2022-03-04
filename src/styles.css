@@ -32319,6 +32319,11 @@ input:checked+.slider:before {
     justify-content: flex-start;
 }
 
+.sidenavbar-ctm #sidebar.active ul ul li a.inner-list {
+    padding: 10px !important;
+    justify-content: center;
+}
+
 .sidenavbar-ctm #sidebar ul li a i {
     margin-right: 10px;
 }
@@ -32347,6 +32352,7 @@ input:checked+.slider:before {
     .sidenavbar-ctm .dropdown-toggle::after {
         right: 5.5rem;
     }
+
     .sidenavbar-ctm #sidebar ul ul li a.inner-list {
         background: #fff;
         padding-left: 5rem !important;
@@ -33917,10 +33923,10 @@ input:checked+.slider:before {
 
 .modal-roles .modal-content .modal-body .search-position-modal {
     position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
+    top: 55%;
+    /* -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
     right: 1.6rem;
 }
 
@@ -37322,7 +37328,7 @@ i-feather {
     left: 0;
 }
 
-.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option p {
     border-bottom: 1px solid #ccc;
     padding: 2px 10px;
 }
@@ -37366,4 +37372,8 @@ input[type="date"] {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.dashboard-content>div.align-items-center {
+    min-height: 45px !important;
 }

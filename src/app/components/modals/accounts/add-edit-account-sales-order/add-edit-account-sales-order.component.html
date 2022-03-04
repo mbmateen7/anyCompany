@@ -1,6 +1,7 @@
 <!-- Modal Header -->
 <div class="modal-header">
-    <h4 class="modal-title">ADD SALES ORDER</h4>
+    <h4 class="modal-title" *ngIf="type=='add'">ADD SALES ORDER</h4>
+    <h4 class="modal-title" *ngIf="type=='edit'">UPDATE SALES ORDER</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 
@@ -10,24 +11,25 @@
     <div class="row">
         <div class="col-md-12">
             <div class="d-flex modal-items-flex mb-2">
-
-                <div class="input-style ">
-                    <label class="d-block">Work Order No#<span class="text-danger">*</span></label>
-                    <input type="text" class="ctm-input type-input" placeholder="H103">
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label for="">Work Number</label>
+                            <ng-select [items]="orders" bindLabel="work_number" class="ctm-input bg-white ng-custom-select" bindValue="id" (search)="getOrders($event)" placeholder="H88" (change)="selectOrder($event)">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p [hidden]="checkSelectedOrder(item)"><strong>{{ item.work_number }}</strong> | <strong>Order #</strong>: {{ item.order_number }}</p>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
                     <div class="d-flex flex-wrap">
-                        <span class="fiels-ctm">
-                            H103 <span><i class="plus-rotate" data-feather="plus"></i></span>
+                        <span class="fiels-ctm" *ngFor="let order of selectedOrders;let i= index">
+                            {{ order.model.work_number }} <span>
+                                <i-feather class="plus-rotate" name="plus" (click)="removeOrder(i)"></i-feather>
+                            </span>
                         </span>
-                        <span class="fiels-ctm">
-                            H103 <span><i class="plus-rotate" data-feather="plus"></i></span>
-                        </span>
-
                     </div>
                 </div>
-                <a class="btn-address mr-0" href="javascript:void(0)">
-                    <i class="plus" data-feather="plus"></i>
-                </a>
-
             </div>
         </div>
         <div class="col-md-12">
@@ -42,17 +44,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Hassan</td>
-                            <td>Frames</td>
-                            <td>WAN-200-AB</td>
-                            <td>St. Marry Hospital</td>
+                        <tr *ngFor="let order of selectedOrders">
+                            <td>{{ order.model.customer.name }}</td>
+                            <td>{{ order.model.product.name }}</td>
+                            <td>{{ order.model.order_number }}</td>
+                            <td>{{ order.model.contract }}</td>
                         </tr>
-                        <tr>
-                            <td>Hassan</td>
-                            <td>Frames</td>
-                            <td>WAN-200-AB</td>
-                            <td>St. Marry Hospital</td>
+                        <tr *ngIf="selectedOrders.length == 0">
+                            <td colspan="4" class="text-center">No Order Selected</td>
                         </tr>
                     </tbody>
                 </table>
@@ -61,54 +60,29 @@
     </div>
     <div class="sales-order-main-box">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" *ngFor="let order of selectedOrders">
                 <div class="search-inputs mb-2">
                     <div class="input-style ">
-                        <label class="d-block">Value <span class="red-label">H101</span><span class="text-danger"></span></label>
+                        <label class="d-block">Value <span class="red-label">{{ order.model.work_number }}</span><span class="text-danger"></span></label>
                         <div class="type-pass">
-                            <input type="text" class="ctm-input" placeholder="">
+                            <input type="text" class="ctm-input" placeholder="" [(ngModel)]="order.value">
                             <div class="icon-eye d-flex align-items-center justify-content-center">
-                                <img src="img/ipnut-pound.png" alt="pound">
+                                <img src="assets/img/ipnut-pound.png" alt="pound">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="search-inputs mb-2">
-                    <div class="input-style ">
-                        <label class="d-block">Value <span class="red-label">H102</span><span class="text-danger"></span></label>
-                        <div class="type-pass">
-                            <input type="text" class="ctm-input" placeholder="">
-                            <div class="icon-eye d-flex align-items-center justify-content-center">
-                                <img src="img/ipnut-pound.png" alt="pound">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="search-inputs mb-2">
-                    <div class="input-style ">
-                        <label class="d-block">Value <span class="red-label">H103</span><span class="text-danger"></span></label>
-                        <div class="type-pass">
-                            <input type="text" class="ctm-input" placeholder="">
-                            <div class="icon-eye d-flex align-items-center justify-content-center">
-                                <img src="img/ipnut-pound.png" alt="pound">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="search-inputs mb-2">
-                    <div class="input-style ">
-                        <label class="d-block">Value <span class="red-label">H104</span><span class="text-danger"></span></label>
-                        <div class="type-pass">
-                            <input type="text" class="ctm-input" placeholder="">
-                            <div class="icon-eye d-flex align-items-center justify-content-center">
-                                <img src="img/ipnut-pound.png" alt="pound">
-                            </div>
+                <div class="input-style mb-2">
+                    <div class="select-box">
+                        <div class="form-group">
+                            <label class="d-block"><span class="red-label">Employee</span><span class="text-danger">*</span></label>
+                            <ng-select [items]="employees" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newSalesOrder.employee_id" (search)="getEmployees($event)">
+                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                    <p><strong>{{ item.name }}</strong></p>
+                                </ng-template>
+                            </ng-select>
                         </div>
                     </div>
                 </div>
@@ -116,13 +90,13 @@
             <div class="col-md-12">
                 <div class="input-style input-style-red mb-2">
                     <label class="d-block"><span class="red-label">Delivery Notes</span><span class="text-danger">*</span></label>
-                    <input type="text" class="ctm-input type-input" placeholder="Add Delivery Notes">
+                    <input type="text" class="ctm-input type-input" placeholder="Add Delivery Notes" [(ngModel)]="newSalesOrder.delivery_note">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="input-style input-style-red mb-2">
                     <label class="d-block"><span class="red-label">Total Delivered</span></label>
-                    <input type="text" class="ctm-input type-input" placeholder="Total Delivered">
+                    <input type="text" class="ctm-input type-input" placeholder="Total Delivered" [(ngModel)]="newSalesOrder.total_delivered">
                 </div>
             </div>
         </div>

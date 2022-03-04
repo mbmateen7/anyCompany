@@ -9,6 +9,6 @@
 .search-position-modal {
     position: absolute;
     /* top: 40% !important; */
-    transform: translateY(-50%);
-    right: 2.6rem !important;
+    /* transform: translateY(-50%); */
+    right: 1.6rem !important;
 }

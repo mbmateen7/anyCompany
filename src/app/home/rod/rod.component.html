@@ -43,7 +43,6 @@
                                     <option value="select" selected>Bulk Status</option>
                                     <option value="Booked">Booked</option>
                                     <option value="To Factory">To Factory</option>
-                                    <option value="In Factory">In Factory</option>
                                     <option value="Delivered">Delivered</option>
                                     <option value="Withdrawn">Withdrawn</option>
                                     <option value="On Hold">On Hold</option>
@@ -148,7 +147,6 @@
                                                 <select class="form-control" (change)="updateStatus(rod,$event,i)">
                                                     <option [selected]="rod.status == 'Booked'" value="Booked">Booked</option>
                                                     <option [selected]="rod.status == 'To Factory'" value="To Factory">To Factory</option>
-                                                    <option [selected]="rod.status == 'In Factory'" value="In Factory">In Factory</option>
                                                     <option [selected]="rod.status == 'Withdrawn'" value="Withdrawn">Withdrawn</option>
                                                     <option [selected]="rod.status == 'Delivered'" value="Delivered">Delivered</option>
                                                     <option [selected]="rod.status == 'Completed'" value="Completed">Completed</option>
@@ -252,7 +250,7 @@
                     </table>
 
                 </div>
-                <app-pagination [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
             </div>
 
         </div>

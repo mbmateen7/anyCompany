@@ -114,7 +114,7 @@
 
                 </div>
                 <!-- Pagination -->
-                <app-pagination [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
             </div>
 
         </div>

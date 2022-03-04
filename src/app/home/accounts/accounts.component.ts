@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditAccountPurchaseOrderComponent } from 'src/app/components/modals/accounts/add-edit-account-purchase-order/add-edit-account-purchase-order.component';
 import { AddEditAccountSalesOrderComponent } from 'src/app/components/modals/accounts/add-edit-account-sales-order/add-edit-account-sales-order.component';
+import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { AccountService } from 'src/app/shared/services/accounts.service';
+import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 
 @Component({
     selector: 'app-accounts',
@@ -21,6 +23,8 @@ export class AccountsComponent implements OnInit {
         page: 1
     }
     totalPages = 1;
+    pageFrom = 1;
+    pageTo = 10;
     activeTab = 'salesOrder';
     modalConfig = {
         animated: true,
@@ -29,7 +33,7 @@ export class AccountsComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles Fixed-cost-modal"
     };
-    constructor(private _account: AccountService, private _modal: NgbModal) { }
+    constructor(private _account: AccountService, private _modal: NgbModal, private helper: GlobalHelper) { }
 
     ngOnInit(): void {
         this.getAccountStats()
@@ -47,7 +51,9 @@ export class AccountsComponent implements OnInit {
             this.customerTotals = res.data.data;
             this.searchParams.page_size = res.data.per_page
             this.searchParams.page = res.data.current_page
-            this.totalPages = res.data.last_page;
+            this.totalPages = res.data.last_page
+            this.pageFrom = res.data.from;
+            this.pageTo = res.data.to;;
         });
     }
 
@@ -56,10 +62,29 @@ export class AccountsComponent implements OnInit {
             this.salesOrder = res.data.data;
             this.searchParams.page_size = res.data.per_page
             this.searchParams.page = res.data.current_page
-            this.totalPages = res.data.last_page;
+            this.totalPages = res.data.last_page
+            this.pageFrom = res.data.from;
+            this.pageTo = res.data.to;;
         });
     }
 
+    getMontlyCostListing() {
+        this._account.accountsPurchaseOrdersListing(this.searchParams).subscribe(res => {
+            this.purchaseOrders = res.data.data;
+            this.searchParams.page_size = res.data.per_page
+            this.searchParams.page = res.data.current_page
+            this.totalPages = res.data.last_page
+            this.pageFrom = res.data.from;
+            this.pageTo = res.data.to;;
+        });
+    }
+
+    markChecked(purchase, index) {
+        this._account.updatePurchaseOrder({ id: purchase.id }).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.purchaseOrders[index] = res.data;
+        })
+    }
     resetSearchParams() {
         this.searchParams = {
             search: '',
@@ -72,8 +97,6 @@ export class AccountsComponent implements OnInit {
     changeTab(tab: string) {
         this.activeTab = tab;
         this.resetSearchParams();
-        this.salesOrder = [];
-        this.customerTotals = [];
         this.getListing();
     }
 
@@ -81,7 +104,7 @@ export class AccountsComponent implements OnInit {
         if (this.activeTab == 'salesOrder') {
             this.getSalesOrderListing();
         } else if (this.activeTab == 'monthlyCost') {
-            // this.getMontlyCostListing()
+            this.getMontlyCostListing()
         } else if (this.activeTab == 'customerTotal') {
             this.getCustomerTotalListing();
         }
@@ -153,6 +176,26 @@ export class AccountsComponent implements OnInit {
             purchaseModal.dismiss();
         });
 
+    }
+
+    addJobNote(orderId, index) {
+        this.modalConfig.windowClass = "modal-roles job-notes-modal"
+        const jobNoteModal = this._modal.open(AddJobNotesComponent, this.modalConfig);
+        jobNoteModal.componentInstance.orderId = orderId
+        jobNoteModal.componentInstance.response.subscribe(res => {
+            if (res.close) {
+                this.getSalesOrderListing();
+                jobNoteModal.dismiss();
+                this.modalConfig.windowClass = "modal-roles"
+            }
+        });
+    }
+
+    updateSaleStatus(id, index) {
+        this._account.updateSaleOrder({ id: id }).subscribe(res => {
+            this.salesOrder[index] = res.data;
+            this.helper.toastSuccess(res.message);
+        });
     }
 
 }

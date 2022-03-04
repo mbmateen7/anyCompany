@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountsComponent } from './accounts.component';
+import { CreditCheckComponent } from './credit-check/credit-check.component';
+import { FixedCostComponent } from './fixed-cost/fixed-cost.component';
 
 const accountRoutes: Routes = [
     {
@@ -9,11 +11,11 @@ const accountRoutes: Routes = [
     },
     {
         path: 'credit-check',
-        component: AccountsComponent
+        component: CreditCheckComponent
     },
     {
         path: 'fixed-cost',
-        component: AccountsComponent
+        component: FixedCostComponent
     }
 ];
 

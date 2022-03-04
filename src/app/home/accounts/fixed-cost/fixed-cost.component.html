@@ -1,0 +1,111 @@
+ <div class="dashboard-main">
+     <div class="dashboard-content ">
+         <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
+             <ul class="breadcrumb">
+                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">ACCOUNTS</a></li>
+                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">FIXED COST</a></li>
+                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
+             </ul>
+             <div class="search-inputs d-flex">
+                 <div class="input-style mr-10">
+
+                     <div class="type-pass">
+                         <input type="text" class="ctm-input" placeholder="From">
+                         <div class="icon-eye d-flex align-items-center justify-content-center">
+                             <i-feather class="calender" name="calendar"></i-feather>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="input-style">
+
+                     <div class="type-pass">
+                         <input type="text" class="ctm-input" placeholder="To">
+                         <div class="icon-eye d-flex align-items-center justify-content-center">
+                             <i-feather class="calender" name="calendar"></i-feather>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="roles-main delivery-list-table">
+             <div class="d-flex align-items-center justify-content-between delivery-list-main fixed-cost-bar mb-1  p-1">
+                 <a class="secondary-sup" (click)="addFixedCost()" href="javascript:void(0)">
+                     <i-feather class="plus" name="plus"></i-feather>Add Fixed Cost
+                 </a>
+
+                 <a class="credit-check gray-btn" href="javascript:void(0)">
+                     To Month</a>
+             </div>
+             <div class="tab-table">
+                 <div class="tables-roles-main tables-users-main table-responsive">
+                     <table class="table">
+                         <thead class="thead-ctm">
+                             <tr>
+                                 <th>
+                                     <p class="inner-cell">Order<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                 </th>
+                                 <th>
+                                     <p class="inner-cell">Supplier<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                 </th>
+                                 <th>
+                                     <p class="inner-cell">Value<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                 </th>
+                                 <th>
+                                     <p class="inner-cell">Frequency<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                 </th>
+                                 <th>
+                                     <p class="inner-cell">Dates<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                 </th>
+                                 <th>
+                                     <p class="inner-cell">Actions</p>
+                                 </th>
+
+                             </tr>
+                         </thead>
+                         <tbody class="t-body-ctm">
+                             <tr class="active-row" *ngFor="let cost of costs;let i = index">
+                                 <td>
+                                     <p class="inner-cell">{{ cost.order_number }}</p>
+                                 </td>
+                                 <td>
+                                     <p class="inner-cell">{{ cost.supplier.name }}</p>
+                                 </td>
+                                 <td>
+                                     <p class="inner-cell">{{ cost.value }}</p>
+                                 </td>
+
+                                 <td>
+                                     <p class="inner-cell">{{ cost.frequency }}</p>
+                                 </td>
+                                 <td>
+                                     <p class="inner-cell"><span *ngFor="let month of cost.cost_dates;let i = index">{{ month }}<span *ngIf="i != cost.cost_dates.length-1">,&nbsp;</span></span></p>
+                                 </td>
+
+                                 <td>
+                                     <div class="list-icons-talbe justify-content-center">
+
+                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="editFixedCost(cost,i)">
+                                             <i-feather class="icon-width" name="edit-3"></i-feather>
+                                         </a>
+
+                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="deleteFixedCost(cost,i)">
+                                             <i-feather class="icon-width" name="trash"></i-feather>
+                                         </a>
+
+                                     </div>
+                                 </td>
+
+
+                             </tr>
+
+                         </tbody>
+                     </table>
+
+                 </div>
+                 <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+             </div>
+
+         </div>
+     </div>
+
+ </div>

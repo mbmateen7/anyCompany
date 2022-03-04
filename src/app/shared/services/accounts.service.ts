@@ -22,7 +22,50 @@ export class AccountService {
         return this.http.post<any>(`${environment.apiUrl + urls.customerTotals}`, params);
     }
 
+    salesOrdersRodListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.salesOrdersRodListing}`, params);
+    }
+
     salesOrders(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.salesOrdersListing}`, params);
+    }
+
+    addSalesOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.addSalesOrder}`, params);
+    }
+
+    updateSaleOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateSalesOrder}`, params);
+    }
+
+    fixedCostListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.fixedCostListing}`, params);
+    }
+
+    addFixedCost(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.addFixedCost}`, params);
+    }
+
+    updateFixedCost(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateFixedCost}`, params);
+    }
+
+    deleteFixedCost(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.deleteFixedCost}`, params);
+    }
+
+    creditCheckListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.creditCheckListing}`, params);
+    }
+
+    accountsPurchaseOrdersListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.accountsPurchaseOrdersListing}`, params);
+    }
+
+    addPurchaseOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.addAccountsPurchaseOrder}`, params);
+    }
+    updatePurchaseOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateAccountsPurchaseOrder}`, params);
     }
 }

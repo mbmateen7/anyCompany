@@ -9,6 +9,7 @@ import { LoginGuard } from './shared/guards/login.guard';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
 import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ViewCreditCheckDetailsComponent } from './components/modals/accounts/view-credit-check-details/view-credit-check-details.component';
 
 const NgxUiLoadderConfig: NgxUiLoaderConfig =
 {
@@ -43,7 +44,8 @@ const NgxUiLoadderConfig: NgxUiLoaderConfig =
 }
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        ViewCreditCheckDetailsComponent
     ],
     imports: [
         BrowserAnimationsModule,

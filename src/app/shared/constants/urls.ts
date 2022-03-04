@@ -1,7 +1,7 @@
 export const urls = {
 
     // Host 
-    devUrl: 'http://humphree.test/api/',
+    devUrl: 'http://humphrey.test/api/',
     stagingUrl: 'https://api-humphery.io-devs.cf/api/',
 
     // AUTH
@@ -83,5 +83,23 @@ export const urls = {
     accountStats: 'accounts/stats',
     customerTotals: 'accounts/customer-total-listing',
 
-    salesOrdersListing: 'accounts/sale-order/listing'
+    salesOrdersRodListing: 'accounts/sale-order/work-order-listing',
+    salesOrdersListing: 'accounts/sale-order/listing',
+    addSalesOrder: 'accounts/sale-order/store',
+    updateSalesOrder: 'accounts/sale-order/update',
+    deleteSalesOrder: 'accounts/sale-order/delete',
+
+
+    accountsPurchaseOrdersListing: 'accounts/purchase-cost/listing',
+    addAccountsPurchaseOrder: 'accounts/purchase-cost/store',
+    updateAccountsPurchaseOrder: 'accounts/purchase-cost/update',
+
+    fixedCostListing: 'accounts/fixed-cost/listing',
+    addFixedCost: 'accounts/fixed-cost/store',
+    updateFixedCost: 'accounts/fixed-cost/update',
+    deleteFixedCost: 'accounts/fixed-cost/delete',
+
+
+    creditCheckListing: 'accounts/credit-check/listing',
+    creditCheckShow: 'accounts/credit-check/show'
 };

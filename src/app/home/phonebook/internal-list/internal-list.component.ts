@@ -18,6 +18,8 @@ export class InternalListComponent implements OnInit {
         page: 1
     }
     totalPages = 1;
+    pageFrom = 1;
+    pageTo = 10;
     modalConfig = {
         animated: true,
         keyboard: false,
@@ -39,7 +41,9 @@ export class InternalListComponent implements OnInit {
             this.employees = res.data.data;
             this.searchParams.page_size = res.data.per_page
             this.searchParams.page = res.data.current_page
-            this.totalPages = res.data.last_page;
+            this.totalPages = res.data.last_page
+            this.pageFrom = res.data.from;
+            this.pageTo = res.data.to;;
         })
     }
 
