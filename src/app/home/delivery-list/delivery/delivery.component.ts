@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { UpdateDeliveryOrderComponent } from 'src/app/components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
@@ -10,7 +10,8 @@ import { DeliveryListService } from 'src/app/shared/services/deliveryList.servic
 @Component({
     selector: 'app-delivery',
     templateUrl: './delivery.component.html',
-    styleUrls: ['./delivery.component.css']
+    styleUrls: ['./delivery.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class DeliveryComponent implements OnInit {
 
@@ -18,8 +19,8 @@ export class DeliveryComponent implements OnInit {
     deliveries = [];
     searchParams = {
         search: '',
-        start_date: '',
-        end_date: '',
+        start_date: null,
+        end_date: null,
         page_size: 10,
         page: 1
     }

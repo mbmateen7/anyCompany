@@ -234,7 +234,7 @@
                                         <a class="icon-anchor-list" href="javascript:void(0)">
                                             <img src="assets/img/line-img-gray.svg" alt="img" (click)="viewTimeline(rod,i)">
                                         </a>
-                                        <a class="icon-anchor-list" data-toggle="modal" data-target="#status-change" href="javascript:void(0)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="updateStatus(rod,$event,i)">
                                             <i-feather class="icon-width" name="check"></i-feather>
                                         </a>
                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(rod,i)">

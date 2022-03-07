@@ -22,7 +22,7 @@
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="date" id="start_date" class="ctm-input" placeholder="From" [(ngModel)]="searchParams.start_date" (change)="searchOrder('date')">
+                                <input type="text" id="start_date" class="ctm-input" placeholder="From" name="start_date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <label for="start_date">
                                         <i-feather class="calender" name="calendar"></i-feather>

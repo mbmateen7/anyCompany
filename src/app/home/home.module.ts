@@ -58,6 +58,7 @@ import { AddEditFixedCostComponent } from '../components/modals/accounts/add-edi
         NgbModalModule,
         FeatherModule.pick(allIcons),
         NgSelectModule
+
     ],
     providers: [DatePipe]
 })
