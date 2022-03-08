@@ -57,6 +57,10 @@ export class RodService {
         return this.http.post<any>(`${environment.apiUrl + urls.deleteJobNote}`, params);
     }
 
+    getTicketNo(params = {}): Observable<any> {
+        return this.http.get<any>(`${environment.apiUrl + urls.getTicketNo}`);
+    }
+
     addDevliveryNote(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.addDeliveryNote}`, params);
     }

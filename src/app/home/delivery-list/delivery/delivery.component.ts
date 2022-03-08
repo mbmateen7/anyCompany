@@ -17,6 +17,8 @@ export class DeliveryComponent implements OnInit {
 
     deliveryListView: number = 1;
     deliveries = [];
+    startDate: NgbDateStruct;
+    endDate: NgbDateStruct;
     searchParams = {
         search: '',
         start_date: null,
@@ -27,6 +29,7 @@ export class DeliveryComponent implements OnInit {
     totalPages = 1;
     pageFrom = 1;
     pageTo = 10;
+    totalCount = 10;
     modalConfig = {
         animated: true,
         keyboard: false,
@@ -50,7 +53,8 @@ export class DeliveryComponent implements OnInit {
             this.searchParams.page = res.data.current_page
             this.totalPages = res.data.last_page
             this.pageFrom = res.data.from;
-            this.pageTo = res.data.to;;
+            this.pageTo = res.data.to;
+            this.totalCount = res.data.total;;
 
         });
     }
@@ -139,11 +143,13 @@ export class DeliveryComponent implements OnInit {
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getDeliveryListing();
         }
-        if (type == 'date' && ((this.searchParams.start_date && this.searchParams.end_date) || (!this.searchParams.start_date && !this.searchParams.end_date))) {
+        console.log(this.startDate, this.endDate)
+        if (type == 'date' && ((this.startDate && this.endDate) || (!this.startDate && !this.endDate))) {
+            this.searchParams.start_date = this.startDate ? this.startDate.day + '-' + this.startDate.month + '-' + this.startDate.year : null;
+            this.searchParams.end_date = this.endDate ? this.endDate.day + '-' + this.endDate.month + '-' + this.endDate.year : null;
             this.getDeliveryListing();
         }
     }
-
     changePage(event) {
         this.searchParams.page = event;
         this.getDeliveryListing();

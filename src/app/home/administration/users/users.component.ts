@@ -22,6 +22,7 @@ export class UsersComponent implements OnInit {
     totalPages: 1;
     pageFrom = 1;
     pageTo = 10;
+    totalCount = 10;
     isLoading: boolean = true;
     modalConfig = {
         animated: true,
@@ -49,6 +50,7 @@ export class UsersComponent implements OnInit {
             this.totalPages = res.data.last_page
             this.pageFrom = res.data.from;
             this.pageTo = res.data.to;
+            this.totalCount = res.data.total;
         });
     }
 

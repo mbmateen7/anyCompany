@@ -1,9 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UpdateInvoiceScheduleRefComponent } from 'src/app/components/modals/rod/update-invoice-schedule-ref/update-invoice-schedule-ref.component';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { RodService } from 'src/app/shared/services/rod.service';
 
@@ -50,18 +47,27 @@ export class DeliveryNoteComponent implements OnInit {
     }
     currentDate;
     dateToday = new Date();
+    newDeliveryTicketNo = '';
     constructor(private _rod: RodService, private helper: GlobalHelper, private route: ActivatedRoute, private datePipe: DatePipe, private _location: Location) {
         this.route.params.subscribe(res => {
             this.getWorkOrder(res.id);
             this.getDeliveryNotes(res.id);
+            this.getTicketNo();
         })
 
         this.currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     }
 
+    getTicketNo() {
+        this._rod.getTicketNo().subscribe(res => {
+            this.newDeliveryTicketNo = this.deliveryOrder.ticket_no = res.data;
+        });
+    }
+
     getWorkOrder(id) {
         this._rod.getWorkOrder({ id: id }).subscribe(res => {
             this.workOrder = res.data;
+            this.deliveryOrder.fsc = res.data.fsc;
             this.deliveryOrder.order_number = res.data.order_number
             this.deliveryOrder.work_orders.push({
                 id: res.data.id,
@@ -88,6 +94,7 @@ export class DeliveryNoteComponent implements OnInit {
         this._rod.addDevliveryNote(this.deliveryOrder).subscribe(res => {
             this.resetFormValue();
             this.getDeliveryNotes(this.workOrder.id);
+            this.getTicketNo();
         });
     }
 
@@ -116,9 +123,9 @@ export class DeliveryNoteComponent implements OnInit {
     resetFormValue() {
         this.deliveryOrder = {
             invoice_to: '',
-            ticket_no: '',
+            ticket_no: this.newDeliveryTicketNo,
             dispatch_date: '',
-            fsc: false,
+            fsc: this.workOrder.fsc,
             order_number: this.workOrder.order_number,
             properties: {
                 flush_door: '',

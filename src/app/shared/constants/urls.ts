@@ -42,6 +42,7 @@ export const urls = {
     getJobNotes: 'rod/job-notes/listing',
     addJobNote: 'rod/job-notes/store',
     deleteJobNote: 'rod/job-notes/delete',
+    getTicketNo: 'rod/delivery-notes/ticket-no',
     addDeliveryNote: 'rod/delivery-notes/store',
     updateDeliveryNote: 'rod/delivery-notes/update',
     getDeliveryNotes: 'rod/delivery-notes/listing',

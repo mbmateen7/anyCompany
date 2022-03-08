@@ -29,16 +29,24 @@
         <div class="col-md-6">
             <div class="input-style mb-2">
                 <div class="select-box">
-                    <div class="form-group position-relative">
+                    <div class="form-group position-relative" (focusout)="customerInputOut()">
                         <label class="d-block">Customers<span class="text-danger">*</span></label>
-                        <select class="ctm-input bg-white" placeholder="Select Customer" (change)="selectCustomer($event)" [(ngModel)]="workOrder.customer_id">
+                        <input type="text" class="ctm-input type-input" placeholder="Customer" (input)="searchCustomer($event)" (focus)="customerInput = true" [(ngModel)]="selectedCustomer">
+                        <div class="custom-dropdown-list" *ngIf="customerInput">
+                            <ul>
+                                <li *ngFor="let customer of customers" (click)="selectCustomer(customer)">
+                                    {{ customer.name }}
+                                </li>
+                                <li (click)="selectCustomer('new')">Add Customer</li>
+                            </ul>
+                        </div>
+                        <!-- <select class="ctm-input bg-white" placeholder="Select Customer" (change)="selectCustomer($event)" [(ngModel)]="workOrder.customer_id">
                             <option value="0" selected>Select Customer</option>
                             <option [value]="customer.id" *ngFor="let customer of customers">{{ customer.name }}</option>
-                            <option value="new">Add Customer</option>
                         </select>
                         <div class="search-position-modal">
                             <i-feather class="search-icon-bar" name="search"></i-feather>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { PhonebookService } from 'src/app/shared/services/phonebook.service';
 import { RodService } from 'src/app/shared/services/rod.service';
@@ -36,6 +37,9 @@ export class AddEditSalesOrderComponent implements OnInit {
     };
     updateOrder: any;
     currentDate = '';
+    customerInput = false;
+    selectedCustomer = '';
+    searchSubscription: Subscription;
     constructor(private _rod: RodService, private helper: GlobalHelper, private _modal: NgbModal, private _phonebook: PhonebookService) { }
 
     ngOnInit(): void {
@@ -118,23 +122,40 @@ export class AddEditSalesOrderComponent implements OnInit {
             // }
         }
     }
+
+    searchCustomer(event) {
+        if (event.target.value.length >= 3 || event.target.value.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe()
+            this.searchSubscription = this._phonebook.customerListing({ search: event.target.value }).subscribe(res => {
+                this.customers = res.data.data;
+            })
+        }
+    }
+
     removeProduct(index: number) {
         this.selectedProducts.splice(index, 1);
         console.log(this.selectedProducts, index);
     }
 
-    selectCustomer(event) {
-        if (event.target.value == 'new') {
+    selectCustomer(value) {
+        console.log(value);
+
+        if (value == 'new') {
             const modal = this._modal.open(AddEditCustomerComponent, this.modalConfig)
             modal.componentInstance.response.subscribe(res => {
                 console.log(res);
                 if (res.success) {
                     this.customers.push(res.data)
                     this.workOrder.customer_id = res.data.id;
+                    this.selectedCustomer = res.data.name;
                 }
                 modal.dismiss();
             })
+        } else {
+            this.workOrder.customer_id = value.id
+            this.selectedCustomer = value.name
         }
+        this.customerInputOut();
     }
 
     validateAddForm() {
@@ -188,6 +209,12 @@ export class AddEditSalesOrderComponent implements OnInit {
             return false;
         }
         return true;
+    }
+
+    customerInputOut() {
+        setTimeout(() => {
+            this.customerInput = false
+        }, 100);
     }
 
 

@@ -28,6 +28,7 @@ export class RodComponent implements OnInit {
     totalPages = 1;
     pageFrom = 1;
     pageTo = 10;
+    totalCount = 10;
     checked: boolean = false;
     checkAll: boolean = false;
     modalConfig = {
@@ -54,7 +55,8 @@ export class RodComponent implements OnInit {
             this.searchParams.page = res.data.current_page
             this.totalPages = res.data.last_page
             this.pageFrom = res.data.from;
-            this.pageTo = res.data.to;;
+            this.pageTo = res.data.to;
+            this.totalCount = res.data.total;
             this.checkAll = false;
             this.rods = res.data.data.map(rod => {
                 rod.edit_invoice = false;

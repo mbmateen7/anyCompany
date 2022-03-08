@@ -2,7 +2,8 @@
     <div class="dashboard-content ">
         <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">DISPATCH ORDER</a></li>
+                <li class="breadcrumb-item" *ngIf="!currentDeliveryNote"><a class="breadcrumb-link " href="javascript:void(0)">NEW DELIVERY TICKET</a></li>
+                <li class="breadcrumb-item" *ngIf="currentDeliveryNote"><a class="breadcrumb-link " href="javascript:void(0)">UPDATE DELIVERY TICKET ({{ currentDeliveryNote.ticket_no }})</a></li>
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
@@ -21,7 +22,7 @@
                     <div class="dispatch-list" *ngFor="let note of deliveryNotes">
                         <ul class="ticket-no-detail">
                             <li class="ticket-date-detail" [ngClass]="{active: note.id == currentDeliveryNote?.id }">{{ note.ticket_no }}</li>
-                            <li class="ticket-d-detail">{{ note.dispatch_date | date:'dd/mm/yy' }}</li>
+                            <li class="ticket-d-detail">{{ note.dispatch_date | date:'dd/MM/yyyy' }}</li>
                             <li class="ticket-d-detail" [ngClass]="{active: note.id == currentDeliveryNote?.id}">
                                 <a class="view-dis" href="javascript:void(0)" (click)="currentDeliveryNote = deliveryOrder = note">View</a>
                             </li>
@@ -42,16 +43,12 @@
                         <tr>
                             <td class="table-data" colspan="6"><label class="invoice-label">CAPITAL</label></td>
                             <td class="table-data" colspan="4">
-                                <input class="text-input" type="text" placeholder="52527" [(ngModel)]="deliveryOrder.ticket_no">
+                                <input class="text-input" type="text" placeholder="52527" readonly [(ngModel)]="deliveryOrder.ticket_no">
                             </td>
                         </tr>
                         <tr>
                             <td class="table-data" colspan="6">
-                                <textarea class="ctm-textarea" rows="7" placeholder="CAPITAL FIRE DOORS LTD
-                                                 ASTON COURT 
-                                                 15 BROOMHILL ROAD 
-                                                 WOODFORD GREEN 
-                                                 IG8 9EY" [(ngModel)]="deliveryOrder.invoice_to"></textarea>
+                                <textarea class="ctm-textarea" rows="7" placeholder="Delivery Address" [(ngModel)]="deliveryOrder.invoice_to"></textarea>
                             </td>
                             <td class="table-data table-sec-data" colspan="4">
                                 <table class="table-inner">
@@ -74,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         <td class="table-data-inner">
-                                            <input class="text-input" disabled type="text" placeholder="388" [(ngModel)]="deliveryOrder.order_number">
+                                            <input class="text-input" type="text" placeholder="388" [(ngModel)]="deliveryOrder.order_number">
                                         </td>
 
                                     </tr>
@@ -127,9 +124,6 @@
                                 <label class="invoice-label">Frames</label>
                             </td>
                             <td colspan="1" class="table-data">
-                                <label class="invoice-label">Linings</label>
-                            </td>
-                            <td colspan="1" class="table-data">
                                 <label class="invoice-label">Stops</label>
                             </td>
                             <td colspan="1" class="table-data">
@@ -157,9 +151,6 @@
                             </td>
                             <td colspan="1" class="table-data table-height-data">
                                 <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.frames" name="frames">
-                            </td>
-                            <td colspan="1" class="table-data table-height-data">
-                                <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.linings" name="linings">
                             </td>
                             <td colspan="1" class="table-data table-height-data">
                                 <input class="text-input" type="text" placeholder="Add" [(ngModel)]="deliveryOrder.properties.stops" name="stops">

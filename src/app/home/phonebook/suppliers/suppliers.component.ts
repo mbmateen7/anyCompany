@@ -20,6 +20,7 @@ export class SuppliersComponent implements OnInit {
     totalPages = 1;
     pageFrom = 1;
     pageTo = 10;
+    totalCount = 10;
     modalConfig = {
         animated: true,
         keyboard: false,
@@ -44,7 +45,8 @@ export class SuppliersComponent implements OnInit {
             this.searchParams.page = res.data.current_page
             this.totalPages = res.data.last_page
             this.pageFrom = res.data.from;
-            this.pageTo = res.data.to;;
+            this.pageTo = res.data.to;
+            this.totalCount = res.data.total;;
         });
     }
 

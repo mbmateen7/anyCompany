@@ -11,7 +11,7 @@ export class PaginationComponent implements OnInit {
     @Input() pageSize = 10;
     @Input() from = 1;
     @Input() to = 10;
-
+    @Input() total = 10;
     @Output() changePage: EventEmitter<number> = new EventEmitter<number>();
     @Output() ChangePageSize: EventEmitter<number> = new EventEmitter<number>();
     constructor() { }

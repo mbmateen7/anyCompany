@@ -37377,3 +37377,49 @@ input[type="date"] {
 .dashboard-content>div.align-items-center {
     min-height: 45px !important;
 }
+
+.ngb-dp-arrow-btn {
+    color: #DC0100;
+}
+
+.ngb-dp-day>.btn-light[ng-reflect-selected="true"],
+.ngb-dp-week>.btn-light[ng-reflect-selected="true"] {
+    background-color: #DC0100 !important;
+}
+
+i-feather.clear-filter {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translateY(-50%);
+}
+
+.custom-dropdown-list {
+    position: relative;
+    width: 100%;
+}
+
+.custom-dropdown-list>ul {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    border-radius: 5px;
+    z-index: 10;
+    background-color: white;
+}
+
+.custom-dropdown-list>ul>li {
+    padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.custom-dropdown-list>ul>li:hover {
+    background: #ccc;
+    color: black;
+    cursor: pointer;
+}

@@ -15,6 +15,7 @@ export class CustomerOrderComponent implements OnInit {
     totalPages: 1;
     pageFrom = 1;
     pageTo = 10;
+    totalCount = 10;
     fscList = [];
     dateToday = new Date();
     constructor(private _fsc: FscService) { }
@@ -30,7 +31,8 @@ export class CustomerOrderComponent implements OnInit {
             this.searchParams.page = res.data.current_page
             this.totalPages = res.data.last_page
             this.pageFrom = res.data.from;
-            this.pageTo = res.data.to;;
+            this.pageTo = res.data.to;
+            this.totalCount = res.data.total;;
         })
     }
 

@@ -22,23 +22,25 @@
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="text" id="start_date" class="ctm-input" placeholder="From" name="start_date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                                <input type="text" id="start_date" class="ctm-input" placeholder="From" name="start_date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [(ngModel)]="startDate" (ngModelChange)="searchOrder('date')">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <label for="start_date">
                                         <i-feather class="calender" name="calendar"></i-feather>
                                     </label>
                                 </div>
+                                <i-feather name="X" class="clear-filter" (click)="startDate = null;searchOrder('date')" *ngIf="startDate"></i-feather>
                             </div>
                         </div>
                         <div class="input-style mr-10">
 
                             <div class="type-pass">
-                                <input type="date" id="end_date" class="ctm-input" placeholder="To" [(ngModel)]="searchParams.end_date" [min]="searchParams.start_date" [(ngModel)]="searchParams.end_date" (change)="searchOrder('date')">
+                                <input type="text" id="end_date" class="ctm-input" placeholder="From" name="end_date" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" [(ngModel)]="endDate" [minDate]="startDate" (ngModelChange)="searchOrder('date')">
                                 <div class="icon-eye d-flex align-items-center justify-content-center">
                                     <label for="end_date">
                                         <i-feather class="calender" name="calendar"></i-feather>
                                     </label>
                                 </div>
+                                <i-feather name="X" class="clear-filter" (click)="endDate = null;searchOrder('date')" *ngIf="endDate"></i-feather>
                             </div>
                         </div>
                     </div>
@@ -246,7 +248,7 @@
                         </table>
 
                     </div>
-                    <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                    <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
                 </div>
 
             </div>
@@ -469,7 +471,7 @@
                     </div>
                 </div>
             </div>
-            <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+            <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
         </div>
     </div>
 

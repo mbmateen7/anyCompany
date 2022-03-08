@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { UpdateDeliveryOrderComponent } from 'src/app/components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
@@ -16,6 +16,8 @@ export class WalkingComponent implements OnInit {
 
     deliveryListView: number = 1;
     deliveries = [];
+    startDate: NgbDateStruct;
+    endDate: NgbDateStruct;
     searchParams = {
         search: '',
         start_date: '',
@@ -26,6 +28,7 @@ export class WalkingComponent implements OnInit {
     totalPages = 1;
     pageFrom = 1;
     pageTo = 10;
+    totalCount = 10;
     modalConfig = {
         animated: true,
         keyboard: false,
@@ -51,7 +54,8 @@ export class WalkingComponent implements OnInit {
             this.searchParams.page = res.data.current_page
             this.totalPages = res.data.last_page
             this.pageFrom = res.data.from;
-            this.pageTo = res.data.to;;
+            this.pageTo = res.data.to;
+            this.totalCount = res.data.total;;
 
         });
     }
@@ -141,8 +145,9 @@ export class WalkingComponent implements OnInit {
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getDeliveryListing();
         }
-
-        if (type == 'date' && ((this.searchParams.start_date && this.searchParams.end_date) || (!this.searchParams.start_date && !this.searchParams.end_date))) {
+        if (type == 'date' && ((this.startDate && this.endDate) || (!this.startDate && !this.endDate))) {
+            this.searchParams.start_date = this.startDate ? this.startDate.day + '-' + this.startDate.month + '-' + this.startDate.year : null;
+            this.searchParams.end_date = this.endDate ? this.endDate.day + '-' + this.endDate.month + '-' + this.endDate.year : null;
             this.getDeliveryListing();
         }
     }
