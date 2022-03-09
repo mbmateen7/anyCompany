@@ -43,6 +43,7 @@
                                     <option value="select" selected>Bulk Status</option>
                                     <option value="Booked">Booked</option>
                                     <option value="To Factory">To Factory</option>
+                                    <option value="In Factory">In Factory</option>
                                     <option value="Delivered">Delivered</option>
                                     <option value="Withdrawn">Withdrawn</option>
                                     <option value="On Hold">On Hold</option>
@@ -107,9 +108,6 @@
                                 <th>
                                     <p class="inner-cell">Job Notes</p>
                                 </th>
-                                <!-- <th>
-                                    <p class="inner-cell">Hold</p>
-                                </th> -->
                                 <th>
                                     <p class="inner-cell">Actions</p>
                                 </th>
@@ -141,20 +139,21 @@
                                     <p class="inner-cell">{{ rod.product.name }}</p>
                                 </td>
                                 <td>
-                                    <div class="select-box inner-cell" *ngIf="!rod.on_hold">
+                                    <div class="select-box inner-cell">
                                         <div class="form-group">
                                             <div class="arrow-design">
                                                 <select class="form-control" (change)="updateStatus(rod,$event,i)">
-                                                    <option [selected]="rod.status == 'Booked'" value="Booked">Booked</option>
-                                                    <option [selected]="rod.status == 'To Factory'" value="To Factory">To Factory</option>
-                                                    <option [selected]="rod.status == 'Withdrawn'" value="Withdrawn">Withdrawn</option>
-                                                    <option [selected]="rod.status == 'Delivered'" value="Delivered">Delivered</option>
-                                                    <option [selected]="rod.status == 'Completed'" value="Completed">Completed</option>
+                                                    <option [selected]="rod.status == 'Booked'" [disabled]="rod.on_hold" value="Booked">Booked</option>
+                                                    <option [selected]="rod.status == 'To Factory'" [disabled]="rod.on_hold" value="To Factory">To Factory</option>
+                                                    <option [selected]="rod.status == 'In Factory'" [disabled]="rod.on_hold || rod.status == 'In Factory'" value="In Factory" [hidden]="rod.status != 'In Factory'">In Factory</option>
+                                                    <option [selected]="rod.status == 'Withdrawn'" [disabled]="rod.on_hold" value="Withdrawn">Withdrawn</option>
+                                                    <option [selected]="rod.status == 'Delivered'" [disabled]="rod.on_hold" value="Delivered">Delivered</option>
+                                                    <option [selected]="rod.on_hold" value="On Hold">On Hold</option>
+                                                    <option *ngIf="rod.on_hold" value="Off Hold">Off Hold</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="inner-cell text-danger" *ngIf="rod.on_hold">On Hold</p>
                                 </td>
                                 <td>
                                     <p class="inner-cell">{{ rod.progress }}</p>
@@ -218,23 +217,15 @@
                                         </div>
                                     </div>
                                 </td>
-                                <!-- <td>
-                                    <div class="inner-cell custom-box">
-                                        <label class="switch">
-                                            <input type="checkbox" [checked]="rod.on_hold" (change)="updateHoldStatus(rod)">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </td> -->
                                 <td>
                                     <div class="inner-cell list-icons-talbe">
                                         <a class="icon-anchor-list" href="javascript:void(0)" [routerLink]="['delivery-notes', rod.id]">
                                             <i-feather class="icon-width" name="book"></i-feather>
                                         </a>
-                                        <a class="icon-anchor-list" href="javascript:void(0)">
-                                            <img src="assets/img/line-img-gray.svg" alt="img" (click)="viewTimeline(rod,i)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(rod,i)">
+                                            <i-feather class="icon-width" name="trending-up"></i-feather>
                                         </a>
-                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="updateStatus(rod,$event,i)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="completeOrder(rod,i)">
                                             <i-feather class="icon-width" name="check"></i-feather>
                                         </a>
                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(rod,i)">

@@ -39,6 +39,12 @@
                                     <p class="inner-cell">Telephone<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
                                 <th>
+                                    <p class="inner-cell">Extension<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>
+                                    <p class="inner-cell">External Contact <i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                </th>
+                                <th>
                                     <p class="inner-cell">Email<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
                                 <th>
@@ -52,13 +58,19 @@
                                     <p class="inner-cell">{{ e.name }}</p>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">{{ e.role.title }}</p>
+                                    <p class="inner-cell">{{ e.role ? e.role.title :'--' }}</p>
                                 </td>
                                 <td>
                                     <p class="inner-cell">{{ e.phone_no }}</p>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">{{ e.email }}</p>
+                                    <p class="inner-cell">{{ e.extension_number ? e.extension_number : '--' }}</p>
+                                </td>
+                                <td>
+                                    <p class="inner-cell">{{ e.external_number ? e.external_number : '--' }}</p>
+                                </td>
+                                <td>
+                                    <p class="inner-cell">{{ e.email ? e.email : '--' }}</p>
                                 </td>
                                 <td>
                                     <div class="list-icons-talbe justify-content-center">

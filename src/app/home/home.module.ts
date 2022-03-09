@@ -27,6 +27,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HomeComponent } from './home.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditFixedCostComponent } from '../components/modals/accounts/add-edit-fixed-cost/add-edit-fixed-cost.component';
+import { ViewProductionScheduleComponent } from '../components/modals/rod/view-production-schedule/view-production-schedule.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { AddEditFixedCostComponent } from '../components/modals/accounts/add-edi
         AddEditEmployeeComponent,
         AddEditAccountSalesOrderComponent,
         AddEditAccountPurchaseOrderComponent,
-        AddEditFixedCostComponent
+        AddEditFixedCostComponent,
+        ViewProductionScheduleComponent
     ],
     imports: [
         CommonModule,

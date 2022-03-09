@@ -210,6 +210,11 @@ export class RodComponent implements OnInit {
     }
 
     updateStatus(rod, event, index) {
+        if (event.target.value == 'On Hold' || event.target.value == 'Off Hold') {
+            this.updateHoldStatus(rod);
+            event.target.value = rod.status;
+            return;
+        }
         let modalData = {
             hold: rod.on_hold,
             from: rod.status,
@@ -217,7 +222,6 @@ export class RodComponent implements OnInit {
             model: [rod],
             status: event.target.value
         }
-        console.log(modalData);
         this.modalConfig.windowClass = "modal-roles change-status-modal";
         const statusModal = this._modal.open(UpdateStatusComponent, this.modalConfig);
         statusModal.componentInstance.data = modalData;
@@ -237,12 +241,15 @@ export class RodComponent implements OnInit {
             model: [rod],
             status: rod.status
         }
+
+        this.modalConfig.windowClass = "modal-roles change-status-modal";
         const statusModal = this._modal.open(UpdateStatusComponent, this.modalConfig);
         statusModal.componentInstance.data = modalData;
         statusModal.componentInstance.response.subscribe(res => {
             rod.on_hold = res.data.on_hold;
             statusModal.dismiss();
         });
+        this.modalConfig.windowClass = "modal-roles"
     }
 
     deleteOrder(rod, i) {
@@ -302,9 +309,11 @@ export class RodComponent implements OnInit {
         } else if (event.target.value == 'Off Hold') {
             hold = false;
             to = status;
+        } else if (event.target.value != 'On Hold' && event.target.value != 'On Hold' && hold) {
+            hold = false;
         } else {
             hold = false;
-            status = rod.status
+            status = event.target.value;
         }
         let modalData = {
             hold: hold,
@@ -373,4 +382,27 @@ export class RodComponent implements OnInit {
         this.searchParams.page_size = event;
         this.rodListing();
     }
+    completeOrder(rod, index) {
+        if (parseInt(rod.progress) < 100 && rod.status != 'Delivered') {
+            this.helper.toastError('Cannot complete order because it is still in production')
+        }
+        let modalData = {
+            hold: rod.on_hold,
+            from: rod.status,
+            to: 'Completed',
+            model: [rod],
+            status: 'Completed'
+        }
+        this.modalConfig.windowClass = "modal-roles change-status-modal";
+        const statusModal = this._modal.open(UpdateStatusComponent, this.modalConfig);
+        statusModal.componentInstance.data = modalData;
+        statusModal.componentInstance.response.subscribe(res => {
+            if (res.success) {
+                this.rods.splice(index, 1);
+            }
+            statusModal.dismiss();
+        });
+
+    }
+
 }

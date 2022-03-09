@@ -34,7 +34,7 @@ export class UpdateStatusComponent implements OnInit {
     dueDate;
     scheduleRef = '';
     formData = new FormData();
-    attachmentName = '';
+    attachments = [];
     constructor(private _rod: RodService, private helper: GlobalHelper, private _admin: AdministrationService, private datePipe: DatePipe) { }
 
     ngOnInit(): void {
@@ -77,15 +77,21 @@ export class UpdateStatusComponent implements OnInit {
     }
 
     addAttachment(event) {
-        console.log(event.target.files)
-        let file = event.target.files[0];
-        this.formData.set('attachment', file, file.name);
-        this.attachmentName = file.name;
+        for (let index = 0; index < event.target.files.length; index++) {
+            const element = event.target.files[index];
+            this.formData.append('attachment[]', element, element.name);
+            if (this.attachments.find(x => x.name == element.name) == undefined) {
+                this.attachments.push(element);
+            }
+        }
     }
 
-    removeAttachment() {
-        this.attachmentName = '';
-        this.formData.delete('attachment');
+    removeAttachment(index) {
+        this.formData.delete('attachment[]');
+        this.attachments.splice(index, 1);
+        this.attachments.forEach(element => {
+            this.formData.append('attachment[]', element, element.name);
+        })
     }
 
     updateBulk() {

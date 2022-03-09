@@ -32,7 +32,10 @@
                             <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="viewDeliveryNotes()" *ngIf="rod.delivery_notes_count == 1">{{ rod.delivery_notes[0]?.ticket_no }}</a>
                         </td>
                         <td>
-                            <a class="view-anchor view-anchor-red" href="javascript:void(0)">
+                            <a *ngIf="rod.attachments.length > 1" class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="viewProductionSchedule()">
+                                Multiple
+                            </a>
+                            <a *ngIf="rod.attachments.length == 1" class="view-anchor view-anchor-red" [href]="rod.attachemnts[0].location">
                                 View
                             </a>
                         </td>

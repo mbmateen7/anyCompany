@@ -16,7 +16,9 @@ export class AddEditEmployeeComponent implements OnInit {
         name: '',
         role_id: null,
         email: '',
-        phone_no: ''
+        phone_no: '',
+        extension_number: '',
+        external_contact: ''
     }
     roles = [];
     constructor(private _administration: AdministrationService, private helper: GlobalHelper, private _phonebook: PhonebookService) { }
@@ -43,6 +45,9 @@ export class AddEditEmployeeComponent implements OnInit {
     }
 
     updateEmployee() {
+        if (this.employee.role_id == 'null') {
+            this.employee.role_id = null;
+        }
         this._phonebook.updateEmployee(this.employee).subscribe(res => {
             this.helper.toastSuccess(res.message);
             this.response.emit({ success: true, data: res.data });
