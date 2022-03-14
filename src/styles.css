@@ -37423,3 +37423,22 @@ i-feather.clear-filter {
     color: black;
     cursor: pointer;
 }
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+}
+
+.theme-red .bs-datepicker-body table td span.selected,
+.theme-red .bs-datepicker-body table td.selected span,
+.theme-red .bs-datepicker-body table td span[class*="select-"]::after,
+.theme-red .bs-datepicker-body table td[class*="select-"] span::after,
+.theme-red .bs-datepicker-head {
+    background-color: #dc0100 !important;
+}
+
+.tab-table .tables-roles-main .table .t-body-ctm tr td,
+.tab-table .tables-roles-main .table .t-body-ctm tr td .inner-cell {
+    font-size: 1.2rem;
+}

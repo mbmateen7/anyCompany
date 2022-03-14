@@ -29,7 +29,7 @@
 
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-6 cols-for-respo">
+        <div class="col-md-4 col-sm-6">
             <a class="account-hover" href="javascript:void(0)">
                 <div class="card-accounts">
                     <div class="sale-label-account">
@@ -52,7 +52,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-3 col-md-6 cols-for-respo">
+        <div class="col-md-3 col-sm-6">
             <a class="account-hover" href="javascript:void(0)">
                 <div class="card-accounts card-account-orange">
                     <div class="sale-label-account">
@@ -71,7 +71,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-3 col-md-6 cols-for-respo">
+        <div class="col-md-3 col-sm-6">
             <a class="account-hover" href="javascript:void(0)">
                 <div class="card-accounts card-account-light-green">
                     <div class="sale-label-account">
@@ -93,7 +93,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-2 col-md-6 cols-for-respo">
+        <div class="col-md-2 col-sm-6">
             <a class="account-hover" href="javascript:void(0)">
                 <div class="card-accounts card-account-green">
                     <div class="sale-label-account">
@@ -191,7 +191,7 @@
                                                 <p class="inner-cell">Delivery Note#<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                             <th>
-                                                <p class="inner-cell">Total Delivered<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                                <p class="inner-cell">Month<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                             <th>
                                                 <p class="inner-cell">Notes<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
@@ -232,7 +232,7 @@
                                                 <p class="inner-cell">{{ sale.delivery_note }}</p>
                                             </td>
                                             <td>
-                                                <p class="inner-cell">{{ sale.total_delivered }}</p>
+                                                <p class="inner-cell">{{ sale.month }}</p>
                                             </td>
                                             <td>
                                                 <div class="inner-cell view-anchor-tooltip">
@@ -288,6 +288,9 @@
                                                 <p class="inner-cell">Work#<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                             <th>
+                                                <p class="inner-cell">Date<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
                                                 <p class="inner-cell">Checked<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                             <th>
@@ -305,6 +308,9 @@
                                             </td>
                                             <td>
                                                 <p class="inner-cell">{{ purchase.order.work_number }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ purchase.due_date | date:'dd-MMM-YYYY' }}</p>
                                             </td>
                                             <td>
                                                 <div class="custom-box">

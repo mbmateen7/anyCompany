@@ -51,9 +51,6 @@
                                      <p class="inner-cell">Value<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                  </th>
                                  <th>
-                                     <p class="inner-cell">Frequency<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
-                                 </th>
-                                 <th>
                                      <p class="inner-cell">Dates<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                  </th>
                                  <th>
@@ -72,10 +69,6 @@
                                  </td>
                                  <td>
                                      <p class="inner-cell">{{ cost.value }}</p>
-                                 </td>
-
-                                 <td>
-                                     <p class="inner-cell">{{ cost.frequency }}</p>
                                  </td>
                                  <td>
                                      <p class="inner-cell"><span *ngFor="let month of cost.cost_dates;let i = index">{{ month }}<span *ngIf="i != cost.cost_dates.length-1">,&nbsp;</span></span></p>

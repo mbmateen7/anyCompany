@@ -56,12 +56,12 @@ export class CreditCheckComponent implements OnInit {
         } else return;
     }
     selectOptions() {
+        console.log(this.creditChecks);
         this.checked = this.creditChecks.find((x: any) => x.checked) ? true : false
         this.checkAll = this.creditChecks.find((x: any) => !x.checked) ? false : true
     }
 
     selectAll() {
-        console.log(this.checkAll, this.creditChecks.find((x: any) => !x.checked))
         if (this.checkAll) {
             this.creditChecks.map((x: any) => x.checked = true)
         } else {
@@ -71,6 +71,7 @@ export class CreditCheckComponent implements OnInit {
         this.selectOptions();
     }
     creditCheck() {
+        console.log(this.creditChecks);
         this.modalConfig.windowClass = 'modal-roles change-status-modal credit-modal';
         const creditCheckModal = this._modal.open(ViewCreditCheckDetailsComponent, this.modalConfig);
         creditCheckModal.componentInstance.credits = this.creditChecks;

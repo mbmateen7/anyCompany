@@ -25,9 +25,11 @@ import { UpdateInvoiceScheduleRefComponent } from '../components/modals/rod/upda
 import { UpdateStatusComponent } from '../components/modals/rod/update-status/update-status.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HomeComponent } from './home.component';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditFixedCostComponent } from '../components/modals/accounts/add-edit-fixed-cost/add-edit-fixed-cost.component';
 import { ViewProductionScheduleComponent } from '../components/modals/rod/view-production-schedule/view-production-schedule.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ViewCreditCheckDetailsComponent } from '../components/modals/accounts/view-credit-check-details/view-credit-check-details.component';
 
 @NgModule({
     declarations: [
@@ -51,7 +53,8 @@ import { ViewProductionScheduleComponent } from '../components/modals/rod/view-p
         AddEditAccountSalesOrderComponent,
         AddEditAccountPurchaseOrderComponent,
         AddEditFixedCostComponent,
-        ViewProductionScheduleComponent
+        ViewProductionScheduleComponent,
+        ViewCreditCheckDetailsComponent
     ],
     imports: [
         CommonModule,
@@ -59,7 +62,8 @@ import { ViewProductionScheduleComponent } from '../components/modals/rod/view-p
         HomeRoutingModule,
         NgbModalModule,
         FeatherModule.pick(allIcons),
-        NgSelectModule
+        NgSelectModule,
+        BsDatepickerModule
 
     ],
     providers: [DatePipe]

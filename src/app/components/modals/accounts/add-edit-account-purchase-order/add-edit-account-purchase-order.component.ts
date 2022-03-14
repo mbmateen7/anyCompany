@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/shared/services/accounts.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { PhonebookService } from 'src/app/shared/services/phonebook.service';
@@ -19,32 +21,50 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
         supplier_id: '',
         work_order_id: '',
         due_date: '',
-        type: '',
         note: ''
     }
     orders = [];
     suppliers = [];
-    constructor(private _rod: RodService, private _phonebook: PhonebookService, private helper: GlobalHelper, private _account: AccountService) { }
+    selectedSupplier = '';
+    supplierInput: boolean = false;
+    searchSubscription: Subscription;
+    orderInput: boolean = false;
+    selectedOrder = '';
+    currentDate = new Date();
+    constructor(private _rod: RodService, private _phonebook: PhonebookService, private helper: GlobalHelper, private _account: AccountService, private datePipe: DatePipe) { }
 
     ngOnInit(): void {
         this.getOrders();
         this.getSuppliers();
     }
 
+
     getSuppliers(event = null) {
-        let search = event ? event.term : '';
-        this._phonebook.supplierListing({ search: search }).subscribe(res => {
-            this.suppliers = res.data.data;
-            this.newPurchaseOrder.supplier_id = res.data.data[0] ? res.data.data[0]?.id : null;
-        })
+        let search = '';
+        if (event) {
+            search = event.target.value;
+        }
+        if (search.length >= 3 || search.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe();
+            this._phonebook.supplierListing({ search: search }).subscribe(res => {
+                this.suppliers = res.data.data;
+                this.newPurchaseOrder.supplier_id = res.data.data[0] ? res.data.data[0]?.id : null;
+            })
+        }
     }
 
     getOrders(event = null) {
-        let search = event ? event.term : '';
-        this._rod.rodListing({ search: search }).subscribe(res => {
-            this.orders = res.data.data;
-            this.newPurchaseOrder.work_order_id = res.data.data[0] ? res.data.data[0]?.id : null;
-        });
+        let search = '';
+        if (event) {
+            search = event.target.value;
+        }
+        if (search.length >= 3 || search.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe();
+            this._rod.rodListing({ search: search }).subscribe(res => {
+                this.orders = res.data.data;
+                this.newPurchaseOrder.work_order_id = res.data.data[0] ? res.data.data[0]?.id : null;
+            });
+        }
     }
     cancel() {
         this.response.emit({ success: false });
@@ -61,4 +81,31 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
     updateOrder() {
         // 
     }
+
+    selectSupplier(supplier) {
+        this.selectedSupplier = supplier.name;
+        this.newPurchaseOrder.supplier_id = supplier.id;
+    }
+
+    selectOrder(order) {
+        this.selectedOrder = order.work_number;
+        this.newPurchaseOrder.work_order_id = order.id;
+    }
+
+    supplierInputOut() {
+        setTimeout(() => {
+            this.supplierInput = false
+        }, 100);
+    }
+
+    orderInputOut() {
+        setTimeout(() => {
+            this.orderInput = false
+        }, 100);
+    }
+
+    dateValue(event) {
+        this.newPurchaseOrder.due_date = this.datePipe.transform(event, 'YYYY-MM-dd');
+    }
+
 }

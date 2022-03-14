@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/shared/services/accounts.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { PhonebookService } from 'src/app/shared/services/phonebook.service';
@@ -20,18 +21,28 @@ export class AddEditFixedCostComponent implements OnInit {
         order_number: ''
     }
     suppliers = [];
+    supplierInput: boolean = false;
+    selectedSupplier = '';
+    searchSubscription: Subscription;
     constructor(private _phonebook: PhonebookService, private _account: AccountService, private helper: GlobalHelper) { }
 
     ngOnInit(): void {
         this.getSuppliers();
+        this.selectedSupplier = this.fixedCost.supplier.name
     }
 
     getSuppliers(event = null) {
-        let search = event ? event.term : '';
-        this._phonebook.supplierListing({ search: search }).subscribe(res => {
-            this.suppliers = res.data.data;
-            this.newFixedCost.supplier_id = res.data.data[0]?.id;
-        });
+        let search = '';
+        if (event) {
+            search = event.target.value;
+        }
+        if (search.length >= 3 || search.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe();
+            this._phonebook.supplierListing({ search: search }).subscribe(res => {
+                this.suppliers = res.data.data;
+                this.newFixedCost.supplier_id = res.data.data[0]?.id;
+            })
+        }
     }
 
     selectMonth(event) {
@@ -78,4 +89,18 @@ export class AddEditFixedCostComponent implements OnInit {
             this.response.emit({ success: true, data: res.data });
         })
     }
+    selectSupplier(supplier) {
+        this.selectedSupplier = supplier.name;
+        if (this.type == 'add') {
+            this.newFixedCost.supplier_id = supplier.id;
+        } else this.fixedCost.supplier_id = supplier.id;
+
+    }
+
+    supplierInputOut() {
+        setTimeout(() => {
+            this.supplierInput = false
+        }, 100);
+    }
+
 }

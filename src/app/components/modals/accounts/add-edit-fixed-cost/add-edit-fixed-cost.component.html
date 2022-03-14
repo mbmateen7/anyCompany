@@ -26,17 +26,20 @@
         <div class=" col-md-12">
             <div class="input-style mb-2">
                 <div class="select-box">
-                    <div class="form-group">
-                        <label class="d-block"><span class="red-label">Supplier</span><span class="text-danger">*</span></label>
-                        <ng-select [items]="suppliers" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newFixedCost.supplier_id" (search)="getSuppliers($event)">
-                            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                                <p><strong>{{ item.name }}</strong></p>
-                            </ng-template>
-                        </ng-select>
+                    <div class="form-group position-relative" (focusout)="supplierInputOut()">
+                        <label class="d-block"><span class="red-label">Supplier</span> <span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search supplier" (input)="getSuppliers($event)" (focus)="supplierInput = true" [(ngModel)]="selectedSupplier">
+                        <div class="custom-dropdown-list" *ngIf="supplierInput">
+                            <ul>
+                                <li *ngFor="let sup of suppliers" (click)="selectSupplier(sup)">
+                                    <strong>{{ sup.name }}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="col-md-12">
             <div class="input-style mb-2">
@@ -68,23 +71,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="input-style mb-2">
-                <div class="select-box">
-                    <div class="form-group position-relative">
-                        <label class="d-block"><span class="red-label">Frequency</span><span class="text-danger">*</span></label>
-                        <select class="ctm-input bg-white" placeholder="Select Frequency" [(ngModel)]="newFixedCost.frequency">
-                            <option value="null">Select Frequency</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Quarterly">Quarterly</option>
-                            <option value="Yearly">Yearly</option>
-                            <option value="Locked">Locked</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
     <div class="row" *ngIf="type == 'edit'">
         <div class="col-md-12">
@@ -102,17 +88,20 @@
         <div class=" col-md-12">
             <div class="input-style mb-2">
                 <div class="select-box">
-                    <div class="form-group">
-                        <label class="d-block"><span class="red-label">Supplier</span><span class="text-danger">*</span></label>
-                        <ng-select [items]="suppliers" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="fixedCost.supplier_id" (search)="getSuppliers($event)">
-                            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                                <p><strong>{{ item.name }}</strong></p>
-                            </ng-template>
-                        </ng-select>
+                    <div class="form-group position-relative" (focusout)="supplierInputOut()">
+                        <label class="d-block"><span class="red-label">Supplier</span> <span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search supplier" (input)="getSuppliers($event)" (focus)="supplierInput = true" [(ngModel)]="selectedSupplier">
+                        <div class="custom-dropdown-list" *ngIf="supplierInput">
+                            <ul>
+                                <li *ngFor="let sup of suppliers" (click)="selectSupplier(sup)">
+                                    <strong>{{ sup.name }}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="col-md-12">
             <div class="input-style mb-2">
@@ -144,23 +133,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="input-style mb-2">
-                <div class="select-box">
-                    <div class="form-group position-relative">
-                        <label class="d-block"><span class="red-label">Frequency</span><span class="text-danger">*</span></label>
-                        <select class="ctm-input bg-white" placeholder="Select Frequency" [(ngModel)]="fixedCost.frequency">
-                            <option value="null">Select Frequency</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Quarterly">Quarterly</option>
-                            <option value="Yearly">Yearly</option>
-                            <option value="Locked">Locked</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 

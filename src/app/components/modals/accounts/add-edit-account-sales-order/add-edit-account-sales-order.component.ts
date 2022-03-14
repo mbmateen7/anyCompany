@@ -1,5 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectConfig } from '@ng-select/ng-select';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/shared/services/accounts.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { PhonebookService } from 'src/app/shared/services/phonebook.service';
@@ -23,11 +27,15 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
     newSalesOrder = {
         work_orders: this.selectedOrders,
         delivery_note: '',
-        total_delivered: '',
+        month: '',
         employee_id: null
     }
-    constructor(private selectConfig: NgSelectConfig, private helper: GlobalHelper, private _account: AccountService, private _phonebook: PhonebookService) {
-        selectConfig.notFoundText = 'Start typing...';
+    orderInput: boolean = false;
+    employeeInput: boolean = false;
+    selectedEmployee = '';
+    searchSubscription: Subscription;
+    currentDate = new Date();
+    constructor(private helper: GlobalHelper, private _account: AccountService, private _phonebook: PhonebookService, private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
@@ -37,14 +45,19 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
 
 
     getEmployees(event = null) {
-        let search = event ? event.term : '';
-        this._phonebook.employeesListing({ search: search }).subscribe(res => {
-            this.employees = res.data.data;
-            this.newSalesOrder.employee_id = res.data.data[0] ? res.data.data[0]?.id : null;
-        })
+        let search = '';
+        if (event) {
+            search = event.target.value;
+        }
+        if (search.length >= 3 || search.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe();
+            this._phonebook.employeesListing({ search: search }).subscribe(res => {
+                this.employees = res.data.data;
+                this.newSalesOrder.employee_id = res.data.data[0] ? res.data.data[0]?.id : null;
+            });
+        }
     }
     selectOrder(order) {
-        console.log(order);
         if (this.selectedOrders.find(x => x.id == order.id)) {
             return;
         }
@@ -53,6 +66,25 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
             number: order.work_number,
             model: order
         })
+    }
+
+    selectEmployee(employee) {
+        this.selectedEmployee = employee.name;
+        this.newSalesOrder.employee_id = employee.id;
+    }
+
+    searchOrder(event) {
+        let search = '';
+        if (event) {
+            search = event.target.value;
+        }
+        if (search.length >= 3 || search.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe();
+            this.searchSubscription = this._account.salesOrdersRodListing({ search: search }).subscribe(res => {
+                this.orders = res.data.data;
+            })
+        }
+
     }
 
     checkSelectedOrder(order) {
@@ -84,6 +116,22 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
 
     removeOrder(index) {
         this.selectedOrders.splice(index, 1);
+    }
+
+    orderInputOut() {
+        setTimeout(() => {
+            this.orderInput = false
+        }, 100);
+    }
+    employeeInputOut() {
+        setTimeout(() => {
+            this.employeeInput = false
+        }, 100);
+    }
+
+    monthValue(event) {
+        this.newSalesOrder.month = this.datePipe.transform(event, 'MMMM, YYYY');
+        console.log(this.newSalesOrder);
     }
 
 }

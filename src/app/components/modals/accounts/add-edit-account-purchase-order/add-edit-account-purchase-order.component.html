@@ -30,13 +30,17 @@
         <div class="col-md-12">
             <div class="input-style mb-2">
                 <div class="select-box">
-                    <div class="form-group">
-                        <label class="d-block"><span class="red-label">Supplier</span><span class="text-danger">*</span></label>
-                        <ng-select [items]="suppliers" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newPurchaseOrder.supplier_id" (search)="getSuppliers($event)">
-                            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                                <p><strong>{{ item.name }} | {{ item.email }}</strong></p>
-                            </ng-template>
-                        </ng-select>
+                    <div class="form-group position-relative" (focusout)="supplierInputOut()">
+                        <label class="d-block"><span class="red-label">Supplier</span> <span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search supplier" (input)="getSuppliers($event)" (focus)="supplierInput = true" [(ngModel)]="selectedSupplier">
+                        <div class="custom-dropdown-list" *ngIf="supplierInput">
+                            <ul>
+                                <li *ngFor="let sup of suppliers" (click)="selectSupplier(sup)">
+                                    <strong>{{ sup.name }}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
                     </div>
                 </div>
             </div>
@@ -45,41 +49,33 @@
         <div class="col-md-12">
             <div class="input-style mb-2">
                 <div class="select-box">
-                    <div class="form-group">
-                        <label for="" class="red-label"><span class="red-label">Work Number</span> </label>
-                        <ng-select [items]="orders" bindLabel="work_number" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newPurchaseOrder.work_order_id" (search)="getOrders($event)">
-                            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                                <p><strong>{{ item.work_number }}</strong> | <strong>Order #</strong>: {{ item.order_number }}</p>
-                            </ng-template>
-                        </ng-select>
+                    <div class="form-group position-relative" (focusout)="orderInputOut()">
+                        <label class="d-block"><span class="red-label">Work Order Number</span><span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search work orders" (input)="getOrders($event)" (focus)="orderInput = true" [(ngModel)]="selectedOrder">
+                        <div class="custom-dropdown-list" *ngIf="orderInput">
+                            <ul>
+                                <li *ngFor="let order of orders" (click)="selectOrder(order)">
+                                    <strong>{{ order.work_number }}</strong> | <strong>Order #</strong>: {{ order.order_number }}
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="search-inputs mb-2">
                 <div class="input-style ">
                     <label class="d-block"><span class="red-label">Date</span> <span class="text-danger"></span></label>
                     <div class="type-pass">
-                        <input type="date" class="ctm-input ctm-input-today-sec" placeholder="Select Date" [(ngModel)]="newPurchaseOrder.due_date">
+                        <input type="text" id="start_date" class="ctm-input" placeholder="Select Date" name="start_date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red'}" [placement]="'top'" (bsValueChange)="dateValue($event)" [bsValue]="currentDate">
                         <div class="icon-eye d-flex align-items-center justify-content-center">
                             <i-feather class="calender" name="calendar"></i-feather>
-                        </div>
-                        <div class="today-date">
-                            <p class="date-m date-m-sec">Today</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="search-inputs mb-2">
-                <div class="input-style ">
-                    <label class="d-block red-label"><span class="red-label">Type</span> <span class="text-danger">*</span></label>
-                    <input type="text" class="ctm-input type-input" placeholder="Type" [(ngModel)]="newPurchaseOrder.type">
-                </div>
-            </div>
-
         </div>
         <div class="col-md-12">
             <div class="search-inputs mb-2">

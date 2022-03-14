@@ -49,7 +49,6 @@ export class AddEditSalesOrderComponent implements OnInit {
     }
 
     updateOrderObj() {
-        console.log(this.order);
         this.updateOrder = {
             id: this.order?.id,
             work_number: this.order?.work_number,
@@ -76,6 +75,9 @@ export class AddEditSalesOrderComponent implements OnInit {
     getCustomerListing() {
         this._phonebook.customerListing().subscribe((res: any) => {
             this.customers = res.data.data
+            if (this.type == 'edit') {
+                this.selectedCustomer = this.order.customer.name
+            }
         })
     }
 
@@ -84,7 +86,6 @@ export class AddEditSalesOrderComponent implements OnInit {
     }
 
     addSalesOrder() {
-        console.log(this.workOrder)
         if (this.validateAddForm()) {
             this._rod.storeWorkOrder(this.workOrder).subscribe(res => {
                 this.helper.toastSuccess(res.message);
@@ -94,7 +95,6 @@ export class AddEditSalesOrderComponent implements OnInit {
     }
 
     updateSalesOrder() {
-        console.log(this.workOrder)
         if (this.validateUpdateForm()) {
             this._rod.updateWorkOrder(this.updateOrder).subscribe(res => {
                 this.helper.toastSuccess(res.message);
@@ -134,11 +134,9 @@ export class AddEditSalesOrderComponent implements OnInit {
 
     removeProduct(index: number) {
         this.selectedProducts.splice(index, 1);
-        console.log(this.selectedProducts, index);
     }
 
     selectCustomer(value) {
-        console.log(value);
 
         if (value == 'new') {
             const modal = this._modal.open(AddEditCustomerComponent, this.modalConfig)
@@ -146,13 +144,17 @@ export class AddEditSalesOrderComponent implements OnInit {
                 console.log(res);
                 if (res.success) {
                     this.customers.push(res.data)
-                    this.workOrder.customer_id = res.data.id;
+                    if (this.type == 'new') {
+                        this.workOrder.customer_id = res.data.id;
+                    } else this.updateOrder.customer_id = res.data.id;
                     this.selectedCustomer = res.data.name;
                 }
                 modal.dismiss();
             })
         } else {
-            this.workOrder.customer_id = value.id
+            if (this.type == 'new') {
+                this.workOrder.customer_id = value.id
+            } else this.updateOrder.customer_id = value.id
             this.selectedCustomer = value.name
         }
         this.customerInputOut();

@@ -10,17 +10,19 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="d-flex modal-items-flex mb-2">
-                <div class="input-style mb-2">
-                    <div class="select-box">
-                        <div class="form-group">
-                            <label for="">Work Order Number</label>
-                            <ng-select [items]="orders" bindLabel="work_number" class="ctm-input bg-white ng-custom-select" bindValue="id" (search)="getOrders($event)" placeholder="H88" (change)="selectOrder($event)">
-                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                                    <p [hidden]="checkSelectedOrder(item)"><strong>{{ item.work_number }}</strong> | <strong>Order #</strong>: {{ item.order_number }}</p>
-                                </ng-template>
-                            </ng-select>
+            <div class="input-style mb-2">
+                <div class="select-box">
+                    <div class="form-group position-relative" (focusout)="orderInputOut()">
+                        <label class="d-block"><span class="red-label">Work Order Number</span><span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search work orders" (input)="searchOrder($event)" (focus)="orderInput = true">
+                        <div class="custom-dropdown-list" *ngIf="orderInput">
+                            <ul>
+                                <li *ngFor="let order of orders" (click)="selectOrder(order)" [hidden]="checkSelectedOrder(order)">
+                                    <strong>{{ order.work_number }}</strong> | <strong>Order #</strong>: {{ order.order_number }}
+                                </li>
+                            </ul>
                         </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
                     </div>
                     <div class="d-flex flex-wrap">
                         <span class="fiels-ctm" *ngFor="let order of selectedOrders;let i= index">
@@ -73,16 +75,21 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-12">
                 <div class="input-style mb-2">
                     <div class="select-box">
-                        <div class="form-group">
-                            <label class="d-block"><span class="red-label">Sales Person</span><span class="text-danger">*</span></label>
-                            <ng-select [items]="employees" bindLabel="name" class="ctm-input bg-white ng-custom-select" bindValue="id" [(ngModel)]="newSalesOrder.employee_id" (search)="getEmployees($event)">
-                                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                                    <p><strong>{{ item.name }}</strong></p>
-                                </ng-template>
-                            </ng-select>
+                        <div class="form-group position-relative" (focusout)="employeeInputOut()">
+                            <label class="d-block"><span class="red-label">Sales Person</span> <span class="text-danger">*</span></label>
+                            <input type="text" class="ctm-input type-input" placeholder="Search sales person" (input)="getEmployees($event)" (focus)="employeeInput = true" [(ngModel)]="selectedEmployee">
+                            <div class="custom-dropdown-list" *ngIf="employeeInput">
+                                <ul>
+                                    <li *ngFor="let emp of employees" (click)="selectEmployee(emp)">
+                                        <strong>{{ emp.name }}</strong> <span *ngIf="emp.role_id">| {{ emp.role.title }}</span> | <strong>{{ emp.email }}</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                            <i-feather class="input-icon" name="search"></i-feather>
                         </div>
                     </div>
                 </div>
@@ -94,9 +101,11 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="input-style input-style-red mb-2">
-                    <label class="d-block"><span class="red-label">Total Delivered</span></label>
-                    <input type="text" class="ctm-input type-input" placeholder="Total Delivered" [(ngModel)]="newSalesOrder.total_delivered">
+                <div class="input-style mr-10">
+                    <div class="type-pass">
+                        <label class="d-block"><span class="red-label">Select Month</span></label>
+                        <input type="text" id="start_date" class="ctm-input" placeholder="Select Month" name="start_date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'MMMM, YYYY', minMode:'month',containerClass:'theme-red'}" [placement]="'top'" (bsValueChange)="monthValue($event)" [bsValue]="currentDate">
+                    </div>
                 </div>
             </div>
         </div>
