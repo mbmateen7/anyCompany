@@ -5,6 +5,7 @@ import { NgSelectConfig } from '@ng-select/ng-select';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/shared/services/accounts.service';
+import { AdministrationService } from 'src/app/shared/services/administration.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { PhonebookService } from 'src/app/shared/services/phonebook.service';
 import { RodService } from 'src/app/shared/services/rod.service';
@@ -28,14 +29,14 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
         work_orders: this.selectedOrders,
         delivery_note: '',
         month: '',
-        employee_id: null
+        user_id: null
     }
     orderInput: boolean = false;
     employeeInput: boolean = false;
     selectedEmployee = '';
     searchSubscription: Subscription;
     currentDate = new Date();
-    constructor(private helper: GlobalHelper, private _account: AccountService, private _phonebook: PhonebookService, private datePipe: DatePipe) {
+    constructor(private helper: GlobalHelper, private _account: AccountService, private _administration: AdministrationService, private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
@@ -51,9 +52,9 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
         }
         if (search.length >= 3 || search.length == 0) {
             if (this.searchSubscription) this.searchSubscription.unsubscribe();
-            this._phonebook.employeesListing({ search: search }).subscribe(res => {
+            this._administration.usersListing({ search: search }).subscribe(res => {
                 this.employees = res.data.data;
-                this.newSalesOrder.employee_id = res.data.data[0] ? res.data.data[0]?.id : null;
+                this.newSalesOrder.user_id = res.data.data[0] ? res.data.data[0]?.id : null;
             });
         }
     }
@@ -70,7 +71,7 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
 
     selectEmployee(employee) {
         this.selectedEmployee = employee.name;
-        this.newSalesOrder.employee_id = employee.id;
+        this.newSalesOrder.user_id = employee.id;
     }
 
     searchOrder(event) {
