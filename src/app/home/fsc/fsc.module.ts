@@ -9,6 +9,7 @@ import { allIcons } from 'angular-feather/icons';
 import { NgbDatepickerModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
         NgbModalModule,
         FormsModule,
         SharedModule,
-        FeatherModule.pick(allIcons)
+        FeatherModule.pick(allIcons),
+        BsDatepickerModule
     ]
 })
 export class FscModule { }

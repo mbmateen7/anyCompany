@@ -42,6 +42,18 @@
                     <div class="input-style ">
                         <label for="">Date</label>
                         <div class="type-pass">
+                            <input type="text" class="ctm-input" placeholder="Select Date" (bsValueChange)="dateChanged($event)" [bsValue]="newOrder.date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red', selectFromOtherMonth: true}">
+                            <div class="icon-eye d-flex align-items-center justify-content-center">
+                                <i-feather class="calender" name="calendar"></i-feather>
+                            </div>
+                            <i-feather name="X" class="clear-filter" (click)="newOrder.date = null" *ngIf="newOrder.date"></i-feather>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="search-inputs mb-2">
+                    <div class="input-style ">
+                        <label for="">Date</label>
+                        <div class="type-pass">
                             <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="newOrder.date" [max]="currentDate">
                             <div class="icon-eye d-flex align-items-center justify-content-center">
                                 <i-feather class="calender" name="calendar"></i-feather>
@@ -51,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-md-6">
                 <div class="input-style mb-2">
@@ -198,13 +210,11 @@
                     <div class="input-style ">
                         <label for="">Date</label>
                         <div class="type-pass">
-                            <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="newOrder.date" [max]="currentDate">
+                            <input type="text" class="ctm-input" placeholder="Select Date" (bsValueChange)="dateChanged($event)" [bsValue]="newOrder.date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red', selectFromOtherMonth: true}">
                             <div class="icon-eye d-flex align-items-center justify-content-center">
                                 <i-feather class="calender" name="calendar"></i-feather>
                             </div>
-                            <div class="today-date cursor-poiter">
-                                <p class="date-m" (click)="setCurrentDate()">Today</p>
-                            </div>
+                            <i-feather name="X" class="clear-filter" (click)="newOrder.date = null" *ngIf="newOrder.date"></i-feather>
                         </div>
                     </div>
                 </div>
@@ -356,13 +366,11 @@
                     <div class="input-style ">
                         <label for="">Date</label>
                         <div class="type-pass">
-                            <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="order.date" [max]="currentDate">
+                            <input type="text" class="ctm-input" placeholder="Select Date" (bsValueChange)="dateChanged($event)" [bsValue]="order.date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red', selectFromOtherMonth: true}">
                             <div class="icon-eye d-flex align-items-center justify-content-center">
                                 <i-feather class="calender" name="calendar"></i-feather>
                             </div>
-                            <div class="today-date cursor-poiter">
-                                <p class="date-m" (click)="setCurrentDate()">Today</p>
-                            </div>
+                            <i-feather name="X" class="clear-filter" (click)="newOrder.date = null" *ngIf="newOrder.date"></i-feather>
                         </div>
                     </div>
                 </div>
@@ -512,13 +520,11 @@
                     <div class="input-style ">
                         <label for="">Date</label>
                         <div class="type-pass">
-                            <input type="date" class="ctm-input ctm-input-today" placeholder="Select date" [(ngModel)]="order.date" [max]="currentDate">
+                            <input type="text" class="ctm-input" placeholder="Select Date" (bsValueChange)="dateChanged($event)" [bsValue]="order.date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red', selectFromOtherMonth: true}">
                             <div class="icon-eye d-flex align-items-center justify-content-center">
                                 <i-feather class="calender" name="calendar"></i-feather>
                             </div>
-                            <div class="today-date cursor-poiter">
-                                <p class="date-m" (click)="setCurrentDate()">Today</p>
-                            </div>
+                            <i-feather name="X" class="clear-filter" (click)="newOrder.date = null" *ngIf="newOrder.date"></i-feather>
                         </div>
                     </div>
                 </div>

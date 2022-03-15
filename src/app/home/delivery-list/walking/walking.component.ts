@@ -1,12 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Subscription } from 'rxjs';
 import { UpdateDeliveryOrderComponent } from 'src/app/components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
 import { DeliveryListService } from 'src/app/shared/services/deliveryList.service';
-
 @Component({
     selector: 'app-walking',
     templateUrl: './walking.component.html',
@@ -16,8 +17,8 @@ export class WalkingComponent implements OnInit {
 
     deliveryListView: number = 1;
     deliveries = [];
-    startDate: NgbDateStruct;
-    endDate: NgbDateStruct;
+    startDate;
+    endDate;
     searchParams = {
         search: '',
         start_date: '',
@@ -38,9 +39,11 @@ export class WalkingComponent implements OnInit {
     };
     searchSubscription: Subscription;
     dateToday = new Date();
-    constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router) { }
+    constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router, private datePipe: DatePipe, private bsLocale: BsLocaleService) {
+    }
 
     ngOnInit(): void {
+        this.bsLocale.use('en-gb');
         this.getDeliveryListing();
     }
 
@@ -141,15 +144,18 @@ export class WalkingComponent implements OnInit {
 
     }
 
-    searchOrder(type) {
+    searchOrder(type, date = null) {
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getDeliveryListing();
         }
-        if (type == 'date' && ((this.startDate && this.endDate) || (!this.startDate && !this.endDate))) {
-            this.searchParams.start_date = this.startDate ? this.startDate.day + '-' + this.startDate.month + '-' + this.startDate.year : null;
-            this.searchParams.end_date = this.endDate ? this.endDate.day + '-' + this.endDate.month + '-' + this.endDate.year : null;
-            this.getDeliveryListing();
-        }
+        setTimeout(() => {
+            console.log(this.startDate, this.endDate)
+            if (type == 'date' && ((this.startDate && this.endDate) || (!this.startDate && !this.endDate))) {
+                this.searchParams.start_date = this.startDate ? this.datePipe.transform(this.startDate, 'YYYY-MM-dd') : null;
+                this.searchParams.end_date = this.endDate ? this.datePipe.transform(this.endDate, 'YYYY-MM-dd') : null;
+                this.getDeliveryListing();
+            }
+        }, 50);
     }
 
     changePage(event) {

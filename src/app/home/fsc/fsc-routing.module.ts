@@ -4,11 +4,6 @@ import { CustomerOrderComponent } from './customer-order/customer-order.componen
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 
 const fscRoutes: Routes = [
-
-    // {
-    //     path: '',
-    //     redirectTo: 'customer-orders',
-    // },
     {
         path: 'customer-orders',
         component: CustomerOrderComponent

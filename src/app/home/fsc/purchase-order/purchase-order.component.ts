@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
@@ -32,7 +33,9 @@ export class PurchaseOrderComponent implements OnInit {
     };
     searchSubscription: Subscription;
     dateToday = new Date();
-    constructor(private _fsc: FscService, private _modal: NgbModal) { }
+    startDate;
+    endDate;
+    constructor(private _fsc: FscService, private _modal: NgbModal, private datePipe: DatePipe) { }
 
     ngOnInit(): void {
         this.getPurchaseListing();
@@ -57,9 +60,14 @@ export class PurchaseOrderComponent implements OnInit {
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getPurchaseListing();
         }
-        if (type == 'date' && this.searchParams.start_date && this.searchParams.end_date) {
-            this.getPurchaseListing();
-        }
+        setTimeout(() => {
+            console.log(this.startDate, this.endDate)
+            if (type == 'date' && ((this.startDate && this.endDate) || (!this.startDate && !this.endDate))) {
+                this.searchParams.start_date = this.startDate ? this.datePipe.transform(this.startDate, 'YYYY-MM-dd') : null;
+                this.searchParams.end_date = this.endDate ? this.datePipe.transform(this.endDate, 'YYYY-MM-dd') : null;
+                this.getPurchaseListing();
+            }
+        }, 50);
     }
 
     editPurchaseOrder(p, i) {

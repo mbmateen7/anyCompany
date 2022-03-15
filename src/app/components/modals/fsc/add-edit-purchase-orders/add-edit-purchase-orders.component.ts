@@ -17,11 +17,11 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
     @Input() order;
     @Input() type;
     @Output() response: EventEmitter<any> = new EventEmitter();
-    currentDate: string = '';
+    currentDate;
     fscType: string = 'Order';
     newOrder = {
         type: 'Order',
-        date: '',
+        date: null,
         order_number: null,
         work_order_id: null,
         product_type: '',
@@ -40,7 +40,6 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.setCurrentDate();
         this.getWorkOrders();
         this.getSuppliers();
     }
@@ -61,16 +60,6 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         });
     }
 
-
-    logOrder() {
-        console.log(this.newOrder);
-
-    }
-
-    setCurrentDate() {
-        this.currentDate = this.newOrder.date = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-        console.log(this.currentDate);
-    }
 
     addPurchaseOrder() {
         if (!this.validateOrder()) {
@@ -196,5 +185,11 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
             this._helper.toastSuccess(res.message);
             this.response.emit({ success: true, data: res.data });
         })
+    }
+
+    dateChanged(value) {
+        if (this.type == 'add') {
+            this.newOrder.date = this.datePipe.transform(value, 'YYYY-MM-dd')
+        } else this.order.date = this.datePipe.transform(value, 'YYYY-MM-dd')
     }
 }

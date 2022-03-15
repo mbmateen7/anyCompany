@@ -37442,3 +37442,7 @@ i-feather.clear-filter {
 .tab-table .tables-roles-main .table .t-body-ctm tr td .inner-cell {
     font-size: 1.2rem;
 }
+
+.list-icons-talbe {
+    justify-content: center;
+}

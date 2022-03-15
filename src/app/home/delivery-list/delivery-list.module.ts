@@ -9,7 +9,7 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
     declarations: [
@@ -23,7 +23,7 @@ import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
         FeatherModule.pick(allIcons),
         SharedModule,
         NgbModule,
-        NgbDatepickerModule
+        BsDatepickerModule.forRoot()
     ]
 })
 export class DeliveryListModule { }

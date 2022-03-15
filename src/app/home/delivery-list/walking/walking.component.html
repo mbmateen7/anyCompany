@@ -18,28 +18,26 @@
                         <i-feather class="search-ctm" name="search"></i-feather>
                     </div>
                     <div class="search-inputs d-flex">
-                        <div class="input-style mr-10">
-
-                            <div class="type-pass">
-                                <input type="text" id="start_date" class="ctm-input" placeholder="From" name="start_date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [(ngModel)]="startDate" (ngModelChange)="searchOrder('date')">
-                                <div class="icon-eye d-flex align-items-center justify-content-center">
-                                    <label for="start_date">
+                        <div class="search-inputs mb-2 mr-10">
+                            <div class="input-style ">
+                                <div class="type-pass">
+                                    <input type="text" id="start_date" class="ctm-input" placeholder="From" name="start_date" (bsValueChange)="searchOrder('date')" [(bsValue)]="startDate" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red', selectFromOtherMonth: true}" [maxDate]="endDate">
+                                    <div class="icon-eye d-flex align-items-center justify-content-center">
                                         <i-feather class="calender" name="calendar"></i-feather>
-                                    </label>
+                                    </div>
+                                    <i-feather name="X" class="clear-filter" (click)="startDate = null;searchOrder('date')" *ngIf="startDate"></i-feather>
                                 </div>
-                                <i-feather name="X" class="clear-filter" (click)="startDate = null;searchOrder('date')" *ngIf="startDate"></i-feather>
                             </div>
                         </div>
-                        <div class="input-style mr-10">
-
-                            <div class="type-pass">
-                                <input type="text" id="end_date" class="ctm-input" placeholder="From" name="end_date" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" [(ngModel)]="endDate" [minDate]="startDate" (ngModelChange)="searchOrder('date')">
-                                <div class="icon-eye d-flex align-items-center justify-content-center">
-                                    <label for="end_date">
+                        <div class="search-inputs mb-2">
+                            <div class="input-style ">
+                                <div class="type-pass">
+                                    <input type="text" id="end_date" class="ctm-input" placeholder="To" name="end_date" (bsValueChange)="searchOrder('date')" [(bsValue)]="endDate" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red', selectFromOtherMonth: true}" [minDate]="startDate">
+                                    <div class="icon-eye d-flex align-items-center justify-content-center">
                                         <i-feather class="calender" name="calendar"></i-feather>
-                                    </label>
+                                    </div>
+                                    <i-feather name="X" class="clear-filter" (click)="endDate = null;searchOrder('date')" *ngIf="endDate"></i-feather>
                                 </div>
-                                <i-feather name="X" class="clear-filter" (click)="endDate = null;searchOrder('date')" *ngIf="endDate"></i-feather>
                             </div>
                         </div>
                     </div>

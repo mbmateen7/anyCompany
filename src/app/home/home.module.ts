@@ -30,7 +30,9 @@ import { AddEditFixedCostComponent } from '../components/modals/accounts/add-edi
 import { ViewProductionScheduleComponent } from '../components/modals/rod/view-production-schedule/view-production-schedule.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ViewCreditCheckDetailsComponent } from '../components/modals/accounts/view-credit-check-details/view-credit-check-details.component';
-
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { enGbLocale } from 'ngx-bootstrap/locale';
+defineLocale('en-gb', enGbLocale);
 @NgModule({
     declarations: [
         HomeComponent,
@@ -63,7 +65,7 @@ import { ViewCreditCheckDetailsComponent } from '../components/modals/accounts/v
         NgbModalModule,
         FeatherModule.pick(allIcons),
         NgSelectModule,
-        BsDatepickerModule
+        BsDatepickerModule.forRoot()
 
     ],
     providers: [DatePipe]

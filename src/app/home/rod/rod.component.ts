@@ -383,8 +383,9 @@ export class RodComponent implements OnInit {
         this.rodListing();
     }
     completeOrder(rod, index) {
-        if (parseInt(rod.progress) < 100 && rod.status != 'Delivered') {
-            this.helper.toastError('Cannot complete order because it is still in production')
+        if (parseInt(rod.progress) < 100 || rod.status != 'Delivered') {
+            this.helper.toastError('Cannot complete order because it is still in production');
+            return;
         }
         let modalData = {
             hold: rod.on_hold,
