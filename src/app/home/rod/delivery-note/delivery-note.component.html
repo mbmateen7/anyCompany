@@ -69,7 +69,7 @@
                                     </tr>
                                     <tr>
                                         <td class="table-data-inner">
-                                            <input class="text-input" type="date" placeholder="26/11/21" [(ngModel)]="deliveryOrder.dispatch_date" [min]="currentDate">
+                                            <input class="text-input" type="date" placeholder="26/11/21" [(ngModel)]="deliveryOrder.dispatch_date">
                                         </td>
 
                                     </tr>
@@ -252,10 +252,10 @@
                         </tr>
                         <tr>
                             <td class="table-data" colspan="5">
-                                <input class="text-input" type="text" placeholder="Name" [(ngModel)]="deliveryOrder.site_contact" name="site_contact">
+                                <input class="text-input" type="text" placeholder="Contact Name" [(ngModel)]="deliveryOrder.site_contact" name="site_contact">
                             </td>
                             <td class="table-data" colspan="5">
-                                <input class="text-input" type="text" placeholder="Phone Number" [(ngModel)]="deliveryOrder.site_number" name="site_number">
+                                <input class="text-input" type="text" placeholder="Contact Phone Number" [(ngModel)]="deliveryOrder.site_number" name="site_number">
                             </td>
                         </tr>
 

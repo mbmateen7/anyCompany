@@ -20,10 +20,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let credit of credits" [hidden]="!credit.checked">
-                            <td style="width: 33.33%;">{{ credit.customer.name }}</td>
-                            <td style="width: 33.33%;">{{ credit.work_number }}</td>
-                            <td style="width: 33.33%;">£{{ credit.sale_order.value ?? 0 }}</td>
+                        <tr *ngFor="let credit of totals">
+                            <td style="width: 33.33%;">{{ credit.name }}</td>
+                            <td style="width: 33.33%;">{{ credit.workNumber }}</td>
+                            <td style="width: 33.33%;">£{{ credit.value }}</td>
 
                         </tr>
                     </tbody>

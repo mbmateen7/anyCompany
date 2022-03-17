@@ -84,4 +84,12 @@ export class RodService {
     bulkStatusUpdate(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.bulkStatusUpdate}`, params);
     }
+
+    uploadProductionSchedule(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.uploadFiles}`, params);
+    }
+
+    removeProductionSchedule(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.removeFile}`, params);
+    }
 }

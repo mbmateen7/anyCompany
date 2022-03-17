@@ -33,6 +33,11 @@ const homeRoutes: Routes = [
         loadChildren: () => import('./fsc/fsc.module').then(m => m.FscModule)
     },
     {
+        path: 'history',
+        component: HomeComponent,
+        loadChildren: () => import('./history/history.module').then(m => m.HistoryModule)
+    },
+    {
         path: 'phonebook',
         component: HomeComponent,
         loadChildren: () => import('./phonebook/phonebook.module').then(m => m.PhonebookModule)

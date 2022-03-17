@@ -46,7 +46,8 @@ export const urls = {
     addDeliveryNote: 'rod/delivery-notes/store',
     updateDeliveryNote: 'rod/delivery-notes/update',
     getDeliveryNotes: 'rod/delivery-notes/listing',
-
+    uploadFiles: 'rod/work-orders/files/store',
+    removeFile: 'rod/work-orders/files/delete',
 
     // Products
     productListing: 'rod/work-orders/products',
@@ -102,5 +103,8 @@ export const urls = {
 
 
     creditCheckListing: 'accounts/credit-check/listing',
-    creditCheckShow: 'accounts/credit-check/show'
+    creditCheckShow: 'accounts/credit-check/show',
+
+    // History
+    historyListing: 'history/listing'
 };

@@ -1,18 +1,38 @@
 <!-- Modal Header -->
 <div class="modal-header">
     <h4 class="modal-title">Production Schedules</h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
 </div>
 
 <!-- Modal body -->
 <div class="modal-body ">
 
-    <div class="row">
-        <div class="col-md-12" *ngFor="let attach of data">
+    <div class="row" *ngIf="type == 'view'">
+        <div class="col-md-12" *ngFor="let attach of data.attachments;let i = index">
             <div class="d-flex justify-content-between border-bottom">
                 <p class="d-inline-flex">{{ attach.name }}</p>
-                <a [href]="attach.location" target="_blank">View</a>
+                <div>
+                    <a [href]="attach.location" target="_blank">View</a>
+                    <i-feather name="trash" class="icon-width ml-3" (click)="deleteAttachment(attach,i)"></i-feather>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row mb-2" *ngIf="type == 'add'">
+        <div class="col-md-12" *ngFor="let attach of attachments;let i=index">
+            <div class="d-flex justify-content-between border-bottom">
+                <p class="d-inline-flex">{{ attach.name }}</p>
+                <i-feather name="trash" class="icon-width" (click)="removeAttachment(i)"></i-feather>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="type == 'add'">
+        <div class="col-md-12 d-flex align-items-center justify-content-center w-100">
+            <label class="discard-btn" for="upload-file" role="button">
+                <i class="fa fa-paperclip"></i> Add Attachments
+            </label>
+            <input type="file" class="d-none" id="upload-file" placeholder="Due Date" (change)="addAttachment($event)" multiple accept="application/pdf, application/vnd.ms-excel, image/*">
         </div>
     </div>
 
@@ -21,6 +41,7 @@
 <!-- Modal footer -->
 <div class="modal-footer ">
     <div class="d-flex align-items-center justify-content-center w-100 ">
-        <a href="javascript:void(0) " class="discard-btn " (click)="cancel()">Close</a>
+        <a href="javascript:void(0) " class="discard-btn" (click)="cancel()">Close</a>
+        <a href="javascript:void(0) " class="discard-btn " (click)="UploadFiles()" *ngIf="type == 'add'">Upload</a>
     </div>
 </div>

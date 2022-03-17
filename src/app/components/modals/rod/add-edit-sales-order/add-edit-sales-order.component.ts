@@ -144,7 +144,7 @@ export class AddEditSalesOrderComponent implements OnInit {
                 console.log(res);
                 if (res.success) {
                     this.customers.push(res.data)
-                    if (this.type == 'new') {
+                    if (this.type == 'add') {
                         this.workOrder.customer_id = res.data.id;
                     } else this.updateOrder.customer_id = res.data.id;
                     this.selectedCustomer = res.data.name;
@@ -152,7 +152,7 @@ export class AddEditSalesOrderComponent implements OnInit {
                 modal.dismiss();
             })
         } else {
-            if (this.type == 'new') {
+            if (this.type == 'add') {
                 this.workOrder.customer_id = value.id
             } else this.updateOrder.customer_id = value.id
             this.selectedCustomer = value.name

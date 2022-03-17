@@ -272,6 +272,9 @@ export class RodComponent implements OnInit {
             if (res.success) {
                 this.router.navigate(['rod/delivery-notes', rod.id]);
             }
+            if (res.data) {
+                this.rods[index] = res.data;
+            }
             timelineModal.dismiss();
             this.modalConfig.windowClass = 'modal-roles';
         });
@@ -279,10 +282,12 @@ export class RodComponent implements OnInit {
     }
 
     bulkStatusUpdate(event) {
-        if (!this.checkBulkStatus()) {
-            this.helper.toastError('Only orders with same status can be updated in bulk.');
-            event.target.value = 'select'
-            return;
+        if (event.target.value != 'On Hold' && event.target.value != 'Off Hold') {
+            if (!this.checkBulkStatus()) {
+                this.helper.toastError('Only orders with same status can be updated in bulk.');
+                event.target.value = 'select'
+                return;
+            }
         }
         if (!this.checkBulkHoldStatus()) {
             this.helper.toastError('Only orders with same status can be updated in bulk.');

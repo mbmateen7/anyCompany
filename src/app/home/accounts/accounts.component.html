@@ -229,7 +229,15 @@
                                                 <p class="inner-cell">{{ sale.work_order.progress }}%</p>
                                             </td>
                                             <td>
-                                                <p class="inner-cell">{{ sale.delivery_note }}</p>
+                                                <div class="inner-cell list-icons-talbe-sec">
+                                                    <a class="icon-anchor-list red" *ngIf="sale.work_order.delivery_notes_count > 1" [routerLink]="['/rod/delivery-notes', sale.work_order.id]">Multiple</a>
+                                                    <a class="icon-anchor-list" *ngIf="sale.work_order.delivery_notes_count == 0">
+                                                        - <i-feather class="icon-width" name="edit-2" [routerLink]="['/rod/delivery-notes', sale.work_order.id]"></i-feather>
+                                                    </a>
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" [routerLink]="['/rod/delivery-notes', sale.work_order.id]" *ngIf="sale.work_order.delivery_notes_count == 1">
+                                                        {{ sale.work_order.delivery_notes[0]?.ticket_no }} <i-feather class="icon-width" name="edit-2"></i-feather>
+                                                    </a>
+                                                </div>
                                             </td>
                                             <td>
                                                 <p class="inner-cell">{{ sale.month }}</p>

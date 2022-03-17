@@ -24,13 +24,14 @@ export class TimelineComponent implements OnInit {
     constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal) { }
 
     ngOnInit(): void {
+        console.log(this.rod);
         this._rod.getTimeline({ work_order_id: this.rod.id, timeline: true }).subscribe(res => {
             this.jobNotes = res.data;
         });
     }
 
     close() {
-        this.response.emit({ success: false });
+        this.response.emit({ success: false, data: this.rod });
     }
 
     viewDeliveryNotes() {
@@ -43,13 +44,25 @@ export class TimelineComponent implements OnInit {
 
     viewProductionSchedule() {
         const productionModal = this._modal.open(ViewProductionScheduleComponent, this.modalConfig);
-        productionModal.componentInstance.data = this.rod.attachments;
+        productionModal.componentInstance.data = this.rod;
+        productionModal.componentInstance.type = 'view';
         productionModal.componentInstance.response.subscribe(res => {
             if (res.success) {
-                // 
+                this.rod = res.data
             }
             productionModal.dismiss();
         });
     }
 
+    addProductionSchedule() {
+        const productionModal = this._modal.open(ViewProductionScheduleComponent, this.modalConfig);
+        productionModal.componentInstance.data = this.rod;
+        productionModal.componentInstance.type = 'add';
+        productionModal.componentInstance.response.subscribe(res => {
+            if (res.success) {
+                this.rod = res.data;
+            }
+            productionModal.dismiss();
+        });
+    }
 }   

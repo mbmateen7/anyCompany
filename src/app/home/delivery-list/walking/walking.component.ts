@@ -125,6 +125,9 @@ export class WalkingComponent implements OnInit {
             if (res.success) {
                 this.router.navigate(['rod/delivery-notes', rod.id]);
             }
+            if (res.data) {
+                this.deliveries[index] = res.data;
+            }
             timelineModal.dismiss();
             this.modalConfig.windowClass = 'modal-roles';
         });

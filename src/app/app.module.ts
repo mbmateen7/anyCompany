@@ -12,8 +12,8 @@ import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx
 
 const NgxUiLoadderConfig: NgxUiLoaderConfig =
 {
-    "bgsColor": "red",
-    "bgsOpacity": 0.5,
+    "bgsColor": "#dc0100",
+    "bgsOpacity": 0.3,
     "bgsPosition": "bottom-right",
     "bgsSize": 60,
     "bgsType": "ball-spin-clockwise",
@@ -39,7 +39,7 @@ const NgxUiLoadderConfig: NgxUiLoaderConfig =
     "textColor": "#FFFFFF",
     "textPosition": "center-center",
     "maxTime": -1,
-    "minTime": 100
+    "minTime": 0
 }
 @NgModule({
     declarations: [
@@ -48,7 +48,7 @@ const NgxUiLoadderConfig: NgxUiLoaderConfig =
     imports: [
         BrowserAnimationsModule,
         NgxUiLoaderModule.forRoot(NgxUiLoadderConfig),
-        NgxUiLoaderHttpModule.forRoot({ 'showForeground': false }),
+        NgxUiLoaderHttpModule.forRoot({ 'showForeground': true }),
         AppRoutingModule,
         HttpClientModule,
         ToastrModule.forRoot(

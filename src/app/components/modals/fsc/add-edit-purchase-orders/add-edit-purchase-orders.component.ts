@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgSelectConfig } from '@ng-select/ng-select';
-import { Observable, of, OperatorFunction } from 'rxjs';
+import { Observable, of, OperatorFunction, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { FscService } from 'src/app/shared/services/fsc.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
@@ -24,40 +24,80 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         date: null,
         order_number: null,
         work_order_id: null,
-        product_type: '',
-        fsc_claim: '',
+        product_type: null,
+        fsc_claim: null,
         quantity: '',
         invoice_value: '',
         supplier_id: undefined,
-        material: '',
+        material: null,
         schedule_ref: ''
     }
     workOrders = [];
     suppliers = [];
-    constructor(private datePipe: DatePipe, private _helper: GlobalHelper, private _fsc: FscService, private _rod: RodService, private selectConfig: NgSelectConfig, private _phonebook: PhonebookService) {
-        selectConfig.notFoundText = 'Start typing...';
+    selectedOrder = {
+        work_number: '',
+        order_number: '',
+    };
+    selectedSupplier = '';
+    workNumberInput: boolean = false;
+    orderNumberInput: boolean = false;
+    supplierInput: boolean = false;
+    searchSubscription: Subscription;
+    constructor(private datePipe: DatePipe, private _helper: GlobalHelper, private _fsc: FscService, private _rod: RodService, private _phonebook: PhonebookService) {
     }
 
-
     ngOnInit(): void {
+        if (this.type == 'edit') {
+            console.log(this.order);
+
+            this.currentDate = new Date(this.order.date);
+            this.selectedSupplier = this.order.supplier?.name;
+            this.selectedOrder.order_number = this.order.order.order_number;
+            this.selectedOrder.work_number = this.order.work_number;
+        }
         this.getWorkOrders();
         this.getSuppliers();
     }
 
     getWorkOrders(event = null) {
-        let search = event ? event.term : '';
-        this._rod.rodListing({ search: search }).subscribe(res => {
-            this.workOrders = res.data.data;
-            this.newOrder.work_order_id = res.data.data[0]?.id;
-        });
+        let search = '';
+        if (event) {
+            search = event.target.value;
+        }
+        if (search.length >= 3 || search.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe();
+            this._rod.rodListing({ search: search }).subscribe(res => {
+                this.workOrders = res.data.data;
+            });
+        }
     }
 
     getSuppliers(event = null) {
-        let search = event ? event.term : '';
-        this._phonebook.supplierListing({ search: search }).subscribe(res => {
-            this.suppliers = res.data.data;
-            this.newOrder.supplier_id = this.suppliers[0]?.id
-        });
+        let search = '';
+        if (event) {
+            search = event.target.value;
+        }
+        if (search.length >= 3 || search.length == 0) {
+            if (this.searchSubscription) this.searchSubscription.unsubscribe();
+            this._phonebook.supplierListing({ search: search }).subscribe(res => {
+                this.suppliers = res.data.data;
+            });
+        }
+    }
+
+    selectOrder(order) {
+        this.selectedOrder.work_number = order.work_number;
+        this.selectedOrder.order_number = order.order_number;
+        if (this.type == 'add') {
+            this.newOrder.work_order_id = order.id;
+        } else this.order.work_order_id = order.id;
+    }
+
+    selectSupplier(supplier) {
+        this.selectedSupplier = supplier.name;
+        if (this.type == 'add') {
+            this.newOrder.supplier_id = supplier.id;
+        } else this.order.supplier_id = supplier.id;
     }
 
 
@@ -191,5 +231,21 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         if (this.type == 'add') {
             this.newOrder.date = this.datePipe.transform(value, 'YYYY-MM-dd')
         } else this.order.date = this.datePipe.transform(value, 'YYYY-MM-dd')
+    }
+
+    orderInputOut() {
+        setTimeout(() => {
+            this.workNumberInput = false
+        }, 100);
+    }
+    workInputOut() {
+        setTimeout(() => {
+            this.orderNumberInput = false
+        }, 100);
+    }
+    supplierInputOut() {
+        setTimeout(() => {
+            this.supplierInput = false
+        }, 100);
     }
 }
