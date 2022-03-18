@@ -3,7 +3,7 @@ export const urls = {
     // Host 
     devUrl: 'http://humphrey.test/api/',
     stagingUrl: 'https://api-humphery.io-devs.cf/api/',
-    awsUrl: 'http://18.217.219.187/api/',
+    awsUrl: 'http://18.217.219.187/backend/api/',
 
     // AUTH
     login: 'auth/login',
@@ -13,8 +13,6 @@ export const urls = {
     resetPassword: 'auth/reset-password',
     setupAccount: 'auth/setup-account',
     skipPasswordUpdate: 'auth/skip-update-password',
-
-
 
     // Administration
     // Users
@@ -59,17 +57,16 @@ export const urls = {
     customerUpdate: 'phonebook/customers/update',
     customerDelete: 'phonebook/customers/delete',
 
-
     supplierListing: 'phonebook/suppliers/listing',
     supplierAdd: 'phonebook/suppliers/store',
     supplierUpdate: 'phonebook/suppliers/update',
     supplierDelete: 'phonebook/suppliers/delete',
 
-
     employeeListing: 'phonebook/employees/listing',
     employeeAdd: 'phonebook/employees/store',
     employeeUpdate: 'phonebook/employees/update',
     employeeDelete: 'phonebook/employees/delete',
+
     // Delivery List
     deliveryListing: 'delivery-list/delivery/listing',
     updateDeliveryListStatus: 'delivery-list/delivery/update-status',
@@ -93,7 +90,6 @@ export const urls = {
     updateSalesOrder: 'accounts/sale-order/update',
     deleteSalesOrder: 'accounts/sale-order/delete',
 
-
     accountsPurchaseOrdersListing: 'accounts/purchase-cost/listing',
     addAccountsPurchaseOrder: 'accounts/purchase-cost/store',
     updateAccountsPurchaseOrderStatus: 'accounts/purchase-cost/update-status',
@@ -104,7 +100,6 @@ export const urls = {
     addFixedCost: 'accounts/fixed-cost/store',
     updateFixedCost: 'accounts/fixed-cost/update',
     deleteFixedCost: 'accounts/fixed-cost/delete',
-
 
     creditCheckListing: 'accounts/credit-check/listing',
     creditCheckShow: 'accounts/credit-check/show',
