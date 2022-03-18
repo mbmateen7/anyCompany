@@ -31,13 +31,21 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
     orderInput: boolean = false;
     selectedOrder = '';
     currentDate = new Date();
+    selectedDate;
     constructor(private _rod: RodService, private _phonebook: PhonebookService, private helper: GlobalHelper, private _account: AccountService, private datePipe: DatePipe) { }
 
     ngOnInit(): void {
+        console.log(this.type);
         this.getOrders();
         this.getSuppliers();
+        if (this.type == 'edit') {
+            this.updateOrderObj()
+        }
     }
-
+    updateOrderObj() {
+        this.selectedDate = new Date(this.salesOrder.due_date);
+        this.selectedOrder = this.salesOrder.order.work_number
+    }
 
     getSuppliers(event = null) {
         let search = '';
@@ -49,6 +57,7 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
             this._phonebook.supplierListing({ search: search }).subscribe(res => {
                 this.suppliers = res.data.data;
                 this.newPurchaseOrder.supplier_id = res.data.data[0] ? res.data.data[0]?.id : null;
+                this.selectedSupplier = this.suppliers.find(x => x.id == this.salesOrder.supplier_id).name;
             })
         }
     }
@@ -79,17 +88,22 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
     }
 
     updateOrder() {
-        // 
+        this._account.updatePurchaseOrder(this.salesOrder).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true, data: res.data });
+        })
     }
 
     selectSupplier(supplier) {
         this.selectedSupplier = supplier.name;
         this.newPurchaseOrder.supplier_id = supplier.id;
+        this.salesOrder.supplier_id = supplier.id;
     }
 
     selectOrder(order) {
         this.selectedOrder = order.work_number;
         this.newPurchaseOrder.work_order_id = order.id;
+        this.salesOrder.work_order_id = order.id;
     }
 
     supplierInputOut() {
@@ -106,6 +120,7 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
 
     dateValue(event) {
         this.newPurchaseOrder.due_date = this.datePipe.transform(event, 'YYYY-MM-dd');
+        this.salesOrder.due_date = this.datePipe.transform(event, 'YYYY-MM-dd');
     }
 
 }

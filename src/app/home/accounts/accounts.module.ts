@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { FixedCostComponent } from './fixed-cost/fixed-cost.component';
 import { CreditCheckComponent } from './credit-check/credit-check.component';
 import { FormsModule } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
         AccountsRoutingModule,
         FormsModule,
         FeatherModule.pick(allIcons),
-        SharedModule
+        SharedModule,
+        BsDatepickerModule
     ]
 })
 export class AccountsModule { }

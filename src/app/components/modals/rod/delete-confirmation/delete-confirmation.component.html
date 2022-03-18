@@ -43,6 +43,16 @@
             <h5>You are about to permanently delete a fixed cost, If you are unsure speak to your managers.</h5>
         </div>
     </div>
+    <div class="row" *ngIf="type == 'accountSaleOrder'">
+        <div class="col-md-12">
+            <h5>You are about to permanently delete a sale order, If you are unsure speak to your managers.</h5>
+        </div>
+    </div>
+    <div class="row" *ngIf="type == 'accountPurchaseOrder'">
+        <div class="col-md-12">
+            <h5>You are about to permanently delete a purchase order, If you are unsure speak to your managers.</h5>
+        </div>
+    </div>
 </div>
 
 <!-- Modal footer -->
@@ -54,5 +64,7 @@
         <a href="javascript:void(0) " class="add-btn " *ngIf="type=='supplier'" (click)="deleteSupplier()">Confirm</a>
         <a href="javascript:void(0) " class="add-btn " *ngIf="type=='employee'" (click)="deleteEmployee()">Confirm</a>
         <a href="javascript:void(0) " class="add-btn " *ngIf="type=='fixedCost'" (click)="deleteFixedCost()">Confirm</a>
+        <a href="javascript:void(0) " class="add-btn " *ngIf="type=='accountSaleOrder'" (click)="deleteAccountSaleOrder()">Confirm</a>
+        <a href="javascript:void(0) " class="add-btn " *ngIf="type=='accountPurchaseOrder'" (click)="accountPurchaseOrder()">Confirm</a>
     </div>
 </div>

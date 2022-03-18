@@ -14,3 +14,8 @@
     height: 18px;
     width: 18px;
 }
+
+
+a.view-anchor.red {
+    color: #DC0100 !important;
+}

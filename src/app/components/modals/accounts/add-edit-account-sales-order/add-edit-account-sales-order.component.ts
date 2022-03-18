@@ -1,14 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { NgSelectConfig } from '@ng-select/ng-select';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/shared/services/accounts.service';
 import { AdministrationService } from 'src/app/shared/services/administration.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
-import { PhonebookService } from 'src/app/shared/services/phonebook.service';
-import { RodService } from 'src/app/shared/services/rod.service';
 
 @Component({
     selector: 'app-add-edit-account-sales-order',
@@ -31,17 +26,28 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
         month: '',
         user_id: null
     }
+    selectedOrder = '';
     orderInput: boolean = false;
     employeeInput: boolean = false;
     selectedEmployee = '';
     searchSubscription: Subscription;
     currentDate = new Date();
+    selectedDate;
     constructor(private helper: GlobalHelper, private _account: AccountService, private _administration: AdministrationService, private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
         this.getOrders();
         this.getEmployees();
+        if (this.type == 'edit') {
+            this.mapUpdateObj()
+        }
+
+    }
+
+    mapUpdateObj() {
+        this.selectedDate = new Date(this.salesOrder.month);
+        this.selectedOrder = this.salesOrder.work_order.work_number;
     }
 
 
@@ -55,10 +61,16 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
             this._administration.usersListing({ search: search }).subscribe(res => {
                 this.employees = res.data.data;
                 this.newSalesOrder.user_id = res.data.data[0] ? res.data.data[0]?.id : null;
+                this.selectedEmployee = this.employees.find(x => x.id == this.salesOrder.user_id).name
             });
         }
     }
     selectOrder(order) {
+        if (this.type == 'edit') {
+            this.selectedOrder = order.work_number;
+            this.salesOrder.work_order_id = order.id;
+            return;
+        }
         if (this.selectedOrders.find(x => x.id == order.id)) {
             return;
         }
@@ -112,7 +124,11 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
     }
 
     updateOrder() {
-        // 
+        console.log(this.salesOrder)
+        this._account.updateSaleOrder(this.salesOrder).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true, data: res.data });
+        })
     }
 
     removeOrder(index) {
@@ -132,7 +148,7 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
 
     monthValue(event) {
         this.newSalesOrder.month = this.datePipe.transform(event, 'MMMM, YYYY');
-        console.log(this.newSalesOrder);
+        this.salesOrder.month = this.datePipe.transform(event, 'MMMM, YYYY');
     }
 
 }

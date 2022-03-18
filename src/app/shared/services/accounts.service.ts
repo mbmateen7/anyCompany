@@ -30,10 +30,17 @@ export class AccountService {
         return this.http.post<any>(`${environment.apiUrl + urls.salesOrdersListing}`, params);
     }
 
+    deleteSaleOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.deleteSalesOrder}`, params);
+    }
+
     addSalesOrder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.addSalesOrder}`, params);
     }
 
+    updateSaleOrderStatus(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateSalesOrderStatus}`, params);
+    }
     updateSaleOrder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.updateSalesOrder}`, params);
     }
@@ -65,7 +72,13 @@ export class AccountService {
     addPurchaseOrder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.addAccountsPurchaseOrder}`, params);
     }
+    updatePurchaseOrderStatus(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateAccountsPurchaseOrderStatus}`, params);
+    }
     updatePurchaseOrder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.updateAccountsPurchaseOrder}`, params);
+    }
+    deletePurchaseOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.deletePurchaseOrder}`, params);
     }
 }

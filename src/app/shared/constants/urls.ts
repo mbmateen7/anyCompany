@@ -3,6 +3,7 @@ export const urls = {
     // Host 
     devUrl: 'http://humphrey.test/api/',
     stagingUrl: 'https://api-humphery.io-devs.cf/api/',
+    awsUrl: 'https://18.217.219.187/api/',
 
     // AUTH
     login: 'auth/login',
@@ -88,13 +89,16 @@ export const urls = {
     salesOrdersRodListing: 'accounts/sale-order/work-order-listing',
     salesOrdersListing: 'accounts/sale-order/listing',
     addSalesOrder: 'accounts/sale-order/store',
+    updateSalesOrderStatus: 'accounts/sale-order/update-status',
     updateSalesOrder: 'accounts/sale-order/update',
     deleteSalesOrder: 'accounts/sale-order/delete',
 
 
     accountsPurchaseOrdersListing: 'accounts/purchase-cost/listing',
     addAccountsPurchaseOrder: 'accounts/purchase-cost/store',
+    updateAccountsPurchaseOrderStatus: 'accounts/purchase-cost/update-status',
     updateAccountsPurchaseOrder: 'accounts/purchase-cost/update',
+    deletePurchaseOrder: 'accounts/purchase-cost/delete',
 
     fixedCostListing: 'accounts/fixed-cost/listing',
     addFixedCost: 'accounts/fixed-cost/store',

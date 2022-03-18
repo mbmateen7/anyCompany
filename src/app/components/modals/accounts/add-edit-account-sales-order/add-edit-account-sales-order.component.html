@@ -6,8 +6,7 @@
 </div>
 
 <!-- Modal body -->
-<div class="modal-body">
-
+<div class="modal-body" *ngIf="type=='add'">
     <div class="row">
         <div class="col-md-12">
             <div class="input-style mb-2">
@@ -110,9 +109,76 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal-body" *ngIf="type=='edit'">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-style mb-2">
+                <div class="select-box">
+                    <div class="form-group position-relative" (focusout)="orderInputOut()">
+                        <label class="d-block"><span class="red-label">Work Order Number</span><span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search work orders" (input)="searchOrder($event)" (focus)="orderInput = true" [(ngModel)]="selectedOrder">
+                        <div class="custom-dropdown-list" *ngIf="orderInput">
+                            <ul>
+                                <li *ngFor="let order of orders" (click)="selectOrder(order)" [hidden]="checkSelectedOrder(order)">
+                                    <strong>{{ order.work_number }}</strong> | <strong>Order #</strong>: {{ order.order_number }}
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="search-inputs mb-2">
+                <div class="input-style ">
+                    <label class="d-block">Value <span class="red-label">{{ salesOrder.work_order.work_number }}</span><span class="text-danger">*</span></label>
+                    <div class="type-pass">
+                        <input type="text" class="ctm-input" placeholder="" [(ngModel)]="salesOrder.value">
+                        <div class="icon-eye d-flex align-items-center justify-content-center">
+                            <img src="assets/img/ipnut-pound.png" alt="pound">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-
+        <div class="col-md-12">
+            <div class="input-style mb-2">
+                <div class="select-box">
+                    <div class="form-group position-relative" (focusout)="employeeInputOut()">
+                        <label class="d-block"><span class="red-label">Sales Person</span> <span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search sales person" (input)="getEmployees($event)" (focus)="employeeInput = true" [(ngModel)]="selectedEmployee">
+                        <div class="custom-dropdown-list" *ngIf="employeeInput">
+                            <ul>
+                                <li *ngFor="let emp of employees" (click)="selectEmployee(emp)">
+                                    <strong>{{ emp.name }}</strong> <span *ngIf="emp.role_id">| {{ emp.role.title }}</span> | <strong>{{ emp.email }}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-style input-style-red mb-2">
+                <label class="d-block"><span class="red-label">Notes</span></label>
+                <input type="text" class="ctm-input type-input" placeholder="Additional Notes" [(ngModel)]="salesOrder.delivery_note">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-style mr-10">
+                <div class="type-pass">
+                    <label class="d-block"><span class="red-label">Select Month</span></label>
+                    <input type="text" id="start_date" class="ctm-input" placeholder="Select Month" name="start_date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'MMMM, YYYY', minMode:'month',containerClass:'theme-red'}" [placement]="'top'" (bsValueChange)="monthValue($event)" [bsValue]="selectedDate">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal footer -->

@@ -12,7 +12,7 @@
             <div class="d-flex justify-content-between border-bottom">
                 <p class="d-inline-flex">{{ attach.name }}</p>
                 <div>
-                    <a [href]="attach.location" target="_blank">View</a>
+                    <a [href]="attach.location" target="_blank" class="view-anchor red">View</a>
                     <i-feather name="trash" class="icon-width ml-3" (click)="deleteAttachment(attach,i)"></i-feather>
                 </div>
             </div>

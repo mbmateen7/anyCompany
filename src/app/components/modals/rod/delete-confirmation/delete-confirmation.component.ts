@@ -64,5 +64,18 @@ export class DeleteConfirmationComponent implements OnInit {
             this.response.emit({ success: true });
         })
     }
+    deleteAccountSaleOrder() {
+        this._account.deleteSaleOrder({ id: this.data.id }).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true });
+        })
+    }
+
+    accountPurchaseOrder() {
+        this._account.deletePurchaseOrder({ id: this.data.id }).subscribe(res => {
+            this.helper.toastSuccess(res.message);
+            this.response.emit({ success: true });
+        })
+    }
 
 }

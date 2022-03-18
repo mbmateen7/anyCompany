@@ -1,13 +1,14 @@
 <!-- Modal Header -->
 <div class="modal-header">
-    <h4 class="modal-title">ADD PURCHASE ORDER</h4>
+    <h4 class="modal-title" *ngIf="type=='add'">ADD PURCHASE ORDER</h4>
+    <h4 class="modal-title" *ngIf="type=='edit'">UPDATE PURCHASE ORDER</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 
 <!-- Modal body -->
 <div class="modal-body">
 
-    <div class="row">
+    <div class="row" *ngIf="type=='add'">
 
         <div class="col-md-6">
             <div class="search-inputs mb-2">
@@ -87,6 +88,86 @@
 
         </div>
     </div>
+    <div class="row" *ngIf="type=='edit'">
+
+        <div class="col-md-6">
+            <div class="search-inputs mb-2">
+                <div class="input-style ">
+                    <label class="d-block red-label"><span class="red-label">Order Number#</span> <span class="text-danger">*</span></label>
+                    <input type="text" class="ctm-input type-input" placeholder="add order number" [(ngModel)]="salesOrder.order_number">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="search-inputs mb-2">
+                <div class="input-style ">
+                    <label class="d-block red-label"><span class="red-label">Value</span> <span class="text-danger">*</span></label>
+                    <input type="text" class="ctm-input type-input" placeholder="0" [(ngModel)]="salesOrder.value">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="input-style mb-2">
+                <div class="select-box">
+                    <div class="form-group position-relative" (focusout)="supplierInputOut()">
+                        <label class="d-block"><span class="red-label">Supplier</span> <span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search supplier" (input)="getSuppliers($event)" (focus)="supplierInput = true" [(ngModel)]="selectedSupplier">
+                        <div class="custom-dropdown-list" *ngIf="supplierInput">
+                            <ul>
+                                <li *ngFor="let sup of suppliers" (click)="selectSupplier(sup)">
+                                    <strong>{{ sup.name }}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-style mb-2">
+                <div class="select-box">
+                    <div class="form-group position-relative" (focusout)="orderInputOut()">
+                        <label class="d-block"><span class="red-label">Work Order Number</span><span class="text-danger">*</span></label>
+                        <input type="text" class="ctm-input type-input" placeholder="Search work orders" (input)="getOrders($event)" (focus)="orderInput = true" [(ngModel)]="selectedOrder">
+                        <div class="custom-dropdown-list" *ngIf="orderInput">
+                            <ul>
+                                <li *ngFor="let order of orders" (click)="selectOrder(order)">
+                                    <strong>{{ order.work_number }}</strong> | <strong>Order #</strong>: {{ order.order_number }}
+                                </li>
+                            </ul>
+                        </div>
+                        <i-feather class="input-icon" name="search"></i-feather>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="search-inputs mb-2">
+                <div class="input-style ">
+                    <label class="d-block"><span class="red-label">Date</span> <span class="text-danger"></span></label>
+                    <div class="type-pass">
+                        <input type="text" id="start_date" class="ctm-input" placeholder="Select Date" name="start_date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MMM-YYYY',containerClass:'theme-red'}" [placement]="'top'" (bsValueChange)="dateValue($event)" [bsValue]="selectedDate">
+                        <div class="icon-eye d-flex align-items-center justify-content-center">
+                            <i-feather class="calender" name="calendar"></i-feather>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="search-inputs mb-2">
+                <div class="input-style ">
+                    <label class="d-block red-label"><span class="red-label">Comments</span></label>
+                    <input type="text" class="ctm-input type-input" placeholder="Note" [(ngModel)]="salesOrder.note">
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 
@@ -96,6 +177,7 @@
 <div class="modal-footer">
     <div class="d-flex align-items-center justify-content-center w-100">
         <a href="javascript:void(0)" class="discard-btn" (click)="cancel()">Discard</a>
-        <a href="javascript:void(0)" class="add-btn" (click)="addOrder()">Save</a>
+        <a href="javascript:void(0)" class="add-btn" *ngIf="type=='add'" (click)="addOrder()">Save</a>
+        <a href="javascript:void(0)" class="add-btn" *ngIf="type=='edit'" (click)="updateOrder()">Update</a>
     </div>
 </div>

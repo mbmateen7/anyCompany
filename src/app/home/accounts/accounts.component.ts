@@ -1,8 +1,12 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditAccountPurchaseOrderComponent } from 'src/app/components/modals/accounts/add-edit-account-purchase-order/add-edit-account-purchase-order.component';
 import { AddEditAccountSalesOrderComponent } from 'src/app/components/modals/accounts/add-edit-account-sales-order/add-edit-account-sales-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
+import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delete-confirmation/delete-confirmation.component';
+import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
 import { AccountService } from 'src/app/shared/services/accounts.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 
@@ -20,7 +24,8 @@ export class AccountsComponent implements OnInit {
     searchParams = {
         search: '',
         page_size: 10,
-        page: 1
+        page: 1,
+        month: '',
     }
     totalPages = 1;
     pageFrom = 1;
@@ -34,7 +39,10 @@ export class AccountsComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles Fixed-cost-modal"
     };
-    constructor(private _account: AccountService, private _modal: NgbModal, private helper: GlobalHelper) { }
+    accountsMonth = new Date();
+    constructor(private _account: AccountService, private _modal: NgbModal, private helper: GlobalHelper, private datePipe: DatePipe, private router: Router) {
+        this.searchParams.month = this.datePipe.transform(this.accountsMonth, 'YYYY-MM');
+    }
 
     ngOnInit(): void {
         this.getAccountStats()
@@ -42,7 +50,7 @@ export class AccountsComponent implements OnInit {
     }
 
     getAccountStats() {
-        this._account.accountStats().subscribe(res => {
+        this._account.accountStats({ month: this.searchParams.month }).subscribe(res => {
             this.account = res.data;
         });
     }
@@ -84,7 +92,7 @@ export class AccountsComponent implements OnInit {
     }
 
     markChecked(purchase, index) {
-        this._account.updatePurchaseOrder({ id: purchase.id }).subscribe(res => {
+        this._account.updatePurchaseOrderStatus({ id: purchase.id }).subscribe(res => {
             this.helper.toastSuccess(res.message);
             this.purchaseOrders[index] = res.data;
         })
@@ -93,7 +101,8 @@ export class AccountsComponent implements OnInit {
         this.searchParams = {
             search: '',
             page_size: 10,
-            page: 1
+            page: 1,
+            month: this.searchParams.month
         }
         this.totalPages = 1
     }
@@ -137,6 +146,7 @@ export class AccountsComponent implements OnInit {
         salesModal.componentInstance.type = 'add';
         salesModal.componentInstance.response.subscribe(res => {
             if (res.success) {
+                this.getAccountStats();
                 this.getListing();
             }
             salesModal.dismiss();
@@ -147,10 +157,11 @@ export class AccountsComponent implements OnInit {
     editSalesOrder(order, index) {
         const salesModal = this._modal.open(AddEditAccountSalesOrderComponent, this.modalConfig);
         salesModal.componentInstance.type = 'edit';
-        salesModal.componentInstance.order = order;
+        salesModal.componentInstance.salesOrder = { ...order };
         salesModal.componentInstance.response.subscribe(res => {
             if (res.success) {
-                this.salesOrder[index] = res.data;
+                this.getAccountStats();
+                this.getListing();
             }
             salesModal.dismiss();
         });
@@ -162,6 +173,7 @@ export class AccountsComponent implements OnInit {
         purchaseModal.componentInstance.type = 'add';
         purchaseModal.componentInstance.response.subscribe(res => {
             if (res.success) {
+                this.getAccountStats();
                 this.getListing();
             }
             purchaseModal.dismiss();
@@ -172,15 +184,18 @@ export class AccountsComponent implements OnInit {
     editPurchaseOrder(order, index) {
         const purchaseModal = this._modal.open(AddEditAccountPurchaseOrderComponent, this.modalConfig);
         purchaseModal.componentInstance.type = 'edit';
-        purchaseModal.componentInstance.order = order;
+        purchaseModal.componentInstance.salesOrder = order;
         purchaseModal.componentInstance.response.subscribe(res => {
             if (res.success) {
-                this.purchaseOrders[index] = res.data;
+                this.getAccountStats();
+                this.getListing();
             }
             purchaseModal.dismiss();
         });
 
     }
+
+
 
     addJobNote(orderId, index) {
         this.modalConfig.windowClass = "modal-roles job-notes-modal"
@@ -196,10 +211,56 @@ export class AccountsComponent implements OnInit {
     }
 
     updateSaleStatus(id, index) {
-        this._account.updateSaleOrder({ id: id }).subscribe(res => {
+        this._account.updateSaleOrderStatus({ id: id }).subscribe(res => {
             this.salesOrder[index] = res.data;
             this.helper.toastSuccess(res.message);
         });
     }
 
+    monthValue(event) {
+        this.searchParams.month = this.datePipe.transform(event, 'YYYY-MM')
+        this.getAccountStats();
+        this.getListing();
+
+    }
+
+    viewTimeline(sale, index) {
+        console.log(sale.work_order)
+        this.modalConfig.windowClass = 'modal-roles timeline';
+        const timelineModal = this._modal.open(TimelineComponent, this.modalConfig);
+        timelineModal.componentInstance.rod = sale.work_order;
+        timelineModal.componentInstance.response.subscribe(res => {
+            if (res.success) {
+                this.router.navigate(['/rod/delivery-notes', sale.work_order_id]);
+            }
+            timelineModal.dismiss();
+            this.modalConfig.windowClass = 'modal-roles';
+        });
+
+    }
+
+    deleteOrder(sale, i) {
+        const statusModal = this._modal.open(DeleteConfirmationComponent, this.modalConfig);
+        statusModal.componentInstance.data = sale;
+        statusModal.componentInstance.type = 'accountSaleOrder';
+        statusModal.componentInstance.response.subscribe(res => {
+            if (res.success) {
+                this.getAccountStats();
+                this.getListing();
+            }
+            statusModal.dismiss();
+        });
+    }
+    deletePurchaseOrder(purchase, i) {
+        const statusModal = this._modal.open(DeleteConfirmationComponent, this.modalConfig);
+        statusModal.componentInstance.data = purchase;
+        statusModal.componentInstance.type = 'accountPurchaseOrder';
+        statusModal.componentInstance.response.subscribe(res => {
+            if (res.success) {
+                this.getAccountStats();
+                this.getListing();
+            }
+            statusModal.dismiss();
+        });
+    }
 }

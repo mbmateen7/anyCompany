@@ -282,7 +282,7 @@ export class RodComponent implements OnInit {
     }
 
     bulkStatusUpdate(event) {
-        if (event.target.value != 'On Hold' && event.target.value != 'Off Hold') {
+        if (event.target.value != 'Off Hold') {
             if (!this.checkBulkStatus()) {
                 this.helper.toastError('Only orders with same status can be updated in bulk.');
                 event.target.value = 'select'

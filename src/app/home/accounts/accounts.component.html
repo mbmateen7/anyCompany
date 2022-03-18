@@ -9,16 +9,7 @@
                 <div class="input-style mr-10">
 
                     <div class="type-pass">
-                        <input type="text" class="ctm-input" placeholder="From">
-                        <div class="icon-eye d-flex align-items-center justify-content-center">
-                            <i-feather class="calender" name="calendar"></i-feather>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-style">
-
-                    <div class="type-pass">
-                        <input type="text" class="ctm-input" placeholder="To">
+                        <input type="text" id="start_date" class="ctm-input" placeholder="Select Month" name="start_date" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'MMMM, YYYY', minMode:'month',containerClass:'theme-red'}" (bsValueChange)="monthValue($event)" [bsValue]="accountsMonth">
                         <div class="icon-eye d-flex align-items-center justify-content-center">
                             <i-feather class="calender" name="calendar"></i-feather>
                         </div>
@@ -155,8 +146,6 @@
                     <a class="credit-check" href="javascript:void(0)">
                         <i-feather class="download" name="download"></i-feather> Download Data
                     </a>
-                    <a class="credit-check gray-btn" href="javascript:void(0)">
-                        To Month</a>
                 </div>
                 <div class="tab-content">
 
@@ -202,6 +191,9 @@
                                             <th>
                                                 <p class="inner-cell">Invoiced in full<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
+                                            <th>
+                                                <p class="inner-cell">Actions<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="t-body-ctm">
@@ -240,7 +232,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="inner-cell">{{ sale.month }}</p>
+                                                <p class="inner-cell">{{ sale.month | date: 'MMMM, YYYY' }}</p>
                                             </td>
                                             <td>
                                                 <div class="inner-cell view-anchor-tooltip">
@@ -274,6 +266,22 @@
                                                     </label>
                                                 </div>
                                             </td>
+                                            <td>
+                                                <div class="inner-cell list-icons-talbe">
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" [routerLink]="['/rod/delivery-notes', sale.work_order_id]">
+                                                        <i-feather class="icon-width" name="book"></i-feather>
+                                                    </a>
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(sale,i)">
+                                                        <i-feather class="icon-width" name="trending-up"></i-feather>
+                                                    </a>
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(sale,i)">
+                                                        <i-feather class="icon-width" name="edit-3"></i-feather>
+                                                    </a>
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="deleteOrder(sale,i)">
+                                                        <i-feather class="icon-width" name="trash"></i-feather>
+                                                    </a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -303,6 +311,9 @@
                                             </th>
                                             <th>
                                                 <p class="inner-cell">Comments<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
+                                                <p class="inner-cell">Actions<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                         </tr>
                                     </thead>
@@ -340,6 +351,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <a class="icon-anchor-list" href="javascript:void(0)" (click)="editPurchaseOrder(purchase,i)">
+                                                    <i-feather class="icon-width" name="edit-3"></i-feather>
+                                                </a>
+                                                <a class="icon-anchor-list" href="javascript:void(0)" (click)="deletePurchaseOrder(purchase,i)">
+                                                    <i-feather class="icon-width" name="trash"></i-feather>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>
