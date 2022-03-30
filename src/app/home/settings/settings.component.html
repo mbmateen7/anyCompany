@@ -1,4 +1,4 @@
-<ul class="breadcrumb">
+<ul class="breadcrumb" style="margin: 3rem 0;">
     <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">SETTING</a></li>
     <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Profile</a></li>
 </ul>
@@ -8,65 +8,15 @@
         <div class="pro-left-box-main">
             <div class="profile-left-box">
                 <div class="profile-img">
-                    <img class="img-fluid" src="assets/img/profile-main-lagre.png" alt="pro-pics">
-                    <div class="camera-box">
-                        <img src="assets/img/camera.svg" alt="camera">
+                    <div class="image-box">
+                        <img class="img-fluid" [src]="url" alt="pro-pics">
                     </div>
-                </div>
-                <div class="d-flex profile-images-box">
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-1.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-2.svg" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-3.svg" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-4.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-5.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-6.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-7.svg" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-8.svg" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-9.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-10.svg" class="img-fluid" alt="img">
-                    </a>
-
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-11.svg" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-12.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-13.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-14.png" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-15.svg" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-16.svg" class="img-fluid" alt="img">
-                    </a>
-                    <a class="hover-images-flex" href="javascript:void(0)">
-                        <img src="assets/img/pro-17.svg" class="img-fluid" alt="img">
-                    </a>
-
+                    <label for="profile-image">
+                        <div class="camera-box">
+                            <i class="fa fa-camera"></i>
+                            <input type="file" class="d-none" id="profile-image" (change)="selectFile($event)">
+                        </div>
+                    </label>
                 </div>
                 <div class="profile-input-section">
                     <div class="input-style  mb-2">

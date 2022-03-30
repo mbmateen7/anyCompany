@@ -89,7 +89,7 @@
                 <div class="dropdown drop-bottom ">
                     <button class="custom-btn dropdown-toggle dropdown-toggle-add gothic-normel p-list-place feedbackName" type="button" id="subject" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <div class="img-log-out">
-                            <img class="img-fluid" src="assets/img/drop-img.png" alt="img">
+                            <img class="img-fluid" [src]="user.profile_picture" alt="img">
                         </div> {{ user.name }}
                     </button>
                     <div class="dropdown-menu contc p-0  " aria-labelledby="dropdownMenuButton">

@@ -162,14 +162,6 @@ export class DashboardComponent implements OnInit {
                 plugins: {
                     legend: {
                         display: false,
-                        // position: 'left',
-                        // align: 'center',
-                        // labels: {
-                        //     boxWidth: 10,
-                        //     boxHeight: 10,
-                        //     usePointStyle: true,
-                        //     pointStyle: 'circle',
-                        // }
                     },
                     title: {
                         display: false,

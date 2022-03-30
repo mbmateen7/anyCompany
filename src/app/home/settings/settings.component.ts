@@ -17,9 +17,12 @@ export class SettingsComponent implements OnInit {
     }
     updateUserObj = {
         name: '',
-        email: ''
+        email: '',
     }
+    url;
     user: any;
+    formData = new FormData();
+
     constructor(private helper: GlobalHelper, private _setting: SettingsService, private _auth: AuthService) {
         this.user = JSON.parse(localStorage.getItem('userObj'));
         this._auth.currentUser.subscribe(res => {
@@ -27,6 +30,7 @@ export class SettingsComponent implements OnInit {
                 this.user = res;
                 this.updateUserObj.name = res.name;
                 this.updateUserObj.email = res.email;
+                this.url = res.profile_picture;
             }
         })
     }
@@ -46,6 +50,20 @@ export class SettingsComponent implements OnInit {
                 password_confirmation: ''
             }
         })
+    }
+
+    selectFile(event) {
+        const element = event.target.files[0];
+        this.formData.set('profile_picture', element, element.name);
+        if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+
+            reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+            reader.onload = (event) => { // called once readAsDataURL is completed
+                this.url = event.target.result;
+            }
+        }
     }
 
     validatePasswordObj() {
@@ -68,7 +86,9 @@ export class SettingsComponent implements OnInit {
         if (!this.validateUserObj()) {
             return;
         }
-        this._setting.updateUser(this.updateUserObj).subscribe(res => {
+        this.formData.set('email', this.updateUserObj.email);
+        this.formData.set('name', this.updateUserObj.name);
+        this._setting.updateUser(this.formData).subscribe(res => {
             this.helper.toastSuccess(res.message);
             this._auth.updateUserData(res.data);
         });
