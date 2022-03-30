@@ -18,21 +18,21 @@ export class HomeComponent implements OnInit {
 
     redirectToAllowedModule() {
         if (this._auth.checkPermissions('dashboard', 'read')) {
-            this.router.navigate(['/dashboard']);
+            this.router.navigateByUrl('/dashboard');
         } else if (this._auth.checkPermissions('administration', 'read')) {
-            this.router.navigate(['/administration/users']);
+            this.router.navigateByUrl('/administration/users');
         } else if (this._auth.checkPermissions('delivery-list', 'read')) {
-            this.router.navigate(['/delivery-list/delivery']);
+            this.router.navigateByUrl('/delivery-list/delivery');
         } else if (this._auth.checkPermissions('fsc', 'read')) {
-            this.router.navigate(['/fsc/customer-orders']);
+            this.router.navigateByUrl('/fsc/customer-orders');
         } else if (this._auth.checkPermissions('rod', 'read')) {
-            this.router.navigate(['/rod']);
+            this.router.navigateByUrl('/rod');
         } else if (this._auth.checkPermissions('history', 'read')) {
-            this.router.navigate(['/history']);
+            this.router.navigateByUrl('/history');
         } else if (this._auth.checkPermissions('phonebook', 'read')) {
-            this.router.navigate(['/phonebook/customers']);
+            this.router.navigateByUrl('/phonebook/customers');
         } else if (this._auth.checkPermissions('accounts', 'read')) {
-            this.router.navigate(['/accounts']);
+            this.router.navigateByUrl('/accounts');
         }
     }
 }
