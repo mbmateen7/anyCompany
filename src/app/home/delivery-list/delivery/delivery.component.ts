@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { UpdateDeliveryOrderComponent } from 'src/app/components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { DeliveryListService } from 'src/app/shared/services/deliveryList.service';
 
 @Component({
@@ -41,7 +42,9 @@ export class DeliveryComponent implements OnInit {
     };
     searchSubscription: Subscription;
     dateToday = new Date();
-    constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router, private datePipe: DatePipe) { }
+    constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router, private datePipe: DatePipe, public _auth: AuthService) {
+
+    }
 
     ngOnInit(): void {
         this.getDeliveryListing();

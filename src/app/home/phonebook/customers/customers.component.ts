@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { AddEditCustomerComponent } from 'src/app/components/modals/rod/add-edit-customer/add-edit-customer.component';
 import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delete-confirmation/delete-confirmation.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { PhonebookService } from "../../../shared/services/phonebook.service";
 
 @Component({
@@ -30,7 +31,7 @@ export class CustomersComponent implements OnInit {
     };
     searchSubscription: Subscription;
     dateToday = new Date();
-    constructor(private _phonebook: PhonebookService, private _modal: NgbModal) { }
+    constructor(private _phonebook: PhonebookService, private _modal: NgbModal, public _auth: AuthService) { }
 
     ngOnInit(): void {
         this.getCustomerListing();

@@ -5,6 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { HistoryService } from 'src/app/shared/services/history.service';
 
 @Component({
@@ -36,7 +38,7 @@ export class HistoryComponent implements OnInit {
     dateToday = new Date();
     startDate;
     endDate;
-    constructor(private _history: HistoryService, private datePipe: DatePipe, private _modal: NgbModal, private router: Router) { }
+    constructor(private _history: HistoryService, private datePipe: DatePipe, private _modal: NgbModal, private router: Router, private helper: GlobalHelper, public _auth: AuthService) { }
 
     ngOnInit(): void {
         this.getHistoryListing();
@@ -110,5 +112,12 @@ export class HistoryComponent implements OnInit {
         this.searchParams.page = 1;
         this.searchParams.page_size = event;
         this.getHistoryListing();
+    }
+
+    reorder(his, index) {
+        this._history.reorder({ id: his.id }).subscribe(res => {
+            this.histories.splice(index, 1);
+            this.helper.toastSuccess(res.message);
+        })
     }
 }

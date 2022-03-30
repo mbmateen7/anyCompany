@@ -5,7 +5,7 @@
                 <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">Adminstraion</a></li>
                 <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Users List</a></li>
             </ul>
-            <a class="secondary-sup" href="javascript:void(0)" (click)="addUser()">
+            <a class="secondary-sup" href="javascript:void(0)" (click)="addUser()" *ngIf="_auth.checkPermissions('administration','write')">
                 <i-feather class="plus" name="plus"></i-feather> New User
             </a>
 
@@ -34,7 +34,7 @@
                             <th>
                                 <p class="inner-cell">Status</p>
                             </th>
-                            <th>
+                            <th *ngIf="_auth.checkPermissions('administration','write')">
                                 <p class="inner-cell">Action</p>
                             </th>
                         </tr>
@@ -48,7 +48,7 @@
                                 <div class="select-box d-flex justify-content-center">
                                     <div class="input-style form-group">
                                         <div class="arrow-design">
-                                            <select class="form-control" (change)="updateRole(user,$event,i)">
+                                            <select class="form-control" (change)="updateRole(user,$event,i)" [disabled]="!_auth.checkPermissions('administration','write')">
                                                 <option [value]="role.id" *ngFor="let role of roles" [selected]="user.role_id == role.id">{{ role.title }}</option>
                                             </select>
                                         </div>
@@ -57,13 +57,13 @@
                             </td>
                             <td>
                                 <div class="inner-cell custom-box d-flex justify-content-center">
-                                    <label class="switch" *ngIf="user.id != currentUser.id">
-                                        <input type="checkbox" [checked]="user.status" (change)="updateUserStatus(user)">
+                                    <label class="switch" [ngClass]="{'disabled': user.id != currentUser.id}">
+                                        <input type="checkbox" [checked]="user.status" (change)="updateUserStatus(user)" [disabled]="!_auth.checkPermissions('administration','write')">
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
                             </td>
-                            <td>
+                            <td *ngIf="_auth.checkPermissions('administration','write')">
                                 <div class="select-box d-flex justify-content-center">
                                     <div class="input-style form-group">
                                         <i-feather name="edit-3" (click)="userAction(user,'edit',i)" class="mr-2"></i-feather>

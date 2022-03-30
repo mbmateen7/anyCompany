@@ -16,4 +16,8 @@ export class HistoryService {
     listing(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.historyListing}`, params);
     }
+
+    reorder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.historyReorder}`, params);
+    }
 }

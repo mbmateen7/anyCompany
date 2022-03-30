@@ -7,7 +7,7 @@
                 <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week 47</a></li>
             </ul>
             <div class="d-flex">
-                <a class="secondary-sup" data-toggle="modal" href="javascript:void(0)" (click)="addEmployee()">
+                <a class="secondary-sup" data-toggle="modal" href="javascript:void(0)" (click)="addEmployee()" *ngIf="_auth.checkPermissions('phonebook','write')">
                     <i-feather class="plus" name="plus"></i-feather> Add Entry
                 </a>
 
@@ -47,7 +47,7 @@
                                 <th>
                                     <p class="inner-cell">Email<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
-                                <th>
+                                <th *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <p class="inner-cell">Actions</p>
                                 </th>
                             </tr>
@@ -72,7 +72,7 @@
                                 <td>
                                     <p class="inner-cell">{{ e.email ? e.email : '--' }}</p>
                                 </td>
-                                <td>
+                                <td *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <div class="list-icons-talbe justify-content-center">
                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="editEmployee(e,i)">
                                             <i-feather class="icon-width" name="edit-3"></i-feather>

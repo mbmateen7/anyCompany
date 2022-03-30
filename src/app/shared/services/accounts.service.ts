@@ -81,4 +81,16 @@ export class AccountService {
     deletePurchaseOrder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.deletePurchaseOrder}`, params);
     }
+
+    usersListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.accountsUserListing}`, params);
+    }
+
+    workOrderListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.accountsWorkOrdersListing}`, params);
+    }
+
+    supplierListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.accountsSupplierListing}`, params);
+    }
 }

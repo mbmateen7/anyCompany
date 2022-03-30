@@ -38,7 +38,7 @@ export class AddEditFixedCostComponent implements OnInit {
         }
         if (search.length >= 3 || search.length == 0) {
             if (this.searchSubscription) this.searchSubscription.unsubscribe();
-            this._phonebook.supplierListing({ search: search }).subscribe(res => {
+            this._account.supplierListing({ search: search }).subscribe(res => {
                 this.suppliers = res.data.data;
                 this.newFixedCost.supplier_id = res.data.data[0]?.id;
             })

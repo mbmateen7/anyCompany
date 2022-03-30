@@ -92,4 +92,8 @@ export class RodService {
     removeProductionSchedule(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.removeFile}`, params);
     }
+
+    addMultipleJobNote(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.multipleJobNotes}`, params);
+    }
 }

@@ -8,6 +8,7 @@ import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-note
 import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delete-confirmation/delete-confirmation.component';
 import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
 import { AccountService } from 'src/app/shared/services/accounts.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 
 @Component({
@@ -40,7 +41,7 @@ export class AccountsComponent implements OnInit {
         windowClass: "modal-roles Fixed-cost-modal"
     };
     accountsMonth = new Date();
-    constructor(private _account: AccountService, private _modal: NgbModal, private helper: GlobalHelper, private datePipe: DatePipe, private router: Router) {
+    constructor(private _account: AccountService, private _modal: NgbModal, private helper: GlobalHelper, private datePipe: DatePipe, private router: Router, public _auth: AuthService) {
         this.searchParams.month = this.datePipe.transform(this.accountsMonth, 'YYYY-MM');
     }
 

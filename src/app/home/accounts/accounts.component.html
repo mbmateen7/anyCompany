@@ -110,10 +110,10 @@
         <div class="roles-main account-main-box">
             <div class="d-flex align-items-center justify-content-between acount-line-btn">
                 <div class="d-flex flex-direction-mobile">
-                    <a class="Invoice" href="javascript:void(0)" (click)="addSalesOrder()">
+                    <a class="Invoice" href="javascript:void(0)" (click)="addSalesOrder()" *ngIf="_auth.checkPermissions('accounts','write')">
                         <i-feather class="plus" name="plus"></i-feather> Add Sales Order
                     </a>
-                    <a class="Delivery-Note" href="javascript:void(0)" (click)="addPurchaseOrder()">
+                    <a class="Delivery-Note" href="javascript:void(0)" (click)="addPurchaseOrder()" *ngIf="_auth.checkPermissions('accounts','write')">
                         <i-feather class="plus" name="plus"></i-feather> Add Purchase Order
                     </a>
 
@@ -174,6 +174,9 @@
                                                 <p class="inner-cell">Other<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                             <th>
+                                                <p class="inner-cell">Status<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                            </th>
+                                            <th>
                                                 <p class="inner-cell">Prograss<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                             <th>
@@ -184,9 +187,6 @@
                                             </th>
                                             <th>
                                                 <p class="inner-cell">Notes<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
-                                            </th>
-                                            <th>
-                                                <p class="inner-cell">Status<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                             <th>
                                                 <p class="inner-cell">Invoiced in full<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
@@ -216,6 +216,9 @@
 
                                             <td>
                                                 <p class="inner-cell">{{ sale.work_order.product.name != 'Door' && sale.work_order.product.name != 'Frame' ? sale.value : '0.00' }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="inner-cell">{{ sale.work_order.on_hold ? 'On Hold' : sale.work_order.status }}</p>
                                             </td>
                                             <td>
                                                 <p class="inner-cell">{{ sale.work_order.progress }}%</p>
@@ -256,12 +259,9 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="inner-cell">{{ sale.work_order.on_hold ? 'On Hold' : sale.work_order.status }}</p>
-                                            </td>
-                                            <td>
                                                 <div class="remember-me d-flex justify-content-center">
                                                     <label class="custom-check custom-check-r">
-                                                        <input type="checkbox" [checked]="sale.invoice_in_full" (change)="updateSaleStatus(sale.id,i)">
+                                                        <input type="checkbox" [checked]="sale.invoice_in_full" (change)="updateSaleStatus(sale.id,i)" [disabled]="!_auth.checkPermissions('accounts','write')">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
@@ -274,10 +274,10 @@
                                                     <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(sale,i)">
                                                         <i-feather class="icon-width" name="trending-up"></i-feather>
                                                     </a>
-                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(sale,i)">
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(sale,i)" *ngIf="_auth.checkPermissions('accounts','write')">
                                                         <i-feather class="icon-width" name="edit-3"></i-feather>
                                                     </a>
-                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="deleteOrder(sale,i)">
+                                                    <a class="icon-anchor-list" href="javascript:void(0)" (click)="deleteOrder(sale,i)" *ngIf="_auth.checkPermissions('accounts','write')">
                                                         <i-feather class="icon-width" name="trash"></i-feather>
                                                     </a>
                                                 </div>
@@ -312,7 +312,7 @@
                                             <th>
                                                 <p class="inner-cell">Comments<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
-                                            <th>
+                                            <th *ngIf="_auth.checkPermissions('accounts','write')">
                                                 <p class="inner-cell">Actions<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                             </th>
                                         </tr>
@@ -326,15 +326,15 @@
                                                 <p class="inner-cell">{{ purchase.value }}</p>
                                             </td>
                                             <td>
-                                                <p class="inner-cell">{{ purchase.order.work_number }}</p>
+                                                <p class="inner-cell">{{ purchase.order?.work_number ? purchase.order.work_number : '--' }}</p>
                                             </td>
                                             <td>
                                                 <p class="inner-cell">{{ purchase.due_date | date:'dd-MMM-YYYY' }}</p>
                                             </td>
                                             <td>
                                                 <div class="custom-box">
-                                                    <label class="switch">
-                                                        <input type="checkbox" [checked]="purchase.checked" (change)="markChecked(purchase,i)">
+                                                    <label class="switch" [ngClass]="{'disabbled':!_auth.checkPermissions('accounts','write')}">
+                                                        <input type="checkbox" [checked]="purchase.checked" (change)="markChecked(purchase,i)" [disabled]="!_auth.checkPermissions('accounts','write')">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </div>
@@ -352,7 +352,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td *ngIf="_auth.checkPermissions('accounts','write')">
                                                 <a class="icon-anchor-list" href="javascript:void(0)" (click)="editPurchaseOrder(purchase,i)">
                                                     <i-feather class="icon-width" name="edit-3"></i-feather>
                                                 </a>

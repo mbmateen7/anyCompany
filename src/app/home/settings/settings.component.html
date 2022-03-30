@@ -1,0 +1,124 @@
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">SETTING</a></li>
+    <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Profile</a></li>
+</ul>
+
+<div class="profile-body">
+    <div class="main-profile">
+        <div class="pro-left-box-main">
+            <div class="profile-left-box">
+                <div class="profile-img">
+                    <img class="img-fluid" src="assets/img/profile-main-lagre.png" alt="pro-pics">
+                    <div class="camera-box">
+                        <img src="assets/img/camera.svg" alt="camera">
+                    </div>
+                </div>
+                <div class="d-flex profile-images-box">
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-1.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-2.svg" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-3.svg" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-4.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-5.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-6.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-7.svg" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-8.svg" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-9.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-10.svg" class="img-fluid" alt="img">
+                    </a>
+
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-11.svg" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-12.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-13.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-14.png" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-15.svg" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-16.svg" class="img-fluid" alt="img">
+                    </a>
+                    <a class="hover-images-flex" href="javascript:void(0)">
+                        <img src="assets/img/pro-17.svg" class="img-fluid" alt="img">
+                    </a>
+
+                </div>
+                <div class="profile-input-section">
+                    <div class="input-style  mb-2">
+                        <label class="d-block">Full Name<span class="text-danger">*</span></label>
+                        <input type="email" class="ctm-input" placeholder="Addy brown" [(ngModel)]="updateUserObj.name">
+                    </div>
+                    <div class="input-style  mb-2">
+                        <label class="d-block">Email<span class="text-danger">*</span></label>
+                        <input type="email" class="ctm-input" placeholder="Addybrown@humpheryandstretton.com" [(ngModel)]="updateUserObj.email">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-end">
+                        <a href="javascript:void(0)" class="login-p" (click)="updateUser()">Save</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="pro-right-box-main">
+            <h1 class="change-pass">CHANGE PASSWORD</h1>
+            <div class="profile-right-box">
+                <div class="input-style mb-2">
+                    <label class="d-block">Old Password<span class="text-danger">*</span></label>
+                    <div class="type-pass">
+                        <input type="password" class="ctm-input" placeholder="Password" [(ngModel)]="passwordObj.old_password">
+                        <div class="icon-eye d-flex align-items-center justify-content-center">
+                            <img src="assets/img/icon-feather-eye.svg" alt="img">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-style mb-2">
+                    <label class="d-block">New Password<span class="text-danger">*</span></label>
+                    <div class="type-pass">
+                        <input type="password" class="ctm-input" placeholder="New Password" [(ngModel)]="passwordObj.password">
+                        <div class="icon-eye d-flex align-items-center justify-content-center">
+                            <img src="assets/img/icon-feather-eye.svg" alt="img">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-style mb-2">
+                    <label class="d-block">Confirm Password<span class="text-danger">*</span></label>
+                    <div class="type-pass">
+                        <input type="password" class="ctm-input" placeholder="Confirm Password" [(ngModel)]="passwordObj.password_confirmation">
+                        <div class="icon-eye d-flex align-items-center justify-content-center">
+                            <img src="assets/img/icon-feather-eye.svg" alt="img">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <a href="javascript:void(0)" class="login-p" (click)="updatePassword()">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

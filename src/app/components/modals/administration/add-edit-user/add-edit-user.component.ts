@@ -20,7 +20,7 @@ export class AddEditUserComponent implements OnInit {
     }
 
     cancel() {
-        this.response.emit({ success: true, data: this.user });
+        this.response.emit({ success: false });
     }
 
     add() {

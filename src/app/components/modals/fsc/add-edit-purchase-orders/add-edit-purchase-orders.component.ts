@@ -66,7 +66,7 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         }
         if (search.length >= 3 || search.length == 0) {
             if (this.searchSubscription) this.searchSubscription.unsubscribe();
-            this._rod.rodListing({ search: search }).subscribe(res => {
+            this._fsc.ordersListing({ search: search }).subscribe(res => {
                 this.workOrders = res.data.data;
             });
         }
@@ -79,7 +79,7 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
         }
         if (search.length >= 3 || search.length == 0) {
             if (this.searchSubscription) this.searchSubscription.unsubscribe();
-            this._phonebook.supplierListing({ search: search }).subscribe(res => {
+            this._fsc.supplierListing({ search: search }).subscribe(res => {
                 this.suppliers = res.data.data;
             });
         }

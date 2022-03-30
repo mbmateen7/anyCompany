@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditFixedCostComponent } from 'src/app/components/modals/accounts/add-edit-fixed-cost/add-edit-fixed-cost.component';
 import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delete-confirmation/delete-confirmation.component';
 import { AccountService } from 'src/app/shared/services/accounts.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
     selector: 'app-fixed-cost',
@@ -28,7 +29,7 @@ export class FixedCostComponent implements OnInit {
     pageFrom = 1;
     pageTo = 10;
     totalCount = 10;
-    constructor(private _modal: NgbModal, private _account: AccountService) { }
+    constructor(private _modal: NgbModal, private _account: AccountService, public _auth: AuthService) { }
 
     ngOnInit(): void {
         this.getFixedCosts();

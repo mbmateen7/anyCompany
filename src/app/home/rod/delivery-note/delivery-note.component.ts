@@ -1,6 +1,7 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { RodService } from 'src/app/shared/services/rod.service';
 
@@ -48,7 +49,7 @@ export class DeliveryNoteComponent implements OnInit {
     currentDate;
     dateToday = new Date();
     newDeliveryTicketNo = '';
-    constructor(private _rod: RodService, private helper: GlobalHelper, private route: ActivatedRoute, private datePipe: DatePipe, private _location: Location) {
+    constructor(private _rod: RodService, private helper: GlobalHelper, private route: ActivatedRoute, private datePipe: DatePipe, private _location: Location, public _auth: AuthService) {
         this.route.params.subscribe(res => {
             this.getWorkOrder(res.id);
             this.getDeliveryNotes(res.id);

@@ -38,36 +38,38 @@
                     </a>
                 </div>
             </div>
-            <div class="input-style mt-1 mb-2">
-                <label class="d-block">Title Job Note<span class="text-danger">*</span></label>
-                <input type="text" class="ctm-input" placeholder="Title" [(ngModel)]="newNote.title">
-            </div>
-            <div class="text-area-modal  mb-1">
-                <div class="input-style">
-                    <textarea class="ctm-textarea" placeholder="Add Text For Job Note" [(ngModel)]="newNote.description"></textarea>
+            <div *ngIf="_auth.checkPermissions('rod','write')">
+                <div class="input-style mt-1 mb-2">
+                    <label class="d-block">Title Job Note<span class="text-danger">*</span></label>
+                    <input type="text" class="ctm-input" placeholder="Title" [(ngModel)]="newNote.title">
                 </div>
-            </div>
-            <div class="notify-main-box d-flex align-items-center justify-content-between">
-                <p class=" notify-to ">
-                    Notify To
-                </p>
-                <div class="remember-me">
-                    <label class="custom-check custom-check-r">Director
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
+                <div class="text-area-modal  mb-1">
+                    <div class="input-style">
+                        <textarea class="ctm-textarea" placeholder="Add Text For Job Note" [(ngModel)]="newNote.description"></textarea>
+                    </div>
                 </div>
-                <div class="remember-me">
-                    <label class="custom-check custom-check-r">Accounts
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="remember-me">
-                    <label class="custom-check custom-check-r">Basic
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
+                <div class="notify-main-box d-flex align-items-center justify-content-between">
+                    <p class=" notify-to ">
+                        Notify To
+                    </p>
+                    <div class="remember-me">
+                        <label class="custom-check custom-check-r">Director
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="remember-me">
+                        <label class="custom-check custom-check-r">Accounts
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="remember-me">
+                        <label class="custom-check custom-check-r">Basic
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,6 +83,6 @@
 <div class="modal-footer ">
     <div class="d-flex align-items-center justify-content-center w-100 ">
         <a href="javascript:void(0) " class="discard-btn" (click)="cancel()">Close</a>
-        <a href="javascript:void(0) " class="add-btn " (click)="addJobNote()">Add</a>
+        <a href="javascript:void(0) " class="add-btn " (click)="addJobNote()" *ngIf="_auth.checkPermissions('rod','write')">Add</a>
     </div>
 </div>

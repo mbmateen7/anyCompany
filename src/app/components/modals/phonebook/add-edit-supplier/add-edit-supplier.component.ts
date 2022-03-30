@@ -26,7 +26,7 @@ export class AddEditSupplierComponent implements OnInit {
     addSupplier() {
         this._phonebook.addSupplier(this.newSupplier).subscribe(res => {
             this.helper.toastSuccess(res.message);
-            this.response.emit({ success: true });
+            this.response.emit({ success: true, data: res.data });
         });
     }
 

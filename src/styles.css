@@ -30981,9 +30981,6 @@ button:focus {
     display: none;
 }
 
-.ctm-ha {
-    /** Custom Select **/
-}
 
 .ctm-ha .custom-select-wrapper {
     position: relative;
@@ -35666,6 +35663,7 @@ input:checked+.slider:before {
     text-align: left;
     width: 100%;
     margin-top: 1rem;
+    white-space: normal;
     /* width */
     /* Track */
     /* Handle */
@@ -36482,11 +36480,11 @@ input:checked+.slider:before {
 }
 
 .card-view-main-box.green-card-view {
-    background-color: #6ECE57;
+    background-color: #6ECE5780;
 }
 
 .card-view-main-box.green-card-view .card-view-content-box .wc .item-card .inner-anchor {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.green-card-view .card-view-content-box .wc .item-card .inner-anchor:hover {
@@ -36494,15 +36492,15 @@ input:checked+.slider:before {
 }
 
 .card-view-main-box.green-card-view .card-view-content-box .wc .item-card-1 {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.green-card-view .card-view-content-box .wc .item-card {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.green-card-view .icon-anchor-list .icon-width {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.green-card-view .icon-anchor-list img {
@@ -36511,11 +36509,11 @@ input:checked+.slider:before {
 }
 
 .card-view-main-box.red-card-view {
-    background-color: #DC0100;
+    background-color: #DC010040;
 }
 
 .card-view-main-box.red-card-view .card-view-content-box .wc .item-card .inner-anchor {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.red-card-view .card-view-content-box .wc .item-card .inner-anchor:hover {
@@ -36523,15 +36521,15 @@ input:checked+.slider:before {
 }
 
 .card-view-main-box.red-card-view .card-view-content-box .wc .item-card-1 {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.red-card-view .card-view-content-box .wc .item-card {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.red-card-view .icon-anchor-list .icon-width {
-    color: #fff;
+    color: #150000;
 }
 
 .card-view-main-box.red-card-view .icon-anchor-list img {
@@ -37445,4 +37443,44 @@ i-feather.clear-filter {
 
 .list-icons-talbe {
     justify-content: center;
+}
+
+.progress-cell-bar,
+.progress-card-bar {
+    position: absolute;
+    height: 4px;
+    width: 70px;
+    background: gray;
+    top: 4px;
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    left: 0;
+    right: 0;
+}
+
+.progress-card-bar {
+    top: -4px;
+    left: 10px;
+    margin: 0px;
+}
+
+.progress-cell-bar>span {
+    background: red;
+    position: absolute;
+    top: 0;
+    height: 4px;
+    left: 0px;
+    width: 0%;
+    border-radius: 5px;
+}
+
+.progress-card-bar>span {
+    background: red;
+    position: absolute;
+    top: 0;
+    height: 4px;
+    left: 0px;
+    width: 0%;
+    border-radius: 5px;
 }

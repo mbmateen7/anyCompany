@@ -1,4 +1,4 @@
-<a class="serch-btn-mt" href="javascript:void(0)" [routerLink]="['/logout']">
+<a class="serch-btn-mt" href="javascript:void(0)" (click)="logout()">
     <i-feather class="mr-10" name="log-out"></i-feather><span>Sign Out</span>
 </a>
 <div class="sidebar-header">
@@ -17,15 +17,15 @@
 </div>
 
 <ul class="list-unstyled components">
-    <li>
+    <li *ngIf="_auth.checkPermissions('dashboard','read')">
         <a class="dashboard-link" [routerLink]="['/dashboard']" routerLinkActive="active">
             <img class="img-hover-none" src="assets/img/dashboard.svg" alt="img">
             <img class="img-hover" src="assets/img/dashboard-2.svg" alt="img">
             <span class="text-link-nav">Dashbord</span>
         </a>
     </li>
-    <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('administration')}">
+    <li *ngIf="_auth.checkPermissions('administration','read')">
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [routerLink]="['/administration/users']" [ngClass]="{'active': router.url.includes('administration')}">
             <i-feather name="user" class="user-sidebar-icon"></i-feather><span class="text-link-nav">Administration</span>
         </a>
         <ul class="collapse list-unstyled" id="homeSubmenu" [ngClass]="{'show': router.url.includes('administration')}">
@@ -40,8 +40,8 @@
     </li>
 
 
-    <li class="">
-        <a href="#delivery-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('delivery-list')}">
+    <li *ngIf="_auth.checkPermissions('delivery_list','read')">
+        <a href="#delivery-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [routerLink]="['/delivery-list/delivery']" [ngClass]="{'active': router.url.includes('delivery-list')}">
             <i-feather name="list" class="user-sidebar-icon list-rotate"></i-feather><span class="text-link-nav">Delivery List</span>
         </a>
         <ul class="collapse list-unstyled" id="delivery-menu" [ngClass]="{'show': router.url.includes('delivery-list')}">
@@ -54,8 +54,8 @@
 
         </ul>
     </li>
-    <li class="">
-        <a href="#fsc" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('fsc')}">
+    <li class="" *ngIf="_auth.checkPermissions('fsc','read')">
+        <a href="#fsc" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [routerLink]="['/fsc/customer-orders']" [ngClass]="{'active': router.url.includes('fsc')}">
             <img class="img-hover-none" src="assets/img/icon-simple-gov-dot-uk.svg" alt="img">
             <img class="img-hover" src="assets/img/icon-simple-gov-dot-uk-1.svg" alt="img">
             <span class="text-link-nav">FSC</span>
@@ -71,18 +71,18 @@
         </ul>
     </li>
 
-    <li>
+    <li *ngIf="_auth.checkPermissions('rod','read')">
         <a class="dashboard-link" [routerLink]="['/rod']" routerLinkActive="active">
             <i-feather name="lock" class="user-sidebar-icon"></i-feather><span class="text-link-nav">ROD</span>
         </a>
     </li>
-    <li>
+    <li *ngIf="_auth.checkPermissions('history','read')">
         <a class="dashboard-link" [routerLink]="['/history']" routerLinkActive="active">
             <i-feather name="book-open" class="user-sidebar-icon"></i-feather><span class="text-link-nav">History</span>
         </a>
     </li>
-    <li class="">
-        <a href="#Phone-books" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [ngClass]="{'active': router.url.includes('phonebook')}">
+    <li class="" *ngIf="_auth.checkPermissions('phonebook','read')">
+        <a href="#Phone-books" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [routerLink]="['/phonebook/customers']" [ngClass]="{'active': router.url.includes('phonebook')}">
             <img class="img-hover-none" src="assets/img/phone-book.svg" alt="img">
             <img class="img-hover" src="assets/img/phone-book-hover.svg" alt="img">
             <span class="text-link-nav">PhoneBook</span>
@@ -102,7 +102,7 @@
     </li>
 
 
-    <li class="">
+    <li class="" *ngIf="_auth.checkPermissions('accounts','read')">
         <a href="#accounts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dashboard-link" [routerLink]="['/accounts']" [ngClass]="{'active': router.url.includes('accounts')}">
             <img class="account-sicon img-hover-none" src="assets/img/icon-open-british-pound.svg" alt="img">
             <img class="account-sicon img-hover" src="assets/img/icon-open-british-pound-1.svg" alt="img"><span class="text-link-nav">Accounts</span>

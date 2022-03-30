@@ -11,17 +11,17 @@
                     <div class="d-flex">
                         <a class="disable-btn-dispatch" href="javascript:void(0)" (click)="redirectBack()">
                             Discard</a>
-                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote" (click)="addDeliveryNote()">
+                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote && _auth.checkPermissions('rod','write')" (click)="addDeliveryNote()">
                             Save</a>
-                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="currentDeliveryNote" (click)="updateDeliveryNote()">
+                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="currentDeliveryNote && _auth.checkPermissions('rod','write')" (click)="updateDeliveryNote()">
                             Update</a>
                     </div>
                 </div>
-                <a class="secondary-sup" href="javascript:void(0)" (click)="resetFormValue()" *ngIf="currentDeliveryNote">
+                <a class="secondary-sup" href="javascript:void(0)" (click)="resetFormValue()" *ngIf="currentDeliveryNote && _auth.checkPermissions('rod','write')">
                     New Dispatch Order</a>
             </div>
         </div>
-        <div class="Dispatch-mainbox">
+        <div class=" Dispatch-mainbox">
             <div class="d-flex dispatch-wrap-for-respo">
                 <div class="left-order-detail">
                     <h1 class="recent-heading">Recent Despatch Order List:</h1>
@@ -280,9 +280,9 @@
                     <div class="d-flex">
                         <a class="disable-btn-dispatch" href="javascript:void(0)" (click)="redirectBack()">
                             Discard</a>
-                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote" (click)="addDeliveryNote()">
+                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="!currentDeliveryNote && _auth.checkPermissions('rod','write')" (click)="addDeliveryNote()">
                             Save</a>
-                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="currentDeliveryNote" (click)="updateDeliveryNote()">
+                        <a class="credit-check mr-1" href="javascript:void(0)" *ngIf="currentDeliveryNote && _auth.checkPermissions('rod','write')" (click)="updateDeliveryNote()">
                             Update</a>
                     </div>
                 </div>

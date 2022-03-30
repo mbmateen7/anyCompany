@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { RodService } from 'src/app/shared/services/rod.service';
 import { ViewProductionScheduleComponent } from '../view-production-schedule/view-production-schedule.component';
 
@@ -21,7 +22,13 @@ export class TimelineComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
-    constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal) { }
+    permissions;
+    constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal, private _auth: AuthService) {
+        this.permissions = this._auth.currentUserPermissions;
+        this._auth.userPermissionObjSubject.subscribe(res => {
+            this.permissions = res;
+        })
+    }
 
     ngOnInit(): void {
         console.log(this.rod);

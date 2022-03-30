@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { RodService } from 'src/app/shared/services/rod.service';
 
@@ -13,7 +14,7 @@ export class ViewProductionScheduleComponent implements OnInit {
     @Output() response: EventEmitter<any> = new EventEmitter();
     formData = new FormData();
     attachments = [];
-    constructor(private _rod: RodService, private helper: GlobalHelper) { }
+    constructor(private _rod: RodService, private helper: GlobalHelper, public _auth: AuthService) { }
 
     ngOnInit(): void {
     }

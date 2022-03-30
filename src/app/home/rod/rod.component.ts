@@ -9,8 +9,10 @@ import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delet
 import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
 import { UpdateInvoiceScheduleRefComponent } from 'src/app/components/modals/rod/update-invoice-schedule-ref/update-invoice-schedule-ref.component';
 import { UpdateStatusComponent } from 'src/app/components/modals/rod/update-status/update-status.component';
+import { AddMultipleJobNotesComponent } from 'src/app/components/modals/rod/add-multiple-job-notes/add-multiple-job-notes.component';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { RodService } from 'src/app/shared/services/rod.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
     selector: 'app-rod',
@@ -41,7 +43,8 @@ export class RodComponent implements OnInit {
     searchSubscription: Subscription;
     multiUpdateType: string = 'invoice_no';
     dateToday = new Date();
-    constructor(private _rod: RodService, private helper: GlobalHelper, private _modal: NgbModal, private router: Router) { }
+    constructor(private _rod: RodService, private helper: GlobalHelper, private _modal: NgbModal, private router: Router, public _auth: AuthService) {
+    }
 
     ngOnInit(): void {
         this.rodListing();
@@ -409,6 +412,23 @@ export class RodComponent implements OnInit {
             statusModal.dismiss();
         });
 
+    }
+
+    addMultipleJobNote() {
+
+        const modal = this._modal.open(AddMultipleJobNotesComponent, this.modalConfig);
+        modal.componentInstance.data = this.rods;
+        modal.componentInstance.response.subscribe(response => {
+            if (response.success) {
+                let payload = response.data;
+                this._rod.addMultipleJobNote(payload).subscribe(res => {
+                    this.helper.toastSuccess(res.message);
+                    this.rodListing();
+                    modal.dismiss();
+                });
+
+            } else modal.dismiss();
+        });
     }
 
 }

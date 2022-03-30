@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { UpdateDeliveryOrderComponent } from 'src/app/components/modals/delivery-list/update-delivery-order/update-delivery-order.component';
 import { AddJobNotesComponent } from 'src/app/components/modals/rod/add-job-notes/add-job-notes.component';
 import { TimelineComponent } from 'src/app/components/modals/rod/timeline/timeline.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { DeliveryListService } from 'src/app/shared/services/deliveryList.service';
 @Component({
     selector: 'app-walking',
@@ -39,7 +40,7 @@ export class WalkingComponent implements OnInit {
     };
     searchSubscription: Subscription;
     dateToday = new Date();
-    constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router, private datePipe: DatePipe, private bsLocale: BsLocaleService) {
+    constructor(private _delivery: DeliveryListService, private _modal: NgbModal, private router: Router, private datePipe: DatePipe, private bsLocale: BsLocaleService, public _auth: AuthService) {
     }
 
     ngOnInit(): void {

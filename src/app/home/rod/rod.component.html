@@ -14,9 +14,12 @@
                 <a class="Schedule" (click)="multipleUpdate('schedule_ref')" href="javascript:void(0)">
                     <i-feather class="plus" name="plus"></i-feather> Schedule Ref
                 </a>
+                <a class="btn-apply" (click)="addMultipleJobNote()" href="javascript:void(0)">
+                    <i-feather class="plus" name="plus"></i-feather> Job Note
+                </a>
             </div>
             <div class="d-flex for-respo-devices-rod-btn">
-                <a class="btn-apply" (click)="addSalesOrder()" href="javascript:void(0)">
+                <a class="btn-apply" (click)="addSalesOrder()" href="javascript:void(0)" *ngIf="_auth.checkPermissions('rod','write')">
                     <i-feather class="plus" name="plus"></i-feather> Add Sales Order
                 </a>
                 <a class="credit-check" data-toggle="modal" data-target="#Download-1" href="#Download-1">
@@ -51,9 +54,6 @@
                             </div>
                         </div>
                     </div>
-                    <a class="Delivery-Note" href="javascript:void(0)">
-                        <i-feather class="plus" name="check"></i-feather> Delivered
-                    </a>
                 </div>
             </div>
             <div class="tab-table">
@@ -61,7 +61,7 @@
                     <table class="table">
                         <thead class="thead-ctm">
                             <tr>
-                                <th>
+                                <th *ngIf="_auth.checkPermissions('rod','write')">
                                     <div class="remember-me">
                                         <label class="custom-check custom-check-r">
                                             <input type="checkbox" [checked]="checkAll" [(ngModel)]="checkAll" (change)="selectAll()">
@@ -114,7 +114,7 @@
                         </thead>
                         <tbody class="t-body-ctm">
                             <tr class="active-row" [ngClass]="{'order-withdrawn': rod.status=='Withdrawn' ||  rod.on_hold, 'order-to-factory':rod.status=='To Factory' && !rod.on_hold}" *ngFor="let rod of rods; let i = index">
-                                <td>
+                                <td *ngIf="_auth.checkPermissions('rod','write')">
                                     <div class="remember-me">
                                         <label class="custom-check custom-check-r">
                                             <input type="checkbox" [checked]="rod.checked" [(ngModel)]="rod.checked" (change)="selectOptions()">
@@ -141,7 +141,7 @@
                                     <div class="select-box inner-cell">
                                         <div class="form-group">
                                             <div class="arrow-design">
-                                                <select class="form-control" (change)="updateStatus(rod,$event,i)">
+                                                <select class="form-control" (change)="updateStatus(rod,$event,i)" [disabled]="!_auth.checkPermissions('rod','write')">
                                                     <option [selected]="rod.status == 'Booked'" [disabled]="rod.on_hold" value="Booked">Booked</option>
                                                     <option [selected]="rod.status == 'To Factory'" [disabled]="rod.on_hold" value="To Factory">To Factory</option>
                                                     <option [selected]="rod.status == 'In Factory'" [disabled]="rod.on_hold || rod.status == 'In Factory'" value="In Factory" [hidden]="rod.status != 'In Factory'">In Factory</option>
@@ -154,8 +154,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <p class="inner-cell">{{ rod.progress }}</p>
+                                <td class="position-relative">
+                                    <div class="progress-cell-bar"><span [style.width.%]="rod.progress"></span></div>{{ rod.progress }}%
                                 </td>
                                 <td>
                                     <p class="inner-cell" *ngIf="rod.fsc">
@@ -166,10 +166,10 @@
                                 <td>
                                     <div class="inner-cell list-icons-talbe-sec">
                                         <input type="text" [value]="rod.invoice_no" *ngIf="rod.edit_invoice" class="edit-inline-input" autofocus (focusout)="updateInvoiceNo($event,i)" (keyup)="updateInvoiceNo($event,i)" id="edit-invoice-no-{{ i }}">
-                                        <p class="icon-anchor-list" *ngIf="!rod.invoice_no && !rod.edit_invoice">- <i-feather class="icon-width" name="edit-2" (click)="editInvoiceNo(i)"></i-feather>
+                                        <p class="icon-anchor-list" *ngIf="!rod.invoice_no && !rod.edit_invoice">- <i-feather class="icon-width" name="edit-2" (click)="editInvoiceNo(i)" *ngIf="_auth.checkPermissions('rod','write')"></i-feather>
                                         </p>
                                         <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="rod.invoice_no && !rod.edit_invoice">
-                                            {{ rod.invoice_no }} <i-feather class="icon-width" name="edit-2" (click)="editInvoiceNo(i)"></i-feather>
+                                            {{ rod.invoice_no }} <i-feather class="icon-width" name="edit-2" (click)="editInvoiceNo(i)" *ngIf="_auth.checkPermissions('rod','write')"></i-feather>
                                         </a>
                                     </div>
                                 </td>
@@ -187,10 +187,10 @@
                                 <td>
                                     <div class="inner-cell list-icons-talbe-sec">
                                         <input type="text" [value]="rod.schedule_ref" *ngIf="rod.edit_schedule_ref" class="edit-inline-input" autofocus (focusout)="updateScheduleRef($event,i)" (keyup)="updateScheduleRef($event,i)" id="edit-schedule-ref-{{ i }}">
-                                        <p class="inner-cell icon-anchor-list" *ngIf="!rod.schedule_ref && !rod.edit_schedule_ref">- <i-feather class="icon-width" name="edit-2" (click)="editScheduleRef(i)"></i-feather>
+                                        <p class="inner-cell icon-anchor-list" *ngIf="!rod.schedule_ref && !rod.edit_schedule_ref">- <i-feather class="icon-width" name="edit-2" (click)="editScheduleRef(i)" *ngIf="_auth.checkPermissions('rod','write')"></i-feather>
                                         </p>
                                         <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="rod.schedule_ref && !rod.edit_schedule_ref">
-                                            {{ rod.schedule_ref }} <i-feather class="icon-width" name="edit-2" (click)="editScheduleRef(i)"></i-feather>
+                                            {{ rod.schedule_ref }} <i-feather class="icon-width" name="edit-2" (click)="editScheduleRef(i)" *ngIf="_auth.checkPermissions('rod','write')"></i-feather>
                                         </a>
                                     </div>
                                 </td>
@@ -224,13 +224,13 @@
                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(rod,i)">
                                             <i-feather class="icon-width" name="trending-up"></i-feather>
                                         </a>
-                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="completeOrder(rod,i)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="completeOrder(rod,i)" *ngIf="_auth.checkPermissions('rod','write')">
                                             <i-feather class="icon-width" name="check"></i-feather>
                                         </a>
-                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(rod,i)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSalesOrder(rod,i)" *ngIf="_auth.checkPermissions('rod','write')">
                                             <i-feather class="icon-width" name="edit-3"></i-feather>
                                         </a>
-                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="deleteOrder(rod,i)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="deleteOrder(rod,i)" *ngIf="_auth.checkPermissions('rod','write')">
                                             <i-feather class="icon-width" name="trash"></i-feather>
                                         </a>
                                     </div>

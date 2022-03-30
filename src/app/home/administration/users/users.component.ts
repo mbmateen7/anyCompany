@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
     };
 
     currentUser = null;
-    constructor(private _administration: AdministrationService, private helper: GlobalHelper, private _modal: NgbModal, private _auth: AuthService) {
+    constructor(private _administration: AdministrationService, private helper: GlobalHelper, private _modal: NgbModal, public _auth: AuthService) {
         this.currentUser = this._auth.currentUserValue;
     }
 
@@ -80,11 +80,12 @@ export class UsersComponent implements OnInit {
         modal.componentInstance.type = event;
         modal.componentInstance.roles = this.roles;
         modal.componentInstance.response.subscribe((res: any) => {
-            console.log(res);
+            if (res.success) {
+                if (res.delete) {
+                    this.users.splice(index, 1);
+                } else this.users[index] = res.data;
+            }
             modal.close();
-            if (res.delete) {
-                this.users.splice(index, 1);
-            } else this.users[index] = res.data;
         });
     }
 
@@ -101,8 +102,11 @@ export class UsersComponent implements OnInit {
         modal.componentInstance.type = 'add';
         modal.componentInstance.roles = this.roles;
         modal.componentInstance.response.subscribe((res: any) => {
+            if (res.success) {
+                this.getAllUsers();
+            }
             modal.close();
-            this.getAllUsers();
+
         });
     }
 

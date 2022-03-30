@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { AddEditPurchaseOrdersComponent } from 'src/app/components/modals/fsc/add-edit-purchase-orders/add-edit-purchase-orders.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { FscService } from 'src/app/shared/services/fsc.service';
 
 @Component({
@@ -35,7 +36,7 @@ export class PurchaseOrderComponent implements OnInit {
     dateToday = new Date();
     startDate;
     endDate;
-    constructor(private _fsc: FscService, private _modal: NgbModal, private datePipe: DatePipe) { }
+    constructor(private _fsc: FscService, private _modal: NgbModal, private datePipe: DatePipe, public _auth: AuthService) { }
 
     ngOnInit(): void {
         this.getPurchaseListing();

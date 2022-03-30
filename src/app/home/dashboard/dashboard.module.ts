@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { allIcons } from 'angular-feather/icons';
 import { FeatherModule } from 'angular-feather';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { FeatherModule } from 'angular-feather';
     imports: [
         CommonModule,
         DashboardRoutingModule,
-        FeatherModule.pick(allIcons)
+        FeatherModule.pick(allIcons),
+        BsDatepickerModule
     ]
 })
 export class DashboardModule { }

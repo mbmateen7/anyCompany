@@ -8,7 +8,7 @@
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
-                <a class="secondary-sup" href="javascript:void(0)" (click)="addPurchaseOrder()">
+                <a class="secondary-sup" href="javascript:void(0)" (click)="addPurchaseOrder()" *ngIf="_auth.checkPermissions('fsc','write')">
                     <i class="plus" data-feather="plus"></i> New FSC ORDER</a>
                 <a class="credit-check" data-toggle="modal" data-target="#Download" href="#Download" href="javascript:void(0)">
                     <i class="download" data-feather="download"></i> Download Data</a>
@@ -81,7 +81,7 @@
                                 <th>
                                     <p class="inner-cell">Schedule Ref<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
-                                <th>Actions</th>
+                                <th *ngIf="_auth.checkPermissions('fsc','write')">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="t-body-ctm">
@@ -97,7 +97,7 @@
                                 <td>{{ p.schedule_ref ? p.schedule_ref : '-' }}</td>
 
 
-                                <td>
+                                <td *ngIf="_auth.checkPermissions('fsc','write')">
                                     <div class="list-icons-talbe justify-content-center">
 
                                         <a class=" icon-anchor-list" href="javascript:void(0)">

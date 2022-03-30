@@ -39,6 +39,7 @@ export class UpdateStatusComponent implements OnInit {
 
     ngOnInit(): void {
         this.dueDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+        this.scheduleRef = this.data.model[0] ? this.data.model[0].schedule_ref : '';
         this.getRoles();
     }
 

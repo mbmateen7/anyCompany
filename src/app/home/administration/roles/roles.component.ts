@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditRolesComponent } from 'src/app/components/modals/administration/add-edit-roles/add-edit-roles.component';
 import { AdministrationService } from 'src/app/shared/services/administration.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 
 @Component({
@@ -19,7 +20,7 @@ export class RolesComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
-    constructor(private helper: GlobalHelper, private _administration: AdministrationService, private _modal: NgbModal) { }
+    constructor(private _administration: AdministrationService, private _modal: NgbModal, public _auth: AuthService) { }
 
     ngOnInit(): void {
         this.getRoles();
@@ -37,8 +38,10 @@ export class RolesComponent implements OnInit {
         modal.componentInstance.role = { ...role };
         modal.componentInstance.type = event;
         modal.componentInstance.response.subscribe((res: any) => {
+            if (res.success) {
+                this.getRoles();
+            }
             modal.close();
-            this.getRoles();
         });
     }
 
@@ -47,8 +50,10 @@ export class RolesComponent implements OnInit {
         modal.componentInstance.role = {};
         modal.componentInstance.type = 'add';
         modal.componentInstance.response.subscribe((res: any) => {
+            if (res.success) {
+                this.getRoles();
+            }
             modal.close();
-            this.getRoles();
         });
     }
 

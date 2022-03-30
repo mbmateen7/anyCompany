@@ -51,3 +51,7 @@ a.view-anchor.red {
 .tables-roles-main.tables-users-main>table thead.thead-ctm>tr>th:first-child {
     width: 30px !important;
 }
+
+.progress-cell-bar {
+    top: 10px;
+}

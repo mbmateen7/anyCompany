@@ -39,6 +39,7 @@
                                 <li *ngFor="let sup of suppliers" (click)="selectSupplier(sup)">
                                     <strong>{{ sup.name }}</strong>
                                 </li>
+                                <li (click)="selectSupplier('new')">Add Supplier</li>
                             </ul>
                         </div>
                         <i-feather class="input-icon" name="search"></i-feather>
@@ -51,7 +52,7 @@
             <div class="input-style mb-2">
                 <div class="select-box">
                     <div class="form-group position-relative" (focusout)="orderInputOut()">
-                        <label class="d-block"><span class="red-label">Work Order Number</span><span class="text-danger">*</span></label>
+                        <label class="d-block"><span class="red-label">Work Order Number</span></label>
                         <input type="text" class="ctm-input type-input" placeholder="Search work orders" (input)="getOrders($event)" (focus)="orderInput = true" [(ngModel)]="selectedOrder">
                         <div class="custom-dropdown-list" *ngIf="orderInput">
                             <ul>
@@ -131,7 +132,7 @@
             <div class="input-style mb-2">
                 <div class="select-box">
                     <div class="form-group position-relative" (focusout)="orderInputOut()">
-                        <label class="d-block"><span class="red-label">Work Order Number</span><span class="text-danger">*</span></label>
+                        <label class="d-block"><span class="red-label">Work Order Number</span></label>
                         <input type="text" class="ctm-input type-input" placeholder="Search work orders" (input)="getOrders($event)" (focus)="orderInput = true" [(ngModel)]="selectedOrder">
                         <div class="custom-dropdown-list" *ngIf="orderInput">
                             <ul>

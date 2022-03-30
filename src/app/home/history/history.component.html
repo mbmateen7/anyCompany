@@ -152,7 +152,7 @@
                                  </td>
                                  <td>
                                      <div class="list-icons-talbe d-flex justify-content-center align-items-center">
-                                         <a class="icon-anchor-list" href="javascript:void(0)">
+                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="reorder(his,i)" *ngIf="_auth.checkPermissions('history','write')">
                                              <i-feather class="icon-width" name="corner-up-left"></i-feather>
                                          </a>
                                          <a class="icon-anchor-list" href="javascript:void(0)" (click)="viewTimeline(his,i)">

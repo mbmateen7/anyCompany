@@ -24,6 +24,7 @@
     "@ng-select/ng-select": "^8.1.1",
     "@popperjs/core": "^2.11.2",
     "angular-feather": "^6.1.0",
+    "chart.js": "^3.7.1",
     "ngx-bootstrap": "^8.0.0",
     "ngx-toastr": "^14.2.1",
     "ngx-ui-loader": "^11.0.0",

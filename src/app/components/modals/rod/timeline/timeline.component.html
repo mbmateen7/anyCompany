@@ -38,7 +38,7 @@
                             <a *ngIf="rod.attachments.length == 1" class="view-anchor view-anchor-red mr-2" target="_blank" [href]="rod.attachments[0].location">
                                 View
                             </a>
-                            <a class="view-anchor view-anchor-red" (click)="addProductionSchedule()">
+                            <a class="view-anchor view-anchor-red" (click)="addProductionSchedule()" *ngIf="permissions.rod.write || permissions.delivery_list.write">
                                 Add
                             </a>
                         </td>

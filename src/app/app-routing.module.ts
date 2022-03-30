@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeGuard } from './shared/guards/home.guard';
 import { LoginGuard } from './shared/guards/login.guard';
+import { PermissionsGuard } from './shared/guards/permissions.guard';
 
 const routes: Routes = [
     {
@@ -12,7 +13,7 @@ const routes: Routes = [
     {
         path: '',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-        canActivate: [HomeGuard]
+        canActivate: [HomeGuard, PermissionsGuard]
     },
     {
         path: 'forgot-password',

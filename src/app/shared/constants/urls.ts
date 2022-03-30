@@ -47,6 +47,7 @@ export const urls = {
     getDeliveryNotes: 'rod/delivery-notes/listing',
     uploadFiles: 'rod/work-orders/files/store',
     removeFile: 'rod/work-orders/files/delete',
+    multipleJobNotes: 'rod/job-notes/update-multiple',
 
     // Products
     productListing: 'rod/work-orders/products',
@@ -78,6 +79,8 @@ export const urls = {
     purchaseOrderListing: 'fsc/purchase-orders/listing',
     updateOrder: 'fsc/purchase-orders/update',
     deleteOrder: 'fsc/purchase-orders/delete',
+    fscWorkOrderListing: 'fsc/orders/listing',
+    fscSupplierListing: 'fsc/suppliers/listing',
 
     // Accounts
     accountStats: 'accounts/stats',
@@ -95,6 +98,9 @@ export const urls = {
     updateAccountsPurchaseOrderStatus: 'accounts/purchase-cost/update-status',
     updateAccountsPurchaseOrder: 'accounts/purchase-cost/update',
     deletePurchaseOrder: 'accounts/purchase-cost/delete',
+    accountsUserListing: 'accounts/users/listing',
+    accountsWorkOrdersListing: 'accounts/work-orders/listing',
+    accountsSupplierListing: 'accounts/suppliers/listing',
 
     fixedCostListing: 'accounts/fixed-cost/listing',
     addFixedCost: 'accounts/fixed-cost/store',
@@ -105,5 +111,14 @@ export const urls = {
     creditCheckShow: 'accounts/credit-check/show',
 
     // History
-    historyListing: 'history/listing'
+    historyListing: 'history/listing',
+    historyReorder: 'history/reorder',
+
+    // Dashboard
+    dashboardStats: 'dashboard/stats',
+    dashboardCharts: 'dashboard/charts',
+
+    // Settings
+    updatePassword: 'settings/update-password',
+    updateProfile: 'settings/update-details'
 };

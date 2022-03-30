@@ -58,7 +58,7 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
         }
         if (search.length >= 3 || search.length == 0) {
             if (this.searchSubscription) this.searchSubscription.unsubscribe();
-            this._administration.usersListing({ search: search }).subscribe(res => {
+            this._account.usersListing({ search: search }).subscribe(res => {
                 this.employees = res.data.data;
                 this.newSalesOrder.user_id = res.data.data[0] ? res.data.data[0]?.id : null;
                 this.selectedEmployee = this.employees.find(x => x.id == this.salesOrder.user_id).name

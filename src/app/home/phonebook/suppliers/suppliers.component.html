@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
-                <a class="secondary-sup" href="javascript:void(0)" (click)="addSupplier()">
+                <a class="secondary-sup" href="javascript:void(0)" (click)="addSupplier()" *ngIf="_auth.checkPermissions('phonebook','write')">
                     <i-feather class="plus" name="plus"></i-feather> Add Entry
                 </a>
 
@@ -44,7 +44,7 @@
                                 <th>
                                     <p class="inner-cell">Products<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                                 </th>
-                                <th>
+                                <th *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <p class="inner-cell">Actions</p>
                                 </th>
                             </tr>
@@ -66,7 +66,7 @@
                                 <td>
                                     <p class="inner-cell">{{ s.products }}</p>
                                 </td>
-                                <td>
+                                <td *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <div class="list-icons-talbe d-flex justify-content-center">
 
                                         <a class="icon-anchor-list" href="javascript:void(0)" (click)="editSupplier(s,i)">

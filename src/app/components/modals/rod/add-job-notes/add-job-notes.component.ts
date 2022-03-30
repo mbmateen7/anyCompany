@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { RodService } from 'src/app/shared/services/rod.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class AddJobNotesComponent implements OnInit {
         description: '',
         work_order_id: 0,
     }
-    constructor(private _rod: RodService) { }
+    constructor(private _rod: RodService, public _auth: AuthService) { }
 
     ngOnInit(): void {
         this.newNote.work_order_id = this.orderId;

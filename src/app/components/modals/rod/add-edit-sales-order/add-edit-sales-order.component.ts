@@ -110,7 +110,7 @@ export class AddEditSalesOrderComponent implements OnInit {
             this.selectedProducts.push({
                 id: p.id,
                 name: p.name,
-                quantity: 0
+                quantity: ''
             });
             // let prods = [];
             // for (let index = 0; index < this.selectedProducts.length; index++) {
