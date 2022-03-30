@@ -6,16 +6,15 @@ import { WalkingComponent } from './walking/walking.component';
 const deliveryRoutes: Routes = [
     {
         path: '',
-        children: [
-            {
-                path: 'delivery',
-                component: DeliveryComponent
-            },
-            {
-                path: 'walking',
-                component: WalkingComponent
-            }
-        ]
+        redirectTo: 'dellivery'
+    },
+    {
+        path: 'delivery',
+        component: DeliveryComponent
+    },
+    {
+        path: 'walking',
+        component: WalkingComponent
     }
 ];
 

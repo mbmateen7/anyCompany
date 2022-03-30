@@ -5,6 +5,10 @@ import { UsersComponent } from './users/users.component';
 
 const administrationRoutes: Routes = [
     {
+        path: '',
+        redirectTo: 'roles'
+    },
+    {
         path: 'roles',
         component: RolesComponent
     },
