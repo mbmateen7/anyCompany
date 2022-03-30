@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -17,21 +17,21 @@ export class HomeComponent implements OnInit {
     }
 
     redirectToAllowedModule() {
-        if (this._auth.checkPermissions('dashboard', 'read')) {
+        if (this._auth.checkPermissions('dashboard', 'read') && this.router.url.includes('dashboard')) {
             this.router.navigateByUrl('/dashboard');
-        } else if (this._auth.checkPermissions('administration', 'read')) {
+        } else if (this._auth.checkPermissions('administration', 'read') && this.router.url.includes('administration')) {
             this.router.navigateByUrl('/administration/users');
-        } else if (this._auth.checkPermissions('delivery_list', 'read')) {
+        } else if (this._auth.checkPermissions('delivery_list', 'read') && this.router.url.includes('delivery-list')) {
             this.router.navigateByUrl('/delivery-list/delivery');
-        } else if (this._auth.checkPermissions('fsc', 'read')) {
+        } else if (this._auth.checkPermissions('fsc', 'read') && this.router.url.includes('fsc')) {
             this.router.navigateByUrl('/fsc/customer-orders');
-        } else if (this._auth.checkPermissions('rod', 'read')) {
+        } else if (this._auth.checkPermissions('rod', 'read') && this.router.url.includes('rod')) {
             this.router.navigateByUrl('/rod');
-        } else if (this._auth.checkPermissions('history', 'read')) {
+        } else if (this._auth.checkPermissions('history', 'read') && this.router.url.includes('history')) {
             this.router.navigateByUrl('/history');
-        } else if (this._auth.checkPermissions('phonebook', 'read')) {
+        } else if (this._auth.checkPermissions('phonebook', 'read') && this.router.url.includes('phonebook')) {
             this.router.navigateByUrl('/phonebook/customers');
-        } else if (this._auth.checkPermissions('accounts', 'read')) {
+        } else if (this._auth.checkPermissions('accounts', 'read') && this.router.url.includes('accounts')) {
             this.router.navigateByUrl('/accounts');
         }
     }
