@@ -50,6 +50,9 @@ export class AuthService {
     }
 
     checkPermissions(module, action) {
+        console.log(this.currentUserPermissions);
+        console.log(module, action);
+
         return this.currentUserPermissions[module][action];
     }
 }

@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
             this.router.navigateByUrl('/dashboard');
         } else if (this._auth.checkPermissions('administration', 'read')) {
             this.router.navigateByUrl('/administration/users');
-        } else if (this._auth.checkPermissions('delivery-list', 'read')) {
+        } else if (this._auth.checkPermissions('delivery_list', 'read')) {
             this.router.navigateByUrl('/delivery-list/delivery');
         } else if (this._auth.checkPermissions('fsc', 'read')) {
             this.router.navigateByUrl('/fsc/customer-orders');
