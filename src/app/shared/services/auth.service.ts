@@ -59,7 +59,7 @@ export class AuthService {
     }
 
     permissionArrayToObj() {
-        this.currentUserPermissions.forEach(element => {
+        this.currentUserPermissions?.forEach(element => {
             const code = element.code;
             this.permissionsObj[code] = element;
         });
