@@ -6,7 +6,7 @@ import { WalkingComponent } from './walking/walking.component';
 const deliveryRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'dellivery'
+        redirectTo: 'delivery'
     },
     {
         path: 'delivery',

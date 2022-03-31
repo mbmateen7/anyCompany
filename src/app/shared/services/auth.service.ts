@@ -13,11 +13,13 @@ export class AuthService {
     currentUser: Observable<any>;
     userPermissionObjSubject: BehaviorSubject<any>;
     permissions: Observable<any>;
-    constructor() {
+    permissionsObj = {};
+    constructor(private router: Router) {
         this.userObjSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('userObj')));
         this.currentUser = this.userObjSubject.asObservable();
         this.userPermissionObjSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('permissions')));
         this.permissions = this.userPermissionObjSubject.asObservable();
+        this.permissionArrayToObj()
     }
 
     public get currentUserValue(): any {
@@ -34,6 +36,8 @@ export class AuthService {
         localStorage.setItem('permissions', JSON.stringify(userObj.permissions));
         this.userPermissionObjSubject.next(userObj.permissions);
         this.userObjSubject.next(userObj.user);
+        this.permissionArrayToObj()
+        this.redirectToAllowedModule();
         return;
     }
 
@@ -46,11 +50,29 @@ export class AuthService {
     updateUserPermissions(userObj: any): void {
         localStorage.setItem('permissions', JSON.stringify(userObj.permissions));
         this.userPermissionObjSubject.next(userObj.permissions);
+        this.permissionArrayToObj()
         return;
     }
 
     checkPermissions(module, action) {
-        console.log(module, action);
-        return this.currentUserPermissions[module][action];
+        return this.permissionsObj[module][action];
+    }
+
+    permissionArrayToObj() {
+        this.currentUserPermissions.forEach(element => {
+            const code = element.code;
+            this.permissionsObj[code] = element;
+        });
+    }
+
+    redirectToAllowedModule() {
+        for (let index = 0; index < this.currentUserPermissions.length; index++) {
+            const element = this.currentUserPermissions[index];
+            if (element.read) {
+                this.router.navigate([element.module]);
+                break;
+            }
+
+        }
     }
 }

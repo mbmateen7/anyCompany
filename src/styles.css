@@ -30768,7 +30768,7 @@ button:focus {
 
 .phone-dropdown .input-rigister .custom-btn {
     background: #fff;
-    width: 20rem;
+    min-width: 20rem;
     height: 4.5rem;
     font-size: 1.4rem;
     font-weight: 700 !important;
@@ -30785,6 +30785,7 @@ button:focus {
     -ms-flex-align: center;
     align-items: center;
     border: none;
+    padding-right: 20px;
 }
 
 .phone-dropdown .input-rigister .drop-bottom .dropdown-toggle.custom-btn.active::after {
@@ -36726,6 +36727,7 @@ input:checked+.slider:before {
 .list-card-icons.list-card-icons-pills .icon-anchor-list .icon-width {
     color: #fff;
     width: 16px;
+    height: 16px;
 }
 
 .list-card-icons.list-card-icons-pills .icon-anchor-list img {
@@ -37451,7 +37453,6 @@ i-feather.clear-filter {
 .progress-card-bar {
     position: absolute;
     height: 4px;
-    width: 70px;
     background: gray;
     top: 4px;
     display: block;
@@ -37463,8 +37464,13 @@ i-feather.clear-filter {
 
 .progress-card-bar {
     top: -4px;
-    left: 10px;
+    left: 6px;
     margin: 0px;
+    width: 60px;
+}
+
+.progress-cell-bar {
+    width: calc(100% - 1.5rem);
 }
 
 .progress-cell-bar>span {

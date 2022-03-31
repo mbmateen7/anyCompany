@@ -49,7 +49,6 @@ export class ResetPasswordComponent implements OnInit {
         console.log(this.updatePassword);
         this._authentication.resetPassword(this.updatePassword).subscribe(res => {
             this._auth.storeUserData(res.data.access_token, res.data.user);
-            this.router.navigate(['/dashboard']);
         });
     }
 

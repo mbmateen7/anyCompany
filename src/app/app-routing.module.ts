@@ -13,7 +13,7 @@ const routes: Routes = [
     {
         path: '',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-        canActivate: [HomeGuard, PermissionsGuard]
+        canActivate: [HomeGuard]
     },
     {
         path: 'forgot-password',

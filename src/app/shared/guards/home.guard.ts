@@ -16,7 +16,6 @@ export class HomeGuard implements CanActivate {
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         ///// WE HAVE TO IMPLEMENT OUR LOGIC HERE:: START
         const token = localStorage.getItem('token');
-        console.log('HomeGuard', token);
         if (!token) {
             this.helper.clearLocalStorage();
             this.router.navigate(['/login']);

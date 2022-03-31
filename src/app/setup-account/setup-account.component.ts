@@ -46,7 +46,6 @@ export class SetupAccountComponent implements OnInit {
     updatePassword() {
         this._authentication.skipPasswordUpdate(this.updatePasswordObj).subscribe(res => {
             this._auth.storeUserData(res.data.access_token, res.data.user);
-            this.router.navigate(['/dashboard']);
         });
     }
 
@@ -54,7 +53,6 @@ export class SetupAccountComponent implements OnInit {
         this.updatePasswordObj.skip = true;
         this._authentication.skipPasswordUpdate(this.updatePasswordObj).subscribe(res => {
             this._auth.storeUserData(res.data.access_token, res.data.user);
-            this.router.navigate(['/dashboard']);
         });
     }
 

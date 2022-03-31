@@ -6,7 +6,7 @@ import { UsersComponent } from './users/users.component';
 const administrationRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'roles'
+        redirectTo: 'users'
     },
     {
         path: 'roles',
