@@ -167,8 +167,8 @@
 
                     </div>
                     <div class="card-door-1">
-                        <h4 class="door-heading">{{ stats? stats.sales_top_grocing.customer.customer_name : 'N/A' }}</h4>
-                        <p class="door-text-pri">{{ stats? stats.sales_top_grocing.customer.customer_total  : 'N/A'| currency:'GBP':'symbol'}}</p>
+                        <h4 class="door-heading">{{ stats ? stats?.sales_top_grocing.customer.customer_name : 'N/A' }}</h4>
+                        <p class="door-text-pri">{{ stats ? (stats?.sales_top_grocing.customer.customer_total | currency:'GBP':'symbol') : 'N/A'}}</p>
                     </div>
                 </div>
             </a>
@@ -219,7 +219,7 @@
 
                         <a class="bar-hover" href="javascript:void(0)">
                             <div class="on-hover-label">
-                                <p>{{ stats?.sales_top_person[1].total  | currency:'GBP':'symbol' }}</p>
+                                <p>{{ stats?.sales_top_person[1]?.total  | currency:'GBP':'symbol' }}</p>
                             </div>
                             <div class="bar-img bar-img-gray">
                                 <img src="assets/img/bar-img.png" class="bar-img-1 img-fluid" alt="bar-img">
@@ -229,15 +229,15 @@
 
                             </div>
                             <div class="bar-long"></div>
-                            <p class="name-bar">{{ stats.sales_top_person[1].name }}</p>
-                            <p class="sales-p">{{ stats.sales_top_person[1].role }}</p>
+                            <p class="name-bar">{{ stats?.sales_top_person[1]?.name }}</p>
+                            <p class="sales-p">{{ stats?.sales_top_person[1]?.role }}</p>
                         </a>
                     </div>
                     <div class="bar-main">
 
                         <a class="bar-hover" href="javascript:void(0)">
                             <div class="on-hover-label">
-                                <p>{{ stats?.sales_top_person[0].total | currency:'GBP':'symbol' }}</p>
+                                <p>{{ stats?.sales_top_person[0]?.total | currency:'GBP':'symbol' }}</p>
                             </div>
                             <div class="bar-img">
                                 <img src="assets/img/bar-img.png" class="bar-img-1 img-fluid" alt="bar-img">
@@ -247,8 +247,8 @@
 
                             </div>
                             <div class="bar-long"></div>
-                            <p class="name-bar">{{ stats.sales_top_person[0].name }}</p>
-                            <p class="sales-p">{{ stats.sales_top_person[0].role }}</p>
+                            <p class="name-bar">{{ stats?.sales_top_person[0]?.name }}</p>
+                            <p class="sales-p">{{ stats?.sales_top_person[0]?.role }}</p>
                         </a>
                     </div>
 
@@ -256,7 +256,7 @@
 
                         <a class="bar-hover" href="javascript:void(0)">
                             <div class="on-hover-label">
-                                <p>{{ stats?.sales_top_person[2].total | currency:'GBP':'symbol' }}</p>
+                                <p>{{ stats?.sales_top_person[2]?.total | currency:'GBP':'symbol' }}</p>
                             </div>
                             <div class="bar-img bar-img-brown">
                                 <img src="assets/img/bar-img.png" class="bar-img-1 img-fluid" alt="bar-img">
@@ -266,8 +266,8 @@
 
                             </div>
                             <div class="bar-long"></div>
-                            <p class="name-bar">{{ stats.sales_top_person[2].name }}</p>
-                            <p class="sales-p">{{ stats.sales_top_person[2].role }}</p>
+                            <p class="name-bar">{{ stats?.sales_top_person[2]?.name }}</p>
+                            <p class="sales-p">{{ stats?.sales_top_person[2]?.role }}</p>
                         </a>
                     </div>
                 </div>
