@@ -100,7 +100,7 @@ export class AddEditFixedCostComponent implements OnInit {
     supplierInputOut() {
         setTimeout(() => {
             this.supplierInput = false
-        }, 100);
+        }, 200);
     }
 
 }

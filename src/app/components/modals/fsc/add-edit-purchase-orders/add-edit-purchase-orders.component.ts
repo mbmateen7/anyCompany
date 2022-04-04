@@ -236,16 +236,16 @@ export class AddEditPurchaseOrdersComponent implements OnInit {
     orderInputOut() {
         setTimeout(() => {
             this.workNumberInput = false
-        }, 100);
+        }, 200);
     }
     workInputOut() {
         setTimeout(() => {
             this.orderNumberInput = false
-        }, 100);
+        }, 200);
     }
     supplierInputOut() {
         setTimeout(() => {
             this.supplierInput = false
-        }, 100);
+        }, 200);
     }
 }

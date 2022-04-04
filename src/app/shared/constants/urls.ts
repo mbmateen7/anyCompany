@@ -48,6 +48,7 @@ export const urls = {
     uploadFiles: 'rod/work-orders/files/store',
     removeFile: 'rod/work-orders/files/delete',
     multipleJobNotes: 'rod/job-notes/update-multiple',
+    getWorkOrdersCustomers: 'rod/customers/listing',
 
     // Products
     productListing: 'rod/work-orders/products',

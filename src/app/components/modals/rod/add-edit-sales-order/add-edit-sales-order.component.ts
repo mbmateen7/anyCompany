@@ -73,7 +73,7 @@ export class AddEditSalesOrderComponent implements OnInit {
     }
 
     getCustomerListing() {
-        this._phonebook.customerListing().subscribe((res: any) => {
+        this._rod.getCustomersListing().subscribe((res: any) => {
             this.customers = res.data.data
             if (this.type == 'edit') {
                 this.selectedCustomer = this.order.customer.name
@@ -126,7 +126,7 @@ export class AddEditSalesOrderComponent implements OnInit {
     searchCustomer(event) {
         if (event.target.value.length >= 3 || event.target.value.length == 0) {
             if (this.searchSubscription) this.searchSubscription.unsubscribe()
-            this.searchSubscription = this._phonebook.customerListing({ search: event.target.value }).subscribe(res => {
+            this.searchSubscription = this._rod.getCustomersListing({ search: event.target.value }).subscribe(res => {
                 this.customers = res.data.data;
             })
         }
@@ -137,11 +137,9 @@ export class AddEditSalesOrderComponent implements OnInit {
     }
 
     selectCustomer(value) {
-
         if (value == 'new') {
             const modal = this._modal.open(AddEditCustomerComponent, this.modalConfig)
             modal.componentInstance.response.subscribe(res => {
-                console.log(res);
                 if (res.success) {
                     this.customers.push(res.data)
                     if (this.type == 'add') {
@@ -216,7 +214,7 @@ export class AddEditSalesOrderComponent implements OnInit {
     customerInputOut() {
         setTimeout(() => {
             this.customerInput = false
-        }, 100);
+        }, 200);
     }
 
 

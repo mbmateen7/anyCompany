@@ -131,13 +131,13 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
     supplierInputOut() {
         setTimeout(() => {
             this.supplierInput = false
-        }, 100);
+        }, 200);
     }
 
     orderInputOut() {
         setTimeout(() => {
             this.orderInput = false
-        }, 100);
+        }, 200);
     }
 
     dateValue(event) {

@@ -138,12 +138,12 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
     orderInputOut() {
         setTimeout(() => {
             this.orderInput = false
-        }, 100);
+        }, 200);
     }
     employeeInputOut() {
         setTimeout(() => {
             this.employeeInput = false
-        }, 100);
+        }, 200);
     }
 
     monthValue(event) {
