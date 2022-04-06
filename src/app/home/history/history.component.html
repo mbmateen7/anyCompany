@@ -7,7 +7,7 @@
              </ul>
              <div class="d-flex">
 
-                 <a class="credit-check" data-toggle="modal" data-target="#Download" href="#Download" href="javascript:void(0)">
+                 <a class="credit-check" data-toggle="modal" data-target="#Download" href="javascript:void(0)" (click)="downloadData()">
                      <i class="download" data-feather="download"></i> Download Data</a>
              </div>
          </div>
@@ -170,7 +170,7 @@
 
                  </div>
                  <!-- Pagination -->
-                 <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                 <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [currentPage]="searchParams.page" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
              </div>
 
          </div>

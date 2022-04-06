@@ -35,6 +35,12 @@ export class CustomerOrderComponent implements OnInit {
             this.totalCount = res.data.total;;
         })
     }
+    searchOrder(type) {
+        if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+            this.searchParams.page = 1;
+            this.getFscListing();
+        };
+    }
 
     changePage(event) {
         this.searchParams.page = event;
@@ -45,6 +51,12 @@ export class CustomerOrderComponent implements OnInit {
         this.searchParams.page = 1;
         this.searchParams.page_size = event;
         this.getFscListing();
+    }
+
+    downloadData() {
+        this._fsc.downloadCustomerOrder(this.searchParams).subscribe(res => {
+            window.open(res.data.link);
+        })
     }
 
 }

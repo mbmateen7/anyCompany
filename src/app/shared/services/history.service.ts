@@ -20,4 +20,8 @@ export class HistoryService {
     reorder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.historyReorder}`, params);
     }
+
+    downloadHistory(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.historyDownload}`, params);
+    }
 }

@@ -47,6 +47,7 @@ export const urls = {
     getDeliveryNotes: 'rod/delivery-notes/listing',
     uploadFiles: 'rod/work-orders/files/store',
     removeFile: 'rod/work-orders/files/delete',
+    downloadRod: 'rod/work-orders/download',
     multipleJobNotes: 'rod/job-notes/update-multiple',
     getWorkOrdersCustomers: 'rod/customers/listing',
 
@@ -76,16 +77,19 @@ export const urls = {
 
     // FSC
     fscListing: 'fsc/customer-orders/listing',
+    fscCustomerOrderDownload: 'fsc/customer-orders/download',
     addPurchaseOrder: 'fsc/purchase-orders/store',
     purchaseOrderListing: 'fsc/purchase-orders/listing',
     updateOrder: 'fsc/purchase-orders/update',
     deleteOrder: 'fsc/purchase-orders/delete',
     fscWorkOrderListing: 'fsc/orders/listing',
     fscSupplierListing: 'fsc/suppliers/listing',
+    fscPurchaseOrderDownload: 'fsc/purchase-orders/download',
 
     // Accounts
     accountStats: 'accounts/stats',
     customerTotals: 'accounts/customer-total-listing',
+    accountsDownloadCustomerTotal: 'accounts/download',
 
     salesOrdersRodListing: 'accounts/sale-order/work-order-listing',
     salesOrdersListing: 'accounts/sale-order/listing',
@@ -93,6 +97,7 @@ export const urls = {
     updateSalesOrderStatus: 'accounts/sale-order/update-status',
     updateSalesOrder: 'accounts/sale-order/update',
     deleteSalesOrder: 'accounts/sale-order/delete',
+    accountsDownloadSalesOrder: 'accounts/sale-order/download',
 
     accountsPurchaseOrdersListing: 'accounts/purchase-cost/listing',
     addAccountsPurchaseOrder: 'accounts/purchase-cost/store',
@@ -102,6 +107,7 @@ export const urls = {
     accountsUserListing: 'accounts/users/listing',
     accountsWorkOrdersListing: 'accounts/work-orders/listing',
     accountsSupplierListing: 'accounts/suppliers/listing',
+    accountsDowloadMonthlyCost: 'accounts/purchase-cost/download',
 
     fixedCostListing: 'accounts/fixed-cost/listing',
     addFixedCost: 'accounts/fixed-cost/store',
@@ -114,6 +120,7 @@ export const urls = {
     // History
     historyListing: 'history/listing',
     historyReorder: 'history/reorder',
+    historyDownload: 'history/download',
 
     // Dashboard
     dashboardStats: 'dashboard/stats',

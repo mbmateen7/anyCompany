@@ -93,4 +93,16 @@ export class AccountService {
     supplierListing(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.accountsSupplierListing}`, params);
     }
+
+    downloadSalesOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.accountsDownloadSalesOrder}`, params);
+    }
+
+    dowloadMonthlyCost(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.accountsDowloadMonthlyCost}`, params);
+    }
+
+    downloadCustomerTotal(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.accountsDownloadCustomerTotal}`, params);
+    }
 }

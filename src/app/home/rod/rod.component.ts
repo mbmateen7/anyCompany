@@ -374,6 +374,7 @@ export class RodComponent implements OnInit {
 
     searchRod() {
         if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+            this.searchParams.page = 1;
             this.rodListing();
         }
     }
@@ -429,6 +430,12 @@ export class RodComponent implements OnInit {
 
             } else modal.dismiss();
         });
+    }
+
+    downloadData() {
+        this._rod.downloadData(this.searchParams).subscribe(res => {
+            window.open(res.data.link);
+        })
     }
 
 }

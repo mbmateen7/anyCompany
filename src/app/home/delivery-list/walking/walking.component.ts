@@ -149,6 +149,7 @@ export class WalkingComponent implements OnInit {
     }
 
     searchOrder(type, date = null) {
+        this.searchParams.page = 1;
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getDeliveryListing();
         }

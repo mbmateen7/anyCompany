@@ -143,7 +143,7 @@
                             <a class="nav-link" data-toggle="tab" href="#Customer" (click)="changeTab('customerTotal')">Customer Totals</a>
                         </li>
                     </ul>
-                    <a class="credit-check" href="javascript:void(0)">
+                    <a class="credit-check" href="javascript:void(0)" (click)="downloadData()">
                         <i-feather class="download" name="download"></i-feather> Download Data
                     </a>
                 </div>
@@ -406,7 +406,7 @@
                             </div>
                         </div>
                     </div>
-                    <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                    <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [currentPage]="searchParams.page" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
                 </div>
             </div>
 

@@ -124,8 +124,12 @@ export class AccountsComponent implements OnInit {
         }
     }
 
+
+
+
     searchOrder() {
         if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+            this.searchParams.page = 1;
             this.getListing();
         }
     }
@@ -263,5 +267,30 @@ export class AccountsComponent implements OnInit {
             }
             statusModal.dismiss();
         });
+    }
+
+    downloadData() {
+        if (this.activeTab == 'salesOrder') {
+            if (this.salesOrder.length == 0) {
+                return;
+            }
+            this._account.downloadSalesOrder(this.searchParams).subscribe(res => {
+                window.open(res.data.link);
+            });
+        } else if (this.activeTab == 'monthlyCost') {
+            if (this.purchaseOrders.length == 0) {
+                return;
+            }
+            this._account.dowloadMonthlyCost(this.searchParams).subscribe(res => {
+                window.open(res.data.link);
+            });
+        } else if (this.activeTab == 'customerTotal') {
+            if (this.customerTotals.length == 0) {
+                return;
+            }
+            this._account.downloadCustomerTotal(this.searchParams).subscribe(res => {
+                window.open(res.data.link);
+            });
+        }
     }
 }

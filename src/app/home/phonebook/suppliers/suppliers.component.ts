@@ -53,6 +53,7 @@ export class SuppliersComponent implements OnInit {
 
     searchSuppliers() {
         if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+            this.searchParams.page = 1;
             this.getSuppliers();
         }
     }

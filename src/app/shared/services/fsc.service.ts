@@ -42,5 +42,10 @@ export class FscService {
         return this.http.post<any>(`${environment.apiUrl + urls.fscSupplierListing}`, params);
     }
 
-
+    downloadPurchaseOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.fscPurchaseOrderDownload}`, params);
+    }
+    downloadCustomerOrder(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.fscCustomerOrderDownload}`, params);
+    }
 }

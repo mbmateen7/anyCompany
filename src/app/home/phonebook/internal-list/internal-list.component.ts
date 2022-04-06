@@ -52,6 +52,7 @@ export class InternalListComponent implements OnInit {
 
     searchEmployees() {
         if (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3) {
+            this.searchParams.page = 1
             this.getEmployees();
         }
     }

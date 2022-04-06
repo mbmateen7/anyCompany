@@ -57,6 +57,7 @@ export class HistoryComponent implements OnInit {
     }
 
     searchOrder(type) {
+        this.searchParams.page = 1;
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getHistoryListing();
         }
@@ -118,6 +119,12 @@ export class HistoryComponent implements OnInit {
         this._history.reorder({ id: his.id }).subscribe(res => {
             this.histories.splice(index, 1);
             this.helper.toastSuccess(res.message);
+        })
+    }
+
+    downloadData() {
+        this._history.downloadHistory(this.searchParams).subscribe(res => {
+            window.open(res.data.link);
         })
     }
 }

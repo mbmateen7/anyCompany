@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
             <div class="d-flex">
-                <a class="credit-check" data-toggle="modal" data-target="#Download" href="#Download" href="javascript:void(0)">
+                <a class="credit-check" data-toggle="modal" data-target="#Download" href="javascript:void(0)" (click)="downloadData()">
                     <i class="download" data-feather="download"></i> Download Data</a>
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class="d-flex align-items-center justify-content-between delivery-list-main">
                 <div class="d-flex for-media-setts">
                     <div class="form-group sear-bar-roles position-relative mb-0">
-                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email">
+                        <input type="search" class="form-control form-control-roles" placeholder="Search.." id="email" (input)="searchOrder('search')" [(ngModel)]="searchParams.search">
                         <i-feather class="search-ctm" name="search"></i-feather>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
 
                 </div>
                 <!-- Pagination -->
-                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [currentPage]="searchParams.page" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
             </div>
 
         </div>

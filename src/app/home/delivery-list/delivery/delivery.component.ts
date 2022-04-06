@@ -148,11 +148,11 @@ export class DeliveryComponent implements OnInit {
     }
 
     searchOrder(type, date = null) {
+        this.searchParams.page = 1;
         if (type == 'search' && (this.searchParams.search.length == 0 || this.searchParams.search.length >= 3)) {
             this.getDeliveryListing();
         }
         setTimeout(() => {
-            console.log(this.startDate, this.endDate)
             if (type == 'date' && ((this.startDate && this.endDate) || (!this.startDate && !this.endDate))) {
                 this.searchParams.start_date = this.startDate ? this.datePipe.transform(this.startDate, 'YYYY-MM-dd') : null;
                 this.searchParams.end_date = this.endDate ? this.datePipe.transform(this.endDate, 'YYYY-MM-dd') : null;

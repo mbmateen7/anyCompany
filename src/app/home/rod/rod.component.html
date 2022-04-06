@@ -22,7 +22,7 @@
                 <a class="btn-apply" (click)="addSalesOrder()" href="javascript:void(0)" *ngIf="_auth.checkPermissions('rod','write')">
                     <i-feather class="plus" name="plus"></i-feather> Add Sales Order
                 </a>
-                <a class="credit-check" data-toggle="modal" data-target="#Download-1" href="#Download-1">
+                <a class="credit-check" data-toggle="modal" data-target="#Download-1" href="javascript:void(0)" (click)="downloadData()">
                     <i-feather class="download" name="download"></i-feather> Download Data
                 </a>
             </div>
@@ -240,7 +240,7 @@
                     </table>
 
                 </div>
-                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [currentPage]="searchParams.page" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
             </div>
 
         </div>

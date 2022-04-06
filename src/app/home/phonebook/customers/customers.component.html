@@ -56,8 +56,6 @@
                                 <td>
                                     <p class="inner-cell">{{ c.email }}</p>
                                 </td>
-
-
                                 <td *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <div class="list-icons-talbe d-flex justify-content-center">
 
@@ -79,7 +77,7 @@
                     </table>
 
                 </div>
-                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [currentPage]="searchParams.page" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
             </div>
 
         </div>
