@@ -22,17 +22,12 @@ export class TimelineComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
-    permissions;
-    constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal, private _auth: AuthService) {
-        this.permissions = this._auth.currentUserPermissions;
-        this._auth.userPermissionObjSubject.subscribe(res => {
-            this.permissions = res;
-        })
+    constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal, public _auth: AuthService) {
     }
 
     ngOnInit(): void {
-        console.log(this.rod);
         this._rod.getTimeline({ work_order_id: this.rod.id, timeline: true }).subscribe(res => {
+            console.log(res.data);
             this.jobNotes = res.data;
         });
     }
