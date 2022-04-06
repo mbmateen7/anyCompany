@@ -195,13 +195,13 @@
                                     </td>
                                     <td>
                                         <div class="inner-cell view-anchor-tooltip">
-                                            <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="!delivery.job_notes_count" (click)="addJobNote(delivery.id,i)">
+                                            <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="delivery.job_notes_count =='0'" (click)="addJobNote(delivery.id,i)">
                                                 <i-feather class="icon-width" name="plus"></i-feather>
                                             </a>
-                                            <a class="view-anchor red" href="javascript:void(0)" *ngIf="delivery.job_notes_count" (click)="addJobNote(delivery.id,i)">
+                                            <a class="view-anchor red" href="javascript:void(0)" *ngIf="delivery.job_notes_count != '0'" (click)="addJobNote(delivery.id,i)">
                                                 View
                                             </a>
-                                            <div class="tooltiptext-view" *ngIf="delivery.job_notes_count && delivery.latest_job_note.description">
+                                            <div class="tooltiptext-view" *ngIf="delivery.job_notes_count  != '0' && delivery.latest_job_note.description">
                                                 <div class="d-flex align-items-center justify-content-end">
                                                     <a class="tooltip-anchor-modal" href="javascript:void(0)" (click)="addJobNote(delivery.id,i)">
                                                         Add Note <i-feather class="icon-width w15" name="plus"></i-feather></a>
@@ -235,7 +235,7 @@
                         </table>
 
                     </div>
-                    <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [currentPage]="searchParams.page" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+                    <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
                 </div>
 
             </div>
@@ -262,13 +262,13 @@
                             <li class="item-card-1">Job Note</li>
                             <li class="item-card">
                                 <div class="inner-cell view-anchor-tooltip">
-                                    <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="!delivery.job_notes_count" (click)="addJobNote(delivery.id,i)">
+                                    <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="delivery.job_notes_count =='0'" (click)="addJobNote(delivery.id,i)">
                                         <i-feather class="icon-width" name="plus"></i-feather>
                                     </a>
-                                    <a class="view-anchor red" href="javascript:void(0)" *ngIf="delivery.job_notes_count" (click)="addJobNote(delivery.id,i)">
+                                    <a class="view-anchor red" href="javascript:void(0)" *ngIf="delivery.job_notes_count != '0'" (click)="addJobNote(delivery.id,i)">
                                         View
                                     </a>
-                                    <div class="tooltiptext-view" *ngIf="delivery.job_notes_count && delivery.latest_job_note.description">
+                                    <div class="tooltiptext-view" *ngIf="delivery.job_notes_count != '0' && delivery.latest_job_note.description">
                                         <div class="d-flex align-items-center justify-content-end">
                                             <a class="tooltip-anchor-modal" href="javascript:void(0)" (click)="addJobNote(delivery.id,i)">
                                                 Add Note <i-feather class="icon-width w15" name="plus"></i-feather></a>
@@ -451,7 +451,7 @@
                     </div>
                 </div>
             </div>
-            <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [currentPage]="searchParams.page" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
+            <app-pagination [from]="pageFrom" [to]="pageTo" [pageSize]="searchParams.page_size" [totalPages]="totalPages" [total]="totalCount" (changePage)="changePage($event)" (ChangePageSize)="ChangePageSize($event)"></app-pagination>
         </div>
     </div>
 

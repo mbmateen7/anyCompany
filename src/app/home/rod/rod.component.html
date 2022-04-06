@@ -197,13 +197,13 @@
 
                                 <td>
                                     <div class="inner-cell view-anchor-tooltip">
-                                        <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="!rod.job_notes_count" (click)="addJobNote(rod.id,i)">
+                                        <a class="icon-anchor-list" href="javascript:void(0)" *ngIf="rod.job_notes_count == '0'" (click)="addJobNote(rod.id,i)">
                                             <i-feather class="icon-width" name="plus"></i-feather>
                                         </a>
-                                        <a class="view-anchor red" href="javascript:void(0)" *ngIf="rod.job_notes_count" (click)="addJobNote(rod.id,i)">
+                                        <a class="view-anchor red" href="javascript:void(0)" *ngIf="rod.job_notes_count != '0'" (click)="addJobNote(rod.id,i)">
                                             View
                                         </a>
-                                        <div class="tooltiptext-view" *ngIf="rod.job_notes_count && rod.latest_job_note.description">
+                                        <div class="tooltiptext-view" *ngIf="rod.job_notes_count != '0' && rod.latest_job_note.description">
                                             <div class="d-flex align-items-center justify-content-end">
                                                 <a class="tooltip-anchor-modal" href="javascript:void(0)" (click)="addJobNote(rod.id,i)">
                                                     Add Note <i-feather class="icon-width w15" name="plus"></i-feather></a>
