@@ -126,7 +126,7 @@
                                     </td>
                                     <td>{{ delivery.work_number }}</td>
                                     <td>{{ delivery.customer.name }}</td>
-                                    <td>{{ delivery.product.name }}</td>
+                                    <td>{{ delivery.quantity }} {{ delivery.product.name }}</td>
                                     <td>{{ delivery.finish_type }}</td>
                                     <td>{{ delivery.location }}</td>
                                     <td>{{ delivery.postcode }}</td>
@@ -328,7 +328,7 @@
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Product</li>
-                            <li class="item-card">{{ delivery.product.name }}</li>
+                            <li class="item-card">{{ delivery.quantity }} {{ delivery.product.name }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Status</li>

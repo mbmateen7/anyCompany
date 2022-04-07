@@ -116,7 +116,7 @@
                                     </td>
                                     <td>{{ delivery.work_number }}</td>
                                     <td>{{ delivery.customer.name }}</td>
-                                    <td>{{ delivery.product.name }}</td>
+                                    <td>{{ delivery.quantity }} {{ delivery.product.name }}</td>
                                     <td>{{ delivery.on_hold ? 'On Hold' : delivery.status }}</td>
                                     <td class="position-relative">
                                         <div class="progress-cell-bar"><span [style.width.%]="delivery.progress"></span></div>{{ delivery.progress }}%
@@ -308,7 +308,7 @@
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Product</li>
-                            <li class="item-card">{{ delivery.product.name }}</li>
+                            <li class="item-card">{{ delivery.quantity }} {{ delivery.product.name }}</li>
                         </ul>
                         <ul class="wc">
                             <li class="item-card-1">Status</li>
