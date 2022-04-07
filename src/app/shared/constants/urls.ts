@@ -3,7 +3,7 @@ export const urls = {
     // Host 
     devUrl: 'http://humphrey.test/api/',
     stagingUrl: 'https://api-humphery.io-devs.cf/api/',
-    awsUrl: 'http://rod.humphreystretton.com/backend/api/',
+    awsUrl: 'https://rod.humphreystretton.com/backend/api/',
 
     // AUTH
     login: 'auth/login',
