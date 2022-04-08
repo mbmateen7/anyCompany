@@ -27,7 +27,9 @@ export class DeliveryComponent implements OnInit {
         start_date: null,
         end_date: null,
         page_size: 10,
-        page: 1
+        page: 1,
+        sort_column: 'due_date',
+        sort_value: 'DESC'
     }
     totalPages = 1;
     pageFrom = 1;
@@ -170,4 +172,11 @@ export class DeliveryComponent implements OnInit {
         this.searchParams.page_size = event;
         this.getDeliveryListing();
     }
+
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        this.getDeliveryListing();
+    }
+
 }

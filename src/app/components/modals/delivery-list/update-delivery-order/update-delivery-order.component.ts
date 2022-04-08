@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RodService } from 'src/app/shared/services/rod.service';
 
@@ -10,9 +11,13 @@ export class UpdateDeliveryOrderComponent implements OnInit {
     @Input() order;
     @Output() response: EventEmitter<any> = new EventEmitter();
     products = [];
-    constructor(private _rod: RodService) { }
+    orderDate;
+    constructor(private _rod: RodService, private datePipe: DatePipe) {
+    }
 
     ngOnInit(): void {
+
+        this.orderDate = new Date(this.order.due_date)
         this.getProductsListing();
     }
 
@@ -31,5 +36,9 @@ export class UpdateDeliveryOrderComponent implements OnInit {
         this._rod.updateWorkOrder(this.order).subscribe(res => {
             this.response.emit({ success: true, data: res.data })
         });
+    }
+
+    dateChanged(value) {
+        this.order.due_date = this.datePipe.transform(value, 'YYYY-MM-dd');
     }
 }
