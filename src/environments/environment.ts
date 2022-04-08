@@ -6,7 +6,7 @@ import { urls } from "src/app/shared/constants/urls";
 
 export const environment = {
     production: false,
-    apiUrl: urls.stagingUrl
+    apiUrl: urls.devUrl
 };
 
 /*
