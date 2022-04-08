@@ -35432,7 +35432,7 @@ input:checked+.slider:before {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    white-space: nowrap;
+    white-space: normal;
     justify-content: center;
 }
 
@@ -37490,4 +37490,9 @@ i-feather.clear-filter {
     left: 0px;
     width: 0%;
     border-radius: 5px;
+}
+
+
+th.cursor-pointer{
+    cursor: pointer;
 }

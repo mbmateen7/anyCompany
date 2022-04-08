@@ -52,34 +52,34 @@
                     <table class="table">
                         <thead class="thead-ctm">
                             <tr>
-                                <th>
-                                    <p class="inner-cell">Date<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('date')">
+                                    <p class="inner-cell">Date <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'date' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'date' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Order Number<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('order_number')">
+                                    <p class="inner-cell">Order Number <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'order_number' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'order_number' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Work Order<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('work_number')">
+                                    <p class="inner-cell">Work Order <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'work_number' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'work_number' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Product Type<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('product_type')">
+                                    <p class="inner-cell">Product Type <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'product_type' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'product_type' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Material<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('material')">
+                                    <p class="inner-cell">Material <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'material' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'material' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">FSC Claim<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
-                                </th>
-
-                                <th>
-                                    <p class="inner-cell">Quantity<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('fsc_claim')">
+                                    <p class="inner-cell">FSC Claim <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'fsc_claim' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'fsc_claim' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
 
-                                <th>
-                                    <p class="inner-cell">Invoice Value<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('quantity')">
+                                    <p class="inner-cell">Quantity <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'quantity' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'quantity' && searchParams.sort_value == 'ASC'"></i></p>
+                                </th>
+
+                                <th class="cursor-pointer" (click)="sortData('invoice_value')">
+                                    <p class="inner-cell">Invoice Value <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'invoice_value' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'invoice_value' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
                                 <th>
-                                    <p class="inner-cell">Schedule Ref<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                    <p class="inner-cell">Schedule Ref</p>
                                 </th>
                                 <th *ngIf="_auth.checkPermissions('fsc','write')">Actions</th>
                             </tr>

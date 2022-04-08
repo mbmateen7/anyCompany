@@ -29,20 +29,20 @@
                     <table class="table">
                         <thead class="thead-ctm">
                             <tr>
-                                <th>
-                                    <p class="inner-cell">Name<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('name')">
+                                    <p class="inner-cell">Name <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'name' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'name' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Address<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('address')">
+                                    <p class="inner-cell">Address <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'address' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'address' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Telephone<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('phone_no')">
+                                    <p class="inner-cell">Telephone <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'phone_no' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'phone_no' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Email<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('email')">
+                                    <p class="inner-cell">Email <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'email' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'email' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Products<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('products')">
+                                    <p class="inner-cell">Products <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'products' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'products' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
                                 <th *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <p class="inner-cell">Actions</p>

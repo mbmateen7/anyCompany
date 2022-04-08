@@ -10,7 +10,9 @@ export class CustomerOrderComponent implements OnInit {
     searchParams = {
         search: '',
         page_size: 10,
-        page: 1
+        page: 1,
+        sort_column: 'work_number',
+        sort_value: 'DESC'
     }
     totalPages: 1;
     pageFrom = 1;
@@ -57,6 +59,14 @@ export class CustomerOrderComponent implements OnInit {
         this._fsc.downloadCustomerOrder(this.searchParams).subscribe(res => {
             window.open(res.data.link);
         })
+    }
+
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        console.log(this.searchParams);
+
+        this.getFscListing();
     }
 
 }

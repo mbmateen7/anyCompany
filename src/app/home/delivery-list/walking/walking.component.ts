@@ -25,7 +25,9 @@ export class WalkingComponent implements OnInit {
         start_date: '',
         end_date: '',
         page_size: 10,
-        page: 1
+        page: 1,
+        sort_column: 'due_date',
+        sort_value: 'DESC'
     }
     totalPages = 1;
     pageFrom = 1;
@@ -173,4 +175,11 @@ export class WalkingComponent implements OnInit {
         this.searchParams.page_size = event;
         this.getDeliveryListing();
     }
+
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        this.getDeliveryListing();
+    }
+
 }

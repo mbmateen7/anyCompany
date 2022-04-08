@@ -19,7 +19,9 @@ export class PurchaseOrderComponent implements OnInit {
         start_date: '',
         end_date: '',
         page_size: 10,
-        page: 1
+        page: 1,
+        sort_column: 'date',
+        sort_value: 'DESC'
     }
     totalPages: 1;
     pageFrom = 1;
@@ -128,5 +130,13 @@ export class PurchaseOrderComponent implements OnInit {
         this._fsc.downloadPurchaseOrder(this.searchParams).subscribe(res => {
             window.open(res.data.link);
         })
+    }
+
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        console.log(this.searchParams);
+
+        this.getPurchaseListing();
     }
 }

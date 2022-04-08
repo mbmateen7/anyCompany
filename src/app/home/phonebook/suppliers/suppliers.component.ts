@@ -16,7 +16,9 @@ export class SuppliersComponent implements OnInit {
     searchParams = {
         search: '',
         page_size: 10,
-        page: 1
+        page: 1,
+        sort_column: 'name',
+        sort_value: 'ASC'
     }
     totalPages = 1;
     pageFrom = 1;
@@ -100,5 +102,11 @@ export class SuppliersComponent implements OnInit {
             }
             modal.dismiss();
         })
+    }
+
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        this.getSuppliers();
     }
 }
