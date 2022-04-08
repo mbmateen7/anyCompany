@@ -29,7 +29,7 @@
         <div class="col-md-6">
             <div class="input-style mb-2">
                 <div class="select-box">
-                    <div class="form-group position-relative">
+                    <div class="form-group position-relative" (focusout)="customerInputOut()">
                         <label class="d-block">Customers<span class="text-danger">*</span></label>
                         <input type="text" class="ctm-input type-input" placeholder="Customer" (input)="searchCustomer($event)" (focus)="customerInput = true" [(ngModel)]="selectedCustomer">
                         <div class="custom-dropdown-list" *ngIf="customerInput">
