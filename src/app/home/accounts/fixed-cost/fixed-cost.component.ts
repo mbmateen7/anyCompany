@@ -23,7 +23,9 @@ export class FixedCostComponent implements OnInit {
     searchParams = {
         search: '',
         page_size: 10,
-        page: 1
+        page: 1,
+        sort_column: 'order_number',
+        sort_value: 'ASC'
     }
     totalPages = 1;
     pageFrom = 1;
@@ -96,4 +98,11 @@ export class FixedCostComponent implements OnInit {
         this.getFixedCosts();
     }
 
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        console.log(this.searchParams);
+
+        this.getFixedCosts();
+    }
 }

@@ -168,5 +168,4 @@ export class DeliveryNoteComponent implements OnInit {
     redirectBack(): void {
         this._location.back();
     }
-
 }

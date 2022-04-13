@@ -9,6 +9,7 @@ import { RodComponent } from './rod.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeliveryNoteComponent } from './delivery-note/delivery-note.component';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
         FormsModule,
         NgbModalModule,
         FeatherModule.pick(allIcons),
-        SharedModule
+        SharedModule,
+        NgxPrintModule
     ],
     // providers: [DatePipe]
 })
