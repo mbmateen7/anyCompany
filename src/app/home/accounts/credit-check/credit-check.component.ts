@@ -21,7 +21,9 @@ export class CreditCheckComponent implements OnInit {
     searchParams = {
         search: '',
         page_size: 10,
-        page: 1
+        page: 1,
+        sort_column: "",
+        sort_value: 'ASC'
     }
     totalPages = 1;
     pageFrom = 1;
@@ -91,5 +93,9 @@ export class CreditCheckComponent implements OnInit {
         this.searchParams.page_size = event;
         this.getCreditChecks();
     }
-
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        this.getCreditChecks();
+    }
 }
