@@ -205,17 +205,17 @@
                                                 <p class="inner-cell">{{ sale.work_order.customer.name }}</p>
                                             </td>
                                             <td>
-                                                <p class="inner-cell">{{ sale.work_order.product.name }}</p>
+                                                <p class="inner-cell">{{ sale.work_order.quantity + ' ' + sale.work_order.product.name }}</p>
                                             </td>
                                             <td>
-                                                <p class="inner-cell">{{ sale.work_order.product.name == 'Door' ? sale.value : '0.00' }}</p>
+                                                <p class="inner-cell">{{ sale.work_order.product.name == 'Doors' ? sale.value : '0.00' }}</p>
                                             </td>
                                             <td>
                                                 <p class="inner-cell">{{ sale.work_order.product.name == 'Frame' ? sale.value : '0.00' }}</p>
                                             </td>
 
                                             <td>
-                                                <p class="inner-cell">{{ sale.work_order.product.name != 'Door' && sale.work_order.product.name != 'Frame' ? sale.value : '0.00' }}</p>
+                                                <p class="inner-cell">{{ sale.work_order.product.name != 'Doors' && sale.work_order.product.name != 'Frame' ? sale.value+sale.other : (sale.other == 0 ? '0.00' : sale.other) }}</p>
                                             </td>
                                             <td>
                                                 <p class="inner-cell">{{ sale.work_order.on_hold ? 'On Hold' : sale.work_order.status }}</p>

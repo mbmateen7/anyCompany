@@ -24,7 +24,7 @@ export class AddEditEmployeeComponent implements OnInit {
     constructor(private _administration: AdministrationService, private helper: GlobalHelper, private _phonebook: PhonebookService) { }
 
     ngOnInit(): void {
-        this.getRoles();
+        // this.getRoles();
     }
 
     getRoles() {

@@ -32,17 +32,17 @@
                                 <th class="cursor-pointer" (click)="sortData('name')">
                                     <p class="inner-cell">Name <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'name' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'name' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th class="cursor-pointer" (click)="sortData('roles.title')">
+                                <!-- <th class="cursor-pointer" (click)="sortData('roles.title')">
                                     <p class="inner-cell">Role <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'roles.title' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'roles.title' && searchParams.sort_value == 'ASC'"></i></p>
-                                </th>
+                                </th> -->
                                 <th class="cursor-pointer" (click)="sortData('phone_no')">
                                     <p class="inner-cell">Telephone <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'phone_no' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'phone_no' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
                                 <th class="cursor-pointer" (click)="sortData('extension_number')">
                                     <p class="inner-cell">Extension <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'extension_number' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'extension_number' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th class="cursor-pointer" (click)="sortData('external_number')">
-                                    <p class="inner-cell">External Contact <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'external_number' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'external_number' && searchParams.sort_value == 'ASC'"></i></p>
+                                <th class="cursor-pointer" (click)="sortData('external_contact')">
+                                    <p class="inner-cell">External Contact <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'external_contact' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'external_contact' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
                                 <th class="cursor-pointer" (click)="sortData('email')">
                                     <p class="inner-cell">Email <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'email' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'email' && searchParams.sort_value == 'ASC'"></i></p>
@@ -57,9 +57,9 @@
                                 <td>
                                     <p class="inner-cell">{{ e.name }}</p>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <p class="inner-cell">{{ e.role ? e.role.title :'--' }}</p>
-                                </td>
+                                </td> -->
                                 <td>
                                     <p class="inner-cell">{{ e.phone_no }}</p>
                                 </td>
@@ -67,7 +67,7 @@
                                     <p class="inner-cell">{{ e.extension_number ? e.extension_number : '--' }}</p>
                                 </td>
                                 <td>
-                                    <p class="inner-cell">{{ e.external_number ? e.external_number : '--' }}</p>
+                                    <p class="inner-cell">{{ e.external_contact ? e.external_contact : '--' }}</p>
                                 </td>
                                 <td>
                                     <p class="inner-cell">{{ e.email ? e.email : '--' }}</p>
