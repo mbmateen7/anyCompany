@@ -32,7 +32,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ViewCreditCheckDetailsComponent } from '../components/modals/accounts/view-credit-check-details/view-credit-check-details.component';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { enGbLocale } from 'ngx-bootstrap/locale';
-import { AddMultipleJobNotesComponent } from '../components/modals/rod/add-multiple-job-notes/add-multiple-job-notes.component';
+import { AddMultipleJobNotesComponent } from '../components/modals/rod/add-multiple-job-notes/add-multiple-job-notes.component';;
 defineLocale('en-gb', enGbLocale);
 @NgModule({
     declarations: [
@@ -68,7 +68,6 @@ defineLocale('en-gb', enGbLocale);
         FeatherModule.pick(allIcons),
         NgSelectModule,
         BsDatepickerModule.forRoot()
-
     ],
     providers: [DatePipe]
 })

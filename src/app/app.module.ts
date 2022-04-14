@@ -9,7 +9,8 @@ import { LoginGuard } from './shared/guards/login.guard';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
 import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 const NgxUiLoadderConfig: NgxUiLoaderConfig =
 {
     "bgsColor": "#dc0100",
@@ -59,7 +60,8 @@ const NgxUiLoadderConfig: NgxUiLoaderConfig =
                 progressBar: true,
                 progressAnimation: 'decreasing'
             },
-        )
+        ),
+        AngularFireModule.initializeApp(environment.firebaseConfig),
     ],
     providers: [
         LoginGuard,

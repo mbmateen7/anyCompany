@@ -17,7 +17,7 @@
                         <div class="custom-dropdown-list" *ngIf="orderInput">
                             <ul>
                                 <li *ngFor="let order of orders" (click)="selectOrder(order)" [hidden]="checkSelectedOrder(order)">
-                                    <strong>{{ order.work_number }}</strong> | <strong>Order #</strong>: {{ order.order_number }}
+                                    <strong>{{ order.work_number }}</strong> | <strong>Customer </strong>: {{ order.customer.name }}
                                 </li>
                             </ul>
                         </div>
@@ -133,7 +133,7 @@
                         <div class="custom-dropdown-list" *ngIf="orderInput">
                             <ul>
                                 <li *ngFor="let order of orders" (click)="selectOrder(order)" [hidden]="checkSelectedOrder(order)">
-                                    <strong>{{ order.work_number }}</strong> | <strong>Order #</strong>: {{ order.order_number }}
+                                    <strong>{{ order.work_number }}</strong> | <strong>Customer </strong>: {{ order.customer.name }}
                                 </li>
                             </ul>
                         </div>

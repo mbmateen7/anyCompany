@@ -32752,9 +32752,9 @@ input:checked+.slider:before {
     font-weight: 700;
 }
 
-.note-h .inner-note-h .pare-note-box .note-pare span {
+/* .note-h .inner-note-h .pare-note-box .note-pare span {
     font-weight: 400;
-}
+} */
 
 .note-h .inner-note-h .view {
     font-size: 1.5rem;
@@ -36146,7 +36146,7 @@ input:checked+.slider:before {
 }
 
 .sales-order-main-box {
-    height: 30rem;
+    max-height: 50rem;
     overflow-x: hidden;
     /* Track */
     /* Handle */

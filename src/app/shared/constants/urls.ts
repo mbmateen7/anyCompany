@@ -14,6 +14,7 @@ export const urls = {
     setupAccount: 'auth/setup-account',
     skipPasswordUpdate: 'auth/skip-update-password',
 
+
     // Administration
     // Users
     getUsersList: 'administration/users/listing',
@@ -128,5 +129,6 @@ export const urls = {
 
     // Settings
     updatePassword: 'settings/update-password',
-    updateProfile: 'settings/update-details'
+    updateProfile: 'settings/update-details',
+    updateNoticationDetails: 'settings/update-notifications-details'
 };

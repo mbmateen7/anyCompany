@@ -3,6 +3,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { urls } from '../constants/urls';
+import { AuthenticationService } from './authentication.service';
+import { GlobalHelper } from './globalHelper';
+
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +19,7 @@ export class AuthService {
     userPermissionObjSubject: BehaviorSubject<any>;
     permissions: Observable<any>;
     permissionsObj = {};
-    constructor(private router: Router) {
+    constructor(private router: Router, private _authentication: AuthenticationService, private helper: GlobalHelper) {
         this.userObjSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('userObj')));
         this.currentUser = this.userObjSubject.asObservable();
         this.userPermissionObjSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('permissions')));
@@ -72,7 +77,17 @@ export class AuthService {
                 this.router.navigate([element.module]);
                 break;
             }
-
         }
+    }
+
+    updateNotificationDetails(params = {}) {
+        return this._authentication.updateNotificationDetails(params);
+    }
+    logout() {
+        let uuid = localStorage.getItem('uuid');
+        this._authentication.logout({ uuid: uuid }).subscribe(res => {
+            this.helper.clearLocalStorage();
+            this.router.navigate(['/login']);
+        })
     }
 }

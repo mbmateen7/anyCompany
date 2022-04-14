@@ -13,7 +13,7 @@ import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 export class SidebarComponent implements OnInit {
 
     user: any;
-    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, public router: Router, public _auth: AuthService) {
+    constructor(private helper: GlobalHelper, public router: Router, public _auth: AuthService) {
         this.user = JSON.parse(localStorage.getItem('userObj'));
         this._auth.currentUser.subscribe(res => {
             if (res !== true) {
@@ -26,9 +26,6 @@ export class SidebarComponent implements OnInit {
     }
 
     logout() {
-        this._authentication.logout().subscribe(res => {
-            this.helper.clearLocalStorage();
-            this.router.navigate(['/login']);
-        })
+        this._auth.logout();
     }
 }

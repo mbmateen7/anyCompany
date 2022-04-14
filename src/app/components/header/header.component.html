@@ -6,78 +6,31 @@
     <div class="header-right">
         <!-- <a class="volume" href="javascript:void(0)">
             <i-feather name="volume-2"></i-feather>
-        </a>
+        </a> 
         <div class="upper-ctm-dropdown">
             <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i-feather name="bell"></i-feather>
-                    <div class="position-absolute dots-post"></div>
+                    <div class="position-absolute dots-post" *ngIf="_firebase.notificationsCount > 0"></div>
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <div class="drop-inner">
                         <h2 class="notification-h">NOTIFICATIONS</h2>
-                        <div class="note-h">
+                        <div class="note-h" *ngFor="let notification of _firebase.notifications">
                             <div class="inner-note-h">
                                 <i-feather class="bell" name="bell"></i-feather>
                                 <div class="pare-note-box">
-                                    <p class="note-pare">
-                                        Mike Danyle <span>changed status</span> “Booked” to “Withdraw” on Work Order WAN043-PO-000591 [Reason]
-                                    </p>
+                                    <div class="note-pare" [innerHtml]="notification.payload.val().body"></div>
                                 </div>
                                 <a class="view" href="javascript:void(0)">view</a>
                             </div>
                             <div class="date-time">
-                                <span class="time">11:35 AM</span>
-                                <span class="date">23 October, 2021</span>
+                                <span class="time">{{ notification.payload.val().created_at | date:'h:m a' }}</span>
+                                <span class="date">{{ notification.payload.val().created_at | date:'dd MMMM, yyyy' }}</span>
                             </div>
                         </div>
-                        <div class="note-h">
-                            <div class="inner-note-h">
-                                <i-feather class="bell" name="bell"></i-feather>
-                                <div class="pare-note-box">
-                                    <p class="note-pare">
-                                        Mike Danyle <span>changed status</span> “Booked” to “Withdraw” on Work Order WAN043-PO-000591 [Reason]
-                                    </p>
-                                </div>
-                                <a class="view" href="javascript:void(0)">view</a>
-                            </div>
-                            <div class="date-time">
-                                <span class="time">11:35 AM</span>
-                                <span class="date">23 October, 2021</span>
-                            </div>
-                        </div>
-                        <div class="note-h">
-                            <div class="inner-note-h">
-                                <i-feather class="bell" name="bell"></i-feather>
-                                <div class="pare-note-box">
-                                    <p class="note-pare">
-                                        Mike Danyle <span>changed status</span> “Booked” to “Withdraw” on Work Order WAN043-PO-000591 [Reason]
-                                    </p>
-                                </div>
-                                <a class="view" href="javascript:void(0)">view</a>
-                            </div>
-                            <div class="date-time">
-                                <span class="time">11:35 AM</span>
-                                <span class="date">23 October, 2021</span>
-                            </div>
-                        </div>
-                        <div class="note-h">
-                            <div class="inner-note-h">
-                                <i-feather class="bell" name="bell"></i-feather>
-                                <div class="pare-note-box">
-                                    <p class="note-pare">
-                                        Mike Danyle <span>changed status</span> “Booked” to “Withdraw” on Work Order WAN043-PO-000591 [Reason]
-                                    </p>
-                                </div>
-                                <a class="view" href="javascript:void(0)">view</a>
-                            </div>
-                            <div class="date-time">
-                                <span class="time">11:35 AM</span>
-                                <span class="date">23 October, 2021</span>
-                            </div>
-                        </div>
-                        <a class="show-more" href="javascript:void(0)">SHOW MORE</a>
+                        <a class="show-more" href="javascript:void(0)" *ngIf="_firebase.totalNotifications>_firebase.pageSize" (click)="_firebase.loadMore($event)">SHOW MORE</a>
                     </div>
 
                 </div>

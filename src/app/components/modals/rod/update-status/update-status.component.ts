@@ -24,7 +24,8 @@ export class UpdateStatusComponent implements OnInit {
         'To Factory'
     ];
     reasonStatus = [
-        'On Hold'];
+        'On Hold'
+    ];
     dueDateStatus = [
         'To Factory'
     ];
@@ -64,7 +65,8 @@ export class UpdateStatusComponent implements OnInit {
         this.formData.set('id', this.data.model[0].id);
         this.formData.delete('notify[]');
         this.notify.forEach(element => {
-            this.formData.append('notify[]', element);
+            if (element.status)
+                this.formData.append('notify[]', element.id);
         })
         this.formData.set('reason', this.reason);
         this.formData.set('on_hold', (this.data.hold ? '1' : '0'));
@@ -101,7 +103,8 @@ export class UpdateStatusComponent implements OnInit {
             this.formData.append('id[]', element.id);
         })
         this.notify.forEach(element => {
-            this.formData.set('notify[]', element);
+            if (element.status)
+                this.formData.append('notify[]', element.id);
         })
         this.formData.set('reason', this.reason);
         this.formData.set('on_hold', (this.data.hold ? '1' : '0'));

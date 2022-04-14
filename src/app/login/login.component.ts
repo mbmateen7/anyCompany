@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { AuthenticationService } from '../shared/services/authentication.service';
+import { FirebaseService } from '../shared/services/firebase.service';
 import { GlobalHelper } from '../shared/services/globalHelper';
 
 @Component({
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
         length: true
     }
     showPassword: boolean = false;
-    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, private _auth: AuthService, private router: Router) {
+    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, private _auth: AuthService, private router: Router, private _firebase: FirebaseService) {
         // 
     }
 
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
     submitLogin() {
         this._authentication.login(this.loginObj).subscribe(res => {
             this._auth.storeUserData(res.data.access_token, res.data.user);
+            // this._firebase.requestPermissions();
         });
     }
 

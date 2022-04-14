@@ -52,21 +52,9 @@
                     <p class=" notify-to ">
                         Notify To
                     </p>
-                    <div class="remember-me">
-                        <label class="custom-check custom-check-r">Director
-                            <input type="checkbox" checked="checked">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="remember-me">
-                        <label class="custom-check custom-check-r">Accounts
-                            <input type="checkbox" checked="checked">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="remember-me">
-                        <label class="custom-check custom-check-r">Basic
-                            <input type="checkbox" checked="checked">
+                    <div class="remember-me" *ngFor="let role of notify">
+                        <label class="custom-check custom-check-r">{{ role.title }}
+                            <input type="checkbox" [checked]="role.status" [(ngModel)]="role.status">
                             <span class="checkmark"></span>
                         </label>
                     </div>

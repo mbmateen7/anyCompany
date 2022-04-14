@@ -11,12 +11,30 @@ export class AddJobNotesComponent implements OnInit {
     @Input() orderId;
     @Output() response: EventEmitter<any> = new EventEmitter();
     jobNotes = [];
+    notify = [
+        {
+            id: 1,
+            status: false,
+            title: 'Director'
+        },
+        {
+            id: 4,
+            status: false,
+            title: 'Accounts'
+        },
+        {
+            id: 5,
+            status: false,
+            title: 'Basic'
+        }
+    ];
     currentPage = 1;
     nextPage: boolean = false;
     newNote = {
         title: '',
         description: '',
         work_order_id: 0,
+        notify: []
     }
     constructor(private _rod: RodService, public _auth: AuthService) { }
 
@@ -41,6 +59,11 @@ export class AddJobNotesComponent implements OnInit {
     }
 
     addJobNote() {
+        this.newNote.notify = [];
+        this.notify.forEach(element => {
+            if (element.status)
+                this.newNote.notify.push(element.id);
+        })
         this._rod.addJobNote(this.newNote).subscribe(res => {
             this.jobNotes.push(res.data);
             this.newNote.description = '';

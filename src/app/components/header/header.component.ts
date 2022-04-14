@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { FirebaseService } from 'src/app/shared/services/firebase.service';
 import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 
 @Component({
@@ -13,7 +14,7 @@ import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 export class HeaderComponent implements OnInit {
 
     user: any;
-    constructor(private helper: GlobalHelper, private _authentication: AuthenticationService, private router: Router, private _auth: AuthService) {
+    constructor(private helper: GlobalHelper, public _firebase: FirebaseService, private router: Router, private _auth: AuthService) {
         this.user = JSON.parse(localStorage.getItem('userObj'));
         this._auth.currentUser.subscribe(res => {
             if (res !== true) {
@@ -26,10 +27,7 @@ export class HeaderComponent implements OnInit {
     }
 
     logout() {
-        this._authentication.logout().subscribe(res => {
-            this.helper.clearLocalStorage();
-            this.router.navigate(['/login']);
-        })
+        this._auth.logout();
     }
 
 

@@ -17,8 +17,8 @@ export class AuthenticationService {
         return this.http.post<any>(`${environment.apiUrl + urls.login}`, params);
     }
 
-    logout(): Observable<any> {
-        return this.http.post<any>(`${environment.apiUrl + urls.logout}`, {});
+    logout(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.logout}`, params);
     }
 
     forgotPasswordMail(params = {}): Observable<any> {
@@ -39,5 +39,9 @@ export class AuthenticationService {
 
     skipPasswordUpdate(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.skipPasswordUpdate}`, params);
+    }
+
+    updateNotificationDetails(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateNoticationDetails}`, params);
     }
 }
