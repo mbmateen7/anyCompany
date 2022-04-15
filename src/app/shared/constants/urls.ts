@@ -51,6 +51,7 @@ export const urls = {
     downloadRod: 'rod/work-orders/download',
     multipleJobNotes: 'rod/job-notes/update-multiple',
     getWorkOrdersCustomers: 'rod/customers/listing',
+    getJobNoteRoles: 'rod/roles/listing',
 
     // Products
     productListing: 'rod/work-orders/products',

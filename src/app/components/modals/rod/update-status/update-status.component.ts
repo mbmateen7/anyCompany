@@ -48,7 +48,7 @@ export class UpdateStatusComponent implements OnInit {
 
     getRoles() {
         if (this.notifyStatus.includes(this.data.to)) {
-            this._admin.rolesListing().subscribe(res => {
+            this._rod.getRolesListing().subscribe(res => {
                 res.data.forEach(role => {
                     this.notify.push({
                         id: role.id,

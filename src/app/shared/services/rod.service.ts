@@ -101,7 +101,13 @@ export class RodService {
         return this.http.post<any>(`${environment.apiUrl + urls.getWorkOrdersCustomers}`, params);
     }
 
+    getRolesListing(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.getWorkOrdersCustomers}`, params);
+    }
+
     downloadData(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.downloadRod}`, params);
     }
+
+
 }

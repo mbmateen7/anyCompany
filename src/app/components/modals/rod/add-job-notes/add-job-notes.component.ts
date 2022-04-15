@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { RodService } from 'src/app/shared/services/rod.service';
 
 @Component({
@@ -36,7 +37,7 @@ export class AddJobNotesComponent implements OnInit {
         work_order_id: 0,
         notify: []
     }
-    constructor(private _rod: RodService, public _auth: AuthService) { }
+    constructor(private _rod: RodService, public _auth: AuthService, private helper: GlobalHelper) { }
 
     ngOnInit(): void {
         this.newNote.work_order_id = this.orderId;
@@ -66,6 +67,7 @@ export class AddJobNotesComponent implements OnInit {
         })
         this._rod.addJobNote(this.newNote).subscribe(res => {
             this.jobNotes.push(res.data);
+            this.helper.toastSuccess(res.message);
             this.newNote.description = '';
             this.newNote.title = ''
         })
