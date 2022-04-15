@@ -18,13 +18,15 @@ export class UpdateStatusComponent implements OnInit {
     notify = [];
     reason: string = '';
     notifyStatus = [
-        'On Hold'
+        'On Hold',
+        'Withdrawn'
     ];
     attachmentStatus = [
         'To Factory'
     ];
     reasonStatus = [
-        'On Hold'
+        'On Hold',
+        'Withdrawn'
     ];
     dueDateStatus = [
         'To Factory'

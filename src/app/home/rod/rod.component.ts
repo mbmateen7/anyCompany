@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -45,11 +45,15 @@ export class RodComponent implements OnInit {
     searchSubscription: Subscription;
     multiUpdateType: string = 'invoice_no';
     dateToday = new Date();
-    constructor(private _rod: RodService, private helper: GlobalHelper, private _modal: NgbModal, private router: Router, public _auth: AuthService) {
+    constructor(private _rod: RodService, private helper: GlobalHelper, private _modal: NgbModal, private router: Router, public _auth: AuthService, private route: ActivatedRoute) {
+        this.route.queryParams.subscribe(params => {
+            this.searchParams.search = params.work_number;
+            this.rodListing();
+        })
     }
 
     ngOnInit(): void {
-        this.rodListing();
+
     }
 
     rodListing() {

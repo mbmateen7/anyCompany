@@ -11,7 +11,7 @@ import { FirebaseService } from '../shared/services/firebase.service';
 export class HomeComponent implements OnInit {
 
     constructor(private _firebase: FirebaseService) {
-        // this._firebase.requestPermissions()
+        this._firebase.requestPermissions()
     }
 
     ngOnInit(): void {

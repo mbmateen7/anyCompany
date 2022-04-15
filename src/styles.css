@@ -32613,10 +32613,9 @@ input:checked+.slider:before {
 .upper-ctm-dropdown .dropdown-menu {
     left: auto;
     right: -4rem;
-    width: 67rem;
+    width: 46rem;
     border: none;
     border-radius: 29px;
-    -webkit-box-shadow: 0 10px 30px #00000029;
     box-shadow: 0 10px 30px #00000029;
     padding: 2rem 1.6rem 2rem;
     margin-top: 50px;
@@ -32656,7 +32655,7 @@ input:checked+.slider:before {
 }
 
 .upper-ctm-dropdown .dropdown-menu .drop-inner .notification-h {
-    font-size: 2.9rem;
+    font-size: 1.9rem;
     color: #DC0100;
     font-weight: bold;
     margin-bottom: 3.5rem;
@@ -32706,8 +32705,11 @@ input:checked+.slider:before {
 }
 
 .note-h {
-    border-bottom: 1px solid #eee;
-    padding: 2rem 0;
+    border-bottom: 1px solid #c4c3c3;
+    padding: 0.5rem 12px;
+}
+.note-h.unread {
+    background: #eee;
 }
 
 .note-h .inner-note-h {
@@ -32716,7 +32718,7 @@ input:checked+.slider:before {
     display: flex;
     -webkit-box-align: end;
     -ms-flex-align: end;
-    align-items: flex-end;
+    align-items: center;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -32724,32 +32726,27 @@ input:checked+.slider:before {
 }
 
 .note-h .inner-note-h .bell {
-    font-size: 2rem;
+    font-size: 1rem;
     color: #DC0100;
-    width: 7rem;
-    min-width: 7rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    width: 10%;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
+    height: 100%;
+    margin-right: 10px;
 }
 
 .note-h .inner-note-h .pare-note-box {
-    width: 67%;
-    min-width: 67%;
-    height: 4.5rem;
+    width: 80%;
+    height: auto;
     overflow-y: hidden;
+    margin-bottom: 6px;
 }
 
 .note-h .inner-note-h .pare-note-box .note-pare {
     font-size: 1.4rem;
     color: #1C1C1C;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 /* .note-h .inner-note-h .pare-note-box .note-pare span {
@@ -32757,15 +32754,14 @@ input:checked+.slider:before {
 } */
 
 .note-h .inner-note-h .view {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #DC0100;
     font-weight: 700;
     -webkit-transition: ease-in-out .5s;
     -o-transition: ease-in-out .5s;
     transition: ease-in-out .5s;
     display: inline-block;
-    width: 7rem;
-    min-width: 7rem;
+    width: 10%;
 }
 
 .note-h .inner-note-h .view:hover {
@@ -32773,28 +32769,22 @@ input:checked+.slider:before {
 }
 
 .note-h .date-time {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-    margin-right: 10rem;
-    margin-top: 1.8rem;
+align-items: center;
+justify-content: flex-start;
+margin-left: calc(10% + 10px);
+margin-top: 0;
 }
 
 .note-h .date-time .time {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 400;
     color: #656565;
     margin-right: 1.6rem;
 }
 
 .note-h .date-time .date {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 400;
     color: #656565;
 }
@@ -37493,6 +37483,6 @@ i-feather.clear-filter {
 }
 
 
-th.cursor-pointer{
+th.cursor-pointer {
     cursor: pointer;
 }

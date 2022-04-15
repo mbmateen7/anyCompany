@@ -4,9 +4,9 @@
         <img id="img-show" class="img-men-none" src="assets/img/icon-feather-menu-1.svg" alt="img">
     </button>
     <div class="header-right">
-        <!-- <a class="volume" href="javascript:void(0)">
+        <a class="volume" href="javascript:void(0)">
             <i-feather name="volume-2"></i-feather>
-        </a> 
+        </a>
         <div class="upper-ctm-dropdown">
             <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,16 +17,16 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <div class="drop-inner">
                         <h2 class="notification-h">NOTIFICATIONS</h2>
-                        <div class="note-h" *ngFor="let notification of _firebase.notifications">
+                        <div class="note-h" *ngFor="let notification of _firebase.notifications" [ngClass]="{'unread': !notification.payload.val().is_read}">
                             <div class="inner-note-h">
                                 <i-feather class="bell" name="bell"></i-feather>
                                 <div class="pare-note-box">
                                     <div class="note-pare" [innerHtml]="notification.payload.val().body"></div>
                                 </div>
-                                <a class="view" href="javascript:void(0)">view</a>
+                                <a class="view" href="javascript:void(0)" (click)="viewNotification(notification)">view</a>
                             </div>
                             <div class="date-time">
-                                <span class="time">{{ notification.payload.val().created_at | date:'h:m a' }}</span>
+                                <span class="time">{{ notification.payload.val().created_at | date:'hh:mm a' }}</span>
                                 <span class="date">{{ notification.payload.val().created_at | date:'dd MMMM, yyyy' }}</span>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
 
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="input-style phone-dropdown mb-0">
 
             <div class=" input-rigister custom-dropdown-all-us">

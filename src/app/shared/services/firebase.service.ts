@@ -34,31 +34,30 @@ export class FirebaseService implements OnDestroy {
     }
 
     requestPermissions() {
-        console.log('service')
         this.notifications = [];
         this.notificationsCount = 0;
         this.pageSize = 10;
 
-        this.fireMessaging.requestPermission
-            .subscribe((res: any) => {
-                this.getToken();
-            },
-                err => {
-                });
+        this.fireMessaging.requestPermission.subscribe((res: any) => {
+            this.getToken();
+        }, err => {
+        });
     }
 
     getToken() {
         this.fireMessaging.requestToken.subscribe((res: any) => {
-            let uuid;
-            if (localStorage.getItem('uuid')) {
-                uuid = localStorage.getItem('uuid');
-            } else {
-                uuid = this.getUuid();
+            if (res) {
+                let uuid;
+                if (localStorage.getItem('uuid')) {
+                    uuid = localStorage.getItem('uuid');
+                } else {
+                    uuid = this.getUuid();
+                }
+                this._auth.updateNotificationDetails({ uuid: uuid, firebase_token: res }).subscribe(res => {
+                    this.initializeNotificationSettings();
+                    localStorage.setItem('uuid', uuid);
+                })
             }
-            this._auth.updateNotificationDetails({ uuid: uuid, firebase_token: res }).subscribe(res => {
-                this.initializeNotificationSettings();
-                localStorage.setItem('uuid', uuid);
-            })
         }, err => {
             console.log(err)
         });
@@ -99,9 +98,7 @@ export class FirebaseService implements OnDestroy {
             tempNotification = tempNotification.reverse();
             let unreadCount = tempNotification.length;
             this.notifications = [];
-            console.log(tempNotification);
             for (const notification of tempNotification) {
-                console.log(notification.payload.val())
                 if (notification.payload) {
 
                     this.notifications.push(notification);
@@ -112,7 +109,6 @@ export class FirebaseService implements OnDestroy {
                     }
                 }
             }
-            console.log(this.notifications);
 
             this.notificationsCount = unreadCount;
             this.totalNotifications = this.notifications.length;

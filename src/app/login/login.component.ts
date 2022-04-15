@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     submitLogin() {
         this._authentication.login(this.loginObj).subscribe(res => {
             this._auth.storeUserData(res.data.access_token, res.data.user);
-            // this._firebase.requestPermissions();
+            this._firebase.requestPermissions();
         });
     }
 
