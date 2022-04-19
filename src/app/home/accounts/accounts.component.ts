@@ -27,6 +27,8 @@ export class AccountsComponent implements OnInit {
         page_size: 10,
         page: 1,
         month: '',
+        sort_column: 'work_orders.work_number',
+        sort_value: 'DESC'
     }
     totalPages = 1;
     pageFrom = 1;
@@ -103,7 +105,16 @@ export class AccountsComponent implements OnInit {
             search: '',
             page_size: 10,
             page: 1,
-            month: this.searchParams.month
+            month: this.searchParams.month,
+            sort_column: 'work_orders.work_number',
+            sort_value: 'DESC'
+        }
+        if (this.activeTab == 'salesOrder') {
+            this.searchParams.sort_column = 'work_orders.work_number';
+        } else if (this.activeTab == 'monthlyCost') {
+            this.searchParams.sort_column = 'suppliers.name';
+        } else if (this.activeTab == 'customerTotal') {
+            this.searchParams.sort_column = 'name';
         }
         this.totalPages = 1
     }
@@ -292,5 +303,13 @@ export class AccountsComponent implements OnInit {
                 window.open(res.data.link);
             });
         }
+    }
+
+    sortData(column) {
+        this.searchParams.sort_column = column;
+        this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
+        console.log(this.searchParams);
+
+        this.getListing();
     }
 }
