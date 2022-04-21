@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                             <td style="padding: 5px 10px;border: 2px solid black;" colspan="6">
-                                <textarea style="font-size: 13px;font-weight: 400;color: #000;width: 100%;height: 160px;overflow-y: auto;border: none;overflow-x: unset;white-space: pre-line;resize: unset;outline: none;font-family: 'Open Sans', sans-serif !important;" rows="7" [(ngModel)]="deliveryOrder.invoice_to"></textarea>
+                                <textarea style="font-size: 13px;font-weight: 400;color: #000;width: 100%;height: auto;overflow-y: auto;border: none;overflow-x: unset;white-space: pre-line;resize: unset;outline: none;font-family: 'Open Sans', sans-serif !important;" rows="7" [(ngModel)]="deliveryOrder.invoice_to"></textarea>
                             </td>
                             <td style="padding: 0;border: 2px solid black;" colspan="4">
                                 <table style="width: 100%;border-collapse: collapse;">
@@ -71,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         <td style="border-top: none;border-left: none;border-right: none;padding: 5px 10px;border-bottom: 2px solid black;">
-                                            <input style="font-size: 12px;font-weight: 400;color: #000;margin-bottom: 0;border: none;width: 100%;outline: none;font-family: 'Open Sans', sans-serif !important;" type="date" [(ngModel)]="deliveryOrder.dispatch_date">
+                                            <p style="font-size: 12px;font-weight: 400;color: #000;margin-bottom: 0;border: none;width: 100%;outline: none;font-family: 'Open Sans', sans-serif !important;">{{ deliveryOrder.dispatch_date | date: 'dd / MM / yyyy' }}</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -92,9 +92,9 @@
 
                                     </tr>
                                     <tr>
-                                        <td style="border-top: none;border-left: none;border-right: none;padding: 5px 10px;border-bottom: none;">
+                                        <td style="border-top: none;border-left: none;border-right: none;padding: 5px;border-bottom: none;">
                                             <div style="display: inline-block;float: left;">
-                                                <span style="padding: 3px 6px;border-radius: 15px;background: #DC0100;color: #fff;margin-right: 4px;margin-top: 4px;display: inline-block;text-align: center;box-sizing: border-box;font-family: 'Open Sans', sans-serif !important;" *ngFor="let order of deliveryOrder.work_orders;let i = index">
+                                                <span style="padding: 3px 6px;border-radius: 15px;background: #DC0100;color: #fff;margin-right: 4px;margin-top: 4px;display: inline-block;text-align: center;box-sizing: border-box;font-family: 'Open Sans', sans-serif !important;" *ngFor="let order of deliveryOrder.work_orders; let i = index">
                                                     <span style="color: #fff;float: left;line-height: 14px; font-size:12px">{{ order.work_number }}</span>
                                                 </span>
                                             </div>
@@ -116,31 +116,31 @@
                         </tr>
                         <tr>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Flush Doors</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Flush Doors</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Frames</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Frames</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Stops</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Stops</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Architraves</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Architraves</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Timber <br> Sections</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Timber <br> Sections</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Hinges</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Hinges</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Glass Pcs</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Glass Pcs</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Glazing <br> Beads</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">Glazing <br> Beads</label>
                             </td>
                             <td colspan="1" style="padding: 5px 10px;border: 2px solid black;">
-                                <label style="    font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">FD60 <br> Hinge <br> Packers</label>
+                                <label style="font-size: 12px;font-weight: 700;color: #000;margin-bottom: 0;padding-right: 5px;font-family: 'Open Sans', sans-serif !important;">FD60 <br> Hinge <br> Packers</label>
                             </td>
                         </tr>
                         <tr>
