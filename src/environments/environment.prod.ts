@@ -2,8 +2,8 @@ import { urls } from "src/app/shared/constants/urls";
 
 export const environment = {
     production: true,
-    apiUrl: urls.stagingUrl,
-    // apiUrl: urls.awsUrl,
+    // apiUrl: urls.stagingUrl,
+    apiUrl: urls.awsUrl,
 
     firebaseConfig: {
         apiKey: "AIzaSyAm6blV0hs82ElUDgjSPwrpf40O6ncUjd0",
