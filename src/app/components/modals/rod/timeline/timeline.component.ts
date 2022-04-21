@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { GlobalHelper } from 'src/app/shared/services/globalHelper';
 import { RodService } from 'src/app/shared/services/rod.service';
 import { ViewProductionScheduleComponent } from '../view-production-schedule/view-production-schedule.component';
 
@@ -22,7 +23,7 @@ export class TimelineComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
-    constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal, public _auth: AuthService) {
+    constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal, public _auth: AuthService, private helper: GlobalHelper) {
     }
 
     ngOnInit(): void {
@@ -65,6 +66,12 @@ export class TimelineComponent implements OnInit {
                 this.rod = res.data;
             }
             productionModal.dismiss();
+        });
+    }
+    deleteAttachment(attach) {
+        this._rod.removeProductionSchedule({ id: attach.id }).subscribe(res => {
+            this.rod.attachments = [];
+            this.helper.toastSuccess(res.message);
         });
     }
 }   
