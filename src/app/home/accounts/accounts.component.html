@@ -300,6 +300,9 @@
                                 <table class="table">
                                     <thead class="thead-ctm">
                                         <tr>
+                                            <th class="cursor-pointer" (click)="sortData('order_number')">
+                                                <p class="inner-cell">Order Number <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'order_number' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'order_number' && searchParams.sort_value == 'ASC'"></i></p>
+                                            </th>
                                             <th class="cursor-pointer" (click)="sortData('suppliers.name')">
                                                 <p class="inner-cell">Supplier <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'suppliers.name' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'suppliers.name' && searchParams.sort_value == 'ASC'"></i></p>
                                             </th>
@@ -325,6 +328,9 @@
                                     </thead>
                                     <tbody class="t-body-ctm">
                                         <tr class="active-row" *ngFor="let purchase of purchaseOrders;let i = index">
+                                            <td>
+                                                <p class="inner-cell">{{ purchase.order_number }}</p>
+                                            </td>
                                             <td>
                                                 <p class="inner-cell">{{ purchase.supplier.name }}</p>
                                             </td>
