@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DeliveryListService } from 'src/app/shared/services/deliveryList.service';
 import { RodService } from 'src/app/shared/services/rod.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class UpdateDeliveryOrderComponent implements OnInit {
     @Output() response: EventEmitter<any> = new EventEmitter();
     products = [];
     orderDate;
-    constructor(private _rod: RodService, private datePipe: DatePipe) {
+    constructor(private _rod: RodService, private _delivery: DeliveryListService, private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
@@ -33,7 +34,7 @@ export class UpdateDeliveryOrderComponent implements OnInit {
 
     updateOrder() {
         console.log(this.order);
-        this._rod.updateWorkOrder(this.order).subscribe(res => {
+        this._delivery.updateDeliveryList(this.order).subscribe(res => {
             this.response.emit({ success: true, data: res.data })
         });
     }
