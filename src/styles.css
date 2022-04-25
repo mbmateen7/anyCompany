@@ -8328,8 +8328,13 @@ button.bg-dark:focus {
         display: inline-flex !important;
     }
 }
-
+@page { size: auto; margin: 0mm; }
 @media print {
+    body{
+        margin:0px !important
+    }
+    @page { size: auto; margin: 0mm; }
+
     .d-print-none {
         display: none !important;
     }
@@ -32708,6 +32713,7 @@ input:checked+.slider:before {
     border-bottom: 1px solid #c4c3c3;
     padding: 0.5rem 12px;
 }
+
 .note-h.unread {
     background: #eee;
 }
@@ -32770,10 +32776,10 @@ input:checked+.slider:before {
 
 .note-h .date-time {
     display: flex;
-align-items: center;
-justify-content: flex-start;
-margin-left: calc(10% + 10px);
-margin-top: 0;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: calc(10% + 10px);
+    margin-top: 0;
 }
 
 .note-h .date-time .time {
@@ -33709,8 +33715,8 @@ margin-top: 0;
 }
 
 .tables-roles-main .table .thead-ctm tr th:first-child {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+    /* border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px; */
 }
 
 .tables-roles-main .table .t-body-ctm tr .padds-top {
@@ -35142,15 +35148,9 @@ margin-top: 0;
 }
 
 .delivery-list-main .form-control-roles {
-    width: 31.1rem;
+    /* width: 31.1rem; */
     height: 5.1rem;
     margin-right: 1rem;
-}
-
-@media (max-width: 1600px) {
-    .delivery-list-main .form-control-roles {
-        width: 20rem;
-    }
 }
 
 @media (max-width: 1370px) {
@@ -35946,8 +35946,8 @@ margin-top: 0;
     .acount-line-btn {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
+        /* -ms-flex-direction: column;
+        flex-direction: column; */
         -webkit-box-align: start !important;
         -ms-flex-align: start !important;
         align-items: flex-start !important;
@@ -35963,7 +35963,7 @@ margin-top: 0;
         display: -ms-flexbox;
         display: flex;
         width: 100%;
-        margin-top: 1.6rem;
+        /* margin-top: 1.6rem; */
     }
 }
 
@@ -37486,3 +37486,4 @@ i-feather.clear-filter {
 th.cursor-pointer {
     cursor: pointer;
 }
+@page { size: auto; margin: 0mm; }
