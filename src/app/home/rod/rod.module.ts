@@ -10,6 +10,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeliveryNoteComponent } from './delivery-note/delivery-note.component';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { NgxPrintModule } from 'ngx-print';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NgxPrintModule } from 'ngx-print';
         NgbModalModule,
         FeatherModule.pick(allIcons),
         SharedModule,
-        NgxPrintModule
+        NgxPrintModule,
+        BsDatepickerModule
     ],
     // providers: [DatePipe]
 })

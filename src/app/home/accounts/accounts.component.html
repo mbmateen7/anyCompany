@@ -29,15 +29,15 @@
                     <div class="account-width d-flex align-items-center justify-content-between">
                         <div class="inner-card-box">
                             <h3 class="text-account">Doors</h3>
-                            <p class="doors-price-account">£{{ account ? account.sales.door : '0.00' }}</p>
+                            <p class="doors-price-account">{{ account?.sales.door | currency:'GBP':'symbol' }}</p>
                         </div>
                         <div class="inner-card-box">
                             <h3 class="text-account">Frames</h3>
-                            <p class="doors-price-account">£{{ account ? account.sales.frame : '0.00' }}</p>
+                            <p class="doors-price-account">{{ account?.sales.frame | currency:'GBP':'symbol' }}</p>
                         </div>
                         <div class="inner-card-box">
                             <h3 class="text-account">Others</h3>
-                            <p class="doors-price-account">£{{ account ? account.sales.other : '0.00' }}</p>
+                            <p class="doors-price-account">{{ account?.sales.other | currency:'GBP':'symbol' }}</p>
                         </div>
                     </div>
                 </div>
@@ -52,11 +52,11 @@
                     <div class="account-width d-flex align-items-center justify-content-between">
                         <div class="inner-card-box">
                             <h3 class="text-account">Predicted Workload</h3>
-                            <p class="doors-price-account">£{{ account ? account.workload.predicted_workload : '0.00' }}</p>
+                            <p class="doors-price-account">{{ account?.workload.predicted_workload | currency:'GBP':'symbol' }}</p>
                         </div>
                         <div class="inner-card-box">
                             <h3 class="text-account">Projected Sales</h3>
-                            <p class="doors-price-account">£{{ account ? account.workload.projected_sales : '0.00' }}</p>
+                            <p class="doors-price-account">{{ account?.workload.projected_sales | currency:'GBP':'symbol' }}</p>
                         </div>
                     </div>
                 </div>
@@ -71,11 +71,11 @@
                     <div class="account-width d-flex align-items-center justify-content-between">
                         <div class="inner-card-box">
                             <h3 class="text-account">Work in progress</h3>
-                            <p class="doors-price-account">£{{ account ? account.in_progress.work_in_progress : '0.00'}}</p>
+                            <p class="doors-price-account">{{ account?.in_progress.work_in_progress | currency:'GBP':'symbol'}}</p>
                         </div>
                         <div class="inner-card-box">
                             <h3 class="text-account">Bought</h3>
-                            <p class="doors-price-account">£{{ account ? account.in_progress.bought : '0.00' }}</p>
+                            <p class="doors-price-account">{{ account?.in_progress.bought | currency:'GBP':'symbol' }}</p>
                         </div>
 
                     </div>
@@ -93,7 +93,7 @@
                     <div class=" d-flex align-items-center justify-content-between">
                         <div class="inner-card-box">
                             <h3 class="text-account">Projected Profit</h3>
-                            <p class="doors-price-account">£{{ account ? account.profit.projected_profit : '0.00' }}</p>
+                            <p class="doors-price-account">{{ account?.profit.projected_profit | currency:'GBP':'symbol' }}</p>
                         </div>
 
                     </div>

@@ -46,6 +46,7 @@ export class DeliveryNoteComponent implements OnInit {
         site_number: '',
         other_notes: ''
     }
+    selectedDate = new Date();
     currentDate;
     dateToday = new Date();
     newDeliveryTicketNo = '';
@@ -121,7 +122,16 @@ export class DeliveryNoteComponent implements OnInit {
         return false;
     }
 
+    dateValue(event) {
+        this.deliveryOrder.dispatch_date = this.datePipe.transform(event, 'YYYY-MM-dd');
+    }
+
+    selectDate() {
+        this.selectedDate = new Date(this.deliveryOrder.dispatch_date);
+    }
+
     resetFormValue() {
+        this.selectedDate = new Date();
         this.deliveryOrder = {
             invoice_to: '',
             ticket_no: this.newDeliveryTicketNo,
