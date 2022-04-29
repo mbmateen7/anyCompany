@@ -84,6 +84,7 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
     selectEmployee(employee) {
         this.selectedEmployee = employee.name;
         this.newSalesOrder.user_id = employee.id;
+        this.salesOrder.user_id = employee.id;
     }
 
     searchOrder(event) {
