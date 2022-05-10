@@ -48,4 +48,11 @@ export class FscService {
     downloadCustomerOrder(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.fscCustomerOrderDownload}`, params);
     }
+
+    history(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.fscHistory}`, params);
+    }
+    updateStatus(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.fscComplete}`, params);
+    }
 }

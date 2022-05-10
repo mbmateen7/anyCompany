@@ -50,6 +50,8 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
         this.getSuppliers();
         if (this.type == 'edit') {
             this.updateOrderObj()
+            this.selectedSupplier = this.salesOrder.supplier.name
+            this.selectedOrder = this.salesOrder.work_number
         }
     }
 
@@ -67,8 +69,7 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
             this._account.supplierListing({ search: search }).subscribe(res => {
                 this.suppliers = res.data.data;
                 this.newPurchaseOrder.supplier_id = res.data.data[0] ? res.data.data[0]?.id : null;
-                if (this.type == 'edit')
-                    this.selectedSupplier = this.suppliers.find(x => x.id == this.salesOrder.supplier_id).name;
+
             })
         }
     }

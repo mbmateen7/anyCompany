@@ -87,6 +87,8 @@ export const urls = {
     fscWorkOrderListing: 'fsc/orders/listing',
     fscSupplierListing: 'fsc/suppliers/listing',
     fscPurchaseOrderDownload: 'fsc/purchase-orders/download',
+    fscHistory: 'fsc/history',
+    fscComplete: 'fsc/purchase-orders/update-status',
 
     // Accounts
     accountStats: 'accounts/stats',

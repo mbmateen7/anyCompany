@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomerOrderComponent } from './customer-order/customer-order.component';
+import { HistoryComponent } from './history/history.component';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 
 const fscRoutes: Routes = [
@@ -16,6 +17,10 @@ const fscRoutes: Routes = [
     {
         path: 'purchase-orders',
         component: PurchaseOrderComponent
+    },
+    {
+        path: 'history',
+        component: HistoryComponent
     }
 ];
 
