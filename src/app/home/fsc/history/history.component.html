@@ -7,12 +7,6 @@
                 <li class=" breadcrumb-item"><a class="breadcrumb-link" href="javascript:void(0)">PURCHASE ORDER</a></li>
                 <li class="breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
             </ul>
-            <div class="d-flex">
-                <a class="secondary-sup" href="javascript:void(0)" (click)="addPurchaseOrder()" *ngIf="_auth.checkPermissions('fsc','write')">
-                    <i class="plus" data-feather="plus"></i> New FSC ORDER</a>
-                <a class="credit-check" data-toggle="modal" data-target="#Download" href="javascript:void(0)" (click)="downloadData()">
-                    <i class="download" data-feather="download"></i> Download Data</a>
-            </div>
         </div>
         <div class="roles-main delivery-list-table">
             <div class="d-flex align-items-center justify-content-between delivery-list-main mb-2">
@@ -100,15 +94,8 @@
                                 <td *ngIf="_auth.checkPermissions('fsc','write')">
                                     <div class="list-icons-talbe justify-content-center">
 
-                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="completeOrder(p)">
-                                            <i-feather class="icon-width" name="check"></i-feather>
-                                        </a>
-                                        <a class=" icon-anchor-list" href="javascript:void(0)">
-                                            <i-feather class="icon-width" name="edit-3" (click)="editPurchaseOrder(p,i)"></i-feather>
-                                        </a>
-
-                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="deletePurchaseOrder(p,i)">
-                                            <i-feather class="icon-width" name="trash"></i-feather>
+                                        <a class="icon-anchor-list" href="javascript:void(0)" (click)="restorePurchaseOrder(p)">
+                                            <i-feather class="icon-width" name="corner-up-left"></i-feather>
                                         </a>
                                     </div>
                                 </td>

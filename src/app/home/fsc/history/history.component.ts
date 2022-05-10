@@ -3,17 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { AddEditPurchaseOrdersComponent } from 'src/app/components/modals/fsc/add-edit-purchase-orders/add-edit-purchase-orders.component';
-import { DeleteConfirmationComponent } from 'src/app/components/modals/rod/delete-confirmation/delete-confirmation.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { FscService } from 'src/app/shared/services/fsc.service';
 
 @Component({
-    selector: 'app-purchase-order',
-    templateUrl: './purchase-order.component.html',
-    styleUrls: ['./purchase-order.component.css']
+    selector: 'app-history',
+    templateUrl: './history.component.html',
+    styleUrls: ['./history.component.css']
 })
-export class PurchaseOrderComponent implements OnInit {
-
+export class HistoryComponent implements OnInit {
     purchaseOrders = [];
     searchParams = {
         search: '',
@@ -28,13 +26,6 @@ export class PurchaseOrderComponent implements OnInit {
     pageFrom = 1;
     pageTo = 10;
     totalCount = 10;
-    modalConfig = {
-        animated: true,
-        keyboard: false,
-        backdrop: false,
-        ignoreBackdropClick: true,
-        windowClass: "modal-roles"
-    };
     searchSubscription: Subscription;
     dateToday = new Date();
     startDate;
@@ -49,7 +40,7 @@ export class PurchaseOrderComponent implements OnInit {
         if (this.searchSubscription) {
             this.searchSubscription.unsubscribe();
         }
-        this.searchSubscription = this._fsc.purchaseOrderListing(this.searchParams).subscribe(res => {
+        this.searchSubscription = this._fsc.history(this.searchParams).subscribe(res => {
             this.purchaseOrders = res.data.data;
             this.searchParams.page_size = res.data.per_page
             this.searchParams.page = res.data.current_page
@@ -74,53 +65,11 @@ export class PurchaseOrderComponent implements OnInit {
         }, 50);
     }
 
-    editPurchaseOrder(p, i) {
-        this.modalConfig.windowClass = "modal-roles modal-FSC-Order"
-        const modal = this._modal.open(AddEditPurchaseOrdersComponent, this.modalConfig);
-        modal.componentInstance.type = 'edit';
-        modal.componentInstance.order = { ...p };
-        modal.componentInstance.response.subscribe(res => {
-            if (res.success) {
-                this.purchaseOrders[i] = res.data;
-            }
-            modal.dismiss();
-            this.modalConfig.windowClass = "modal-roles";
-        })
-    }
-
-    completeOrder(purchase) {
-        this._fsc.updateStatus({ id: purchase.id, status: 'Completed' }).subscribe(res => {
+    restorePurchaseOrder(purchase) {
+        this._fsc.updateStatus({ id: purchase.id, status: 'Pending' }).subscribe(res => {
             this.getPurchaseListing();
         })
     }
-
-    addPurchaseOrder() {
-        this.modalConfig.windowClass = "modal-roles modal-FSC-Order"
-        const modal = this._modal.open(AddEditPurchaseOrdersComponent, this.modalConfig);
-        modal.componentInstance.type = 'add';
-        modal.componentInstance.response.subscribe(res => {
-            if (res.success) {
-                this.getPurchaseListing();
-            }
-            modal.dismiss();
-            this.modalConfig.windowClass = "modal-roles";
-        })
-    }
-
-    deletePurchaseOrder(purchase, index) {
-        this.modalConfig.windowClass = "modal-roles modal-FSC-Order"
-        const modal = this._modal.open(AddEditPurchaseOrdersComponent, this.modalConfig);
-        modal.componentInstance.order = { ...purchase };
-        modal.componentInstance.type = 'delete';
-        modal.componentInstance.response.subscribe(res => {
-            if (res.success) {
-                this.purchaseOrders.splice(index, 1);
-            }
-            modal.dismiss();
-            this.modalConfig.windowClass = "modal-roles";
-        })
-    }
-
 
     changePage(event) {
         this.searchParams.page = event;
