@@ -35,24 +35,24 @@
                                      </div>
 
                                  </th>
-                                 <th (click)="sortData('due_date')">
+                                 <th class="cursor-pointer" (click)="sortData('due_date')">
                                      <p class="inner-cell">W/C <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'due_date' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'due_date' && searchParams.sort_value == 'ASC'"></i></p>
                                  </th>
-                                 <th (click)="sortData('work_number')">
+                                 <th class="cursor-pointer" (click)="sortData('work_number')">
                                      <p class="inner-cell">Work# <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'work_number' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'work_number' && searchParams.sort_value == 'ASC'"></i></p>
                                  </th>
-                                 <th (click)="sortData('customers.name')">
+                                 <th class="cursor-pointer" (click)="sortData('customers.name')">
                                      <p class="inner-cell">Customer <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'customers.name' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'customers.name' && searchParams.sort_value == 'ASC'"></i></p>
                                  </th>
 
-                                 <th (click)="sortData('products.name')">
+                                 <th class="cursor-pointer" (click)="sortData('products.name')">
                                      <p class="inner-cell">Product <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'products.name' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'products.name' && searchParams.sort_value == 'ASC'"></i></p>
                                  </th>
 
-                                 <th (click)="sortData('status')">
+                                 <th class="cursor-pointer" (click)="sortData('status')">
                                      <p class="inner-cell">Status <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'status' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'status' && searchParams.sort_value == 'ASC'"></i></p>
                                  </th>
-                                 <th (click)="sortData('progress')">
+                                 <th class="cursor-pointer" (click)="sortData('progress')">
                                      <p class="inner-cell">Progress <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'progress' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'progress' && searchParams.sort_value == 'ASC'"></i></p>
                                  </th>
 
