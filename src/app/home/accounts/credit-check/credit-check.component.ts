@@ -22,8 +22,8 @@ export class CreditCheckComponent implements OnInit {
         search: '',
         page_size: 10,
         page: 1,
-        sort_column: "",
-        sort_value: 'ASC'
+        sort_column: "due_date",
+        sort_value: 'DESC'
     }
     totalPages = 1;
     pageFrom = 1;
