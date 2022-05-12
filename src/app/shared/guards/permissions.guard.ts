@@ -15,6 +15,9 @@ export class PermissionsGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         this.modalService.dismissAll();
         let permissions = this._auth.currentUserPermissions;
+        this._auth.permissions.subscribe(res => {
+            permissions = this._auth.currentUserPermissions;
+        })
         let returnValue = true;
         if (permissions) {
             for (let i = 0; i < permissions.length; i++) {

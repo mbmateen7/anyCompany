@@ -76,8 +76,10 @@ export class FirebaseService implements OnDestroy {
 
     private initializeInAppNotifications() {
         this.fireMessaging.messages.pipe(takeUntil(this.destroyed$)).subscribe((res: any) => {
-            if (res.data?.logout) this.showReloadAlert(res.data);
-            else this.showInAppNotification(res.data);
+            if (res.data.title == 'Permissions Updated') {
+                this._auth.updateUserPermissions(JSON.parse(res.data.data))
+            }
+            this.showInAppNotification(res.data);
         })
     }
 

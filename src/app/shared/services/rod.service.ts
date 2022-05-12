@@ -102,7 +102,7 @@ export class RodService {
     }
 
     getRolesListing(params = {}): Observable<any> {
-        return this.http.post<any>(`${environment.apiUrl + urls.getWorkOrdersCustomers}`, params);
+        return this.http.post<any>(`${environment.apiUrl + urls.getJobNoteRoles}`, params);
     }
 
     downloadData(params = {}): Observable<any> {
