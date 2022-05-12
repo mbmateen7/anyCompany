@@ -52,10 +52,11 @@ export class AuthService {
         return;
     }
 
-    updateUserPermissions(userObj: any): void {
-        localStorage.setItem('permissions', JSON.stringify(userObj.permissions));
-        this.userPermissionObjSubject.next(userObj.permissions);
+    updateUserPermissions(permissionsObj: any): void {
+        localStorage.setItem('permissions', JSON.stringify(permissionsObj));
+        this.userPermissionObjSubject.next(permissionsObj);
         this.permissionArrayToObj()
+        this.redirectToAllowedModule();
         return;
     }
 
