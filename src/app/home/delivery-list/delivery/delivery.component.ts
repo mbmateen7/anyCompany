@@ -178,5 +178,4 @@ export class DeliveryComponent implements OnInit {
         this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';
         this.getDeliveryListing();
     }
-
 }
