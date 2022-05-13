@@ -178,4 +178,30 @@ export class DeliveryNoteComponent implements OnInit {
     redirectBack(): void {
         this._location.back();
     }
+
+
+
+    checkTextAreaLines(event) {
+        var limit = 3; // <---max no of lines you want in textarea
+        var textarea = event.target
+        var spaces = textarea.getAttribute("cols");
+        var lines = textarea.value.split("\n");
+        console.log(textarea, spaces, lines);
+
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].length <= spaces) continue;
+            var j = 0;
+
+            var space = spaces;
+
+            while (j++ <= spaces) {
+                if (lines[i].charAt(j) === " ") space = j;
+            }
+            lines[i + 1] = lines[i].substring(space + 1) + (lines[i + 1] || "");
+            lines[i] = lines[i].substring(0, space);
+        }
+        if (lines.length > limit) {
+        }
+        textarea.value = lines.slice(0, limit).join("\n");
+    }
 }
