@@ -133,7 +133,8 @@ export class PurchaseOrderComponent implements OnInit {
         this.getPurchaseListing();
     }
 
-    downloadData() {
+    downloadData(type) {
+        this.searchParams['type'] = type;
         this._fsc.downloadPurchaseOrder(this.searchParams).subscribe(res => {
             window.open(res.data.link);
         })

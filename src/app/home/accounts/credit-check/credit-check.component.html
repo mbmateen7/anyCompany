@@ -59,7 +59,7 @@
                              </tr>
                          </thead>
                          <tbody class="t-body-ctm">
-                             <tr class="active-row" *ngFor="let credit of creditChecks;let i = index">
+                             <tr class="active-row" *ngFor="let credit of creditChecks;let i = index" [ngClass]="{'order-withdrawn': credit.on_hold || credit.status == 'Withdrawn','order-to-factory':credit.status == 'To Factory'}">
                                  <td>
                                      <div class="remember-me">
                                          <label class="custom-check custom-check-r">

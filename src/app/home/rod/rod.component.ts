@@ -438,7 +438,8 @@ export class RodComponent implements OnInit {
         });
     }
 
-    downloadData() {
+    downloadData(type) {
+        this.searchParams['type'] = type;
         this._rod.downloadData(this.searchParams).subscribe(res => {
             window.open(res.data.link);
         })

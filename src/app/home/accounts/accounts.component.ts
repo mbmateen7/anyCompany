@@ -66,7 +66,7 @@ export class AccountsComponent implements OnInit {
             this.totalPages = res.data.last_page
             this.pageFrom = res.data.from;
             this.pageTo = res.data.to;
-            this.totalCount = res.data.total;;
+            this.totalCount = res.data.total;
         });
     }
 
@@ -200,7 +200,7 @@ export class AccountsComponent implements OnInit {
     editPurchaseOrder(order, index) {
         const purchaseModal = this._modal.open(AddEditAccountPurchaseOrderComponent, this.modalConfig);
         purchaseModal.componentInstance.type = 'edit';
-        purchaseModal.componentInstance.salesOrder = order;
+        purchaseModal.componentInstance.salesOrder = { ...order };
         purchaseModal.componentInstance.response.subscribe(res => {
             if (res.success) {
                 this.getAccountStats();
@@ -280,7 +280,8 @@ export class AccountsComponent implements OnInit {
         });
     }
 
-    downloadData() {
+    downloadData(type) {
+        this.searchParams['type'] = type;
         if (this.activeTab == 'salesOrder') {
             if (this.salesOrder.length == 0) {
                 return;
