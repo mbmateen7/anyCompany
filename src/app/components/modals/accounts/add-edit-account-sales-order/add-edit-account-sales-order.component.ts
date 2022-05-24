@@ -48,6 +48,7 @@ export class AddEditAccountSalesOrderComponent implements OnInit {
     mapUpdateObj() {
         this.selectedDate = new Date(this.salesOrder.month);
         this.selectedOrder = this.salesOrder.work_order.work_number;
+        this.selectedEmployee = this.salesOrder.user.name;
     }
 
 

@@ -1,14 +1,20 @@
  <div class="dashboard-main">
      <div class="dashboard-content ">
-         <div class="d-flex align-items-center mb-16 justify-content-between mr-70">
+         <div class="d-flex align-items-center mb-16 justify-content-between">
              <ul class="breadcrumb">
                  <li class="breadcrumb-item"><a class="breadcrumb-link " href="javascript:void(0)">HISTORY</a></li>
                  <li class=" breadcrumb-item"><a class="breadcrumb-link active" href="javascript:void(0)">Week {{ dateToday | date:'ww' }}</a></li>
              </ul>
              <div class="d-flex">
-
-                 <a class="credit-check" data-toggle="modal" data-target="#Download" href="javascript:void(0)" (click)="downloadData()">
-                     <i class="download" data-feather="download"></i> Download Data</a>
+                 <div class="dropdown">
+                     <button class="credit-check dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <i-feather class="download" name="download"></i-feather> Download Data
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                         <a class="dropdown-item cursor-pointer" (click)="downloadData('displayed')">Displayed</a>
+                         <a class="dropdown-item cursor-pointer" (click)="downloadData('all')">All</a>
+                     </div>
+                 </div>
              </div>
          </div>
          <div class="roles-main delivery-list-table">

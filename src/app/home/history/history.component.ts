@@ -124,7 +124,8 @@ export class HistoryComponent implements OnInit {
         })
     }
 
-    downloadData() {
+    downloadData(type) {
+        this.searchParams['type'] = type;
         this._history.downloadHistory(this.searchParams).subscribe(res => {
             window.open(res.data.link);
         })

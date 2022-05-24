@@ -22,9 +22,15 @@
                 <a class="btn-apply" (click)="addSalesOrder()" href="javascript:void(0)" *ngIf="_auth.checkPermissions('rod','write')">
                     <i-feather class="plus" name="plus"></i-feather> Add Sales Order
                 </a>
-                <a class="credit-check" data-toggle="modal" data-target="#Download-1" href="javascript:void(0)" (click)="downloadData()">
-                    <i-feather class="download" name="download"></i-feather> Download Data
-                </a>
+                <div class="dropdown">
+                    <button class="credit-check dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i-feather class="download" name="download"></i-feather> Download Data
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item cursor-pointer" (click)="downloadData('displayed')">Displayed</a>
+                        <a class="dropdown-item cursor-pointer" (click)="downloadData('all')">All</a>
+                    </div>
+                </div>
             </div>
 
 
@@ -85,8 +91,8 @@
                                 <th class="cursor-pointer" (click)="sortData('products.name')">
                                     <p class="inner-cell">Product <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'products.name' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'products.name' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
-                                <th>
-                                    <p class="inner-cell">Status</p>
+                                <th class="cursor-pointer" (click)="sortData('status')">
+                                    <p class="inner-cell">Status <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'status' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'status' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
                                 <th class="cursor-pointer" (click)="sortData('progress')">
                                     <p class="inner-cell">Progress <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'progress' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'progress' && searchParams.sort_value == 'ASC'"></i></p>

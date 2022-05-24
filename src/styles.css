@@ -8328,12 +8328,21 @@ button.bg-dark:focus {
         display: inline-flex !important;
     }
 }
-@page { size: auto; margin: 0mm; }
+
+@page {
+    size: auto;
+    margin: 0mm;
+}
+
 @media print {
-    body{
-        margin:0px !important
+    body {
+        margin: 0px !important
     }
-    @page { size: auto; margin: 0mm; }
+
+    @page {
+        size: auto;
+        margin: 0mm;
+    }
 
     .d-print-none {
         display: none !important;
@@ -37483,7 +37492,20 @@ i-feather.clear-filter {
 }
 
 
-th.cursor-pointer {
+.cursor-pointer {
     cursor: pointer;
 }
-@page { size: auto; margin: 0mm; }
+
+.dropdown .credit-check+.dropdown-menu {
+    width: calc(100% - 1rem) !important;
+}
+
+.dropdown .credit-check+.dropdown-menu>.dropdown-item:hover {
+    background-color: #DC0100;
+    color: white;
+}
+
+@page {
+    size: auto;
+    margin: 0mm;
+}

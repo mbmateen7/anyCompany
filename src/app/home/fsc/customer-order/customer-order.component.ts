@@ -55,7 +55,8 @@ export class CustomerOrderComponent implements OnInit {
         this.getFscListing();
     }
 
-    downloadData() {
+    downloadData(type) {
+        this.searchParams['type'] = type
         this._fsc.downloadCustomerOrder(this.searchParams).subscribe(res => {
             window.open(res.data.link);
         })

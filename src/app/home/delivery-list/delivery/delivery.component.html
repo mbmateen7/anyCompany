@@ -137,7 +137,7 @@
                                     <td>
                                         <div class="custom-box">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write')}">
-                                                <input type="checkbox" [checked]="delivery.status == 'In Factory'" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.on_hold" (change)="updateStatus(delivery,i)">
+                                                <input type="checkbox" [checked]="delivery.status == 'In Factory'" [disabled]="!_auth.checkPermissions('delivery_list','write')" (change)="updateStatus(delivery,i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -145,7 +145,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Sawed')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -153,7 +153,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Lip')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -161,7 +161,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Press')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -169,7 +169,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Mill')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -177,7 +177,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Mach')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -185,7 +185,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'CNC')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -193,7 +193,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Spray')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -201,7 +201,7 @@
                                     <td>
                                         <div class="custom-box" *ngIf="checkProductAttribute(delivery,'Bench')">
                                             <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Bench')" (change)="updateDeliveryList(delivery,'Bench',i)">
+                                                <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Bench')" (change)="updateDeliveryList(delivery,'Bench',i)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -362,7 +362,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write')}">
-                                    <input type="checkbox" [checked]="delivery.status == 'In Factory'" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.on_hold" (change)="updateStatus(delivery,i)">
+                                    <input type="checkbox" [checked]="delivery.status == 'In Factory'" [disabled]="!_auth.checkPermissions('delivery_list','write')" (change)="updateStatus(delivery,i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -373,7 +373,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
+                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Sawed')" (change)="updateDeliveryList(delivery,'Sawed',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -384,7 +384,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
+                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Lip')" (change)="updateDeliveryList(delivery,'Lip',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -395,7 +395,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
+                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Press')" (change)="updateDeliveryList(delivery,'Press',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -406,7 +406,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
+                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mill')" (change)="updateDeliveryList(delivery,'Mill',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -417,7 +417,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
+                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Mach')" (change)="updateDeliveryList(delivery,'Mach',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -428,7 +428,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
+                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'CNC')" (change)="updateDeliveryList(delivery,'CNC',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -439,7 +439,7 @@
                             </p>
                             <div class="custom-box">
                                 <label class="switch" [ngClass]="{'disabled': !_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'}">
-                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || (delivery.status != 'In Factory' && !delivery.on_hold)" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
+                                    <input type="checkbox" [disabled]="!_auth.checkPermissions('delivery_list','write') || delivery.status != 'In Factory'" [checked]="checkProductAttributeStatus(delivery,'Spray')" (change)="updateDeliveryList(delivery,'Spray',i)">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
