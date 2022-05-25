@@ -54,7 +54,8 @@
         <div class="timeline-card-main" [ngClass]="{'show-job-note': jobDetail != null}">
             <ul class="cars-time-list">
                 <div *ngFor="let note of jobNotes; let i = index">
-                    <li class="card-timeline" *ngIf="i % 2 == 0">
+                    <li class="card-timeline position-relative" *ngIf="i % 2 == 0">
+                        <div class="timeline-counter">{{ i+1 }}</div>
                         <ul class="card-ul-timeline">
                             <li class="timeline-name-heading">Employees Name</li>
                             <li class="timeline-name">{{ note.user.name }}</li>
@@ -78,7 +79,8 @@
             <div class="bottom-card-list">
                 <ul class="cars-time-list">
                     <div *ngFor="let note of jobNotes; let i = index">
-                        <li class="card-timeline" *ngIf="i % 2 != 0">
+                        <li class="card-timeline position-relative" *ngIf="i % 2 != 0">
+                            <div class="timeline-counter">{{ i+1 }}</div>
                             <ul class="card-ul-timeline">
                                 <li class="timeline-name-heading">Employees Name</li>
                                 <li class="timeline-name">{{ note.user.name }}</li>
