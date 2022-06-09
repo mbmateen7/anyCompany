@@ -67,7 +67,7 @@
                         <ul class="card-ul-timeline" [ngClass]="{'invisible': !note.description}">
                             <li class="timeline-name-heading">Job Note</li>
                             <li class="timeline-name">
-                                <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="jobDetail =note">
+                                <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="showJobNoteDetails(note)">
                                     View
                                 </a>
                             </li>
@@ -92,7 +92,7 @@
                             <ul class="card-ul-timeline" [ngClass]="{'invisible': !note.description}">
                                 <li class="timeline-name-heading">Job Note</li>
                                 <li class="timeline-name">
-                                    <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="jobDetail = note">
+                                    <a class="view-anchor view-anchor-red" href="javascript:void(0)" (click)="showJobNoteDetails(note)">
                                         View
                                     </a>
                                 </li>
@@ -106,10 +106,10 @@
         </div>
 
         <div class="job-details-section" *ngIf="jobDetail">
-            <span class="close-job-details" (click)="jobDetail = null">X</span>
+            <span class="close-job-details" (click)="showJobNoteDetails(null)">X</span>
             <h4 class="title">Job Note <i class="bi bi-arrow-right"></i></h4>
             <div class="job-note-description">
-                <div [innerHtml]="safeHtml(jobDetail.description)">
+                <div [innerHtml]="jobDetail.description">
                 </div>
             </div>
         </div>

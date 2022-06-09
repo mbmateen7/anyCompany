@@ -23,7 +23,7 @@ export class TimelineComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles"
     };
-    constructor(private _rod: RodService, private sanitizer: DomSanitizer, private _modal: NgbModal, public _auth: AuthService, private helper: GlobalHelper) {
+    constructor(private _rod: RodService, private _modal: NgbModal, public _auth: AuthService, private helper: GlobalHelper) {
     }
 
     ngOnInit(): void {
@@ -39,10 +39,6 @@ export class TimelineComponent implements OnInit {
 
     viewDeliveryNotes() {
         this.response.emit({ success: true });
-    }
-
-    safeHtml(html) {
-        return this.sanitizer.bypassSecurityTrustHtml(html)
     }
 
     viewProductionSchedule() {
@@ -73,5 +69,9 @@ export class TimelineComponent implements OnInit {
             this.rod.attachments = [];
             this.helper.toastSuccess(res.message);
         });
+    }
+
+    showJobNoteDetails(val) {
+        this.jobDetail = val;
     }
 }   
