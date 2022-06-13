@@ -42,21 +42,20 @@ export class AddEditAccountPurchaseOrderComponent implements OnInit {
         ignoreBackdropClick: true,
         windowClass: "modal-roles add-phone-book-modal"
     };
-    constructor(private _rod: RodService, private _phonebook: PhonebookService, private helper: GlobalHelper, private _account: AccountService, private datePipe: DatePipe, private _modal: NgbModal) { }
+    constructor(private helper: GlobalHelper, private _account: AccountService, private datePipe: DatePipe, private _modal: NgbModal) { }
 
     ngOnInit(): void {
-        console.log(this.type);
         this.getOrders();
         this.getSuppliers();
         if (this.type == 'edit') {
             this.updateOrderObj()
-            this.selectedSupplier = this.salesOrder.supplier.name
-            this.selectedOrder = this.salesOrder.work_number
         }
     }
 
     updateOrderObj() {
         this.selectedDate = new Date(this.salesOrder.due_date);
+        this.selectedSupplier = this.salesOrder.supplier.name
+        this.selectedOrder = this.salesOrder.order?.work_number
     }
 
     getSuppliers(event = null) {
