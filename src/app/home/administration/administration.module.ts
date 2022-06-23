@@ -9,12 +9,14 @@ import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
     declarations: [
         UsersComponent,
-        RolesComponent
+        RolesComponent,
+        SettingsComponent
     ],
     imports: [
         CommonModule,

@@ -38,6 +38,9 @@
                                 <th class="cursor-pointer" (click)="sortData('email')">
                                     <p class="inner-cell">Email <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'email' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'email' && searchParams.sort_value == 'ASC'"></i></p>
                                 </th>
+                                <th class="cursor-pointer" (click)="sortData('blacklist')">
+                                    <p class="inner-cell">Blacklisted <i class="fa fa-arrow-down sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'blacklist' && searchParams.sort_value == 'DESC'"></i> <i class="fa fa-arrow-up sorting-arrow" aria-hidden="true" *ngIf="searchParams.sort_column == 'blacklist' && searchParams.sort_value == 'ASC'"></i></p>
+                                </th>
                                 <th *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <p class="inner-cell">Actions</p>
                                 </th>
@@ -52,9 +55,13 @@
                                 <td>
                                     <p class="inner-cell">{{ c.phone_no }}</p>
                                 </td>
-
                                 <td>
                                     <p class="inner-cell">{{ c.email }}</p>
+                                </td>
+                                <td>
+                                    <p class="inner-cell">
+                                        <i-feather class="icon-width text-red" name="check" *ngIf="c.blacklist"></i-feather>
+                                    </p>
                                 </td>
                                 <td *ngIf="_auth.checkPermissions('phonebook','write')">
                                     <div class="list-icons-talbe d-flex justify-content-center">

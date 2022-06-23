@@ -29,6 +29,10 @@ export const urls = {
     updateRole: 'administration/roles/update',
     getPermissionsList: 'administration/roles/permissions/listing',
 
+    // Admin Settings
+    getAdminSettings: 'administration/settings/listing',
+    updateAdminSettings: 'administration/settings/update',
+
     // Rod
     rodListing: 'rod/work-orders/listing',
     storeWorkOrder: 'rod/work-orders/store',

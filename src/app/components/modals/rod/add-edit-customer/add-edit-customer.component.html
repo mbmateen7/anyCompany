@@ -52,9 +52,20 @@
 
         </div>
         <div class="col-md-12">
-            <div class="input-style ">
+            <div class="input-style mb-2">
                 <label class="d-block">Phone<span class="text-danger">*</span></label>
                 <input type="text" class="ctm-input type-input" placeholder="0236 54321" [(ngModel)]="cus.phone_no" name="phone_no">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex align-items-center  check-box-rod-modal justify-content-between">
+                <h3 class="fsc-text">Blacklisted</h3>
+                <div class="remember-me">
+                    <label class="custom-check custom-check-r">
+                        <input type="checkbox" checked="checked" [(ngModel)]="cus.blacklist">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>

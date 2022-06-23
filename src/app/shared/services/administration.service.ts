@@ -52,5 +52,11 @@ export class AdministrationService {
         return this.http.get<any>(`${environment.apiUrl + urls.getPermissionsList}`);
     }
 
-
+    // Admin Settings
+    getSettings(): Observable<any> {
+        return this.http.get<any>(`${environment.apiUrl + urls.getAdminSettings}`);
+    }
+    updateSettings(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.updateAdminSettings}`, params);
+    }
 }
