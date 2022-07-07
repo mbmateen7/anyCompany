@@ -80,6 +80,7 @@ export const urls = {
     deliveryListing: 'delivery-list/delivery/listing',
     updateDeliveryListStatus: 'delivery-list/delivery/update-status',
     updateDeliveryList: 'delivery-list/delivery/update',
+    downloadDeliveryList: 'delivery-list/delivery/download',
 
     // FSC
     fscListing: 'fsc/customer-orders/listing',

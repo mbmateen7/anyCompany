@@ -173,6 +173,13 @@ export class DeliveryComponent implements OnInit {
         this.getDeliveryListing();
     }
 
+    downloadData(type) {
+        this.searchParams['type'] = type;
+        this._delivery.downloadData(this.searchParams).subscribe(res => {
+            window.open(res.data.link);
+        })
+    }
+
     sortData(column) {
         this.searchParams.sort_column = column;
         this.searchParams.sort_value = this.searchParams.sort_value == 'ASC' ? 'DESC' : 'ASC';

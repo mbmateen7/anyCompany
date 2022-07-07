@@ -24,4 +24,8 @@ export class DeliveryListService {
     updateDeliveryList(params = {}): Observable<any> {
         return this.http.post<any>(`${environment.apiUrl + urls.updateDeliveryList}`, params);
     }
+
+    downloadData(params = {}): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl + urls.downloadDeliveryList}`, params);
+    }
 }
